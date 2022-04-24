@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'edu.cmu.se355'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.soot-oss', name: 'soot', version: '4.2.1'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.36'
+}
+
+task customCleanUp(type: Delete) {
+    delete "sootOutput"
+}
+
+tasks.clean.dependsOn(tasks.customCleanUp)
