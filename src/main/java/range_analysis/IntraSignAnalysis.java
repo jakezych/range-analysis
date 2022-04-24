@@ -17,6 +17,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/** https://github.com/EngineHub/WorldEdit/blob/master/worldedit-core/src/main/java/com/sk89q/worldedit/math/interpolation/LinearInterpolation.java
+  * https://github.com/EngineHub/WorldEdit/blob/master/worldedit-core/src/main/java/com/sk89q/worldedit/math/interpolation/KochanekBartelsInterpolation.java
+  * https://github.com/farhankhwaja/HeapSort/blob/master/HeapSort.java
+  * ^ candidates for analyzing for errors
+  */
 public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
     // Holds the set of local variables
     private Set<Local> locals = new HashSet<>();
@@ -105,7 +110,7 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      */
     @Override
     protected Sigma newInitialFlow() {
-        // initialize to botoom
+        // initialize to Bottom
         return new Sigma(this.locals, new Range(Integer.MAX_VALUE, Integer.MIN_VALUE));
     }
 
