@@ -1,8 +1,8 @@
 package common;
 
 public class Range {
-    private int low;
-    private int high;
+    private final int low;
+    private final int high;
 
     /**
      * a range from low to high
@@ -13,19 +13,12 @@ public class Range {
     }
 
     public int getLow() {
-        return low;
+        return this.low;
     }
 
-    public void setLow(int low) {
-        this.low = low;
-    }
 
     public int getHigh() {
-        return high;
-    }
-
-    public void setHigh(int high) {
-        this.high = high;
+        return this.high;
     }
 
     @Override

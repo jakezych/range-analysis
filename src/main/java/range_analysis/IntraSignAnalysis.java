@@ -1,6 +1,7 @@
 package range_analysis;
 
 import common.ErrorMessage;
+import common.Range;
 import common.Utils;
 import soot.Local;
 import soot.Unit;
@@ -94,8 +95,8 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         if (this.sigma_i != null) {
             return this.sigma_i;
         } else {
-            // TODO: Implement me!
-            return new Sigma();
+            // initialize to Top
+            return new Sigma(this.locals, new Range(Integer.MIN_VALUE, Integer.MAX_VALUE));
         }
     }
 
@@ -104,8 +105,8 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      */
     @Override
     protected Sigma newInitialFlow() {
-        // TODO: Implement me!
-        return new Sigma();
+        // initialize to botoom
+        return new Sigma(this.locals, new Range(Integer.MAX_VALUE, Integer.MIN_VALUE));
     }
 
     /**
@@ -113,7 +114,14 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      */
     @Override
     protected void merge(Sigma in1, Sigma in2, Sigma out) {
-        // TODO: Implement me!
+        for (Map.Entry<Local, Range> entry1 : in1.map.entrySet()) {
+            Local l = entry1.getKey();
+            Range v1 = entry1.getValue();
+            if (in2.map.containsKey(l))  {
+                Range v2  = in2.map.get(l);
+                out.map.put(l, Sigma.join(v1, v2));
+            }
+        }
     }
 
     /**
@@ -121,6 +129,6 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      */
     @Override
     protected void copy(Sigma source, Sigma dest) {
-        // TODO: Implement me!
+        source.copy(dest);
     }
 }
