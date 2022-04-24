@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import static java.lang.Integer.max;
+import static java.lang.Integer.min;
+
 /**
  * A class to represent abstract values at a program point.
  */
@@ -38,8 +41,17 @@ public class Sigma {
      * Join for two abstract values
      */
     public static Range join(Range v1, Range v2) {
-        // TODO: Implement union
-        return null;
+        return new Range(min(v1.getLow(), v2.getLow()), max(v1.getHigh(), v2.getHigh()));
+    }
+    /**
+     * Returns whether or not the lattice value v1 is at least as precise as the lattice value v2
+     *
+     * @param v1 left operand lattice value
+     * @param v2 right operand lattice value
+     * @return true if v1 is at least as precise as v2, false otherwise
+     */
+    public boolean isLessThan(Range v1, Range v2) {
+        return v2.getLow() <= v1.getLow() && v1.getHigh() <= v2.getHigh();
     }
 
     public String toString() {
@@ -57,13 +69,19 @@ public class Sigma {
 
     @Override
     public boolean equals(Object obj) {
-        // TODO: Implement me!
-        return true;
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Sigma)) {
+            return false;
+        }
+
+        return map.equals(((Sigma) obj).map);
     }
 
     @Override
     public int hashCode() {
-        // TODO: Implement me!
-        return 0;
+        return map.hashCode();
     }
 }
