@@ -19,6 +19,30 @@ public class Context {
     }
 
     /**
+     * Generates the new call string based on the old call string and the new call site.
+     * Truncates to length CALL_STRING_CUTOFF
+     *
+     * @param callingCtx the current context
+     * @param n the location of the current call
+     * @return a new context, truncated to length
+     */
+    private static List<Integer> getSuffix(Context callingCtx, Integer n) {
+        List<Integer> result;
+        if (callingCtx != null) {
+            result = new ArrayList<>(callingCtx.string);
+            result.add(n);
+            int i = result.size() - 1 - CALL_STRING_CUTOFF;
+            while (result.size() > CALL_STRING_CUTOFF) {
+                result.remove(i);
+            }
+        } else {
+            result = new ArrayList<>();
+            result.add(n);
+        }
+        return result;
+    }
+
+    /**
      * From the chapter on interprocedural analysis in the text.
      * Note that the signature is slightly different than
      * in the notes, because getCtx in the notes takes a sigma as well, but since it isn't used
@@ -29,8 +53,7 @@ public class Context {
      * @return a new context, truncated to length
      */
     public static Context getCtx(SootMethod fn, Context callingCtx, Integer n) {
-        // TODO implement me!
-        List<Integer> newStr = new ArrayList<>();
+        List<Integer> newStr = getSuffix(callingCtx, n);
         return new Context(fn, newStr);
     }
 
