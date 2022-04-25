@@ -76,8 +76,6 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      */
     public void reportWarnings() {
         Map<String, Integer> arrayLengths = new HashMap<String, Integer>();
-        // make a map
-        // whenever there is a new array declared, map the base to its length, if it already exists, look it up
         for (Unit u : this.graph) {
             Sigma sigmaBefore = this.getFlowBefore(u);
             // maps the most recent declaration of an array to its length to later be referenced
@@ -93,6 +91,7 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 Value index = ref.getIndex();
                 Range domain = getDomain(sigmaBefore, index);
                 int len = 0;
+                // pull the length from the map
                 if (arrayLengths.containsKey(ref.getBase().toString())) {
                     len = arrayLengths.get(ref.getBase().toString());
                 }
@@ -148,7 +147,6 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         JAssignStmt stmt = (JAssignStmt) unit;
         Local lhs = (Local) stmt.getLeftOp();
         Value rhs = stmt.getRightOp();
-        // TODO: try and work around this code duplication
         if (rhs instanceof AddExpr) {
             AddExpr addStmt = (AddExpr) rhs;
             Value op1 = addStmt.getOp1();

@@ -1,7 +1,5 @@
 package common;
 
-import javax.lang.model.type.IntersectionType;
-
 public class Range {
     private final int low;
     private final int high;
@@ -20,10 +18,13 @@ public class Range {
 
     public boolean isBottom() { return this.low == Integer.MAX_VALUE && this.high == Integer.MIN_VALUE; }
 
-    public boolean isTop() { return this.low == Integer.MIN_VALUE && this.high == Integer.MAX_VALUE; }
-
-    // TODO: Documentation
-    // TODO: also try and clean up the code duplication here
+    /**
+     * Adds together the two input parameters. If either is infinity or negative infinity, return
+     * infinity or negative infinity. Otherwise, sum them normally.
+     * @param v1 first value
+     * @param v2 second value
+     * @return the sum of v1 and v2 accounting for infinity and negative infinity
+     */
     private static int sentinelAdd(int v1, int v2) {
         if (v1 == Integer.MIN_VALUE || v2 == Integer.MIN_VALUE) {
             return Integer.MIN_VALUE;
@@ -34,6 +35,13 @@ public class Range {
         }
     }
 
+    /**
+     * subtracts the two input parameters. If either is infinity or negative infinity, return
+     * infinity or negative infinity. Otherwise, subtract them normally.
+     * @param v1 first value
+     * @param v2 second value
+     * @return the difference of v1 and v2 accounting for infinity and negative infinity
+     */
     private static int sentinelSub(int v1, int v2) {
         if (v1 == Integer.MIN_VALUE || v2 == Integer.MIN_VALUE) {
             return Integer.MIN_VALUE;
@@ -44,6 +52,13 @@ public class Range {
         }
     }
 
+    /**
+     * multiplies the two input parameters. If either is infinity or negative infinity, return
+     * infinity or negative infinity. Otherwise, multiply them normally.
+     * @param v1 first value
+     * @param v2 second value
+     * @return the product of v1 and v2 accounting for infinity and negative infinity
+     */
     private static int sentinelMul(int v1, int v2) {
         if (v1 == Integer.MIN_VALUE || v2 == Integer.MIN_VALUE) {
             return Integer.MIN_VALUE;
@@ -54,6 +69,13 @@ public class Range {
         }
     }
 
+    /**
+     * divides the two input parameters. If either is infinity or negative infinity, return
+     * infinity or negative infinity. Otherwise, divide them normally.
+     * @param v1 first value
+     * @param v2 second value
+     * @return the quotient of v1 and v2 accounting for infinity and negative infinity
+     */
     private static int sentinelDiv(int v1, int v2) {
         if (v1 == Integer.MIN_VALUE || v2 == Integer.MIN_VALUE) {
             return Integer.MIN_VALUE;
@@ -66,10 +88,12 @@ public class Range {
 
     /**
      *
-     * @param r1
-     * @param r2
-     * @param op
-     * @return
+     * combines the two ranges using the specified operator which is one of the four following operations:
+     * addition, subtraction, multiplication, division
+     * @param r1 a range
+     * @param r2 a range
+     * @param op an operator denoting how the two input ranges should be combined.
+     * @return the combination of the two ranges using the inputted operator
      */
     public static Range combine(Range r1, Range r2, Operator op) {
         switch (op) {
