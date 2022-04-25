@@ -12,6 +12,7 @@ import soot.toolkits.graph.ExceptionalUnitGraph;
 import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.scalar.ForwardFlowAnalysis;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -74,18 +75,31 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      * Report warnings. This will use the analysis results collected by the constructor.
      */
     public void reportWarnings() {
+        Map<String, Integer> arrayLengths = new HashMap<String, Integer>();
+        // make a map
+        // whenever there is a new array declared, map the base to its length, if it already exists, look it up
         for (Unit u : this.graph) {
             Sigma sigmaBefore = this.getFlowBefore(u);
-            // array being referenced could lead to index warnings/errors
+            // maps the most recent declaration of an array to its length to later be referenced
+            if (u instanceof JAssignStmt) {
+                JAssignStmt stmt = ((JAssignStmt) u);
+                Value rightOp = stmt.getRightOp();
+                if(rightOp.toString().contains("newarray")) {
+                    arrayLengths.put(stmt.getLeftOp().toString(), rightOp.getUseBoxes().get(0).getValue().hashCode());
+                }
+            }
             if (u instanceof JAssignStmt && ((JAssignStmt) u).containsArrayRef()) {
                 ArrayRef ref = ((JAssignStmt) u).getArrayRef();
                 Value index = ref.getIndex();
                 Range domain = getDomain(sigmaBefore, index);
-                // TODO: get rid of hardcoded length
-                if (isOutsideRange(domain, 5)) {
+                int len = 0;
+                if (arrayLengths.containsKey(ref.getBase().toString())) {
+                    len = arrayLengths.get(ref.getBase().toString());
+                }
+                if (isOutsideRange(domain, len)) {
                     // Reports an error for an index definitely being out of bounds
                     Utils.reportWarning(u, ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR);
-                } else if (domain.getLow() < 0 || domain.getHigh() >= 5) {
+                } else if (domain.getLow() < 0 || domain.getHigh() >= len) {
                     // Reports a warning for index being possibly out of bounds
                     Utils.reportWarning(u, ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING);
                 }

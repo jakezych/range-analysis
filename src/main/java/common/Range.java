@@ -7,7 +7,7 @@ public class Range {
     private final int high;
 
     /**
-     * a range from low to high
+     * a range from low to high [low, high]
      */
     public Range(int low, int high) {
         this.low = low;
