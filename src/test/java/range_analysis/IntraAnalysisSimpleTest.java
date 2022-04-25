@@ -22,10 +22,10 @@ public class IntraAnalysisSimpleTest extends AnalysisTest {
         addTestClass("inputs.IntraTestSimple");
         Main.main(getArgs());
 
-        addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 30);
-        addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 42);
-        addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 54);
-        addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 63);
+        addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 11);
+        addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 23);
+        addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 35);
+        addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 44);
         Assert.assertEquals(expected, Utils.getErrors());
     }
 }

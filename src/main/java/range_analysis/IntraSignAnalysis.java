@@ -1,6 +1,8 @@
 package range_analysis;
 
+import common.ErrorMessage;
 import common.Range;
+import common.Utils;
 import soot.Local;
 import soot.Unit;
 import soot.Value;
@@ -63,14 +65,31 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         this.doAnalysis();
     }
 
+    // an index is for sure out of range if it's lower and higher interval are both less than 0 or greater than the length
+    private boolean isOutsideRange(Range r, int len) {
+       return r.getLow() < 0 && r.getHigh() < 0 || r.getLow() >= len && r.getHigh() >= len;
+    }
+
     /**
      * Report warnings. This will use the analysis results collected by the constructor.
      */
     public void reportWarnings() {
-        // TODO: Implement this (raise warnings)!
-        // TODO: This implementation is incorrect, but it shows how to report a warning
         for (Unit u : this.graph) {
-            Sigma sigmaBefore = this.getFlowBefore(u); // TODO: Use this info to decide if a warning is appropriate
+            Sigma sigmaBefore = this.getFlowBefore(u);
+            // array being referenced could lead to index warnings/errors
+            if (u instanceof JAssignStmt && ((JAssignStmt) u).containsArrayRef()) {
+                ArrayRef ref = ((JAssignStmt) u).getArrayRef();
+                Value index = ref.getIndex();
+                Range domain = getDomain(sigmaBefore, index);
+                // TODO: get rid of hardcoded length
+                if (isOutsideRange(domain, 5)) {
+                    // Reports an error for an index definitely being out of bounds
+                    Utils.reportWarning(u, ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR);
+                } else if (domain.getLow() < 0 || domain.getHigh() >= 5) {
+                    // Reports a warning for index being possibly out of bounds
+                    Utils.reportWarning(u, ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING);
+                }
+            }
         }
     }
 

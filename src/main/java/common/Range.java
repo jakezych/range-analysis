@@ -14,18 +14,13 @@ public class Range {
         this.high = high;
     }
 
-    public int getLow() {
-        return this.low;
-    }
+    public int getLow() { return this.low; }
 
+    public int getHigh() { return this.high; }
 
-    public int getHigh() {
-        return this.high;
-    }
+    public boolean isBottom() { return this.low == Integer.MAX_VALUE && this.high == Integer.MIN_VALUE; }
 
-    public boolean isBottom() {
-        return this.low == Integer.MAX_VALUE && this.high == Integer.MIN_VALUE;
-    }
+    public boolean isTop() { return this.low == Integer.MIN_VALUE && this.high == Integer.MAX_VALUE; }
 
     // TODO: Documentation
     // TODO: also try and clean up the code duplication here
@@ -69,8 +64,6 @@ public class Range {
         }
     }
 
-
-
     /**
      *
      * @param r1
@@ -106,5 +99,10 @@ public class Range {
         } else {
             return this.low == ((Range) obj).low && this.high == ((Range) obj).high;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "[" + this.low + ", " + this.high + "]";
     }
 }
