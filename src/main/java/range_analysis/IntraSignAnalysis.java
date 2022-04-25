@@ -72,11 +72,6 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         // TODO: This implementation is incorrect, but it shows how to report a warning
         for (Unit u : this.graph) {
             Sigma sigmaBefore = this.getFlowBefore(u); // TODO: Use this info to decide if a warning is appropriate
-
-            // Reports an error for a definite negative index
-            Utils.reportWarning(u, ErrorMessage.NEGATIVE_INDEX_ERROR);
-            // Reports a warning for a possible negative index
-            Utils.reportWarning(u, ErrorMessage.POSSIBLE_NEGATIVE_INDEX_WARNING);
         }
     }
 

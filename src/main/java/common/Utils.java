@@ -42,13 +42,13 @@ public class Utils {
             System.out.println(line);
         }
         // An error overrides a warning.
-        if (message == ErrorMessage.NEGATIVE_INDEX_ERROR) {
-            ErrorReport warning = new ErrorReport(ErrorMessage.POSSIBLE_NEGATIVE_INDEX_WARNING, line, name);
+        if (message == ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR) {
+            ErrorReport warning = new ErrorReport(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, line, name);
             errors.remove(warning);
             errors.add(new ErrorReport(message, line, name));
         }
-        if (message == ErrorMessage.POSSIBLE_NEGATIVE_INDEX_WARNING) {
-            ErrorReport error = new ErrorReport(ErrorMessage.NEGATIVE_INDEX_ERROR, line, name);
+        if (message == ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING) {
+            ErrorReport error = new ErrorReport(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, line, name);
             if (!errors.contains(error))
                 errors.add(new ErrorReport(message, line, name));
         }

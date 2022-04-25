@@ -1,8 +1,9 @@
 package common;
 
 public enum ErrorMessage {
-    NEGATIVE_INDEX_ERROR("negative array index"),
-    POSSIBLE_NEGATIVE_INDEX_WARNING("array index may be negative");
+    OUT_OF_BOUNDS_INDEX_ERROR("array index out of bounds"),
+    POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING("array index may be out of bounds");
+
 
     ErrorMessage(String message) {
         this.errorMessage = message;
