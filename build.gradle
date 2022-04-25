@@ -5,8 +5,8 @@ plugins {
 group 'edu.cmu.se355'
 version '1.0'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.14
+targetCompatibility = 1.14
 
 repositories {
     mavenCentral()

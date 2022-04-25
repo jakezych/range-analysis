@@ -1,21 +1,20 @@
 package range_analysis;
 
-import common.ErrorMessage;
 import common.Range;
-import common.Utils;
 import soot.Local;
 import soot.Unit;
-import soot.ValueBox;
-import soot.toolkits.graph.DominatorsFinder;
+import soot.Value;
+import soot.jimple.*;
+import soot.jimple.internal.JAssignStmt;
 import soot.toolkits.graph.ExceptionalUnitGraph;
-import soot.toolkits.graph.MHGDominatorsFinder;
 import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.scalar.ForwardFlowAnalysis;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import static common.Operator.*;
 
 /** https://github.com/EngineHub/WorldEdit/blob/master/worldedit-core/src/main/java/com/sk89q/worldedit/math/interpolation/LinearInterpolation.java
   * https://github.com/EngineHub/WorldEdit/blob/master/worldedit-core/src/main/java/com/sk89q/worldedit/math/interpolation/KochanekBartelsInterpolation.java
@@ -76,6 +75,89 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
     }
 
     /**
+     *
+     *  The abstraction function for an integer
+     *
+     * @param n the constant value for which to extract the sign
+     * @return the abstracted value
+     */
+    private Range alpha(IntConstant n) {
+        return new Range(n.value, n.value);
+    }
+
+    /**
+     *
+     *  Gets the domain value of an operand
+     *
+     * @param op the operand to get the domain value for
+     * @return the domain value for the operand
+     */
+    private Range getDomain(Sigma inValue, Value op) {
+        if (op instanceof IntConstant) {
+            return alpha((IntConstant) op);
+        }
+        else if (op instanceof Local) {
+            return inValue.map.get(op);
+        }
+        else {
+            return new Range(Integer.MIN_VALUE, Integer.MAX_VALUE);
+        }
+    }
+
+    /**
+     * Handle flowing the state when a variable is being assigned
+     *
+     * @param inValue  The initial Sigma at this point
+     * @param unit     The current Unit
+     * @param outValue The updated Sigma after the flow function
+     */
+    private void handleAssign(Sigma inValue, Unit unit, Sigma outValue) {
+        JAssignStmt stmt = (JAssignStmt) unit;
+        Local lhs = (Local) stmt.getLeftOp();
+        Value rhs = stmt.getRightOp();
+        // TODO: try and work around this code duplication
+        if (rhs instanceof AddExpr) {
+            AddExpr addStmt = (AddExpr) rhs;
+            Value op1 = addStmt.getOp1();
+            Value op2 = addStmt.getOp2();
+            Range v1 = getDomain(inValue, op1);
+            Range v2 = getDomain(inValue, op2);
+            if (!v1.isBottom() && !v2.isBottom()) {
+                outValue.map.put(lhs, Range.combine(v1, v2, ADD));
+            }
+        } else if (rhs instanceof SubExpr) {
+            SubExpr subStmt = (SubExpr) rhs;
+            Value op1 = subStmt.getOp1();
+            Value op2 = subStmt.getOp2();
+            Range v1 = getDomain(inValue, op1);
+            Range v2 = getDomain(inValue, op2);
+            if (!v1.isBottom() && !v2.isBottom()) {
+                outValue.map.put(lhs, Range.combine(v1, v2, SUB));
+            }
+        } else if (rhs instanceof MulExpr) {
+            MulExpr mulStmt = (MulExpr) rhs;
+            Value op1 = mulStmt.getOp1();
+            Value op2 = mulStmt.getOp2();
+            Range v1 = getDomain(inValue, op1);
+            Range v2 = getDomain(inValue, op2);
+            if (!v1.isBottom() && !v2.isBottom()) {
+                outValue.map.put(lhs, Range.combine(v1, v2, MUL));
+            }
+        } else if (rhs instanceof DivExpr) {
+            DivExpr divStmt = (DivExpr) rhs;
+            Value op1 = divStmt.getOp1();
+            Value op2 = divStmt.getOp2();
+            Range v1 = getDomain(inValue, op1);
+            Range v2 = getDomain(inValue, op2);
+            if (!v1.isBottom() && !v2.isBottom()) {
+                outValue.map.put(lhs, Range.combine(v1, v2, DIV));
+            }
+        } else {
+            outValue.map.put(lhs, getDomain(inValue, rhs));
+        }
+    }
+
+    /**
      * Run flow function for this unit
      *
      * @param inValue  The initial Sigma at this point
@@ -84,7 +166,10 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      */
     @Override
     protected void flowThrough(Sigma inValue, Unit unit, Sigma outValue) {
-        // TODO: Implement the flow function
+        inValue.copy(outValue);
+        if (unit instanceof JAssignStmt) {
+            handleAssign(inValue, unit, outValue);
+        }
     }
 
     /**

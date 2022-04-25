@@ -22,8 +22,6 @@ public class IntraAnalysisSimpleTest extends AnalysisTest {
         addTestClass("inputs.IntraTestSimple");
         Main.main(getArgs());
 
-        addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 17);
-        addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 20);
         addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 30);
         addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 42);
         addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 54);
