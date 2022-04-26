@@ -18,7 +18,7 @@ public class IntraAnalysisTransformer extends BodyTransformer {
     @Override
     protected void internalTransform(Body body, String phaseName, Map<String, String> options) {
         NormalUnitPrinter printer = new NormalUnitPrinter(body);
-        IntraSignAnalysis analysis = new IntraSignAnalysis(new ExceptionalUnitGraph(body));
+        IntraRangeAnalysis analysis = new IntraRangeAnalysis(new ExceptionalUnitGraph(body));
 
         // Run the intraprocedural analysis
         analysis.run();

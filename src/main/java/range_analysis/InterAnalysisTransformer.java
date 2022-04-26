@@ -17,7 +17,7 @@ public class InterAnalysisTransformer extends SceneTransformer {
     @Override
     protected void internalTransform(String phaseName, Map<String, String> options) {
         System.out.println("Starting interprocedural analysis");
-        InterSignAnalysis analysis = InterSignAnalysis.getInstance();
+        InterRangeAnalysis analysis = InterRangeAnalysis.getInstance();
         // Analyze whole program
         analysis.analyzeProgram(Scene.v().getMainMethod());
         // Report all warnings

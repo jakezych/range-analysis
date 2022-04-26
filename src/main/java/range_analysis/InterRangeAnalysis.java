@@ -4,12 +4,12 @@ import soot.SootMethod;
 
 import java.util.*;
 
-public class InterSignAnalysis {
+public class InterRangeAnalysis {
     public static Set<Context> worklist;
     public static Set<Context> analyzing;
     public static Map<Context, Summary> results;
     public static Map<Context, Set<Context>> callers;
-    private static InterSignAnalysis theInstance = new InterSignAnalysis();
+    private static InterRangeAnalysis theInstance = new InterRangeAnalysis();
 
     static {
         worklist = new HashSet<>();
@@ -24,12 +24,12 @@ public class InterSignAnalysis {
      * e.g.,
      *   InterSignAnalysis.getInstance().callers can be accessed from IntraSignAnalysis
      */
-    public static InterSignAnalysis getInstance() {
+    public static InterRangeAnalysis getInstance() {
         return theInstance;
     }
 
     public static void resetAnalysis() {
-        theInstance = new InterSignAnalysis();
+        theInstance = new InterRangeAnalysis();
     }
 
     public void analyzeProgram(SootMethod main) {

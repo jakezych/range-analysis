@@ -24,7 +24,7 @@ import static common.Operator.*;
   * https://github.com/farhankhwaja/HeapSort/blob/master/HeapSort.java
   * ^ candidates for analyzing for errors
   */
-public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
+public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
     // Holds the set of local variables
     private Set<Local> locals = new HashSet<>();
 
@@ -39,7 +39,7 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      * Constructor with no context. This is useful for testing the intraprocedural
      * analysis on its own.
      */
-    IntraSignAnalysis(UnitGraph graph) {
+    IntraRangeAnalysis(UnitGraph graph) {
         // Note the construction of a default Sigma
         this(graph, null, null);
     }
@@ -48,11 +48,11 @@ public class IntraSignAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      * Allows creating an intra analysis with just the context and the input sigma,
      * since the unit graph can be grabbed from the function in the context.
      */
-    IntraSignAnalysis(Context ctx, Sigma sigma_i) {
+    IntraRangeAnalysis(Context ctx, Sigma sigma_i) {
         this(new ExceptionalUnitGraph(ctx.fn.getActiveBody()), ctx, sigma_i);
     }
 
-    IntraSignAnalysis(UnitGraph graph, Context ctx, Sigma sigma_i) {
+    IntraRangeAnalysis(UnitGraph graph, Context ctx, Sigma sigma_i) {
         super(graph);
         this.ctx = ctx;
         this.sigma_i = sigma_i;
