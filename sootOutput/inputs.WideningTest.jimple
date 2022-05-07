@@ -1,0 +1,48 @@
+public class inputs.WideningTest extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        inputs.WideningTest r0;
+
+        r0 := @this: inputs.WideningTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void testTermination()
+    {
+        int[] r0;
+        int i1, i3, i4;
+
+        r0 = newarray (int)[5];
+
+        i1 = 0;
+
+     label1:
+        if i1 == 10 goto label2;
+
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label2:
+        i3 = r0[0];
+
+        i4 = r0[i1];
+
+        return;
+    }
+
+    public static void testPrecision()
+    {
+        return;
+    }
+
+    public static void testConstantTruncation()
+    {
+        return;
+    }
+}

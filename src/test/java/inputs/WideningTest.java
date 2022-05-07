@@ -5,7 +5,7 @@ public class WideningTest {
     public static void testTermination() {
         int x, y;
         int[] array = new int[5];
-        y = -10;
+        y = 10;
         x = 0;
         while (x != y) {
             x = x + 1;

@@ -8,14 +8,14 @@ import soot.Unit;
 import soot.Value;
 import soot.jimple.*;
 import soot.jimple.internal.JAssignStmt;
+import soot.jimple.internal.JIfStmt;
+import soot.jimple.toolkits.annotation.logic.Loop;
+import soot.jimple.toolkits.annotation.logic.LoopFinder;
 import soot.toolkits.graph.ExceptionalUnitGraph;
 import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.scalar.ForwardFlowAnalysis;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static common.Operator.*;
 
@@ -24,6 +24,17 @@ import static common.Operator.*;
   * https://github.com/farhankhwaja/HeapSort/blob/master/HeapSort.java
   * ^ candidates for analyzing for errors
   */
+
+/**
+ * notes to self:
+ * apply widening operator when detecting a loop? need to see how we can detect a loop
+ * keep track of previous lattice value for each variable at every program location
+ *
+ * widen will probably just be a method here
+ * need to instrument program to track previous lattice values
+ * map line numbers -> sigma value (previous sigma in, gets saved at the start of flow)
+ * find all loops using loop finder,
+ */
 public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
     // Holds the set of local variables
     private Set<Local> locals = new HashSet<>();
@@ -34,6 +45,12 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
 
     // The input sigma for this analysis
     private Sigma sigma_i;
+
+    // Used for the widening operator, keeps track of the previous sigma_i value at each instruction point
+    private Map<Integer, Sigma> previousSigma = new HashMap<>();
+
+    // Used for the widening operator to determine whether an if statement is a loop head
+    private Set<Stmt> loopHeads = new HashSet<>();
 
     /**
      * Constructor with no context. This is useful for testing the intraprocedural
@@ -59,6 +76,14 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
 
         // Collect locals
         this.locals.addAll(graph.getBody().getLocals());
+
+        LoopFinder loopFinder = new LoopFinder();
+
+        // Find all loop guards
+        Collection<Loop> loops = loopFinder.getLoops(graph);
+        for (Loop l : loops) {
+            loopHeads.add(l.getHead());
+        }
     }
 
     // Runs the analysis
@@ -102,6 +127,43 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                     // Reports a warning for index being possibly out of bounds
                     Utils.reportWarning(u, ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING);
                 }
+            }
+        }
+    }
+
+    int minWiden(int l1, int l2) {
+        if (l1 <= l2) {
+            return l1;
+        } else {
+            return Integer.MIN_VALUE;
+        }
+    }
+
+    int maxWiden(int h1, int h2) {
+        if (h1 >= h2) {
+            return h1;
+        } else {
+            return Integer.MAX_VALUE;
+        }
+    }
+
+    /**
+     * Widens every variable's range at a given program point.
+     *
+     * @param prev sigma value the previous time this program location was evaluated in flowThrough
+     * @param current the current sigma value at a program location
+     * @param out the resulting sigma after each range was widened.
+     * @return
+     */
+    private void widen(Sigma prev, Sigma current, Sigma out) {
+        System.out.println("widen: prev: " + prev.map.toString() + " current: " + current.map.toString());
+        for (Map.Entry<Local, Range> entry1 : prev.map.entrySet()) {
+            Local l = entry1.getKey();
+            Range prevRange = entry1.getValue();
+            if (current.map.containsKey(l))  {
+                Range currentRange  = current.map.get(l);
+                Range widenedRange = new Range(minWiden(prevRange.getLow(), currentRange.getLow()), maxWiden(prevRange.getHigh(), currentRange.getHigh()));
+                out.map.put(l, widenedRange);
             }
         }
     }
@@ -200,6 +262,24 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         inValue.copy(outValue);
         if (unit instanceof JAssignStmt) {
             handleAssign(inValue, unit, outValue);
+        } else if (unit instanceof JIfStmt) {
+            Stmt conditional = (JIfStmt) unit;
+            // loop guard found
+            if (loopHeads.contains(conditional)) {
+                System.out.println(unit.toString() + "is conditional");
+                System.out.println("inValue:" + inValue.map.toString());
+                Integer lineNumber = unit.getJavaSourceStartLineNumber();
+                if (previousSigma.containsKey(lineNumber)) {
+                    System.out.println("calling widen");
+                    widen(previousSigma.get(lineNumber), inValue, outValue);
+                } else {
+                    System.out.println("put key:" + lineNumber + "val: " + inValue.map.toString());
+                    Sigma entry = new Sigma();
+                    inValue.copy(entry);
+                    previousSigma.put(lineNumber, entry);
+                }
+                System.out.println("outValue:" + outValue.map.toString());
+            }
         }
     }
 
