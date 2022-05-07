@@ -22,7 +22,9 @@ public class WideningOperatorTest extends AnalysisTest {
         addTestClass("inputs.WideningTest");
         Main.main(getArgs());
 
-        addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 15);
+        addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 16);
+        addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 27);
+        addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 29);
         Assert.assertEquals(expected, Utils.getErrors());
     }
 
