@@ -39,7 +39,7 @@ public class IntraTestSimple {
         int x, y, z;
         int[] array = new int[5];
         x = getInt();
-        y = 5;
+        y = 8;
         z = x * y;
         int ignore = array[z]; // WARNING
     }

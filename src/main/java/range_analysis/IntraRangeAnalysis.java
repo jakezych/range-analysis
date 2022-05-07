@@ -6,7 +6,9 @@ import common.Utils;
 import soot.Local;
 import soot.Unit;
 import soot.Value;
+import soot.ValueBox;
 import soot.jimple.*;
+import soot.jimple.internal.ImmediateBox;
 import soot.jimple.internal.JAssignStmt;
 import soot.jimple.internal.JIfStmt;
 import soot.jimple.toolkits.annotation.logic.Loop;
@@ -16,6 +18,7 @@ import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.scalar.ForwardFlowAnalysis;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 import static common.Operator.*;
 
@@ -46,11 +49,17 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
     // The input sigma for this analysis
     private Sigma sigma_i;
 
+    // All the constants in the body of the function
+    private Set<Integer> constants = new HashSet<>();
+
     // Used for the widening operator, keeps track of the previous sigma_i value at each instruction point
     private Map<Integer, Sigma> previousSigma = new HashMap<>();
 
     // Used for the widening operator to determine whether an if statement is a loop head
     private Set<Stmt> loopHeads = new HashSet<>();
+
+    // Used to identify constants in the program before performing the intraprocedural analysis
+    private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
     /**
      * Constructor with no context. This is useful for testing the intraprocedural
@@ -84,6 +93,25 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         for (Loop l : loops) {
             loopHeads.add(l.getHead());
         }
+
+        // Preprocess all constants to gather the max value any variable is set to.
+        for (ValueBox box : graph.getBody().getUseAndDefBoxes()) {
+            if (box instanceof ImmediateBox) {
+                ImmediateBox constantBox = (ImmediateBox) box;
+                String constantExpr = constantBox.getValue().toString();
+                if (isNumeric(constantExpr)) {
+                    constants.add(Integer.parseInt(constantExpr));
+                }
+            }
+        }
+    }
+
+    // https://www.baeldung.com/java-check-string-number
+    public boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        return pattern.matcher(strNum).matches();
     }
 
     // Runs the analysis
@@ -135,7 +163,16 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         if (l1 <= l2) {
             return l1;
         } else {
-            return Integer.MIN_VALUE;
+            int val = Integer.MIN_VALUE;
+            for (Integer constant: constants) {
+                if (constant <= l2) {
+                    if (constant > val) {
+                        val = constant;
+                    }
+                }
+            }
+            System.out.println("minWiden val: " + val);
+            return val;
         }
     }
 
@@ -143,7 +180,16 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         if (h1 >= h2) {
             return h1;
         } else {
-            return Integer.MAX_VALUE;
+            int val = Integer.MAX_VALUE;
+            for (Integer constant: constants) {
+                if (constant >= h2) {
+                    if (constant < val) {
+                        val = constant;
+                    }
+                }
+            }
+            System.out.println("maxWiden val: " + val);
+            return val;
         }
     }
 
@@ -202,13 +248,11 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      * Handle flowing the state when a variable is being assigned
      *
      * @param inValue  The initial Sigma at this point
-     * @param unit     The current Unit
+     * @param lhs   The current variable to be updated
+     * @param rhs  The assign expression to evaluate
      * @param outValue The updated Sigma after the flow function
      */
-    private void handleAssign(Sigma inValue, Unit unit, Sigma outValue) {
-        JAssignStmt stmt = (JAssignStmt) unit;
-        Local lhs = (Local) stmt.getLeftOp();
-        Value rhs = stmt.getRightOp();
+    private void handleAssign(Sigma inValue, Local lhs, Value rhs, Sigma outValue) {
         if (rhs instanceof AddExpr) {
             AddExpr addStmt = (AddExpr) rhs;
             Value op1 = addStmt.getOp1();
@@ -261,25 +305,63 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
     protected void flowThrough(Sigma inValue, Unit unit, Sigma outValue) {
         inValue.copy(outValue);
         if (unit instanceof JAssignStmt) {
-            handleAssign(inValue, unit, outValue);
+            JAssignStmt stmt = (JAssignStmt) unit;
+            Local lhs = (Local) stmt.getLeftOp();
+            Value rhs = stmt.getRightOp();
+            handleAssign(inValue, lhs, rhs, outValue);
         } else if (unit instanceof JIfStmt) {
-            Stmt conditional = (JIfStmt) unit;
+            Stmt conditional = (Stmt) unit;
+            JIfStmt ifStmt = (JIfStmt) unit;
             // loop guard found
             if (loopHeads.contains(conditional)) {
-                System.out.println(unit.toString() + "is conditional");
+                Value condition = ifStmt.getCondition();
+                System.out.println(condition);
                 System.out.println("inValue:" + inValue.map.toString());
                 Integer lineNumber = unit.getJavaSourceStartLineNumber();
                 if (previousSigma.containsKey(lineNumber)) {
                     System.out.println("calling widen");
                     widen(previousSigma.get(lineNumber), inValue, outValue);
                 } else {
-                    System.out.println("put key:" + lineNumber + "val: " + inValue.map.toString());
                     Sigma entry = new Sigma();
                     inValue.copy(entry);
                     previousSigma.put(lineNumber, entry);
                 }
                 System.out.println("outValue:" + outValue.map.toString());
             }
+            // if the range of the variable in the conditional makes it possible to make it true, don't widen and instead
+            // update that variable in sigma_out
+            // need to extract value to assign to (IntConstant) and Local variable somehow
+            ConditionExpr guard = (ConditionExpr) ifStmt.getCondition();
+
+            Local l;
+            if (guard.getOp1() instanceof Local) {
+                l = (Local) guard.getOp1();
+            } else if (guard.getOp2() instanceof Local) {
+                l = (Local) guard.getOp2();
+            } else {
+                // no update necessary
+                return;
+            }
+            Range lRange = outValue.map.get(l);
+            IntConstant intExpr;
+            Value rhs;
+            if (guard.getOp1() instanceof IntConstant) {
+                intExpr = (IntConstant) guard.getOp1();
+                rhs = guard.getOp1();
+            } else if (guard.getOp2() instanceof IntConstant) {
+                intExpr = (IntConstant) guard.getOp2();
+                rhs = guard.getOp2();
+            } else {
+                // no constant found
+                return;
+            }
+            System.out.println("l: " + l + " rhs: " + rhs);
+            // if n is within range, assign it
+            if (lRange.getLow() <= intExpr.value && intExpr.value <= lRange.getHigh()) {
+                System.out.println("Assigning " + l + " to " + rhs);
+                handleAssign(inValue, l, rhs, outValue);
+            }
+
         }
     }
 
@@ -313,8 +395,8 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         for (Map.Entry<Local, Range> entry1 : in1.map.entrySet()) {
             Local l = entry1.getKey();
             Range v1 = entry1.getValue();
-            if (in2.map.containsKey(l))  {
-                Range v2  = in2.map.get(l);
+            if (in2.map.containsKey(l)) {
+                Range v2 = in2.map.get(l);
                 out.map.put(l, Sigma.join(v1, v2));
             }
         }

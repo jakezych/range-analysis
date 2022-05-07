@@ -29,9 +29,19 @@ public class WideningTest {
         ignore = array[x]; // WARNING
     }
 
-    // TODO: Test constant value truncation
+    // Tests the widening operator making use of constants in the program to bound values
     public static void testConstantTruncation() {
+        int x, y;
+        int[] array = new int[10];
+        x = 1;
+        y = 1;
+        while (x != 10) {
+            x = x + 1;
+            y = y - 1;
+        }
 
+        int ignore = array[x - 1]; // OKAY x - 1 = [0, 9]
+        ignore = array[y]; // WARNING y = [-inf, 1]
     }
 
 }

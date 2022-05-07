@@ -83,7 +83,7 @@ public class inputs.IntraTestSimple extends java.lang.Object
 
         i0 = staticinvoke <inputs.IntraTestSimple: int getInt()>();
 
-        i2 = i0 * 5;
+        i2 = i0 * 8;
 
         i3 = r0[i2];
 
