@@ -3,6 +3,7 @@ package range_analysis;
 import common.ErrorMessage;
 import common.Range;
 import common.Utils;
+import jdk.dynalink.support.ChainedCallSite;
 import soot.*;
 import soot.jimple.*;
 import soot.jimple.internal.ImmediateBox;
@@ -14,6 +15,7 @@ import soot.jimple.toolkits.annotation.logic.LoopFinder;
 import soot.toolkits.graph.ExceptionalUnitGraph;
 import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.scalar.ForwardFlowAnalysis;
+import soot.util.Chain;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -327,10 +329,13 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 SootMethod method = assignStmt.getInvokeExpr().getMethod();
                 Context calleeCtx = Context.getCtx(method, ctx, unit.getJavaSourceStartLineNumber());
                 List<Value> localValues = assignStmt.getInvokeExpr().getArgs();
+                System.out.println("calling resultsFor with inValue: " + inValue);
                 // map the return value to the lhs side by getting its lattice value
                 for (Map.Entry<Local, Range> entry1 : resultsFor(calleeCtx, inValue, localValues).map.entrySet()) {
                     if (entry1.getKey().getName().equals("return")) {
                         outValue.map.put(lhs, entry1.getValue());
+                    } else {
+                        outValue.map.put(entry1.getKey(), entry1.getValue());
                     }
                 }
 
@@ -346,7 +351,9 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 }
                 System.out.println("evaluating expression in assign case: " + unit.toString() + " with inValue: " + inValue);
                 Range value = evaluateExpression(inValue, lhs, rhs, outValue);
+                System.out.println("inserting [" + lhs + "] = " + value);
                 outValue.map.put(lhs, value);
+                System.out.println("outValue: " + outValue + " after evaluating assign");
             }
         } else if (unit instanceof JIfStmt) {
             Stmt conditional = (Stmt) unit;
@@ -394,12 +401,14 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 return;
             }
             System.out.println("l: " + l + " rhs: " + rhs);
-            // if n is within range, assign it
-            if (lRange.getLow() <= intExpr.value && intExpr.value <= lRange.getHigh()) {
-                System.out.println("Assigning " + l + " to " + rhs);
-                System.out.println("evaluating expression in loop: " + unit.toString());
-                Range value = evaluateExpression(inValue, l, rhs, outValue);
-                outValue.map.put(l, value);
+            if (guard.getSymbol().equals("==")) {
+                // if n is within range, assign it
+                if (lRange.getLow() <= intExpr.value && intExpr.value <= lRange.getHigh()) {
+                    System.out.println("Assigning " + l + " to " + rhs);
+                    System.out.println("evaluating expression in loop: " + unit.toString());
+                    Range value = evaluateExpression(inValue, l, rhs, outValue);
+                    outValue.map.put(l, value);
+                }
             }
         } else if (unit instanceof JReturnStmt) {
             JReturnStmt returnStmt = (JReturnStmt) unit;
@@ -407,6 +416,7 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             Value expression = returnStmt.getOp();
             System.out.println("evaluating expression in return statement: " + unit.toString());
             Range value = evaluateExpression(inValue, result, expression, outValue);
+            System.out.println("return value: " + value);
             // perform a merge over the return values for the result being returned
             if (outValue.map.containsKey(result)) {
                 Range previousValue = outValue.map.get(result);
@@ -418,7 +428,7 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         if (ctx != null) {
             InterRangeAnalysis.results.get(ctx).output = outValue;
         }
-        System.out.println("outValue:" + outValue.map.toString());
+        System.out.println("outValue at end of flowThrough:" + outValue.map.toString());
     }
 
     /**
@@ -426,7 +436,7 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      *
      * @param ctx context to check the current results for
      * @param sigma_i input state to check the current results
-     * @param localValues values of the local variables being passed in as parameters to ctx.fn
+     * @param localValues values of the local variables being passed in as parameters to ctx.fnlocals of the called method
      * @return the resulting state given the context and input state
      */
     public Sigma resultsFor(Context ctx, Sigma sigma_i, List<Value> localValues) {
@@ -434,6 +444,7 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         Set<Context> analyzing = InterRangeAnalysis.analyzing;
         if (results.containsKey(ctx)) {
             if (InterRangeAnalysis.isLessPreciseThan(sigma_i, results.get(ctx).input)) {
+                System.out.println("returning output: " + results.get(ctx).output.toString() + "for ctx: " + ctx.toString());
                 return results.get(ctx).output;
             }
             else {
@@ -451,7 +462,19 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 // map the local variable to the parameter's domain value
                 newInput.map.put(variable, sigma_i.map.get(parameter));
             }
-            Sigma newOutput = new Sigma(ctx.fn.getActiveBody().getParameterLocals(), new Range(Integer.MAX_VALUE, Integer.MIN_VALUE));
+
+            // fill in remaining local variables
+            for (Map.Entry<Local, Range> entry1 : sigma_i.map.entrySet()) {
+                Local l = entry1.getKey();
+                Range v = entry1.getValue();
+                if (!newInput.map.containsKey(l)) {
+                    newInput.map.put(l, v);
+                }
+            }
+            Sigma newOutput = new Sigma(newInput.map.keySet(), new Range(Integer.MAX_VALUE, Integer.MIN_VALUE));
+            System.out.println("ctx: " + ctx);
+            System.out.println("newInput: " + newInput);
+            System.out.println("newOutput: " + newOutput);
             Summary summary = new Summary(newInput, newOutput);
             results.put(ctx, summary);
         }

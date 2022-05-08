@@ -83,8 +83,10 @@ public class InterRangeAnalysis {
         analyzing.remove(ctx);
         if (!(isLessPreciseThan(sigma_o_new, sigma_o))) {
             Sigma joined = new Sigma();
+            System.out.println("merging here");
             analysis.merge(sigma_o, sigma_o_new, joined);
             results.put(ctx, new Summary(sigma_i, joined));
+            System.out.println("results[" + ctx + "] = " + new Summary(sigma_i, joined));
             if (callers.containsKey(ctx)) {
                 for (Context c : callers.get(ctx)) {
                     worklist.add(c);
