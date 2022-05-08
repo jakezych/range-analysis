@@ -326,7 +326,6 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                     inValue.copy(entry);
                     previousSigma.put(lineNumber, entry);
                 }
-                System.out.println("outValue:" + outValue.map.toString());
             }
             // if the range of the variable in the conditional makes it possible to make it true, don't widen and instead
             // update that variable in sigma_out
@@ -361,8 +360,8 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 System.out.println("Assigning " + l + " to " + rhs);
                 handleAssign(inValue, l, rhs, outValue);
             }
-
         }
+        System.out.println("outValue:" + outValue.map.toString());
     }
 
     /**
