@@ -19,10 +19,6 @@ import java.util.regex.Pattern;
 
 import static common.Operator.*;
 
-/** https://github.com/EngineHub/WorldEdit/blob/master/worldedit-core/src/main/java/com/sk89q/worldedit/math/interpolation/LinearInterpolation.java
-  * https://github.com/EngineHub/WorldEdit/blob/master/worldedit-core/src/main/java/com/sk89q/worldedit/math/interpolation/KochanekBartelsInterpolation.java
-  * ^ candidates for analyzing for errors
-  */
 public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
     // Holds the set of local variables
     private Set<Local> locals = new HashSet<>();
