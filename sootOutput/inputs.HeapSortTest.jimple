@@ -1,0 +1,171 @@
+public class inputs.HeapSortTest extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        inputs.HeapSortTest r0;
+
+        r0 := @this: inputs.HeapSortTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static int buildheap(int[])
+    {
+        int[] r0;
+        int i2;
+
+        r0 := @parameter0: int[];
+
+        i2 = 4 / 2;
+
+     label1:
+        if i2 < 0 goto label2;
+
+        staticinvoke <inputs.HeapSortTest: int maxheap(int[],int,int)>(r0, i2, 4);
+
+        i2 = i2 + -1;
+
+        goto label1;
+
+     label2:
+        return 0;
+    }
+
+    public static int maxheap(int[], int, int)
+    {
+        int i0, i1, $i2, i3, i4, $i7, $i8, $i9, $i10, i11, i12, i13, i14, i15;
+        int[] r0, r1;
+
+        r1 := @parameter0: int[];
+
+        i0 := @parameter1: int;
+
+        i4 := @parameter2: int;
+
+        i1 = 2 * i0;
+
+        $i2 = 2 * i0;
+
+        i3 = $i2 + 1;
+
+        r0 = newarray (int)[5];
+
+        i11 = r0[i1];
+
+        i12 = r0[i0];
+
+        i13 = r0[i3];
+
+        if i1 > i4 goto label1;
+
+        $i10 = r1[i1];
+
+        $i9 = r1[i0];
+
+        if $i10 <= $i9 goto label1;
+
+        i14 = i1;
+
+        goto label2;
+
+     label1:
+        i14 = i0;
+
+     label2:
+        if i3 > i4 goto label3;
+
+        $i8 = r1[i3];
+
+        $i7 = r1[i14];
+
+        if $i8 <= $i7 goto label3;
+
+        i14 = i3;
+
+     label3:
+        if i14 == i0 goto label4;
+
+        staticinvoke <inputs.HeapSortTest: int exchange(int[],int,int)>(r1, i0, i14);
+
+        staticinvoke <inputs.HeapSortTest: int maxheap(int[],int,int)>(r1, i14, i4);
+
+     label4:
+        i15 = r0[i14];
+
+        return 0;
+    }
+
+    public static int exchange(int[], int, int)
+    {
+        int[] r0, r1;
+        int i0, i1, i2, $i3, i4, i5;
+
+        r1 := @parameter0: int[];
+
+        i0 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        r0 = newarray (int)[5];
+
+        i1 = r1[i0];
+
+        $i3 = r1[i2];
+
+        r1[i0] = $i3;
+
+        r1[i2] = i1;
+
+        i4 = r0[i0];
+
+        i5 = r0[i2];
+
+        return 0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int[] r0;
+        java.lang.String[] r1;
+        int i2, i3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        r0 = newarray (int)[5];
+
+        r0[0] = 3;
+
+        r0[1] = 5;
+
+        r0[2] = 1;
+
+        r0[3] = 2;
+
+        r0[4] = 4;
+
+        staticinvoke <inputs.HeapSortTest: int buildheap(int[])>(r0);
+
+        i2 = 4;
+
+        i3 = 4;
+
+     label1:
+        if i3 <= 0 goto label2;
+
+        staticinvoke <inputs.HeapSortTest: int exchange(int[],int,int)>(r0, i3, 0);
+
+        i2 = i2 - 1;
+
+        staticinvoke <inputs.HeapSortTest: int maxheap(int[],int,int)>(r0, 0, i2);
+
+        i3 = i3 + -1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+}

@@ -6,10 +6,7 @@ import common.Utils;
 import jdk.dynalink.support.ChainedCallSite;
 import soot.*;
 import soot.jimple.*;
-import soot.jimple.internal.ImmediateBox;
-import soot.jimple.internal.JAssignStmt;
-import soot.jimple.internal.JIfStmt;
-import soot.jimple.internal.JReturnStmt;
+import soot.jimple.internal.*;
 import soot.jimple.toolkits.annotation.logic.Loop;
 import soot.jimple.toolkits.annotation.logic.LoopFinder;
 import soot.toolkits.graph.ExceptionalUnitGraph;
@@ -24,20 +21,8 @@ import static common.Operator.*;
 
 /** https://github.com/EngineHub/WorldEdit/blob/master/worldedit-core/src/main/java/com/sk89q/worldedit/math/interpolation/LinearInterpolation.java
   * https://github.com/EngineHub/WorldEdit/blob/master/worldedit-core/src/main/java/com/sk89q/worldedit/math/interpolation/KochanekBartelsInterpolation.java
-  * https://github.com/farhankhwaja/HeapSort/blob/master/HeapSort.java
   * ^ candidates for analyzing for errors
   */
-
-/**
- * notes to self:
- * apply widening operator when detecting a loop? need to see how we can detect a loop
- * keep track of previous lattice value for each variable at every program location
- *
- * widen will probably just be a method here
- * need to instrument program to track previous lattice values
- * map line numbers -> sigma value (previous sigma in, gets saved at the start of flow)
- * find all loops using loop finder,
- */
 public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
     // Holds the set of local variables
     private Set<Local> locals = new HashSet<>();
@@ -147,6 +132,9 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 // pull the length from the map
                 if (arrayLengths.containsKey(ref.getBase().toString())) {
                     len = arrayLengths.get(ref.getBase().toString());
+                } else {
+                    // cannot infer length
+                    len = Integer.MAX_VALUE;
                 }
                 if (isOutsideRange(domain, len)) {
                     // Reports an error for an index definitely being out of bounds
@@ -318,13 +306,23 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         } else {
             System.out.println();
         }
+        System.out.println("inValue:" + inValue);
         inValue.copy(outValue);
         if (unit instanceof JAssignStmt) {
             JAssignStmt assignStmt = (JAssignStmt) unit;
+            // ignore array assignments since their values do not need to be kept track of
+            if (assignStmt.getLeftOp() instanceof JArrayRef) {
+                if (ctx != null) {
+                    InterRangeAnalysis.results.get(ctx).output = outValue;
+                }
+                System.out.println("outValue at end of flowThrough:" + outValue.map.toString());
+                return;
+            }
             Local lhs = (Local) assignStmt.getLeftOp();
             Value rhs = assignStmt.getRightOp();
             // processes an assign statement containing a function call as long as interprocedural analysis is being run
             if (assignStmt.containsInvokeExpr() && ctx != null) {
+                System.out.println(assignStmt + "being invoked");
                 // get the method being invoked
                 SootMethod method = assignStmt.getInvokeExpr().getMethod();
                 Context calleeCtx = Context.getCtx(method, ctx, unit.getJavaSourceStartLineNumber());
