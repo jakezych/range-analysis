@@ -401,7 +401,8 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 return;
             }
             System.out.println("l: " + l + " rhs: " + rhs);
-            if (guard.getSymbol().equals("==")) {
+            System.out.println(guard.getSymbol());
+            if (guard.getSymbol().trim().equals("==")) {
                 // if n is within range, assign it
                 if (lRange.getLow() <= intExpr.value && intExpr.value <= lRange.getHigh()) {
                     System.out.println("Assigning " + l + " to " + rhs);
@@ -464,13 +465,15 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             }
 
             // fill in remaining local variables
-            for (Map.Entry<Local, Range> entry1 : sigma_i.map.entrySet()) {
-                Local l = entry1.getKey();
-                Range v = entry1.getValue();
+            Chain<Local> fnLocals = ctx.fn.getActiveBody().getLocals();
+            Iterator<Local> fnLocalsIterator = fnLocals.iterator();
+            while(fnLocalsIterator.hasNext()) {
+                Local l = fnLocalsIterator.next();
                 if (!newInput.map.containsKey(l)) {
-                    newInput.map.put(l, v);
+                    newInput.map.put(l, new Range(Integer.MIN_VALUE, Integer.MAX_VALUE));
                 }
             }
+
             Sigma newOutput = new Sigma(newInput.map.keySet(), new Range(Integer.MAX_VALUE, Integer.MIN_VALUE));
             System.out.println("ctx: " + ctx);
             System.out.println("newInput: " + newInput);

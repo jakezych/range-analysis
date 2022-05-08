@@ -22,6 +22,7 @@ public class InterAnalysisTransformer extends SceneTransformer {
         analysis.analyzeProgram(Scene.v().getMainMethod());
         // Report all warnings
         analysis.reportWarnings();
+        analysis.resetAnalysis();
         System.out.println("Done");
     }
 }

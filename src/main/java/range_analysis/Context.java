@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Context {
-    static int CALL_STRING_CUTOFF = 4;
+    static int CALL_STRING_CUTOFF = 3;
     // The function being called
     SootMethod fn;
     // The call string. A list of integers corresponding to call sites. Each call site should be assigned

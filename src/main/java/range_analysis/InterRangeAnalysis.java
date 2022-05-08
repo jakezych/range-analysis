@@ -32,7 +32,8 @@ public class InterRangeAnalysis {
         return theInstance;
     }
 
-    public static void resetAnalysis() {
+    public void resetAnalysis() {
+        analyses = new HashMap<>();
         theInstance = new InterRangeAnalysis();
     }
 

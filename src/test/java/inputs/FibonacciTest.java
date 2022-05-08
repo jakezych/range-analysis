@@ -11,7 +11,7 @@ public class FibonacciTest {
     }
 
     public static void main(String[] args) {
-        int x, y, z, w;
+        int x, y, z;
         int[] array = new int[5];
         int ignore;
         x = 3;

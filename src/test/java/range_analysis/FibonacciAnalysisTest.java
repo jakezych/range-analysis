@@ -32,4 +32,5 @@ public class FibonacciAnalysisTest extends AnalysisTest{
         Assert.assertEquals(expected, Utils.getErrors());
         Utils.resetErrors();
     }
+
 }
