@@ -1,0 +1,157 @@
+public class jdk.internal.misc.TerminatingThreadLocal extends java.lang.ThreadLocal
+{
+    public static final java.lang.ThreadLocal REGISTRY;
+
+    public void <init>()
+    {
+        jdk.internal.misc.TerminatingThreadLocal r0;
+
+        r0 := @this: jdk.internal.misc.TerminatingThreadLocal;
+
+        specialinvoke r0.<java.lang.ThreadLocal: void <init>()>();
+
+        return;
+    }
+
+    public void set(java.lang.Object)
+    {
+        jdk.internal.misc.TerminatingThreadLocal r0;
+        java.lang.Object r1;
+
+        r0 := @this: jdk.internal.misc.TerminatingThreadLocal;
+
+        r1 := @parameter0: java.lang.Object;
+
+        specialinvoke r0.<java.lang.ThreadLocal: void set(java.lang.Object)>(r1);
+
+        staticinvoke <jdk.internal.misc.TerminatingThreadLocal: void register(jdk.internal.misc.TerminatingThreadLocal)>(r0);
+
+        return;
+    }
+
+    public void remove()
+    {
+        jdk.internal.misc.TerminatingThreadLocal r0;
+
+        r0 := @this: jdk.internal.misc.TerminatingThreadLocal;
+
+        specialinvoke r0.<java.lang.ThreadLocal: void remove()>();
+
+        staticinvoke <jdk.internal.misc.TerminatingThreadLocal: void unregister(jdk.internal.misc.TerminatingThreadLocal)>(r0);
+
+        return;
+    }
+
+    protected void threadTerminated(java.lang.Object)
+    {
+        jdk.internal.misc.TerminatingThreadLocal r0;
+        java.lang.Object r1;
+
+        r0 := @this: jdk.internal.misc.TerminatingThreadLocal;
+
+        r1 := @parameter0: java.lang.Object;
+
+        return;
+    }
+
+    public static void threadTerminated()
+    {
+        java.lang.ThreadLocal $r0;
+        java.lang.Object $r1, $r4;
+        java.util.Collection $r2;
+        java.util.Iterator r3;
+        boolean $z0;
+        jdk.internal.misc.TerminatingThreadLocal r5;
+
+        $r0 = <jdk.internal.misc.TerminatingThreadLocal: java.lang.ThreadLocal REGISTRY>;
+
+        $r1 = virtualinvoke $r0.<java.lang.ThreadLocal: java.lang.Object get()>();
+
+        $r2 = (java.util.Collection) $r1;
+
+        r3 = interfaceinvoke $r2.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+
+        r5 = (jdk.internal.misc.TerminatingThreadLocal) $r4;
+
+        virtualinvoke r5.<jdk.internal.misc.TerminatingThreadLocal: void _threadTerminated()>();
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    private void _threadTerminated()
+    {
+        jdk.internal.misc.TerminatingThreadLocal r0;
+        java.lang.Object $r1;
+
+        r0 := @this: jdk.internal.misc.TerminatingThreadLocal;
+
+        $r1 = virtualinvoke r0.<jdk.internal.misc.TerminatingThreadLocal: java.lang.Object get()>();
+
+        virtualinvoke r0.<jdk.internal.misc.TerminatingThreadLocal: void threadTerminated(java.lang.Object)>($r1);
+
+        return;
+    }
+
+    public static void register(jdk.internal.misc.TerminatingThreadLocal)
+    {
+        java.lang.ThreadLocal $r0;
+        java.lang.Object $r1;
+        jdk.internal.misc.TerminatingThreadLocal r2;
+        java.util.Collection $r3;
+
+        r2 := @parameter0: jdk.internal.misc.TerminatingThreadLocal;
+
+        $r0 = <jdk.internal.misc.TerminatingThreadLocal: java.lang.ThreadLocal REGISTRY>;
+
+        $r1 = virtualinvoke $r0.<java.lang.ThreadLocal: java.lang.Object get()>();
+
+        $r3 = (java.util.Collection) $r1;
+
+        interfaceinvoke $r3.<java.util.Collection: boolean add(java.lang.Object)>(r2);
+
+        return;
+    }
+
+    private static void unregister(jdk.internal.misc.TerminatingThreadLocal)
+    {
+        java.lang.ThreadLocal $r0;
+        java.lang.Object $r1;
+        jdk.internal.misc.TerminatingThreadLocal r2;
+        java.util.Collection $r3;
+
+        r2 := @parameter0: jdk.internal.misc.TerminatingThreadLocal;
+
+        $r0 = <jdk.internal.misc.TerminatingThreadLocal: java.lang.ThreadLocal REGISTRY>;
+
+        $r1 = virtualinvoke $r0.<java.lang.ThreadLocal: java.lang.Object get()>();
+
+        $r3 = (java.util.Collection) $r1;
+
+        interfaceinvoke $r3.<java.util.Collection: boolean remove(java.lang.Object)>(r2);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.misc.TerminatingThreadLocal$1 $r0;
+
+        $r0 = new jdk.internal.misc.TerminatingThreadLocal$1;
+
+        specialinvoke $r0.<jdk.internal.misc.TerminatingThreadLocal$1: void <init>()>();
+
+        <jdk.internal.misc.TerminatingThreadLocal: java.lang.ThreadLocal REGISTRY> = $r0;
+
+        return;
+    }
+}

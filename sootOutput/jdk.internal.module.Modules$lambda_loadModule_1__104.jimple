@@ -1,0 +1,66 @@
+public final class jdk.internal.module.Modules$lambda_loadModule_1__104 extends java.lang.Object implements java.util.function.Consumer
+{
+    java.util.Map cap0;
+    java.lang.Module cap1;
+
+    public static java.util.function.Consumer bootstrap$(java.util.Map, java.lang.Module)
+    {
+        java.util.Map $r0;
+        java.lang.Module $r1;
+        jdk.internal.module.Modules$lambda_loadModule_1__104 $r2;
+
+        $r0 := @parameter0: java.util.Map;
+
+        $r1 := @parameter1: java.lang.Module;
+
+        $r2 = new jdk.internal.module.Modules$lambda_loadModule_1__104;
+
+        specialinvoke $r2.<jdk.internal.module.Modules$lambda_loadModule_1__104: void <init>(java.util.Map,java.lang.Module)>($r0, $r1);
+
+        return $r2;
+    }
+
+    public void <init>(java.util.Map, java.lang.Module)
+    {
+        jdk.internal.module.Modules$lambda_loadModule_1__104 $r0;
+        java.util.Map $r1;
+        java.lang.Module $r2;
+
+        $r0 := @this: jdk.internal.module.Modules$lambda_loadModule_1__104;
+
+        $r1 := @parameter0: java.util.Map;
+
+        $r2 := @parameter1: java.lang.Module;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.Modules$lambda_loadModule_1__104: java.util.Map cap0> = $r1;
+
+        $r0.<jdk.internal.module.Modules$lambda_loadModule_1__104: java.lang.Module cap1> = $r2;
+
+        return;
+    }
+
+    public void accept(java.lang.Object)
+    {
+        jdk.internal.module.Modules$lambda_loadModule_1__104 $r0;
+        java.lang.Object $r1;
+        java.lang.module.ModuleDescriptor$Exports $r2;
+        java.util.Map $r3;
+        java.lang.Module $r4;
+
+        $r0 := @this: jdk.internal.module.Modules$lambda_loadModule_1__104;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.module.ModuleDescriptor$Exports) $r1;
+
+        $r3 = $r0.<jdk.internal.module.Modules$lambda_loadModule_1__104: java.util.Map cap0>;
+
+        $r4 = $r0.<jdk.internal.module.Modules$lambda_loadModule_1__104: java.lang.Module cap1>;
+
+        staticinvoke <jdk.internal.module.Modules: void lambda$loadModule$1(java.util.Map,java.lang.Module,java.lang.module.ModuleDescriptor$Exports)>($r3, $r4, $r2);
+
+        return;
+    }
+}

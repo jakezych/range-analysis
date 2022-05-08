@@ -1,0 +1,161 @@
+public final class jdk.internal.loader.AbstractClassLoaderValue$Sub extends jdk.internal.loader.AbstractClassLoaderValue
+{
+    private final java.lang.Object key;
+    final jdk.internal.loader.AbstractClassLoaderValue this$0;
+
+    void <init>(jdk.internal.loader.AbstractClassLoaderValue, java.lang.Object)
+    {
+        jdk.internal.loader.AbstractClassLoaderValue$Sub r0;
+        jdk.internal.loader.AbstractClassLoaderValue r1;
+        java.lang.Object r2;
+
+        r0 := @this: jdk.internal.loader.AbstractClassLoaderValue$Sub;
+
+        r1 := @parameter0: jdk.internal.loader.AbstractClassLoaderValue;
+
+        r2 := @parameter1: java.lang.Object;
+
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: jdk.internal.loader.AbstractClassLoaderValue this$0> = r1;
+
+        specialinvoke r0.<jdk.internal.loader.AbstractClassLoaderValue: void <init>()>();
+
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: java.lang.Object key> = r2;
+
+        return;
+    }
+
+    public jdk.internal.loader.AbstractClassLoaderValue parent()
+    {
+        jdk.internal.loader.AbstractClassLoaderValue$Sub r0;
+        jdk.internal.loader.AbstractClassLoaderValue $r1;
+
+        r0 := @this: jdk.internal.loader.AbstractClassLoaderValue$Sub;
+
+        $r1 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: jdk.internal.loader.AbstractClassLoaderValue this$0>;
+
+        return $r1;
+    }
+
+    public java.lang.Object key()
+    {
+        jdk.internal.loader.AbstractClassLoaderValue$Sub r0;
+        java.lang.Object $r1;
+
+        r0 := @this: jdk.internal.loader.AbstractClassLoaderValue$Sub;
+
+        $r1 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: java.lang.Object key>;
+
+        return $r1;
+    }
+
+    public boolean isEqualOrDescendantOf(jdk.internal.loader.AbstractClassLoaderValue)
+    {
+        jdk.internal.loader.AbstractClassLoaderValue$Sub r0;
+        jdk.internal.loader.AbstractClassLoaderValue r1, $r3;
+        java.lang.Object $r2;
+        boolean $z0, $z1, $z2;
+
+        r0 := @this: jdk.internal.loader.AbstractClassLoaderValue$Sub;
+
+        r1 := @parameter0: jdk.internal.loader.AbstractClassLoaderValue;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $z0 = virtualinvoke r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: boolean equals(java.lang.Object)>($r2);
+
+        if $z0 != 0 goto label1;
+
+        $r3 = virtualinvoke r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: jdk.internal.loader.AbstractClassLoaderValue parent()>();
+
+        $z1 = virtualinvoke $r3.<jdk.internal.loader.AbstractClassLoaderValue: boolean isEqualOrDescendantOf(jdk.internal.loader.AbstractClassLoaderValue)>(r1);
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    public boolean equals(java.lang.Object)
+    {
+        jdk.internal.loader.AbstractClassLoaderValue$Sub r0, r2;
+        java.lang.Object r1, $r5, $r6;
+        boolean $z0, $z1, $z2, $z3;
+        jdk.internal.loader.AbstractClassLoaderValue $r3, $r4;
+
+        r0 := @this: jdk.internal.loader.AbstractClassLoaderValue$Sub;
+
+        r1 := @parameter0: java.lang.Object;
+
+        if r0 != r1 goto label1;
+
+        return 1;
+
+     label1:
+        $z0 = r1 instanceof jdk.internal.loader.AbstractClassLoaderValue$Sub;
+
+        if $z0 != 0 goto label2;
+
+        return 0;
+
+     label2:
+        r2 = (jdk.internal.loader.AbstractClassLoaderValue$Sub) r1;
+
+        $r3 = virtualinvoke r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: jdk.internal.loader.AbstractClassLoaderValue parent()>();
+
+        $r4 = virtualinvoke r2.<jdk.internal.loader.AbstractClassLoaderValue$Sub: jdk.internal.loader.AbstractClassLoaderValue parent()>();
+
+        $z1 = virtualinvoke $r3.<java.lang.Object: boolean equals(java.lang.Object)>($r4);
+
+        if $z1 == 0 goto label3;
+
+        $r6 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: java.lang.Object key>;
+
+        $r5 = r2.<jdk.internal.loader.AbstractClassLoaderValue$Sub: java.lang.Object key>;
+
+        $z2 = staticinvoke <java.util.Objects: boolean equals(java.lang.Object,java.lang.Object)>($r6, $r5);
+
+        if $z2 == 0 goto label3;
+
+        $z3 = 1;
+
+        goto label4;
+
+     label3:
+        $z3 = 0;
+
+     label4:
+        return $z3;
+    }
+
+    public int hashCode()
+    {
+        jdk.internal.loader.AbstractClassLoaderValue$Sub r0;
+        jdk.internal.loader.AbstractClassLoaderValue $r1;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Object $r2;
+
+        r0 := @this: jdk.internal.loader.AbstractClassLoaderValue$Sub;
+
+        $r1 = virtualinvoke r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: jdk.internal.loader.AbstractClassLoaderValue parent()>();
+
+        $i0 = virtualinvoke $r1.<java.lang.Object: int hashCode()>();
+
+        $i1 = 31 * $i0;
+
+        $r2 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Sub: java.lang.Object key>;
+
+        $i2 = staticinvoke <java.util.Objects: int hashCode(java.lang.Object)>($r2);
+
+        $i3 = $i1 + $i2;
+
+        return $i3;
+    }
+}

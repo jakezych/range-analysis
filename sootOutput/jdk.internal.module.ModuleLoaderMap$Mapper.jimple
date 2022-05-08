@@ -1,0 +1,59 @@
+public final class jdk.internal.module.ModuleLoaderMap$Mapper extends java.lang.Object implements java.util.function.Function
+{
+    private final java.util.Map map;
+
+    void <init>(java.util.Map)
+    {
+        jdk.internal.module.ModuleLoaderMap$Mapper r0;
+        java.util.Map r1;
+
+        r0 := @this: jdk.internal.module.ModuleLoaderMap$Mapper;
+
+        r1 := @parameter0: java.util.Map;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.module.ModuleLoaderMap$Mapper: java.util.Map map> = r1;
+
+        return;
+    }
+
+    public java.lang.ClassLoader apply(java.lang.String)
+    {
+        jdk.internal.module.ModuleLoaderMap$Mapper r0;
+        java.lang.String r1;
+        java.util.Map $r2;
+        java.lang.Object $r3;
+        java.lang.ClassLoader $r4;
+
+        r0 := @this: jdk.internal.module.ModuleLoaderMap$Mapper;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.module.ModuleLoaderMap$Mapper: java.util.Map map>;
+
+        $r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1);
+
+        $r4 = (java.lang.ClassLoader) $r3;
+
+        return $r4;
+    }
+
+    public volatile java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.module.ModuleLoaderMap$Mapper r0;
+        java.lang.Object r1;
+        java.lang.String $r2;
+        java.lang.ClassLoader $r3;
+
+        r0 := @this: jdk.internal.module.ModuleLoaderMap$Mapper;
+
+        r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) r1;
+
+        $r3 = virtualinvoke r0.<jdk.internal.module.ModuleLoaderMap$Mapper: java.lang.ClassLoader apply(java.lang.String)>($r2);
+
+        return $r3;
+    }
+}

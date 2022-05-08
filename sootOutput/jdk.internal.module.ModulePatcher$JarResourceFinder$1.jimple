@@ -1,0 +1,176 @@
+class jdk.internal.module.ModulePatcher$JarResourceFinder$1 extends jdk.internal.loader.Resource
+{
+    final java.lang.String val$name;
+    final java.util.jar.JarEntry val$entry;
+    final jdk.internal.module.ModulePatcher$JarResourceFinder this$0;
+
+    void <init>(jdk.internal.module.ModulePatcher$JarResourceFinder, java.lang.String, java.util.jar.JarEntry)
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder$1 r0;
+        jdk.internal.module.ModulePatcher$JarResourceFinder r1;
+        java.lang.String r2;
+        java.util.jar.JarEntry r3;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder$1;
+
+        r1 := @parameter0: jdk.internal.module.ModulePatcher$JarResourceFinder;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.util.jar.JarEntry;
+
+        r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: jdk.internal.module.ModulePatcher$JarResourceFinder this$0> = r1;
+
+        r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: java.lang.String val$name> = r2;
+
+        r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: java.util.jar.JarEntry val$entry> = r3;
+
+        specialinvoke r0.<jdk.internal.loader.Resource: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.String getName()
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder$1 r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder$1;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: java.lang.String val$name>;
+
+        return $r1;
+    }
+
+    public java.net.URL getURL()
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder$1 r0;
+        java.lang.String $r1, r2, $r11;
+        java.net.URL $r3, $r7;
+        java.lang.StringBuilder $r4, $r5, $r8, $r9, $r10;
+        jdk.internal.module.ModulePatcher$JarResourceFinder $r6;
+        java.net.MalformedURLException $r12;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder$1;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: java.lang.String val$name>;
+
+        r2 = staticinvoke <sun.net.www.ParseUtil: java.lang.String encodePath(java.lang.String,boolean)>($r1, 0);
+
+     label1:
+        $r3 = new java.net.URL;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("jar:");
+
+        $r6 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: jdk.internal.module.ModulePatcher$JarResourceFinder this$0>;
+
+        $r7 = $r6.<jdk.internal.module.ModulePatcher$JarResourceFinder: java.net.URL csURL>;
+
+        $r8 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("!/");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<java.net.URL: void <init>(java.lang.String)>($r11);
+
+     label2:
+        return $r3;
+
+     label3:
+        $r12 := @caughtexception;
+
+        return null;
+
+        catch java.net.MalformedURLException from label1 to label2 with label3;
+    }
+
+    public java.net.URL getCodeSourceURL()
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder$1 r0;
+        jdk.internal.module.ModulePatcher$JarResourceFinder $r1;
+        java.net.URL $r2;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder$1;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: jdk.internal.module.ModulePatcher$JarResourceFinder this$0>;
+
+        $r2 = $r1.<jdk.internal.module.ModulePatcher$JarResourceFinder: java.net.URL csURL>;
+
+        return $r2;
+    }
+
+    public java.nio.ByteBuffer getByteBuffer() throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder$1 r0;
+        java.io.InputStream $r1;
+        byte[] r2;
+        java.nio.ByteBuffer $r3;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: java.io.InputStream getInputStream()>();
+
+        r2 = virtualinvoke $r1.<java.io.InputStream: byte[] readAllBytes()>();
+
+        $r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r2);
+
+        return $r3;
+    }
+
+    public java.io.InputStream getInputStream() throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder$1 r0;
+        jdk.internal.module.ModulePatcher$JarResourceFinder $r1;
+        java.util.jar.JarEntry $r2;
+        java.util.jar.JarFile $r3;
+        java.io.InputStream $r4;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder$1;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: jdk.internal.module.ModulePatcher$JarResourceFinder this$0>;
+
+        $r3 = $r1.<jdk.internal.module.ModulePatcher$JarResourceFinder: java.util.jar.JarFile jf>;
+
+        $r2 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: java.util.jar.JarEntry val$entry>;
+
+        $r4 = virtualinvoke $r3.<java.util.jar.JarFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>($r2);
+
+        return $r4;
+    }
+
+    public int getContentLength() throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder$1 r0;
+        java.util.jar.JarEntry $r1;
+        long l0;
+        byte $b1;
+        int $i2;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder$1;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: java.util.jar.JarEntry val$entry>;
+
+        l0 = virtualinvoke $r1.<java.util.jar.JarEntry: long getSize()>();
+
+        $b1 = l0 cmp 2147483647L;
+
+        if $b1 <= 0 goto label1;
+
+        $i2 = -1;
+
+        goto label2;
+
+     label1:
+        $i2 = (int) l0;
+
+     label2:
+        return $i2;
+    }
+}

@@ -1,0 +1,49 @@
+public final class jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136 extends java.lang.Object implements java.util.function.Supplier
+{
+    java.nio.file.Path cap0;
+
+    public static java.util.function.Supplier bootstrap$(java.nio.file.Path)
+    {
+        java.nio.file.Path $r0;
+        jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136 $r1;
+
+        $r0 := @parameter0: java.nio.file.Path;
+
+        $r1 = new jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136: void <init>(java.nio.file.Path)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(java.nio.file.Path)
+    {
+        jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136 $r0;
+        java.nio.file.Path $r1;
+
+        $r0 := @this: jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136;
+
+        $r1 := @parameter0: java.nio.file.Path;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136: java.nio.file.Path cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object get()
+    {
+        jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136 $r0;
+        java.nio.file.Path $r1;
+        java.lang.module.ModuleReader $r2;
+
+        $r0 := @this: jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136;
+
+        $r1 = $r0.<jdk.internal.module.ModuleReferences$lambda_newExplodedModule_4__136: java.nio.file.Path cap0>;
+
+        $r2 = staticinvoke <jdk.internal.module.ModuleReferences: java.lang.module.ModuleReader lambda$newExplodedModule$4(java.nio.file.Path)>($r1);
+
+        return $r2;
+    }
+}

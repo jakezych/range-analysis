@@ -1,0 +1,52 @@
+class jdk.internal.reflect.DelegatingConstructorAccessorImpl extends jdk.internal.reflect.ConstructorAccessorImpl
+{
+    private jdk.internal.reflect.ConstructorAccessorImpl delegate;
+
+    void <init>(jdk.internal.reflect.ConstructorAccessorImpl)
+    {
+        jdk.internal.reflect.DelegatingConstructorAccessorImpl r0;
+        jdk.internal.reflect.ConstructorAccessorImpl r1;
+
+        r0 := @this: jdk.internal.reflect.DelegatingConstructorAccessorImpl;
+
+        r1 := @parameter0: jdk.internal.reflect.ConstructorAccessorImpl;
+
+        specialinvoke r0.<jdk.internal.reflect.ConstructorAccessorImpl: void <init>()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.DelegatingConstructorAccessorImpl: void setDelegate(jdk.internal.reflect.ConstructorAccessorImpl)>(r1);
+
+        return;
+    }
+
+    public java.lang.Object newInstance(java.lang.Object[]) throws java.lang.InstantiationException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException
+    {
+        jdk.internal.reflect.DelegatingConstructorAccessorImpl r0;
+        java.lang.Object[] r1;
+        jdk.internal.reflect.ConstructorAccessorImpl $r2;
+        java.lang.Object $r3;
+
+        r0 := @this: jdk.internal.reflect.DelegatingConstructorAccessorImpl;
+
+        r1 := @parameter0: java.lang.Object[];
+
+        $r2 = r0.<jdk.internal.reflect.DelegatingConstructorAccessorImpl: jdk.internal.reflect.ConstructorAccessorImpl delegate>;
+
+        $r3 = virtualinvoke $r2.<jdk.internal.reflect.ConstructorAccessorImpl: java.lang.Object newInstance(java.lang.Object[])>(r1);
+
+        return $r3;
+    }
+
+    void setDelegate(jdk.internal.reflect.ConstructorAccessorImpl)
+    {
+        jdk.internal.reflect.DelegatingConstructorAccessorImpl r0;
+        jdk.internal.reflect.ConstructorAccessorImpl r1;
+
+        r0 := @this: jdk.internal.reflect.DelegatingConstructorAccessorImpl;
+
+        r1 := @parameter0: jdk.internal.reflect.ConstructorAccessorImpl;
+
+        r0.<jdk.internal.reflect.DelegatingConstructorAccessorImpl: jdk.internal.reflect.ConstructorAccessorImpl delegate> = r1;
+
+        return;
+    }
+}

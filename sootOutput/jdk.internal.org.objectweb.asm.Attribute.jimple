@@ -1,0 +1,288 @@
+public class jdk.internal.org.objectweb.asm.Attribute extends java.lang.Object
+{
+    public final java.lang.String type;
+    private byte[] content;
+    jdk.internal.org.objectweb.asm.Attribute nextAttribute;
+
+    protected void <init>(java.lang.String)
+    {
+        jdk.internal.org.objectweb.asm.Attribute r0;
+        java.lang.String r1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.org.objectweb.asm.Attribute: java.lang.String type> = r1;
+
+        return;
+    }
+
+    public boolean isUnknown()
+    {
+        jdk.internal.org.objectweb.asm.Attribute r0;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        return 1;
+    }
+
+    public boolean isCodeAttribute()
+    {
+        jdk.internal.org.objectweb.asm.Attribute r0;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        return 0;
+    }
+
+    protected jdk.internal.org.objectweb.asm.Label[] getLabels()
+    {
+        jdk.internal.org.objectweb.asm.Label[] $r0;
+        jdk.internal.org.objectweb.asm.Attribute r1;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        $r0 = newarray (jdk.internal.org.objectweb.asm.Label)[0];
+
+        return $r0;
+    }
+
+    protected jdk.internal.org.objectweb.asm.Attribute read(jdk.internal.org.objectweb.asm.ClassReader, int, int, char[], int, jdk.internal.org.objectweb.asm.Label[])
+    {
+        jdk.internal.org.objectweb.asm.Attribute $r0, r1;
+        java.lang.String $r2;
+        int i0, i1, i2;
+        byte[] $r4, $r6, $r7;
+        jdk.internal.org.objectweb.asm.ClassReader r5;
+        char[] r8;
+        jdk.internal.org.objectweb.asm.Label[] r9;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        r5 := @parameter0: jdk.internal.org.objectweb.asm.ClassReader;
+
+        i1 := @parameter1: int;
+
+        i0 := @parameter2: int;
+
+        r8 := @parameter3: char[];
+
+        i2 := @parameter4: int;
+
+        r9 := @parameter5: jdk.internal.org.objectweb.asm.Label[];
+
+        $r0 = new jdk.internal.org.objectweb.asm.Attribute;
+
+        $r2 = r1.<jdk.internal.org.objectweb.asm.Attribute: java.lang.String type>;
+
+        specialinvoke $r0.<jdk.internal.org.objectweb.asm.Attribute: void <init>(java.lang.String)>($r2);
+
+        $r4 = newarray (byte)[i0];
+
+        $r0.<jdk.internal.org.objectweb.asm.Attribute: byte[] content> = $r4;
+
+        $r7 = r5.<jdk.internal.org.objectweb.asm.ClassReader: byte[] b>;
+
+        $r6 = $r0.<jdk.internal.org.objectweb.asm.Attribute: byte[] content>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r7, i1, $r6, 0, i0);
+
+        return $r0;
+    }
+
+    protected jdk.internal.org.objectweb.asm.ByteVector write(jdk.internal.org.objectweb.asm.ClassWriter, byte[], int, int, int)
+    {
+        jdk.internal.org.objectweb.asm.ByteVector $r0;
+        jdk.internal.org.objectweb.asm.Attribute r1;
+        byte[] $r2, r4;
+        jdk.internal.org.objectweb.asm.ClassWriter r3;
+        int i0, i1, i2;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        r3 := @parameter0: jdk.internal.org.objectweb.asm.ClassWriter;
+
+        r4 := @parameter1: byte[];
+
+        i0 := @parameter2: int;
+
+        i1 := @parameter3: int;
+
+        i2 := @parameter4: int;
+
+        $r0 = new jdk.internal.org.objectweb.asm.ByteVector;
+
+        $r2 = r1.<jdk.internal.org.objectweb.asm.Attribute: byte[] content>;
+
+        specialinvoke $r0.<jdk.internal.org.objectweb.asm.ByteVector: void <init>(byte[])>($r2);
+
+        return $r0;
+    }
+
+    final int getAttributeCount()
+    {
+        jdk.internal.org.objectweb.asm.Attribute r0, r1;
+        int i0;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        i0 = 0;
+
+        r1 = r0;
+
+     label1:
+        if r1 == null goto label2;
+
+        i0 = i0 + 1;
+
+        r1 = r1.<jdk.internal.org.objectweb.asm.Attribute: jdk.internal.org.objectweb.asm.Attribute nextAttribute>;
+
+        goto label1;
+
+     label2:
+        return i0;
+    }
+
+    final int computeAttributesSize(jdk.internal.org.objectweb.asm.SymbolTable)
+    {
+        jdk.internal.org.objectweb.asm.Attribute r0;
+        jdk.internal.org.objectweb.asm.SymbolTable r1;
+        int $i0;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        r1 := @parameter0: jdk.internal.org.objectweb.asm.SymbolTable;
+
+        $i0 = virtualinvoke r0.<jdk.internal.org.objectweb.asm.Attribute: int computeAttributesSize(jdk.internal.org.objectweb.asm.SymbolTable,byte[],int,int,int)>(r1, null, 0, -1, -1);
+
+        return $i0;
+    }
+
+    final int computeAttributesSize(jdk.internal.org.objectweb.asm.SymbolTable, byte[], int, int, int)
+    {
+        jdk.internal.org.objectweb.asm.SymbolTable r0;
+        jdk.internal.org.objectweb.asm.ClassWriter r1;
+        jdk.internal.org.objectweb.asm.Attribute r2, r6;
+        java.lang.String $r3;
+        byte[] r4;
+        int i1, i2, i3, $i4, $i5, i6;
+        jdk.internal.org.objectweb.asm.ByteVector $r5;
+
+        r2 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        r0 := @parameter0: jdk.internal.org.objectweb.asm.SymbolTable;
+
+        r4 := @parameter1: byte[];
+
+        i1 := @parameter2: int;
+
+        i2 := @parameter3: int;
+
+        i3 := @parameter4: int;
+
+        r1 = r0.<jdk.internal.org.objectweb.asm.SymbolTable: jdk.internal.org.objectweb.asm.ClassWriter classWriter>;
+
+        i6 = 0;
+
+        r6 = r2;
+
+     label1:
+        if r6 == null goto label2;
+
+        $r3 = r6.<jdk.internal.org.objectweb.asm.Attribute: java.lang.String type>;
+
+        virtualinvoke r0.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>($r3);
+
+        $r5 = virtualinvoke r6.<jdk.internal.org.objectweb.asm.Attribute: jdk.internal.org.objectweb.asm.ByteVector write(jdk.internal.org.objectweb.asm.ClassWriter,byte[],int,int,int)>(r1, r4, i1, i2, i3);
+
+        $i4 = $r5.<jdk.internal.org.objectweb.asm.ByteVector: int length>;
+
+        $i5 = 6 + $i4;
+
+        i6 = i6 + $i5;
+
+        r6 = r6.<jdk.internal.org.objectweb.asm.Attribute: jdk.internal.org.objectweb.asm.Attribute nextAttribute>;
+
+        goto label1;
+
+     label2:
+        return i6;
+    }
+
+    final void putAttributes(jdk.internal.org.objectweb.asm.SymbolTable, jdk.internal.org.objectweb.asm.ByteVector)
+    {
+        jdk.internal.org.objectweb.asm.Attribute r0;
+        jdk.internal.org.objectweb.asm.SymbolTable r1;
+        jdk.internal.org.objectweb.asm.ByteVector r2;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        r1 := @parameter0: jdk.internal.org.objectweb.asm.SymbolTable;
+
+        r2 := @parameter1: jdk.internal.org.objectweb.asm.ByteVector;
+
+        virtualinvoke r0.<jdk.internal.org.objectweb.asm.Attribute: void putAttributes(jdk.internal.org.objectweb.asm.SymbolTable,byte[],int,int,int,jdk.internal.org.objectweb.asm.ByteVector)>(r1, null, 0, -1, -1, r2);
+
+        return;
+    }
+
+    final void putAttributes(jdk.internal.org.objectweb.asm.SymbolTable, byte[], int, int, int, jdk.internal.org.objectweb.asm.ByteVector)
+    {
+        jdk.internal.org.objectweb.asm.SymbolTable r0;
+        jdk.internal.org.objectweb.asm.ClassWriter r1;
+        jdk.internal.org.objectweb.asm.Attribute r2, r11;
+        byte[] r3, $r9;
+        int i0, i1, i2, $i3, $i4, $i5;
+        jdk.internal.org.objectweb.asm.ByteVector r4, r5, $r7;
+        java.lang.String $r6;
+
+        r2 := @this: jdk.internal.org.objectweb.asm.Attribute;
+
+        r0 := @parameter0: jdk.internal.org.objectweb.asm.SymbolTable;
+
+        r3 := @parameter1: byte[];
+
+        i0 := @parameter2: int;
+
+        i1 := @parameter3: int;
+
+        i2 := @parameter4: int;
+
+        r5 := @parameter5: jdk.internal.org.objectweb.asm.ByteVector;
+
+        r1 = r0.<jdk.internal.org.objectweb.asm.SymbolTable: jdk.internal.org.objectweb.asm.ClassWriter classWriter>;
+
+        r11 = r2;
+
+     label1:
+        if r11 == null goto label2;
+
+        r4 = virtualinvoke r11.<jdk.internal.org.objectweb.asm.Attribute: jdk.internal.org.objectweb.asm.ByteVector write(jdk.internal.org.objectweb.asm.ClassWriter,byte[],int,int,int)>(r1, r3, i0, i1, i2);
+
+        $r6 = r11.<jdk.internal.org.objectweb.asm.Attribute: java.lang.String type>;
+
+        $i3 = virtualinvoke r0.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>($r6);
+
+        $r7 = virtualinvoke r5.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i3);
+
+        $i4 = r4.<jdk.internal.org.objectweb.asm.ByteVector: int length>;
+
+        virtualinvoke $r7.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putInt(int)>($i4);
+
+        $r9 = r4.<jdk.internal.org.objectweb.asm.ByteVector: byte[] data>;
+
+        $i5 = r4.<jdk.internal.org.objectweb.asm.ByteVector: int length>;
+
+        virtualinvoke r5.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putByteArray(byte[],int,int)>($r9, 0, $i5);
+
+        r11 = r11.<jdk.internal.org.objectweb.asm.Attribute: jdk.internal.org.objectweb.asm.Attribute nextAttribute>;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+}

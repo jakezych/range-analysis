@@ -1,0 +1,1172 @@
+public class jdk.internal.math.FormattedFloatingDecimal extends java.lang.Object
+{
+    private int decExponentRounded;
+    private char[] mantissa;
+    private char[] exponent;
+    private static final java.lang.ThreadLocal threadLocalCharBuffer;
+    static final boolean $assertionsDisabled;
+
+    public static jdk.internal.math.FormattedFloatingDecimal valueOf(double, int, jdk.internal.math.FormattedFloatingDecimal$Form)
+    {
+        double d0;
+        jdk.internal.math.FormattedFloatingDecimal$Form r0, $r1;
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter r2;
+        jdk.internal.math.FormattedFloatingDecimal $r3;
+        int i0;
+        boolean $z0;
+
+        d0 := @parameter0: double;
+
+        i0 := @parameter1: int;
+
+        r0 := @parameter2: jdk.internal.math.FormattedFloatingDecimal$Form;
+
+        $r1 = <jdk.internal.math.FormattedFloatingDecimal$Form: jdk.internal.math.FormattedFloatingDecimal$Form COMPATIBLE>;
+
+        if r0 != $r1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        r2 = staticinvoke <jdk.internal.math.FloatingDecimal: jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter getBinaryToASCIIConverter(double,boolean)>(d0, $z0);
+
+        $r3 = new jdk.internal.math.FormattedFloatingDecimal;
+
+        specialinvoke $r3.<jdk.internal.math.FormattedFloatingDecimal: void <init>(int,jdk.internal.math.FormattedFloatingDecimal$Form,jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter)>(i0, r0, r2);
+
+        return $r3;
+    }
+
+    private static char[] getBuffer()
+    {
+        java.lang.ThreadLocal $r0;
+        java.lang.Object $r1;
+        char[] $r2;
+
+        $r0 = <jdk.internal.math.FormattedFloatingDecimal: java.lang.ThreadLocal threadLocalCharBuffer>;
+
+        $r1 = virtualinvoke $r0.<java.lang.ThreadLocal: java.lang.Object get()>();
+
+        $r2 = (char[]) $r1;
+
+        return $r2;
+    }
+
+    private void <init>(int, jdk.internal.math.FormattedFloatingDecimal$Form, jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter)
+    {
+        jdk.internal.math.FormattedFloatingDecimal r0;
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter r1;
+        boolean $z0, z1, $z2;
+        char[] r2, $r7;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6, $i7, i8, i10, i11, i12, i13, i14;
+        jdk.internal.math.FormattedFloatingDecimal$Form r3;
+        int[] $r4;
+        java.lang.AssertionError $r5;
+        java.lang.String $r6;
+
+        r0 := @this: jdk.internal.math.FormattedFloatingDecimal;
+
+        i8 := @parameter0: int;
+
+        r3 := @parameter1: jdk.internal.math.FormattedFloatingDecimal$Form;
+
+        r1 := @parameter2: jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $z0 = interfaceinvoke r1.<jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter: boolean isExceptional()>();
+
+        if $z0 == 0 goto label01;
+
+        $r6 = interfaceinvoke r1.<jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter: java.lang.String toJavaFormatString()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.String: char[] toCharArray()>();
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r7;
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent> = null;
+
+        return;
+
+     label01:
+        r2 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] getBuffer()>();
+
+        i0 = interfaceinvoke r1.<jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter: int getDigits(char[])>(r2);
+
+        i1 = interfaceinvoke r1.<jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter: int getDecimalExponent()>();
+
+        z1 = interfaceinvoke r1.<jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter: boolean isNegative()>();
+
+        $r4 = <jdk.internal.math.FormattedFloatingDecimal$2: int[] $SwitchMap$jdk$internal$math$FormattedFloatingDecimal$Form>;
+
+        $i2 = virtualinvoke r3.<jdk.internal.math.FormattedFloatingDecimal$Form: int ordinal()>();
+
+        $i3 = $r4[$i2];
+
+        tableswitch($i3)
+        {
+            case 1: goto label02;
+            case 2: goto label03;
+            case 3: goto label04;
+            case 4: goto label05;
+            default: goto label09;
+        };
+
+     label02:
+        r0.<jdk.internal.math.FormattedFloatingDecimal: int decExponentRounded> = i1;
+
+        virtualinvoke r0.<jdk.internal.math.FormattedFloatingDecimal: void fillCompatible(int,char[],int,int,boolean)>(i8, r2, i0, i1, z1);
+
+        goto label10;
+
+     label03:
+        $i7 = i1 + i8;
+
+        i10 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: int applyPrecision(int,char[],int,int)>(i1, r2, i0, $i7);
+
+        virtualinvoke r0.<jdk.internal.math.FormattedFloatingDecimal: void fillDecimal(int,char[],int,int,boolean)>(i8, r2, i0, i10, z1);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: int decExponentRounded> = i10;
+
+        goto label10;
+
+     label04:
+        $i6 = i8 + 1;
+
+        i11 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: int applyPrecision(int,char[],int,int)>(i1, r2, i0, $i6);
+
+        virtualinvoke r0.<jdk.internal.math.FormattedFloatingDecimal: void fillScientific(int,char[],int,int,boolean)>(i8, r2, i0, i11, z1);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: int decExponentRounded> = i11;
+
+        goto label10;
+
+     label05:
+        i12 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: int applyPrecision(int,char[],int,int)>(i1, r2, i0, i8);
+
+        $i4 = i12 - 1;
+
+        if $i4 < -4 goto label06;
+
+        $i5 = i12 - 1;
+
+        if $i5 < i8 goto label07;
+
+     label06:
+        i13 = i8 + -1;
+
+        virtualinvoke r0.<jdk.internal.math.FormattedFloatingDecimal: void fillScientific(int,char[],int,int,boolean)>(i13, r2, i0, i12, z1);
+
+        goto label08;
+
+     label07:
+        i14 = i8 - i12;
+
+        virtualinvoke r0.<jdk.internal.math.FormattedFloatingDecimal: void fillDecimal(int,char[],int,int,boolean)>(i14, r2, i0, i12, z1);
+
+     label08:
+        r0.<jdk.internal.math.FormattedFloatingDecimal: int decExponentRounded> = i12;
+
+        goto label10;
+
+     label09:
+        $z2 = <jdk.internal.math.FormattedFloatingDecimal: boolean $assertionsDisabled>;
+
+        if $z2 != 0 goto label10;
+
+        $r5 = new java.lang.AssertionError;
+
+        specialinvoke $r5.<java.lang.AssertionError: void <init>()>();
+
+        throw $r5;
+
+     label10:
+        return;
+    }
+
+    public int getExponentRounded()
+    {
+        jdk.internal.math.FormattedFloatingDecimal r0;
+        int $i0, $i1;
+
+        r0 := @this: jdk.internal.math.FormattedFloatingDecimal;
+
+        $i0 = r0.<jdk.internal.math.FormattedFloatingDecimal: int decExponentRounded>;
+
+        $i1 = $i0 - 1;
+
+        return $i1;
+    }
+
+    public char[] getMantissa()
+    {
+        jdk.internal.math.FormattedFloatingDecimal r0;
+        char[] $r1;
+
+        r0 := @this: jdk.internal.math.FormattedFloatingDecimal;
+
+        $r1 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        return $r1;
+    }
+
+    public char[] getExponent()
+    {
+        jdk.internal.math.FormattedFloatingDecimal r0;
+        char[] $r1;
+
+        r0 := @this: jdk.internal.math.FormattedFloatingDecimal;
+
+        $r1 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent>;
+
+        return $r1;
+    }
+
+    private static int applyPrecision(int, char[], int, int)
+    {
+        int i0, i1, i2, $i3, $i5, $i6, $i8, i11;
+        char[] r0;
+        char $c4, $c7, c9, c12;
+
+        i2 := @parameter0: int;
+
+        r0 := @parameter1: char[];
+
+        i1 := @parameter2: int;
+
+        i0 := @parameter3: int;
+
+        if i0 >= i1 goto label1;
+
+        if i0 >= 0 goto label2;
+
+     label1:
+        return i2;
+
+     label2:
+        if i0 != 0 goto label4;
+
+        $c7 = r0[0];
+
+        if $c7 < 53 goto label3;
+
+        r0[0] = 49;
+
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>(r0, 1, i1, 48);
+
+        $i8 = i2 + 1;
+
+        return $i8;
+
+     label3:
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>(r0, 0, i1, 48);
+
+        return i2;
+
+     label4:
+        c9 = r0[i0];
+
+        if c9 < 53 goto label8;
+
+        i11 = i0 + -1;
+
+        c12 = r0[i11];
+
+        if c12 != 57 goto label7;
+
+     label5:
+        if c12 != 57 goto label6;
+
+        if i11 <= 0 goto label6;
+
+        i11 = i11 + -1;
+
+        c12 = r0[i11];
+
+        goto label5;
+
+     label6:
+        if c12 != 57 goto label7;
+
+        r0[0] = 49;
+
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>(r0, 1, i1, 48);
+
+        $i6 = i2 + 1;
+
+        return $i6;
+
+     label7:
+        $i3 = c12 + 1;
+
+        $c4 = (char) $i3;
+
+        r0[i11] = $c4;
+
+        $i5 = i11 + 1;
+
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>(r0, $i5, i1, 48);
+
+        goto label9;
+
+     label8:
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>(r0, i0, i1, 48);
+
+     label9:
+        return i2;
+    }
+
+    private void fillCompatible(int, char[], int, int, boolean)
+    {
+        boolean z0, z1, $z2;
+        byte b0, $b69, b75;
+        int i1, i2, $i4, $i5, $i6, $i7, $i9, $i10, $i12, $i13, $i14, $i16, $i17, $i18, $i20, $i21, $i23, $i24, $i26, $i27, $i29, $i30, $i31, i32, $i33, $i34, $i35, $i36, $i37, $i38, $i39, $i40, $i41, $i42, $i43, $i44, $i45, $i46, $i47, $i48, $i49, $i50, $i51, $i52, $i53, $i54, $i55, $i56, $i57, $i58, $i59, $i60, $i61, $i62, $i63, $i64, $i65, $i66, $i67, $i68, i70, i71, i72, i73, i74, i76;
+        jdk.internal.math.FormattedFloatingDecimal r0;
+        char[] $r1, r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30, $r31, $r32, $r33, $r34, $r35, $r36, $r37, $r38, $r39, $r40, $r41, $r42;
+        char $c3, $c8, $c11, $c15, $c19, $c22, $c25, $c28;
+
+        r0 := @this: jdk.internal.math.FormattedFloatingDecimal;
+
+        i32 := @parameter0: int;
+
+        r2 := @parameter1: char[];
+
+        i2 := @parameter2: int;
+
+        i1 := @parameter3: int;
+
+        z0 := @parameter4: boolean;
+
+        if z0 == 0 goto label01;
+
+        $b69 = 1;
+
+        goto label02;
+
+     label01:
+        $b69 = 0;
+
+     label02:
+        b0 = $b69;
+
+        if i1 <= 0 goto label05;
+
+        if i1 >= 8 goto label05;
+
+        if i2 >= i1 goto label03;
+
+        i70 = i1 - i2;
+
+        $i59 = i2 + i70;
+
+        $i60 = $i59 + 2;
+
+        $r38 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i60);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r38;
+
+        $r39 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r2, 0, $r39, $b69, i2);
+
+        $r40 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i63 = $b69 + i2;
+
+        $i61 = $b69 + i2;
+
+        $i62 = $i61 + i70;
+
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>($r40, $i63, $i62, 48);
+
+        $r41 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i64 = $b69 + i2;
+
+        $i65 = $i64 + i70;
+
+        $r41[$i65] = 46;
+
+        $r42 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i66 = $b69 + i2;
+
+        $i67 = $i66 + i70;
+
+        $i68 = $i67 + 1;
+
+        $r42[$i68] = 48;
+
+        goto label18;
+
+     label03:
+        if i1 >= i2 goto label04;
+
+        $i53 = i2 - i1;
+
+        i71 = staticinvoke <java.lang.Math: int min(int,int)>($i53, i32);
+
+        $i54 = i1 + 1;
+
+        $i55 = $i54 + i71;
+
+        $r34 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i55);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r34;
+
+        $r35 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r2, 0, $r35, $b69, i1);
+
+        $r36 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i56 = $b69 + i1;
+
+        $r36[$i56] = 46;
+
+        $r37 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i57 = $b69 + i1;
+
+        $i58 = $i57 + 1;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r2, i1, $r37, $i58, i71);
+
+        goto label18;
+
+     label04:
+        $i49 = i2 + 2;
+
+        $r30 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i49);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r30;
+
+        $r31 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r2, 0, $r31, $b69, i2);
+
+        $r32 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i50 = $b69 + i2;
+
+        $r32[$i50] = 46;
+
+        $r33 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i51 = $b69 + i2;
+
+        $i52 = $i51 + 1;
+
+        $r33[$i52] = 48;
+
+        goto label18;
+
+     label05:
+        if i1 > 0 goto label09;
+
+        if i1 <= -3 goto label09;
+
+        $i33 = neg i1;
+
+        $i34 = staticinvoke <java.lang.Math: int min(int,int)>($i33, i32);
+
+        i72 = staticinvoke <java.lang.Math: int max(int,int)>(0, $i34);
+
+        $i35 = i32 + i1;
+
+        $i36 = staticinvoke <java.lang.Math: int min(int,int)>(i2, $i35);
+
+        i73 = staticinvoke <java.lang.Math: int max(int,int)>(0, $i36);
+
+        if i72 <= 0 goto label06;
+
+        $i41 = i72 + 2;
+
+        $i42 = $i41 + i73;
+
+        $r25 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i42);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r25;
+
+        $r26 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $r26[b0] = 48;
+
+        $r27 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i43 = b0 + 1;
+
+        $r27[$i43] = 46;
+
+        $r28 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i46 = b0 + 2;
+
+        $i44 = b0 + 2;
+
+        $i45 = $i44 + i72;
+
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>($r28, $i46, $i45, 48);
+
+        if i73 <= 0 goto label08;
+
+        $r29 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i47 = b0 + 2;
+
+        $i48 = $i47 + i72;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r2, 0, $r29, $i48, i73);
+
+        goto label08;
+
+     label06:
+        if i73 <= 0 goto label07;
+
+        $i37 = i72 + 2;
+
+        $i38 = $i37 + i73;
+
+        $r21 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i38);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r21;
+
+        $r22 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $r22[b0] = 48;
+
+        $r23 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i39 = b0 + 1;
+
+        $r23[$i39] = 46;
+
+        $r24 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i40 = b0 + 2;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r2, 0, $r24, $i40, i73);
+
+        goto label08;
+
+     label07:
+        $r19 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, 1);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r19;
+
+        $r20 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $r20[b0] = 48;
+
+     label08:
+        goto label18;
+
+     label09:
+        if i2 <= 1 goto label10;
+
+        $i27 = i2 + 1;
+
+        $r15 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i27);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r15;
+
+        $r16 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $c28 = r2[0];
+
+        $r16[b0] = $c28;
+
+        $r17 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i29 = b0 + 1;
+
+        $r17[$i29] = 46;
+
+        $r18 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i31 = b0 + 2;
+
+        $i30 = i2 - 1;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r2, 1, $r18, $i31, $i30);
+
+        goto label11;
+
+     label10:
+        $r1 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, 3);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r1;
+
+        $r3 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $c3 = r2[0];
+
+        $r3[b0] = $c3;
+
+        $r4 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i4 = b0 + 1;
+
+        $r4[$i4] = 46;
+
+        $r5 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i5 = b0 + 2;
+
+        $r5[$i5] = 48;
+
+     label11:
+        if i1 > 0 goto label12;
+
+        $z2 = 1;
+
+        goto label13;
+
+     label12:
+        $z2 = 0;
+
+     label13:
+        z1 = $z2;
+
+        if $z2 == 0 goto label14;
+
+        $i26 = neg i1;
+
+        i74 = $i26 + 1;
+
+        b75 = 1;
+
+        goto label15;
+
+     label14:
+        i74 = i1 - 1;
+
+        b75 = 0;
+
+     label15:
+        if i74 > 9 goto label16;
+
+        $r13 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z1, 1);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent> = $r13;
+
+        $r14 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent>;
+
+        $i24 = i74 + 48;
+
+        $c25 = (char) $i24;
+
+        $r14[b75] = $c25;
+
+        goto label18;
+
+     label16:
+        if i74 > 99 goto label17;
+
+        $r10 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z1, 2);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent> = $r10;
+
+        $r11 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent>;
+
+        $i17 = i74 / 10;
+
+        $i18 = $i17 + 48;
+
+        $c19 = (char) $i18;
+
+        $r11[b75] = $c19;
+
+        $r12 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent>;
+
+        $i23 = b75 + 1;
+
+        $i20 = i74 % 10;
+
+        $i21 = $i20 + 48;
+
+        $c22 = (char) $i21;
+
+        $r12[$i23] = $c22;
+
+        goto label18;
+
+     label17:
+        $r6 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z1, 3);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent> = $r6;
+
+        $r7 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent>;
+
+        $i6 = i74 / 100;
+
+        $i7 = $i6 + 48;
+
+        $c8 = (char) $i7;
+
+        $r7[b75] = $c8;
+
+        i76 = i74 % 100;
+
+        $r8 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent>;
+
+        $i12 = b75 + 1;
+
+        $i9 = i76 / 10;
+
+        $i10 = $i9 + 48;
+
+        $c11 = (char) $i10;
+
+        $r8[$i12] = $c11;
+
+        $r9 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent>;
+
+        $i16 = b75 + 2;
+
+        $i13 = i76 % 10;
+
+        $i14 = $i13 + 48;
+
+        $c15 = (char) $i14;
+
+        $r9[$i16] = $c15;
+
+     label18:
+        return;
+    }
+
+    private static char[] create(boolean, int)
+    {
+        boolean z0;
+        int i0, $i1;
+        char[] $r0, r1;
+
+        z0 := @parameter0: boolean;
+
+        i0 := @parameter1: int;
+
+        if z0 == 0 goto label1;
+
+        $i1 = i0 + 1;
+
+        r1 = newarray (char)[$i1];
+
+        r1[0] = 45;
+
+        return r1;
+
+     label1:
+        $r0 = newarray (char)[i0];
+
+        return $r0;
+    }
+
+    private void fillDecimal(int, char[], int, int, boolean)
+    {
+        boolean z0;
+        byte b0, $b29;
+        int i1, i2, $i3, $i4, i5, $i6, $i7, i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i24, $i25, $i27, $i28, i30, $i31, i32;
+        jdk.internal.math.FormattedFloatingDecimal r0;
+        char[] $r1, $r2, $r3, $r4, $r5, r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r18, $r19, $r20;
+
+        r0 := @this: jdk.internal.math.FormattedFloatingDecimal;
+
+        i2 := @parameter0: int;
+
+        r6 := @parameter1: char[];
+
+        i5 := @parameter2: int;
+
+        i1 := @parameter3: int;
+
+        z0 := @parameter4: boolean;
+
+        if z0 == 0 goto label01;
+
+        $b29 = 1;
+
+        goto label02;
+
+     label01:
+        $b29 = 0;
+
+     label02:
+        b0 = $b29;
+
+        if i1 <= 0 goto label07;
+
+        if i5 >= i1 goto label03;
+
+        $r18 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, i1);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r18;
+
+        $r19 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r6, 0, $r19, $b29, i5);
+
+        $r20 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i28 = $b29 + i5;
+
+        $i27 = $b29 + i1;
+
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>($r20, $i28, $i27, 48);
+
+        goto label10;
+
+     label03:
+        $i21 = i5 - i1;
+
+        i30 = staticinvoke <java.lang.Math: int min(int,int)>($i21, i2);
+
+        if i30 <= 0 goto label04;
+
+        $i31 = i30 + 1;
+
+        goto label05;
+
+     label04:
+        $i31 = 0;
+
+     label05:
+        $i22 = i1 + $i31;
+
+        $r13 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i22);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r13;
+
+        $r14 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r6, 0, $r14, b0, i1);
+
+        if i30 <= 0 goto label06;
+
+        $r15 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i23 = b0 + i1;
+
+        $r15[$i23] = 46;
+
+        $r16 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i24 = b0 + i1;
+
+        $i25 = $i24 + 1;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r6, i1, $r16, $i25, i30);
+
+     label06:
+        goto label10;
+
+     label07:
+        if i1 > 0 goto label10;
+
+        $i3 = neg i1;
+
+        $i4 = staticinvoke <java.lang.Math: int min(int,int)>($i3, i2);
+
+        i32 = staticinvoke <java.lang.Math: int max(int,int)>(0, $i4);
+
+        $i6 = i2 + i1;
+
+        $i7 = staticinvoke <java.lang.Math: int min(int,int)>(i5, $i6);
+
+        i8 = staticinvoke <java.lang.Math: int max(int,int)>(0, $i7);
+
+        if i32 <= 0 goto label08;
+
+        $i13 = i32 + 2;
+
+        $i14 = $i13 + i8;
+
+        $r8 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i14);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r8;
+
+        $r9 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $r9[$b29] = 48;
+
+        $r10 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i15 = $b29 + 1;
+
+        $r10[$i15] = 46;
+
+        $r11 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i18 = $b29 + 2;
+
+        $i16 = $b29 + 2;
+
+        $i17 = $i16 + i32;
+
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>($r11, $i18, $i17, 48);
+
+        if i8 <= 0 goto label10;
+
+        $r12 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i19 = $b29 + 2;
+
+        $i20 = $i19 + i32;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r6, 0, $r12, $i20, i8);
+
+        goto label10;
+
+     label08:
+        if i8 <= 0 goto label09;
+
+        $i9 = i32 + 2;
+
+        $i10 = $i9 + i8;
+
+        $r3 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i10);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r3;
+
+        $r4 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $r4[$b29] = 48;
+
+        $r5 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i11 = $b29 + 1;
+
+        $r5[$i11] = 46;
+
+        $r7 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i12 = $b29 + 2;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r6, 0, $r7, $i12, i8);
+
+        goto label10;
+
+     label09:
+        $r1 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, 1);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r1;
+
+        $r2 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $r2[$b29] = 48;
+
+     label10:
+        return;
+    }
+
+    private void fillScientific(int, char[], int, int, boolean)
+    {
+        boolean z0;
+        int i1, i2, $i3, $i4, i5, i7, $i8, $i9, $i11, $i12, $i14, $i15, $i17, $i18, $i20, $i21, $i23, $i25, $i26, $i28, $i29, i32, i33;
+        jdk.internal.math.FormattedFloatingDecimal r0;
+        char[] $r1, r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10;
+        char $c6, c10, $c13, $c16, $c19, $c22, $c24, $c27, c31;
+        byte $b30;
+
+        r0 := @this: jdk.internal.math.FormattedFloatingDecimal;
+
+        i2 := @parameter0: int;
+
+        r2 := @parameter1: char[];
+
+        i1 := @parameter2: int;
+
+        i7 := @parameter3: int;
+
+        z0 := @parameter4: boolean;
+
+        if z0 == 0 goto label1;
+
+        $b30 = 1;
+
+        goto label2;
+
+     label1:
+        $b30 = 0;
+
+     label2:
+        $i3 = i1 - 1;
+
+        $i4 = staticinvoke <java.lang.Math: int min(int,int)>($i3, i2);
+
+        i5 = staticinvoke <java.lang.Math: int max(int,int)>(0, $i4);
+
+        if i5 <= 0 goto label3;
+
+        $i26 = i5 + 2;
+
+        $r7 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, $i26);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r7;
+
+        $r8 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $c27 = r2[0];
+
+        $r8[$b30] = $c27;
+
+        $r9 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i28 = $b30 + 1;
+
+        $r9[$i28] = 46;
+
+        $r10 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $i29 = $b30 + 2;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r2, 1, $r10, $i29, i5);
+
+        goto label4;
+
+     label3:
+        $r1 = staticinvoke <jdk.internal.math.FormattedFloatingDecimal: char[] create(boolean,int)>(z0, 1);
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa> = $r1;
+
+        $r3 = r0.<jdk.internal.math.FormattedFloatingDecimal: char[] mantissa>;
+
+        $c6 = r2[0];
+
+        $r3[$b30] = $c6;
+
+     label4:
+        if i7 > 0 goto label5;
+
+        c31 = 45;
+
+        $i25 = neg i7;
+
+        i32 = $i25 + 1;
+
+        goto label6;
+
+     label5:
+        c31 = 43;
+
+        i32 = i7 - 1;
+
+     label6:
+        if i32 > 9 goto label7;
+
+        $r6 = newarray (char)[3];
+
+        $r6[0] = c31;
+
+        $r6[1] = 48;
+
+        $i23 = i32 + 48;
+
+        $c24 = (char) $i23;
+
+        $r6[2] = $c24;
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent> = $r6;
+
+        goto label9;
+
+     label7:
+        if i32 > 99 goto label8;
+
+        $r5 = newarray (char)[3];
+
+        $r5[0] = c31;
+
+        $i17 = i32 / 10;
+
+        $i18 = $i17 + 48;
+
+        $c19 = (char) $i18;
+
+        $r5[1] = $c19;
+
+        $i20 = i32 % 10;
+
+        $i21 = $i20 + 48;
+
+        $c22 = (char) $i21;
+
+        $r5[2] = $c22;
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent> = $r5;
+
+        goto label9;
+
+     label8:
+        $i8 = i32 / 100;
+
+        $i9 = $i8 + 48;
+
+        c10 = (char) $i9;
+
+        i33 = i32 % 100;
+
+        $r4 = newarray (char)[4];
+
+        $r4[0] = c31;
+
+        $r4[1] = c10;
+
+        $i11 = i33 / 10;
+
+        $i12 = $i11 + 48;
+
+        $c13 = (char) $i12;
+
+        $r4[2] = $c13;
+
+        $i14 = i33 % 10;
+
+        $i15 = $i14 + 48;
+
+        $c16 = (char) $i15;
+
+        $r4[3] = $c16;
+
+        r0.<jdk.internal.math.FormattedFloatingDecimal: char[] exponent> = $r4;
+
+     label9:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+        jdk.internal.math.FormattedFloatingDecimal$1 $r1;
+
+        $r0 = class "Ljdk/internal/math/FormattedFloatingDecimal;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <jdk.internal.math.FormattedFloatingDecimal: boolean $assertionsDisabled> = $z1;
+
+        $r1 = new jdk.internal.math.FormattedFloatingDecimal$1;
+
+        specialinvoke $r1.<jdk.internal.math.FormattedFloatingDecimal$1: void <init>()>();
+
+        <jdk.internal.math.FormattedFloatingDecimal: java.lang.ThreadLocal threadLocalCharBuffer> = $r1;
+
+        return;
+    }
+}

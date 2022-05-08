@@ -1,0 +1,172 @@
+class jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1 extends jdk.internal.loader.Resource
+{
+    final java.lang.String val$name;
+    final java.nio.file.Path val$file;
+    final java.nio.file.Path val$top;
+    final jdk.internal.module.ModulePatcher$ExplodedResourceFinder this$0;
+
+    void <init>(jdk.internal.module.ModulePatcher$ExplodedResourceFinder, java.lang.String, java.nio.file.Path, java.nio.file.Path)
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1 r0;
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder r1;
+        java.lang.String r2;
+        java.nio.file.Path r3, r4;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1;
+
+        r1 := @parameter0: jdk.internal.module.ModulePatcher$ExplodedResourceFinder;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.nio.file.Path;
+
+        r4 := @parameter3: java.nio.file.Path;
+
+        r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: jdk.internal.module.ModulePatcher$ExplodedResourceFinder this$0> = r1;
+
+        r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: java.lang.String val$name> = r2;
+
+        r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: java.nio.file.Path val$file> = r3;
+
+        r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: java.nio.file.Path val$top> = r4;
+
+        specialinvoke r0.<jdk.internal.loader.Resource: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.String getName()
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1 r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: java.lang.String val$name>;
+
+        return $r1;
+    }
+
+    public java.net.URL getURL()
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1 r0;
+        java.nio.file.Path $r1;
+        java.net.URI $r2;
+        java.net.URL $r3;
+        java.lang.Throwable $r4;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1;
+
+     label1:
+        $r1 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: java.nio.file.Path val$file>;
+
+        $r2 = interfaceinvoke $r1.<java.nio.file.Path: java.net.URI toUri()>();
+
+        $r3 = virtualinvoke $r2.<java.net.URI: java.net.URL toURL()>();
+
+     label2:
+        return $r3;
+
+     label3:
+        $r4 := @caughtexception;
+
+        return null;
+
+        catch java.io.IOException from label1 to label2 with label3;
+        catch java.io.IOError from label1 to label2 with label3;
+    }
+
+    public java.net.URL getCodeSourceURL()
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1 r0;
+        java.nio.file.Path $r1;
+        java.net.URI $r2;
+        java.net.URL $r3;
+        java.lang.Throwable $r4;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1;
+
+     label1:
+        $r1 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: java.nio.file.Path val$top>;
+
+        $r2 = interfaceinvoke $r1.<java.nio.file.Path: java.net.URI toUri()>();
+
+        $r3 = virtualinvoke $r2.<java.net.URI: java.net.URL toURL()>();
+
+     label2:
+        return $r3;
+
+     label3:
+        $r4 := @caughtexception;
+
+        return null;
+
+        catch java.io.IOException from label1 to label2 with label3;
+        catch java.io.IOError from label1 to label2 with label3;
+    }
+
+    public java.nio.ByteBuffer getByteBuffer() throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1 r0;
+        java.nio.file.Path $r1;
+        byte[] $r2;
+        java.nio.ByteBuffer $r3;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: java.nio.file.Path val$file>;
+
+        $r2 = staticinvoke <java.nio.file.Files: byte[] readAllBytes(java.nio.file.Path)>($r1);
+
+        $r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>($r2);
+
+        return $r3;
+    }
+
+    public java.io.InputStream getInputStream() throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1 r0;
+        java.nio.file.OpenOption[] $r1;
+        java.nio.file.Path $r2;
+        java.io.InputStream $r3;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1;
+
+        $r2 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: java.nio.file.Path val$file>;
+
+        $r1 = newarray (java.nio.file.OpenOption)[0];
+
+        $r3 = staticinvoke <java.nio.file.Files: java.io.InputStream newInputStream(java.nio.file.Path,java.nio.file.OpenOption[])>($r2, $r1);
+
+        return $r3;
+    }
+
+    public int getContentLength() throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1 r0;
+        java.nio.file.Path $r1;
+        long l0;
+        byte $b1;
+        int $i2;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: java.nio.file.Path val$file>;
+
+        l0 = staticinvoke <java.nio.file.Files: long size(java.nio.file.Path)>($r1);
+
+        $b1 = l0 cmp 2147483647L;
+
+        if $b1 <= 0 goto label1;
+
+        $i2 = -1;
+
+        goto label2;
+
+     label1:
+        $i2 = (int) l0;
+
+     label2:
+        return $i2;
+    }
+}

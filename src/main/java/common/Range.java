@@ -1,5 +1,8 @@
 package common;
 
+import static java.lang.Integer.max;
+import static java.lang.Integer.min;
+
 public class Range {
     private final int low;
     private final int high;
@@ -104,10 +107,16 @@ public class Range {
                 return new Range(sentinelSub(r1.low, r2.low), sentinelSub(r1.high, r2.high));
             }
             case MUL -> {
-                return new Range(sentinelMul(r1.low, r2.low), sentinelMul(r1.high, r2.high));
+                // Multiplying by negative flips the range
+                int low = sentinelMul(r1.low, r2.low);
+                int high = sentinelMul(r1.high, r2.high);
+                return new Range(min(low, high), max(low, high));
             }
             case DIV -> {
-                return new Range(sentinelDiv(r1.low, r2.low), sentinelDiv(r1.high, r2.high));
+                // Dividing by negative flips the range
+                int low = sentinelDiv(r1.low, r2.low);
+                int high = sentinelDiv(r1.high, r2.high);
+                return new Range(min(low, high), max(low, high));
             }
         }
         // return Top

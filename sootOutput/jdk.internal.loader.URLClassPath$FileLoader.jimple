@@ -1,0 +1,183 @@
+class jdk.internal.loader.URLClassPath$FileLoader extends jdk.internal.loader.URLClassPath$Loader
+{
+    private java.io.File dir;
+
+    private void <init>(java.net.URL) throws java.io.IOException
+    {
+        jdk.internal.loader.URLClassPath$FileLoader r0;
+        java.net.URL r1;
+        java.lang.String $r2, r5, r6;
+        char $c0;
+        java.io.File $r3, $r4;
+
+        r0 := @this: jdk.internal.loader.URLClassPath$FileLoader;
+
+        r1 := @parameter0: java.net.URL;
+
+        specialinvoke r0.<jdk.internal.loader.URLClassPath$Loader: void <init>(java.net.URL)>(r1);
+
+        $r2 = virtualinvoke r1.<java.net.URL: java.lang.String getFile()>();
+
+        $c0 = <java.io.File: char separatorChar>;
+
+        r5 = virtualinvoke $r2.<java.lang.String: java.lang.String replace(char,char)>(47, $c0);
+
+        r6 = staticinvoke <sun.net.www.ParseUtil: java.lang.String decode(java.lang.String)>(r5);
+
+        $r3 = new java.io.File;
+
+        specialinvoke $r3.<java.io.File: void <init>(java.lang.String)>(r6);
+
+        $r4 = virtualinvoke $r3.<java.io.File: java.io.File getCanonicalFile()>();
+
+        r0.<jdk.internal.loader.URLClassPath$FileLoader: java.io.File dir> = $r4;
+
+        return;
+    }
+
+    java.net.URL findResource(java.lang.String, boolean)
+    {
+        jdk.internal.loader.URLClassPath$FileLoader r0;
+        java.lang.String r1;
+        boolean z0;
+        jdk.internal.loader.Resource r2;
+        java.net.URL $r3;
+
+        r0 := @this: jdk.internal.loader.URLClassPath$FileLoader;
+
+        r1 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        r2 = virtualinvoke r0.<jdk.internal.loader.URLClassPath$FileLoader: jdk.internal.loader.Resource getResource(java.lang.String,boolean)>(r1, z0);
+
+        if r2 == null goto label1;
+
+        $r3 = virtualinvoke r2.<jdk.internal.loader.Resource: java.net.URL getURL()>();
+
+        return $r3;
+
+     label1:
+        return null;
+    }
+
+    jdk.internal.loader.Resource getResource(java.lang.String, boolean)
+    {
+        java.net.URL $r0, $r2, $r3, $r4;
+        jdk.internal.loader.URLClassPath$FileLoader r1;
+        java.lang.String r5, $r6, $r8, $r9, $r12, $r16, $r17, $r19;
+        boolean $z0, z1, $z2, $z3;
+        int $i0;
+        java.io.File $r10, $r11, $r14, $r15, $r18, r22;
+        char $c1, $c2;
+        jdk.internal.loader.URLClassPath$FileLoader$1 $r13;
+        java.lang.Exception $r20;
+
+        r1 := @this: jdk.internal.loader.URLClassPath$FileLoader;
+
+        r5 := @parameter0: java.lang.String;
+
+        z1 := @parameter1: boolean;
+
+     label01:
+        $r0 = new java.net.URL;
+
+        $r2 = virtualinvoke r1.<jdk.internal.loader.URLClassPath$FileLoader: java.net.URL getBaseURL()>();
+
+        specialinvoke $r0.<java.net.URL: void <init>(java.net.URL,java.lang.String)>($r2, ".");
+
+        $r3 = new java.net.URL;
+
+        $r4 = virtualinvoke r1.<jdk.internal.loader.URLClassPath$FileLoader: java.net.URL getBaseURL()>();
+
+        $r6 = staticinvoke <sun.net.www.ParseUtil: java.lang.String encodePath(java.lang.String,boolean)>(r5, 0);
+
+        specialinvoke $r3.<java.net.URL: void <init>(java.net.URL,java.lang.String)>($r4, $r6);
+
+        $r8 = virtualinvoke $r3.<java.net.URL: java.lang.String getFile()>();
+
+        $r9 = virtualinvoke $r0.<java.net.URL: java.lang.String getFile()>();
+
+        $z0 = virtualinvoke $r8.<java.lang.String: boolean startsWith(java.lang.String)>($r9);
+
+        if $z0 != 0 goto label03;
+
+     label02:
+        return null;
+
+     label03:
+        if z1 == 0 goto label04;
+
+        staticinvoke <jdk.internal.loader.URLClassPath: void check(java.net.URL)>($r3);
+
+     label04:
+        $i0 = virtualinvoke r5.<java.lang.String: int indexOf(java.lang.String)>("..");
+
+        if $i0 == -1 goto label06;
+
+        $r14 = new java.io.File;
+
+        $r15 = r1.<jdk.internal.loader.URLClassPath$FileLoader: java.io.File dir>;
+
+        $c2 = <java.io.File: char separatorChar>;
+
+        $r16 = virtualinvoke r5.<java.lang.String: java.lang.String replace(char,char)>(47, $c2);
+
+        specialinvoke $r14.<java.io.File: void <init>(java.io.File,java.lang.String)>($r15, $r16);
+
+        r22 = virtualinvoke $r14.<java.io.File: java.io.File getCanonicalFile()>();
+
+        $r17 = virtualinvoke r22.<java.io.File: java.lang.String getPath()>();
+
+        $r18 = r1.<jdk.internal.loader.URLClassPath$FileLoader: java.io.File dir>;
+
+        $r19 = virtualinvoke $r18.<java.io.File: java.lang.String getPath()>();
+
+        $z3 = virtualinvoke $r17.<java.lang.String: boolean startsWith(java.lang.String)>($r19);
+
+        if $z3 != 0 goto label07;
+
+     label05:
+        return null;
+
+     label06:
+        $r10 = new java.io.File;
+
+        $r11 = r1.<jdk.internal.loader.URLClassPath$FileLoader: java.io.File dir>;
+
+        $c1 = <java.io.File: char separatorChar>;
+
+        $r12 = virtualinvoke r5.<java.lang.String: java.lang.String replace(char,char)>(47, $c1);
+
+        specialinvoke $r10.<java.io.File: void <init>(java.io.File,java.lang.String)>($r11, $r12);
+
+        r22 = $r10;
+
+     label07:
+        $z2 = virtualinvoke r22.<java.io.File: boolean exists()>();
+
+        if $z2 == 0 goto label09;
+
+        $r13 = new jdk.internal.loader.URLClassPath$FileLoader$1;
+
+        specialinvoke $r13.<jdk.internal.loader.URLClassPath$FileLoader$1: void <init>(jdk.internal.loader.URLClassPath$FileLoader,java.lang.String,java.net.URL,java.io.File)>(r1, r5, $r3, r22);
+
+     label08:
+        return $r13;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r20 := @caughtexception;
+
+        return null;
+
+     label11:
+        return null;
+
+        catch java.lang.Exception from label01 to label02 with label10;
+        catch java.lang.Exception from label03 to label05 with label10;
+        catch java.lang.Exception from label06 to label08 with label10;
+    }
+}

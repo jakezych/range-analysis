@@ -1,0 +1,54 @@
+final class jdk.internal.module.SystemModulesMap extends java.lang.Object
+{
+
+    void <init>()
+    {
+        jdk.internal.module.SystemModulesMap r0;
+
+        r0 := @this: jdk.internal.module.SystemModulesMap;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static jdk.internal.module.SystemModules allSystemModules()
+    {
+        jdk.internal.module.SystemModules$all $r0;
+
+        $r0 = new jdk.internal.module.SystemModules$all;
+
+        specialinvoke $r0.<jdk.internal.module.SystemModules$all: void <init>()>();
+
+        return $r0;
+    }
+
+    static jdk.internal.module.SystemModules defaultSystemModules()
+    {
+        jdk.internal.module.SystemModules$default $r0;
+
+        $r0 = new jdk.internal.module.SystemModules$default;
+
+        specialinvoke $r0.<jdk.internal.module.SystemModules$default: void <init>()>();
+
+        return $r0;
+    }
+
+    static java.lang.String[] moduleNames()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[0];
+
+        return $r0;
+    }
+
+    static java.lang.String[] classNames()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[0];
+
+        return $r0;
+    }
+}

@@ -1,0 +1,383 @@
+public final class jdk.internal.module.ModuleResolution extends java.lang.Object
+{
+    final int value;
+
+    void <init>(int)
+    {
+        jdk.internal.module.ModuleResolution r0;
+        int i0;
+
+        r0 := @this: jdk.internal.module.ModuleResolution;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.module.ModuleResolution: int value> = i0;
+
+        return;
+    }
+
+    public int value()
+    {
+        jdk.internal.module.ModuleResolution r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.module.ModuleResolution;
+
+        $i0 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        return $i0;
+    }
+
+    public static jdk.internal.module.ModuleResolution empty()
+    {
+        jdk.internal.module.ModuleResolution $r0;
+
+        $r0 = new jdk.internal.module.ModuleResolution;
+
+        specialinvoke $r0.<jdk.internal.module.ModuleResolution: void <init>(int)>(0);
+
+        return $r0;
+    }
+
+    public boolean doNotResolveByDefault()
+    {
+        jdk.internal.module.ModuleResolution r0;
+        int $i0, $i1;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.module.ModuleResolution;
+
+        $i0 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i1 = $i0 & 1;
+
+        if $i1 == 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public boolean hasDeprecatedWarning()
+    {
+        jdk.internal.module.ModuleResolution r0;
+        int $i0, $i1;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.module.ModuleResolution;
+
+        $i0 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i1 = $i0 & 2;
+
+        if $i1 == 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public boolean hasDeprecatedForRemovalWarning()
+    {
+        jdk.internal.module.ModuleResolution r0;
+        int $i0, $i1;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.module.ModuleResolution;
+
+        $i0 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i1 = $i0 & 4;
+
+        if $i1 == 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public boolean hasIncubatingWarning()
+    {
+        jdk.internal.module.ModuleResolution r0;
+        int $i0, $i1;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.module.ModuleResolution;
+
+        $i0 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i1 = $i0 & 8;
+
+        if $i1 == 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public jdk.internal.module.ModuleResolution withDoNotResolveByDefault()
+    {
+        jdk.internal.module.ModuleResolution $r0, r1;
+        int $i0, $i1;
+
+        r1 := @this: jdk.internal.module.ModuleResolution;
+
+        $r0 = new jdk.internal.module.ModuleResolution;
+
+        $i0 = r1.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i1 = $i0 | 1;
+
+        specialinvoke $r0.<jdk.internal.module.ModuleResolution: void <init>(int)>($i1);
+
+        return $r0;
+    }
+
+    public jdk.internal.module.ModuleResolution withDeprecated()
+    {
+        jdk.internal.module.ModuleResolution r0, $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.InternalError $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+        java.lang.String $r6;
+
+        r0 := @this: jdk.internal.module.ModuleResolution;
+
+        $i0 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i1 = $i0 & 12;
+
+        if $i1 == 0 goto label1;
+
+        $r2 = new java.lang.InternalError;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("cannot add deprecated to ");
+
+        $i4 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.InternalError: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label1:
+        $r1 = new jdk.internal.module.ModuleResolution;
+
+        $i2 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i3 = $i2 | 2;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleResolution: void <init>(int)>($i3);
+
+        return $r1;
+    }
+
+    public jdk.internal.module.ModuleResolution withDeprecatedForRemoval()
+    {
+        jdk.internal.module.ModuleResolution r0, $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.InternalError $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+        java.lang.String $r6;
+
+        r0 := @this: jdk.internal.module.ModuleResolution;
+
+        $i0 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i1 = $i0 & 10;
+
+        if $i1 == 0 goto label1;
+
+        $r2 = new java.lang.InternalError;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("cannot add deprecated for removal to ");
+
+        $i4 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.InternalError: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label1:
+        $r1 = new jdk.internal.module.ModuleResolution;
+
+        $i2 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i3 = $i2 | 4;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleResolution: void <init>(int)>($i3);
+
+        return $r1;
+    }
+
+    public jdk.internal.module.ModuleResolution withIncubating()
+    {
+        jdk.internal.module.ModuleResolution r0, $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.InternalError $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+        java.lang.String $r6;
+
+        r0 := @this: jdk.internal.module.ModuleResolution;
+
+        $i0 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i1 = $i0 & 6;
+
+        if $i1 == 0 goto label1;
+
+        $r2 = new java.lang.InternalError;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("cannot add incubating to ");
+
+        $i4 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.InternalError: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label1:
+        $r1 = new jdk.internal.module.ModuleResolution;
+
+        $i2 = r0.<jdk.internal.module.ModuleResolution: int value>;
+
+        $i3 = $i2 | 8;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleResolution: void <init>(int)>($i3);
+
+        return $r1;
+    }
+
+    public static boolean doNotResolveByDefault(java.lang.module.ModuleReference)
+    {
+        java.lang.module.ModuleReference r0;
+        boolean $z0, $z1;
+        jdk.internal.module.ModuleReferenceImpl $r1;
+        jdk.internal.module.ModuleResolution r2;
+
+        r0 := @parameter0: java.lang.module.ModuleReference;
+
+        $z0 = r0 instanceof jdk.internal.module.ModuleReferenceImpl;
+
+        if $z0 == 0 goto label1;
+
+        $r1 = (jdk.internal.module.ModuleReferenceImpl) r0;
+
+        r2 = virtualinvoke $r1.<jdk.internal.module.ModuleReferenceImpl: jdk.internal.module.ModuleResolution moduleResolution()>();
+
+        if r2 == null goto label1;
+
+        $z1 = virtualinvoke r2.<jdk.internal.module.ModuleResolution: boolean doNotResolveByDefault()>();
+
+        return $z1;
+
+     label1:
+        return 0;
+    }
+
+    public static boolean hasIncubatingWarning(java.lang.module.ModuleReference)
+    {
+        java.lang.module.ModuleReference r0;
+        boolean $z0, $z1;
+        jdk.internal.module.ModuleReferenceImpl $r1;
+        jdk.internal.module.ModuleResolution r2;
+
+        r0 := @parameter0: java.lang.module.ModuleReference;
+
+        $z0 = r0 instanceof jdk.internal.module.ModuleReferenceImpl;
+
+        if $z0 == 0 goto label1;
+
+        $r1 = (jdk.internal.module.ModuleReferenceImpl) r0;
+
+        r2 = virtualinvoke $r1.<jdk.internal.module.ModuleReferenceImpl: jdk.internal.module.ModuleResolution moduleResolution()>();
+
+        if r2 == null goto label1;
+
+        $z1 = virtualinvoke r2.<jdk.internal.module.ModuleResolution: boolean hasIncubatingWarning()>();
+
+        return $z1;
+
+     label1:
+        return 0;
+    }
+
+    public java.lang.String toString()
+    {
+        java.lang.StringBuilder $r0, $r3, $r4, $r5, $r6;
+        jdk.internal.module.ModuleResolution r1;
+        java.lang.String $r2, $r7;
+        int $i0;
+
+        r1 := @this: jdk.internal.module.ModuleResolution;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = specialinvoke r1.<java.lang.Object: java.lang.String toString()>();
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[value=");
+
+        $i0 = r1.<jdk.internal.module.ModuleResolution: int value>;
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r7;
+    }
+}

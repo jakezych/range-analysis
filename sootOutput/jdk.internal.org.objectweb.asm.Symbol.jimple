@@ -1,0 +1,140 @@
+abstract class jdk.internal.org.objectweb.asm.Symbol extends java.lang.Object
+{
+    static final int CONSTANT_CLASS_TAG;
+    static final int CONSTANT_FIELDREF_TAG;
+    static final int CONSTANT_METHODREF_TAG;
+    static final int CONSTANT_INTERFACE_METHODREF_TAG;
+    static final int CONSTANT_STRING_TAG;
+    static final int CONSTANT_INTEGER_TAG;
+    static final int CONSTANT_FLOAT_TAG;
+    static final int CONSTANT_LONG_TAG;
+    static final int CONSTANT_DOUBLE_TAG;
+    static final int CONSTANT_NAME_AND_TYPE_TAG;
+    static final int CONSTANT_UTF8_TAG;
+    static final int CONSTANT_METHOD_HANDLE_TAG;
+    static final int CONSTANT_METHOD_TYPE_TAG;
+    static final int CONSTANT_DYNAMIC_TAG;
+    static final int CONSTANT_INVOKE_DYNAMIC_TAG;
+    static final int CONSTANT_MODULE_TAG;
+    static final int CONSTANT_PACKAGE_TAG;
+    static final int BOOTSTRAP_METHOD_TAG;
+    static final int TYPE_TAG;
+    static final int UNINITIALIZED_TYPE_TAG;
+    static final int MERGED_TYPE_TAG;
+    final int index;
+    final int tag;
+    final java.lang.String owner;
+    final java.lang.String name;
+    final java.lang.String value;
+    final long data;
+    int info;
+
+    void <init>(int, int, java.lang.String, java.lang.String, java.lang.String, long)
+    {
+        jdk.internal.org.objectweb.asm.Symbol r0;
+        int i0, i1;
+        java.lang.String r1, r2, r3;
+        long l2;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.Symbol;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        r1 := @parameter2: java.lang.String;
+
+        r2 := @parameter3: java.lang.String;
+
+        r3 := @parameter4: java.lang.String;
+
+        l2 := @parameter5: long;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.org.objectweb.asm.Symbol: int index> = i0;
+
+        r0.<jdk.internal.org.objectweb.asm.Symbol: int tag> = i1;
+
+        r0.<jdk.internal.org.objectweb.asm.Symbol: java.lang.String owner> = r1;
+
+        r0.<jdk.internal.org.objectweb.asm.Symbol: java.lang.String name> = r2;
+
+        r0.<jdk.internal.org.objectweb.asm.Symbol: java.lang.String value> = r3;
+
+        r0.<jdk.internal.org.objectweb.asm.Symbol: long data> = l2;
+
+        return;
+    }
+
+    int getArgumentsAndReturnSizes()
+    {
+        jdk.internal.org.objectweb.asm.Symbol r0;
+        int $i0, $i1, $i2;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.Symbol;
+
+        $i0 = r0.<jdk.internal.org.objectweb.asm.Symbol: int info>;
+
+        if $i0 != 0 goto label1;
+
+        $r1 = r0.<jdk.internal.org.objectweb.asm.Symbol: java.lang.String value>;
+
+        $i2 = staticinvoke <jdk.internal.org.objectweb.asm.Type: int getArgumentsAndReturnSizes(java.lang.String)>($r1);
+
+        r0.<jdk.internal.org.objectweb.asm.Symbol: int info> = $i2;
+
+     label1:
+        $i1 = r0.<jdk.internal.org.objectweb.asm.Symbol: int info>;
+
+        return $i1;
+    }
+
+    public static void <clinit>()
+    {
+        <jdk.internal.org.objectweb.asm.Symbol: int MERGED_TYPE_TAG> = 130;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int UNINITIALIZED_TYPE_TAG> = 129;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int TYPE_TAG> = 128;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int BOOTSTRAP_METHOD_TAG> = 64;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_PACKAGE_TAG> = 20;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_MODULE_TAG> = 19;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_INVOKE_DYNAMIC_TAG> = 18;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_DYNAMIC_TAG> = 17;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_METHOD_TYPE_TAG> = 16;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_METHOD_HANDLE_TAG> = 15;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_UTF8_TAG> = 1;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_NAME_AND_TYPE_TAG> = 12;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_DOUBLE_TAG> = 6;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_LONG_TAG> = 5;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_FLOAT_TAG> = 4;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_INTEGER_TAG> = 3;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_STRING_TAG> = 8;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_INTERFACE_METHODREF_TAG> = 11;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_METHODREF_TAG> = 10;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_FIELDREF_TAG> = 9;
+
+        <jdk.internal.org.objectweb.asm.Symbol: int CONSTANT_CLASS_TAG> = 7;
+
+        return;
+    }
+}

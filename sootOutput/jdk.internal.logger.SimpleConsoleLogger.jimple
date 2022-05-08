@@ -1,0 +1,1222 @@
+public class jdk.internal.logger.SimpleConsoleLogger extends sun.util.logging.PlatformLogger$ConfigurableBridge$LoggerConfiguration implements java.lang.System$Logger, sun.util.logging.PlatformLogger$Bridge, sun.util.logging.PlatformLogger$ConfigurableBridge
+{
+    static final java.lang.System$Logger$Level DEFAULT_LEVEL;
+    static final sun.util.logging.PlatformLogger$Level DEFAULT_PLATFORM_LEVEL;
+    final java.lang.String name;
+    volatile sun.util.logging.PlatformLogger$Level level;
+    final boolean usePlatformLevel;
+
+    static java.lang.System$Logger$Level getDefaultLevel()
+    {
+        java.lang.String r0;
+        java.lang.System$Logger$Level $r1, $r4;
+        java.lang.IllegalArgumentException $r2;
+
+        r0 = staticinvoke <sun.security.action.GetPropertyAction: java.lang.String privilegedGetProperty(java.lang.String,java.lang.String)>("jdk.system.logger.level", "INFO");
+
+     label1:
+        $r1 = staticinvoke <java.lang.System$Logger$Level: java.lang.System$Logger$Level valueOf(java.lang.String)>(r0);
+
+     label2:
+        return $r1;
+
+     label3:
+        $r2 := @caughtexception;
+
+        $r4 = <java.lang.System$Logger$Level: java.lang.System$Logger$Level INFO>;
+
+        return $r4;
+
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
+    }
+
+    void <init>(java.lang.String, boolean)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        java.lang.String r1;
+        boolean z0;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        specialinvoke r0.<sun.util.logging.PlatformLogger$ConfigurableBridge$LoggerConfiguration: void <init>()>();
+
+        r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String name> = r1;
+
+        r0.<jdk.internal.logger.SimpleConsoleLogger: boolean usePlatformLevel> = z0;
+
+        return;
+    }
+
+    java.lang.String getSimpleFormatString()
+    {
+        java.lang.String $r0;
+        jdk.internal.logger.SimpleConsoleLogger r1;
+
+        r1 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        $r0 = <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String SIMPLE_CONSOLE_LOGGER_FORMAT>;
+
+        return $r0;
+    }
+
+    sun.util.logging.PlatformLogger$Level defaultPlatformLevel()
+    {
+        sun.util.logging.PlatformLogger$Level $r0;
+        jdk.internal.logger.SimpleConsoleLogger r1;
+
+        r1 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        $r0 = <jdk.internal.logger.SimpleConsoleLogger: sun.util.logging.PlatformLogger$Level DEFAULT_PLATFORM_LEVEL>;
+
+        return $r0;
+    }
+
+    public final java.lang.String getName()
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        $r1 = r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String name>;
+
+        return $r1;
+    }
+
+    private java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        boolean $z0;
+        sun.util.logging.PlatformLogger$Level r1;
+        java.lang.Enum $r2;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        $z0 = r0.<jdk.internal.logger.SimpleConsoleLogger: boolean usePlatformLevel>;
+
+        if $z0 == 0 goto label1;
+
+        $r2 = r1;
+
+        goto label2;
+
+     label1:
+        $r2 = virtualinvoke r1.<sun.util.logging.PlatformLogger$Level: java.lang.System$Logger$Level systemLevel()>();
+
+     label2:
+        return $r2;
+    }
+
+    private java.lang.Enum logLevel(java.lang.System$Logger$Level)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        boolean $z0;
+        java.lang.System$Logger$Level r1;
+        java.lang.Enum $r2;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        $z0 = r0.<jdk.internal.logger.SimpleConsoleLogger: boolean usePlatformLevel>;
+
+        if $z0 == 0 goto label1;
+
+        $r2 = staticinvoke <sun.util.logging.PlatformLogger: sun.util.logging.PlatformLogger$Level toPlatformLevel(java.lang.System$Logger$Level)>(r1);
+
+        goto label2;
+
+     label1:
+        $r2 = r1;
+
+     label2:
+        return $r2;
+    }
+
+    public final boolean isLoggable(java.lang.System$Logger$Level)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        java.lang.System$Logger$Level r1;
+        sun.util.logging.PlatformLogger$Level $r2;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        $r2 = staticinvoke <sun.util.logging.PlatformLogger: sun.util.logging.PlatformLogger$Level toPlatformLevel(java.lang.System$Logger$Level)>(r1);
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>($r2);
+
+        return $z0;
+    }
+
+    public final void log(java.lang.System$Logger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        java.lang.System$Logger$Level r1;
+        boolean $z0;
+        java.util.ResourceBundle r2;
+        java.lang.String $r3, r6;
+        java.lang.Enum $r4;
+        java.lang.Throwable r5;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.util.ResourceBundle;
+
+        r6 := @parameter2: java.lang.String;
+
+        r5 := @parameter3: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(java.lang.System$Logger$Level)>(r1);
+
+        if $z0 == 0 goto label2;
+
+        if r2 == null goto label1;
+
+        r6 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.lang.String getString(java.util.ResourceBundle,java.lang.String)>(r2, r6);
+
+     label1:
+        $r3 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo()>();
+
+        $r4 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(java.lang.System$Logger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Throwable)>($r3, $r4, r6, r5);
+
+     label2:
+        return;
+    }
+
+    public final transient void log(java.lang.System$Logger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        java.lang.System$Logger$Level r1;
+        boolean $z0;
+        java.util.ResourceBundle r2;
+        java.lang.String $r3, r6;
+        java.lang.Enum $r4;
+        java.lang.Object[] r5;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.util.ResourceBundle;
+
+        r6 := @parameter2: java.lang.String;
+
+        r5 := @parameter3: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(java.lang.System$Logger$Level)>(r1);
+
+        if $z0 == 0 goto label2;
+
+        if r2 == null goto label1;
+
+        r6 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.lang.String getString(java.util.ResourceBundle,java.lang.String)>(r2, r6);
+
+     label1:
+        $r3 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo()>();
+
+        $r4 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(java.lang.System$Logger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Object[])>($r3, $r4, r6, r5);
+
+     label2:
+        return;
+    }
+
+    public final boolean isLoggable(sun.util.logging.PlatformLogger$Level)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1, r2, $r3;
+        int $i0, $i1;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r2 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r1 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: sun.util.logging.PlatformLogger$Level effectiveLevel()>();
+
+        $r3 = <sun.util.logging.PlatformLogger$Level: sun.util.logging.PlatformLogger$Level OFF>;
+
+        if r2 == $r3 goto label1;
+
+        $i0 = virtualinvoke r2.<sun.util.logging.PlatformLogger$Level: int ordinal()>();
+
+        $i1 = virtualinvoke r1.<sun.util.logging.PlatformLogger$Level: int ordinal()>();
+
+        if $i0 < $i1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public final boolean isEnabled()
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level $r1, $r2;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        $r2 = r0.<jdk.internal.logger.SimpleConsoleLogger: sun.util.logging.PlatformLogger$Level level>;
+
+        $r1 = <sun.util.logging.PlatformLogger$Level: sun.util.logging.PlatformLogger$Level OFF>;
+
+        if $r2 == $r1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public final void log(sun.util.logging.PlatformLogger$Level, java.lang.String)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String $r2, r4;
+        java.lang.Enum $r3;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r2 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo()>();
+
+        $r3 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String)>($r2, $r3, r4);
+
+     label1:
+        return;
+    }
+
+    public final void log(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String $r2, r4;
+        java.lang.Enum $r3;
+        java.lang.Throwable r5;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r2 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo()>();
+
+        $r3 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Throwable)>($r2, $r3, r4, r5);
+
+     label1:
+        return;
+    }
+
+    public final transient void log(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String $r2, r4;
+        java.lang.Enum $r3;
+        java.lang.Object[] r5;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r2 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo()>();
+
+        $r3 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Object[])>($r2, $r3, r4, r5);
+
+     label1:
+        return;
+    }
+
+    private sun.util.logging.PlatformLogger$Level effectiveLevel()
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level $r1, $r2, $r3;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        $r1 = r0.<jdk.internal.logger.SimpleConsoleLogger: sun.util.logging.PlatformLogger$Level level>;
+
+        if $r1 != null goto label1;
+
+        $r3 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: sun.util.logging.PlatformLogger$Level defaultPlatformLevel()>();
+
+        return $r3;
+
+     label1:
+        $r2 = r0.<jdk.internal.logger.SimpleConsoleLogger: sun.util.logging.PlatformLogger$Level level>;
+
+        return $r2;
+    }
+
+    public final sun.util.logging.PlatformLogger$Level getPlatformLevel()
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level $r1;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        $r1 = r0.<jdk.internal.logger.SimpleConsoleLogger: sun.util.logging.PlatformLogger$Level level>;
+
+        return $r1;
+    }
+
+    public final void setPlatformLevel(sun.util.logging.PlatformLogger$Level)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r0.<jdk.internal.logger.SimpleConsoleLogger: sun.util.logging.PlatformLogger$Level level> = r1;
+
+        return;
+    }
+
+    public final sun.util.logging.PlatformLogger$ConfigurableBridge$LoggerConfiguration getLoggerConfiguration()
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        return r0;
+    }
+
+    static java.io.PrintStream outputStream()
+    {
+        java.io.PrintStream $r0;
+
+        $r0 = <java.lang.System: java.io.PrintStream err>;
+
+        return $r0;
+    }
+
+    private java.lang.String getCallerInfo()
+    {
+        jdk.internal.logger.SimpleConsoleLogger$CallerFinder $r0;
+        java.util.Optional r1;
+        boolean $z0;
+        jdk.internal.logger.SimpleConsoleLogger r2;
+        java.lang.String $r3, $r7, $r12, $r14;
+        java.lang.StringBuilder $r4, $r8, $r9, $r13;
+        java.lang.Object $r5, $r10;
+        java.lang.StackWalker$StackFrame $r6, $r11;
+
+        r2 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        $r0 = new jdk.internal.logger.SimpleConsoleLogger$CallerFinder;
+
+        specialinvoke $r0.<jdk.internal.logger.SimpleConsoleLogger$CallerFinder: void <init>()>();
+
+        r1 = virtualinvoke $r0.<jdk.internal.logger.SimpleConsoleLogger$CallerFinder: java.util.Optional get()>();
+
+        $z0 = virtualinvoke r1.<java.util.Optional: boolean isPresent()>();
+
+        if $z0 == 0 goto label1;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke r1.<java.util.Optional: java.lang.Object get()>();
+
+        $r6 = (java.lang.StackWalker$StackFrame) $r5;
+
+        $r7 = interfaceinvoke $r6.<java.lang.StackWalker$StackFrame: java.lang.String getClassName()>();
+
+        $r8 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r10 = virtualinvoke r1.<java.util.Optional: java.lang.Object get()>();
+
+        $r11 = (java.lang.StackWalker$StackFrame) $r10;
+
+        $r12 = interfaceinvoke $r11.<java.lang.StackWalker$StackFrame: java.lang.String getMethodName()>();
+
+        $r13 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r14;
+
+     label1:
+        $r3 = r2.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String name>;
+
+        return $r3;
+    }
+
+    private java.lang.String getCallerInfo(java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r1, $r6, $r8;
+        java.lang.StringBuilder $r2, $r3, $r4, $r5;
+        jdk.internal.logger.SimpleConsoleLogger r7;
+
+        r7 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.String;
+
+        if r0 != null goto label1;
+
+        $r8 = r7.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String name>;
+
+        return $r8;
+
+     label1:
+        if r1 != null goto label2;
+
+        return r0;
+
+     label2:
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r6;
+    }
+
+    private java.lang.String toString(java.lang.Throwable)
+    {
+        java.lang.Throwable r0;
+        java.io.StringWriter $r1;
+        java.io.PrintWriter $r3;
+        jdk.internal.logger.SimpleConsoleLogger r5;
+        java.lang.String r6;
+
+        r5 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r0 := @parameter0: java.lang.Throwable;
+
+        r6 = "";
+
+        if r0 == null goto label1;
+
+        $r1 = new java.io.StringWriter;
+
+        specialinvoke $r1.<java.io.StringWriter: void <init>()>();
+
+        $r3 = new java.io.PrintWriter;
+
+        specialinvoke $r3.<java.io.PrintWriter: void <init>(java.io.Writer)>($r1);
+
+        virtualinvoke $r3.<java.io.PrintWriter: void println()>();
+
+        virtualinvoke r0.<java.lang.Throwable: void printStackTrace(java.io.PrintWriter)>($r3);
+
+        virtualinvoke $r3.<java.io.PrintWriter: void close()>();
+
+        r6 = virtualinvoke $r1.<java.io.StringWriter: java.lang.String toString()>();
+
+     label1:
+        return r6;
+    }
+
+    private synchronized java.lang.String format(java.lang.Enum, java.lang.String, java.lang.Throwable, java.lang.String)
+    {
+        java.time.ZonedDateTime r0;
+        jdk.internal.logger.SimpleConsoleLogger r1;
+        java.lang.Throwable r2;
+        java.lang.String r3, $r4, r6, $r7, $r9, r10, $r11;
+        java.lang.Object[] $r5;
+        java.lang.Enum r8;
+
+        r1 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r8 := @parameter0: java.lang.Enum;
+
+        r10 := @parameter1: java.lang.String;
+
+        r2 := @parameter2: java.lang.Throwable;
+
+        r6 := @parameter3: java.lang.String;
+
+        r0 = staticinvoke <java.time.ZonedDateTime: java.time.ZonedDateTime now()>();
+
+        r3 = virtualinvoke r1.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String toString(java.lang.Throwable)>(r2);
+
+        $r4 = virtualinvoke r1.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getSimpleFormatString()>();
+
+        $r5 = newarray (java.lang.Object)[6];
+
+        $r5[0] = r0;
+
+        $r5[1] = r6;
+
+        $r7 = r1.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String name>;
+
+        $r5[2] = $r7;
+
+        $r9 = virtualinvoke r8.<java.lang.Enum: java.lang.String name()>();
+
+        $r5[3] = $r9;
+
+        $r5[4] = r10;
+
+        $r5[5] = r3;
+
+        $r11 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>($r4, $r5);
+
+        return $r11;
+    }
+
+    private void publish(java.lang.String, java.lang.Enum, java.lang.String)
+    {
+        java.io.PrintStream $r0;
+        jdk.internal.logger.SimpleConsoleLogger r1;
+        java.lang.Enum r2;
+        java.lang.String r3, r4, $r5;
+
+        r1 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r4 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Enum;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r0 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.io.PrintStream outputStream()>();
+
+        $r5 = virtualinvoke r1.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String format(java.lang.Enum,java.lang.String,java.lang.Throwable,java.lang.String)>(r2, r3, null, r4);
+
+        virtualinvoke $r0.<java.io.PrintStream: void print(java.lang.String)>($r5);
+
+        return;
+    }
+
+    private void publish(java.lang.String, java.lang.Enum, java.lang.String, java.lang.Throwable)
+    {
+        java.io.PrintStream $r0;
+        jdk.internal.logger.SimpleConsoleLogger r1;
+        java.lang.Enum r2;
+        java.lang.String r3, r5, $r6;
+        java.lang.Throwable r4;
+
+        r1 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r5 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Enum;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.Throwable;
+
+        $r0 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.io.PrintStream outputStream()>();
+
+        $r6 = virtualinvoke r1.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String format(java.lang.Enum,java.lang.String,java.lang.Throwable,java.lang.String)>(r2, r3, r4, r5);
+
+        virtualinvoke $r0.<java.io.PrintStream: void print(java.lang.String)>($r6);
+
+        return;
+    }
+
+    private transient void publish(java.lang.String, java.lang.Enum, java.lang.String, java.lang.Object[])
+    {
+        java.lang.Object[] r0;
+        java.io.PrintStream $r1;
+        jdk.internal.logger.SimpleConsoleLogger r2;
+        java.lang.Enum r3;
+        java.lang.String r4, $r5, r6, $r7;
+        int $i0;
+
+        r2 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r4 := @parameter0: java.lang.String;
+
+        r3 := @parameter1: java.lang.Enum;
+
+        r6 := @parameter2: java.lang.String;
+
+        r0 := @parameter3: java.lang.Object[];
+
+        if r0 == null goto label1;
+
+        $i0 = lengthof r0;
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        $r7 = r6;
+
+        goto label3;
+
+     label2:
+        $r7 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String formatMessage(java.lang.String,java.lang.Object[])>(r6, r0);
+
+     label3:
+        $r1 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.io.PrintStream outputStream()>();
+
+        $r5 = virtualinvoke r2.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String format(java.lang.Enum,java.lang.String,java.lang.Throwable,java.lang.String)>(r3, $r7, null, r4);
+
+        virtualinvoke $r1.<java.io.PrintStream: void print(java.lang.String)>($r5);
+
+        return;
+    }
+
+    public static jdk.internal.logger.SimpleConsoleLogger makeSimpleLogger(java.lang.String)
+    {
+        jdk.internal.logger.SimpleConsoleLogger $r0;
+        java.lang.String r1;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new jdk.internal.logger.SimpleConsoleLogger;
+
+        specialinvoke $r0.<jdk.internal.logger.SimpleConsoleLogger: void <init>(java.lang.String,boolean)>(r1, 0);
+
+        return $r0;
+    }
+
+    public final void log(sun.util.logging.PlatformLogger$Level, java.util.function.Supplier)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String $r2, $r6;
+        java.lang.Enum $r3;
+        java.util.function.Supplier r4;
+        java.lang.Object $r5;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.util.function.Supplier;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r2 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo()>();
+
+        $r3 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        $r5 = interfaceinvoke r4.<java.util.function.Supplier: java.lang.Object get()>();
+
+        $r6 = (java.lang.String) $r5;
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String)>($r2, $r3, $r6);
+
+     label1:
+        return;
+    }
+
+    public final void log(sun.util.logging.PlatformLogger$Level, java.lang.Throwable, java.util.function.Supplier)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String $r2, $r7;
+        java.lang.Enum $r3;
+        java.util.function.Supplier r4;
+        java.lang.Object $r5;
+        java.lang.Throwable r6;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter1: java.lang.Throwable;
+
+        r4 := @parameter2: java.util.function.Supplier;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r2 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo()>();
+
+        $r3 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        $r5 = interfaceinvoke r4.<java.util.function.Supplier: java.lang.Object get()>();
+
+        $r7 = (java.lang.String) $r5;
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Throwable)>($r2, $r3, $r7, r6);
+
+     label1:
+        return;
+    }
+
+    public final void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.String)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String r2, r3, $r4, r6;
+        java.lang.Enum $r5;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.String;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r4 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo(java.lang.String,java.lang.String)>(r2, r3);
+
+        $r5 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String)>($r4, $r5, r6);
+
+     label1:
+        return;
+    }
+
+    public final void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.function.Supplier)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String r2, r3, $r4, $r8;
+        java.lang.Enum $r5;
+        java.util.function.Supplier r6;
+        java.lang.Object $r7;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.util.function.Supplier;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r4 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo(java.lang.String,java.lang.String)>(r2, r3);
+
+        $r5 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        $r7 = interfaceinvoke r6.<java.util.function.Supplier: java.lang.Object get()>();
+
+        $r8 = (java.lang.String) $r7;
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String)>($r4, $r5, $r8);
+
+     label1:
+        return;
+    }
+
+    public final transient void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String r2, r3, $r4, r6;
+        java.lang.Enum $r5;
+        java.lang.Object[] r7;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.String;
+
+        r7 := @parameter4: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r4 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo(java.lang.String,java.lang.String)>(r2, r3);
+
+        $r5 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Object[])>($r4, $r5, r6, r7);
+
+     label1:
+        return;
+    }
+
+    public final void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String r2, r3, $r4, r6;
+        java.lang.Enum $r5;
+        java.lang.Throwable r7;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.String;
+
+        r7 := @parameter4: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r4 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo(java.lang.String,java.lang.String)>(r2, r3);
+
+        $r5 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Throwable)>($r4, $r5, r6, r7);
+
+     label1:
+        return;
+    }
+
+    public final void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.Throwable, java.util.function.Supplier)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.lang.String r2, r3, $r4, $r9;
+        java.lang.Enum $r5;
+        java.util.function.Supplier r6;
+        java.lang.Object $r7;
+        java.lang.Throwable r8;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r8 := @parameter3: java.lang.Throwable;
+
+        r6 := @parameter4: java.util.function.Supplier;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label1;
+
+        $r4 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo(java.lang.String,java.lang.String)>(r2, r3);
+
+        $r5 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        $r7 = interfaceinvoke r6.<java.util.function.Supplier: java.lang.Object get()>();
+
+        $r9 = (java.lang.String) $r7;
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Throwable)>($r4, $r5, $r9, r8);
+
+     label1:
+        return;
+    }
+
+    public final transient void logrb(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.ResourceBundle, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.util.ResourceBundle r2;
+        java.lang.String r3, r5, r6, $r7, $r10;
+        java.lang.Enum $r8;
+        java.lang.Object[] r9;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r5 := @parameter1: java.lang.String;
+
+        r6 := @parameter2: java.lang.String;
+
+        r2 := @parameter3: java.util.ResourceBundle;
+
+        r3 := @parameter4: java.lang.String;
+
+        r9 := @parameter5: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label3;
+
+        if r2 != null goto label1;
+
+        $r10 = r3;
+
+        goto label2;
+
+     label1:
+        $r10 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.lang.String getString(java.util.ResourceBundle,java.lang.String)>(r2, r3);
+
+     label2:
+        $r7 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo(java.lang.String,java.lang.String)>(r5, r6);
+
+        $r8 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Object[])>($r7, $r8, $r10, r9);
+
+     label3:
+        return;
+    }
+
+    public final void logrb(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.ResourceBundle, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.util.ResourceBundle r2;
+        java.lang.String r3, r5, r6, $r7, $r10;
+        java.lang.Enum $r8;
+        java.lang.Throwable r9;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r5 := @parameter1: java.lang.String;
+
+        r6 := @parameter2: java.lang.String;
+
+        r2 := @parameter3: java.util.ResourceBundle;
+
+        r3 := @parameter4: java.lang.String;
+
+        r9 := @parameter5: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label3;
+
+        if r2 != null goto label1;
+
+        $r10 = r3;
+
+        goto label2;
+
+     label1:
+        $r10 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.lang.String getString(java.util.ResourceBundle,java.lang.String)>(r2, r3);
+
+     label2:
+        $r7 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo(java.lang.String,java.lang.String)>(r5, r6);
+
+        $r8 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Throwable)>($r7, $r8, $r10, r9);
+
+     label3:
+        return;
+    }
+
+    public final transient void logrb(sun.util.logging.PlatformLogger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.util.ResourceBundle r2;
+        java.lang.String r3, $r5, $r8;
+        java.lang.Enum $r6;
+        java.lang.Object[] r7;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.util.ResourceBundle;
+
+        r3 := @parameter2: java.lang.String;
+
+        r7 := @parameter3: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label3;
+
+        if r2 != null goto label1;
+
+        $r8 = r3;
+
+        goto label2;
+
+     label1:
+        $r8 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.lang.String getString(java.util.ResourceBundle,java.lang.String)>(r2, r3);
+
+     label2:
+        $r5 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo()>();
+
+        $r6 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Object[])>($r5, $r6, $r8, r7);
+
+     label3:
+        return;
+    }
+
+    public final void logrb(sun.util.logging.PlatformLogger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.SimpleConsoleLogger r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        boolean $z0;
+        java.util.ResourceBundle r2;
+        java.lang.String r3, $r5, $r8;
+        java.lang.Enum $r6;
+        java.lang.Throwable r7;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.util.ResourceBundle;
+
+        r3 := @parameter2: java.lang.String;
+
+        r7 := @parameter3: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        if $z0 == 0 goto label3;
+
+        if r2 != null goto label1;
+
+        $r8 = r3;
+
+        goto label2;
+
+     label1:
+        $r8 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.lang.String getString(java.util.ResourceBundle,java.lang.String)>(r2, r3);
+
+     label2:
+        $r5 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.String getCallerInfo()>();
+
+        $r6 = virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: java.lang.Enum logLevel(sun.util.logging.PlatformLogger$Level)>(r1);
+
+        virtualinvoke r0.<jdk.internal.logger.SimpleConsoleLogger: void publish(java.lang.String,java.lang.Enum,java.lang.String,java.lang.Throwable)>($r5, $r6, $r8, r7);
+
+     label3:
+        return;
+    }
+
+    static java.lang.String getString(java.util.ResourceBundle, java.lang.String)
+    {
+        java.util.ResourceBundle r0;
+        java.lang.String r1, $r2;
+        java.util.MissingResourceException $r3;
+
+        r0 := @parameter0: java.util.ResourceBundle;
+
+        r1 := @parameter1: java.lang.String;
+
+        if r0 == null goto label1;
+
+        if r1 != null goto label2;
+
+     label1:
+        return r1;
+
+     label2:
+        $r2 = virtualinvoke r0.<java.util.ResourceBundle: java.lang.String getString(java.lang.String)>(r1);
+
+     label3:
+        return $r2;
+
+     label4:
+        $r3 := @caughtexception;
+
+        return r1;
+
+        catch java.util.MissingResourceException from label2 to label3 with label4;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.System$Logger$Level $r0, $r1;
+        sun.util.logging.PlatformLogger$Level $r2;
+
+        $r0 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger: java.lang.System$Logger$Level getDefaultLevel()>();
+
+        <jdk.internal.logger.SimpleConsoleLogger: java.lang.System$Logger$Level DEFAULT_LEVEL> = $r0;
+
+        $r1 = <jdk.internal.logger.SimpleConsoleLogger: java.lang.System$Logger$Level DEFAULT_LEVEL>;
+
+        $r2 = staticinvoke <sun.util.logging.PlatformLogger: sun.util.logging.PlatformLogger$Level toPlatformLevel(java.lang.System$Logger$Level)>($r1);
+
+        <jdk.internal.logger.SimpleConsoleLogger: sun.util.logging.PlatformLogger$Level DEFAULT_PLATFORM_LEVEL> = $r2;
+
+        return;
+    }
+}

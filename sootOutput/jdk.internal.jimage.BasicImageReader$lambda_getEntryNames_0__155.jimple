@@ -1,0 +1,40 @@
+public final class jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_0__155 extends java.lang.Object implements java.util.function.IntPredicate
+{
+
+    public static java.util.function.IntPredicate bootstrap$()
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_0__155 $r0;
+
+        $r0 = new jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_0__155;
+
+        specialinvoke $r0.<jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_0__155: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_0__155 $r0;
+
+        $r0 := @this: jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_0__155;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public boolean test(int)
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_0__155 $r0;
+        int $i0;
+        boolean $z0;
+
+        $r0 := @this: jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_0__155;
+
+        $i0 := @parameter0: int;
+
+        $z0 = staticinvoke <jdk.internal.jimage.BasicImageReader: boolean lambda$getEntryNames$0(int)>($i0);
+
+        return $z0;
+    }
+}

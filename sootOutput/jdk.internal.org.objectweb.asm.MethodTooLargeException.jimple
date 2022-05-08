@@ -1,0 +1,111 @@
+public final class jdk.internal.org.objectweb.asm.MethodTooLargeException extends java.lang.IndexOutOfBoundsException
+{
+    private static final long serialVersionUID;
+    private final java.lang.String className;
+    private final java.lang.String methodName;
+    private final java.lang.String descriptor;
+    private final int codeSize;
+
+    public void <init>(java.lang.String, java.lang.String, java.lang.String, int)
+    {
+        jdk.internal.org.objectweb.asm.MethodTooLargeException r0;
+        java.lang.StringBuilder $r1, $r2, $r4, $r5, $r7, $r8, $r10;
+        java.lang.String r3, r6, r9, $r11;
+        int i0;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.MethodTooLargeException;
+
+        r3 := @parameter0: java.lang.String;
+
+        r6 := @parameter1: java.lang.String;
+
+        r9 := @parameter2: java.lang.String;
+
+        i0 := @parameter3: int;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Method too large: ");
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke r0.<java.lang.IndexOutOfBoundsException: void <init>(java.lang.String)>($r11);
+
+        r0.<jdk.internal.org.objectweb.asm.MethodTooLargeException: java.lang.String className> = r3;
+
+        r0.<jdk.internal.org.objectweb.asm.MethodTooLargeException: java.lang.String methodName> = r6;
+
+        r0.<jdk.internal.org.objectweb.asm.MethodTooLargeException: java.lang.String descriptor> = r9;
+
+        r0.<jdk.internal.org.objectweb.asm.MethodTooLargeException: int codeSize> = i0;
+
+        return;
+    }
+
+    public java.lang.String getClassName()
+    {
+        jdk.internal.org.objectweb.asm.MethodTooLargeException r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.MethodTooLargeException;
+
+        $r1 = r0.<jdk.internal.org.objectweb.asm.MethodTooLargeException: java.lang.String className>;
+
+        return $r1;
+    }
+
+    public java.lang.String getMethodName()
+    {
+        jdk.internal.org.objectweb.asm.MethodTooLargeException r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.MethodTooLargeException;
+
+        $r1 = r0.<jdk.internal.org.objectweb.asm.MethodTooLargeException: java.lang.String methodName>;
+
+        return $r1;
+    }
+
+    public java.lang.String getDescriptor()
+    {
+        jdk.internal.org.objectweb.asm.MethodTooLargeException r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.MethodTooLargeException;
+
+        $r1 = r0.<jdk.internal.org.objectweb.asm.MethodTooLargeException: java.lang.String descriptor>;
+
+        return $r1;
+    }
+
+    public int getCodeSize()
+    {
+        jdk.internal.org.objectweb.asm.MethodTooLargeException r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.MethodTooLargeException;
+
+        $i0 = r0.<jdk.internal.org.objectweb.asm.MethodTooLargeException: int codeSize>;
+
+        return $i0;
+    }
+
+    public static void <clinit>()
+    {
+        <jdk.internal.org.objectweb.asm.MethodTooLargeException: long serialVersionUID> = 6807380416709738314L;
+
+        return;
+    }
+}

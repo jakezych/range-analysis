@@ -1,0 +1,50 @@
+class jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer extends java.lang.Object implements jdk.internal.math.FloatingDecimal$ASCIIToBinaryConverter
+{
+    private final double doubleVal;
+    private final float floatVal;
+
+    public void <init>(double, float)
+    {
+        jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer r0;
+        double d0;
+        float f0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer;
+
+        d0 := @parameter0: double;
+
+        f0 := @parameter1: float;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer: double doubleVal> = d0;
+
+        r0.<jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer: float floatVal> = f0;
+
+        return;
+    }
+
+    public double doubleValue()
+    {
+        jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer r0;
+        double $d0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer;
+
+        $d0 = r0.<jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer: double doubleVal>;
+
+        return $d0;
+    }
+
+    public float floatValue()
+    {
+        jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer r0;
+        float $f0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer;
+
+        $f0 = r0.<jdk.internal.math.FloatingDecimal$PreparedASCIIToBinaryBuffer: float floatVal>;
+
+        return $f0;
+    }
+}

@@ -1,0 +1,49 @@
+public final class jdk.internal.module.SystemModuleFinders$1$findAll__141 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    java.lang.module.ModuleFinder cap0;
+
+    public static java.security.PrivilegedAction bootstrap$(java.lang.module.ModuleFinder)
+    {
+        java.lang.module.ModuleFinder $r0;
+        jdk.internal.module.SystemModuleFinders$1$findAll__141 $r1;
+
+        $r0 := @parameter0: java.lang.module.ModuleFinder;
+
+        $r1 = new jdk.internal.module.SystemModuleFinders$1$findAll__141;
+
+        specialinvoke $r1.<jdk.internal.module.SystemModuleFinders$1$findAll__141: void <init>(java.lang.module.ModuleFinder)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(java.lang.module.ModuleFinder)
+    {
+        jdk.internal.module.SystemModuleFinders$1$findAll__141 $r0;
+        java.lang.module.ModuleFinder $r1;
+
+        $r0 := @this: jdk.internal.module.SystemModuleFinders$1$findAll__141;
+
+        $r1 := @parameter0: java.lang.module.ModuleFinder;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.SystemModuleFinders$1$findAll__141: java.lang.module.ModuleFinder cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object run()
+    {
+        jdk.internal.module.SystemModuleFinders$1$findAll__141 $r0;
+        java.lang.module.ModuleFinder $r1;
+        java.util.Set $r2;
+
+        $r0 := @this: jdk.internal.module.SystemModuleFinders$1$findAll__141;
+
+        $r1 = $r0.<jdk.internal.module.SystemModuleFinders$1$findAll__141: java.lang.module.ModuleFinder cap0>;
+
+        $r2 = interfaceinvoke $r1.<java.lang.module.ModuleFinder: java.util.Set findAll()>();
+
+        return $r2;
+    }
+}

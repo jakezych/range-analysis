@@ -1,0 +1,188 @@
+public final class jdk.internal.jimage.decompressor.Decompressor extends java.lang.Object
+{
+    private final java.util.Map pluginsCache;
+
+    public void <init>()
+    {
+        jdk.internal.jimage.decompressor.Decompressor r0;
+        java.util.HashMap $r1;
+
+        r0 := @this: jdk.internal.jimage.decompressor.Decompressor;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        r0.<jdk.internal.jimage.decompressor.Decompressor: java.util.Map pluginsCache> = $r1;
+
+        return;
+    }
+
+    public byte[] decompressResource(java.nio.ByteOrder, jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider, byte[]) throws java.io.IOException
+    {
+        java.nio.ByteOrder r0;
+        jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider r2;
+        jdk.internal.jimage.decompressor.CompressedResourceHeader r5;
+        jdk.internal.jimage.decompressor.Decompressor r6;
+        java.util.Map $r7, $r13;
+        int $i0, $i1, $i3, $i4;
+        java.lang.Integer $r8, $r14;
+        java.lang.Object $r9;
+        long $l2;
+        java.lang.String r10, $r20, r34;
+        java.util.Properties $r11;
+        java.io.IOException $r16, $r25, $r27;
+        java.lang.StringBuilder $r17, $r18, $r19;
+        java.io.ByteArrayInputStream $r21;
+        java.nio.charset.Charset $r22;
+        byte[] $r23, r32;
+        java.lang.Exception $r26;
+        java.lang.Throwable $r28, $r31;
+        jdk.internal.jimage.decompressor.ResourceDecompressor r33;
+
+        r6 := @this: jdk.internal.jimage.decompressor.Decompressor;
+
+        r0 := @parameter0: java.nio.ByteOrder;
+
+        r2 := @parameter1: jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider;
+
+        r32 := @parameter2: byte[];
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r2);
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r32);
+
+     label01:
+        r5 = staticinvoke <jdk.internal.jimage.decompressor.CompressedResourceHeader: jdk.internal.jimage.decompressor.CompressedResourceHeader readFromResource(java.nio.ByteOrder,byte[])>(r0, r32);
+
+        if r5 == null goto label15;
+
+        $r7 = r6.<jdk.internal.jimage.decompressor.Decompressor: java.util.Map pluginsCache>;
+
+        $i0 = virtualinvoke r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int getDecompressorNameOffset()>();
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        $r9 = interfaceinvoke $r7.<java.util.Map: java.lang.Object get(java.lang.Object)>($r8);
+
+        r33 = (jdk.internal.jimage.decompressor.ResourceDecompressor) $r9;
+
+        if r33 != null goto label12;
+
+        $i3 = virtualinvoke r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int getDecompressorNameOffset()>();
+
+        r34 = interfaceinvoke r2.<jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider: java.lang.String getString(int)>($i3);
+
+        if r34 != null goto label02;
+
+        $r25 = new java.io.IOException;
+
+        specialinvoke $r25.<java.io.IOException: void <init>(java.lang.String)>("Plugin name not found");
+
+        throw $r25;
+
+     label02:
+        r10 = virtualinvoke r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: java.lang.String getStoredContent(jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider)>(r2);
+
+        $r11 = new java.util.Properties;
+
+        specialinvoke $r11.<java.util.Properties: void <init>()>();
+
+        if r10 == null goto label10;
+
+        $r21 = new java.io.ByteArrayInputStream;
+
+        $r22 = <java.nio.charset.StandardCharsets: java.nio.charset.Charset UTF_8>;
+
+        $r23 = virtualinvoke r10.<java.lang.String: byte[] getBytes(java.nio.charset.Charset)>($r22);
+
+        specialinvoke $r21.<java.io.ByteArrayInputStream: void <init>(byte[])>($r23);
+
+     label03:
+        virtualinvoke $r11.<java.util.Properties: void loadFromXML(java.io.InputStream)>($r21);
+
+     label04:
+        virtualinvoke $r21.<java.io.ByteArrayInputStream: void close()>();
+
+        goto label10;
+
+     label05:
+        $r31 := @caughtexception;
+
+     label06:
+        virtualinvoke $r21.<java.io.ByteArrayInputStream: void close()>();
+
+     label07:
+        goto label09;
+
+     label08:
+        $r28 := @caughtexception;
+
+        virtualinvoke $r31.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r28);
+
+     label09:
+        throw $r31;
+
+     label10:
+        r33 = staticinvoke <jdk.internal.jimage.decompressor.ResourceDecompressorRepository: jdk.internal.jimage.decompressor.ResourceDecompressor newResourceDecompressor(java.util.Properties,java.lang.String)>($r11, r34);
+
+        if r33 != null goto label11;
+
+        $r16 = new java.io.IOException;
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>()>();
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Plugin not found: ");
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r34);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r16.<java.io.IOException: void <init>(java.lang.String)>($r20);
+
+        throw $r16;
+
+     label11:
+        $r13 = r6.<jdk.internal.jimage.decompressor.Decompressor: java.util.Map pluginsCache>;
+
+        $i4 = virtualinvoke r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int getDecompressorNameOffset()>();
+
+        $r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+
+        interfaceinvoke $r13.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r14, r33);
+
+     label12:
+        $i1 = staticinvoke <jdk.internal.jimage.decompressor.CompressedResourceHeader: int getSize()>();
+
+        $l2 = virtualinvoke r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: long getUncompressedSize()>();
+
+        r32 = interfaceinvoke r33.<jdk.internal.jimage.decompressor.ResourceDecompressor: byte[] decompress(jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider,byte[],int,long)>(r2, r32, $i1, $l2);
+
+     label13:
+        goto label15;
+
+     label14:
+        $r26 := @caughtexception;
+
+        $r27 = new java.io.IOException;
+
+        specialinvoke $r27.<java.io.IOException: void <init>(java.lang.Throwable)>($r26);
+
+        throw $r27;
+
+     label15:
+        if r5 != null goto label01;
+
+        return r32;
+
+        catch java.lang.Throwable from label03 to label04 with label05;
+        catch java.lang.Throwable from label06 to label07 with label08;
+        catch java.lang.Exception from label12 to label13 with label14;
+    }
+}

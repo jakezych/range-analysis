@@ -1,0 +1,54 @@
+public final class jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56 extends java.lang.Object implements java.util.function.Predicate
+{
+    boolean cap0;
+
+    public static java.util.function.Predicate bootstrap$(boolean)
+    {
+        boolean $z0;
+        jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56 $r0;
+
+        $z0 := @parameter0: boolean;
+
+        $r0 = new jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56;
+
+        specialinvoke $r0.<jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56: void <init>(boolean)>($z0);
+
+        return $r0;
+    }
+
+    public void <init>(boolean)
+    {
+        jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56 $r0;
+        boolean $z0;
+
+        $r0 := @this: jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56;
+
+        $z0 := @parameter0: boolean;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56: boolean cap0> = $z0;
+
+        return;
+    }
+
+    public boolean test(java.lang.Object)
+    {
+        jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56 $r0;
+        java.lang.Object $r1;
+        java.util.jar.JarEntry $r2;
+        boolean $z0, $z1;
+
+        $r0 := @this: jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.util.jar.JarEntry) $r1;
+
+        $z0 = $r0.<jdk.internal.module.ModulePatcher$lambda_patchIfNeeded_1__56: boolean cap0>;
+
+        $z1 = staticinvoke <jdk.internal.module.ModulePatcher: boolean lambda$patchIfNeeded$1(boolean,java.util.jar.JarEntry)>($z0, $r2);
+
+        return $z1;
+    }
+}

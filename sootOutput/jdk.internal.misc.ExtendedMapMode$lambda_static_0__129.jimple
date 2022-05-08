@@ -1,0 +1,37 @@
+public final class jdk.internal.misc.ExtendedMapMode$lambda_static_0__129 extends java.lang.Object implements java.security.PrivilegedExceptionAction
+{
+
+    public static java.security.PrivilegedExceptionAction bootstrap$()
+    {
+        jdk.internal.misc.ExtendedMapMode$lambda_static_0__129 $r0;
+
+        $r0 = new jdk.internal.misc.ExtendedMapMode$lambda_static_0__129;
+
+        specialinvoke $r0.<jdk.internal.misc.ExtendedMapMode$lambda_static_0__129: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.misc.ExtendedMapMode$lambda_static_0__129 $r0;
+
+        $r0 := @this: jdk.internal.misc.ExtendedMapMode$lambda_static_0__129;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object run()
+    {
+        jdk.internal.misc.ExtendedMapMode$lambda_static_0__129 $r0;
+        java.lang.invoke.MethodHandles$Lookup $r1;
+
+        $r0 := @this: jdk.internal.misc.ExtendedMapMode$lambda_static_0__129;
+
+        $r1 = staticinvoke <jdk.internal.misc.ExtendedMapMode: java.lang.invoke.MethodHandles$Lookup lambda$static$0()>();
+
+        return $r1;
+    }
+}

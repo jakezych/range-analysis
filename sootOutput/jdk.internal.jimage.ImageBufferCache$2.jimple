@@ -1,0 +1,73 @@
+class jdk.internal.jimage.ImageBufferCache$2 extends java.lang.Object implements java.util.Comparator
+{
+
+    void <init>()
+    {
+        jdk.internal.jimage.ImageBufferCache$2 r0;
+
+        r0 := @this: jdk.internal.jimage.ImageBufferCache$2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public int compare(jdk.internal.jimage.ImageBufferCache$BufferReference, jdk.internal.jimage.ImageBufferCache$BufferReference)
+    {
+        jdk.internal.jimage.ImageBufferCache$BufferReference r0, r1;
+        jdk.internal.jimage.ImageBufferCache$2 r2;
+        int $i0, $i1, $i2;
+
+        r2 := @this: jdk.internal.jimage.ImageBufferCache$2;
+
+        r1 := @parameter0: jdk.internal.jimage.ImageBufferCache$BufferReference;
+
+        r0 := @parameter1: jdk.internal.jimage.ImageBufferCache$BufferReference;
+
+        if r0 != null goto label1;
+
+        $i0 = 0;
+
+        goto label2;
+
+     label1:
+        $i0 = r0.<jdk.internal.jimage.ImageBufferCache$BufferReference: int capacity>;
+
+     label2:
+        if r1 != null goto label3;
+
+        $i1 = 0;
+
+        goto label4;
+
+     label3:
+        $i1 = r1.<jdk.internal.jimage.ImageBufferCache$BufferReference: int capacity>;
+
+     label4:
+        $i2 = staticinvoke <java.lang.Integer: int compare(int,int)>($i0, $i1);
+
+        return $i2;
+    }
+
+    public volatile int compare(java.lang.Object, java.lang.Object)
+    {
+        jdk.internal.jimage.ImageBufferCache$2 r0;
+        java.lang.Object r1, r2;
+        jdk.internal.jimage.ImageBufferCache$BufferReference $r3, $r4;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageBufferCache$2;
+
+        r1 := @parameter0: java.lang.Object;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $r4 = (jdk.internal.jimage.ImageBufferCache$BufferReference) r1;
+
+        $r3 = (jdk.internal.jimage.ImageBufferCache$BufferReference) r2;
+
+        $i0 = virtualinvoke r0.<jdk.internal.jimage.ImageBufferCache$2: int compare(jdk.internal.jimage.ImageBufferCache$BufferReference,jdk.internal.jimage.ImageBufferCache$BufferReference)>($r4, $r3);
+
+        return $i0;
+    }
+}

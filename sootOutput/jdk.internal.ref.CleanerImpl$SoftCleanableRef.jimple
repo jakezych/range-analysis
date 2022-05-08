@@ -1,0 +1,81 @@
+public final class jdk.internal.ref.CleanerImpl$SoftCleanableRef extends jdk.internal.ref.SoftCleanable
+{
+    private final java.lang.Runnable action;
+
+    void <init>(java.lang.Object, java.lang.ref.Cleaner, java.lang.Runnable)
+    {
+        jdk.internal.ref.CleanerImpl$SoftCleanableRef r0;
+        java.lang.Object r1;
+        java.lang.ref.Cleaner r2;
+        java.lang.Runnable r3;
+
+        r0 := @this: jdk.internal.ref.CleanerImpl$SoftCleanableRef;
+
+        r1 := @parameter0: java.lang.Object;
+
+        r2 := @parameter1: java.lang.ref.Cleaner;
+
+        r3 := @parameter2: java.lang.Runnable;
+
+        specialinvoke r0.<jdk.internal.ref.SoftCleanable: void <init>(java.lang.Object,java.lang.ref.Cleaner)>(r1, r2);
+
+        r0.<jdk.internal.ref.CleanerImpl$SoftCleanableRef: java.lang.Runnable action> = r3;
+
+        return;
+    }
+
+    void <init>()
+    {
+        jdk.internal.ref.CleanerImpl$SoftCleanableRef r0;
+
+        r0 := @this: jdk.internal.ref.CleanerImpl$SoftCleanableRef;
+
+        specialinvoke r0.<jdk.internal.ref.SoftCleanable: void <init>()>();
+
+        r0.<jdk.internal.ref.CleanerImpl$SoftCleanableRef: java.lang.Runnable action> = null;
+
+        return;
+    }
+
+    protected void performCleanup()
+    {
+        jdk.internal.ref.CleanerImpl$SoftCleanableRef r0;
+        java.lang.Runnable $r1;
+
+        r0 := @this: jdk.internal.ref.CleanerImpl$SoftCleanableRef;
+
+        $r1 = r0.<jdk.internal.ref.CleanerImpl$SoftCleanableRef: java.lang.Runnable action>;
+
+        interfaceinvoke $r1.<java.lang.Runnable: void run()>();
+
+        return;
+    }
+
+    public java.lang.Object get()
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.ref.CleanerImpl$SoftCleanableRef r1;
+
+        r1 := @this: jdk.internal.ref.CleanerImpl$SoftCleanableRef;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("get");
+
+        throw $r0;
+    }
+
+    public void clear()
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.ref.CleanerImpl$SoftCleanableRef r1;
+
+        r1 := @this: jdk.internal.ref.CleanerImpl$SoftCleanableRef;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("clear");
+
+        throw $r0;
+    }
+}

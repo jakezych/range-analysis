@@ -1,0 +1,66 @@
+public final class jdk.internal.loader.LoaderPool$lambda_new_0__41 extends java.lang.Object implements java.util.function.Consumer
+{
+    java.lang.module.Configuration cap0;
+    java.util.List cap1;
+
+    public static java.util.function.Consumer bootstrap$(java.lang.module.Configuration, java.util.List)
+    {
+        java.lang.module.Configuration $r0;
+        java.util.List $r1;
+        jdk.internal.loader.LoaderPool$lambda_new_0__41 $r2;
+
+        $r0 := @parameter0: java.lang.module.Configuration;
+
+        $r1 := @parameter1: java.util.List;
+
+        $r2 = new jdk.internal.loader.LoaderPool$lambda_new_0__41;
+
+        specialinvoke $r2.<jdk.internal.loader.LoaderPool$lambda_new_0__41: void <init>(java.lang.module.Configuration,java.util.List)>($r0, $r1);
+
+        return $r2;
+    }
+
+    public void <init>(java.lang.module.Configuration, java.util.List)
+    {
+        jdk.internal.loader.LoaderPool$lambda_new_0__41 $r0;
+        java.lang.module.Configuration $r1;
+        java.util.List $r2;
+
+        $r0 := @this: jdk.internal.loader.LoaderPool$lambda_new_0__41;
+
+        $r1 := @parameter0: java.lang.module.Configuration;
+
+        $r2 := @parameter1: java.util.List;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.loader.LoaderPool$lambda_new_0__41: java.lang.module.Configuration cap0> = $r1;
+
+        $r0.<jdk.internal.loader.LoaderPool$lambda_new_0__41: java.util.List cap1> = $r2;
+
+        return;
+    }
+
+    public void accept(java.lang.Object)
+    {
+        jdk.internal.loader.LoaderPool$lambda_new_0__41 $r0;
+        java.lang.Object $r1;
+        jdk.internal.loader.Loader $r2;
+        java.lang.module.Configuration $r3;
+        java.util.List $r4;
+
+        $r0 := @this: jdk.internal.loader.LoaderPool$lambda_new_0__41;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (jdk.internal.loader.Loader) $r1;
+
+        $r3 = $r0.<jdk.internal.loader.LoaderPool$lambda_new_0__41: java.lang.module.Configuration cap0>;
+
+        $r4 = $r0.<jdk.internal.loader.LoaderPool$lambda_new_0__41: java.util.List cap1>;
+
+        staticinvoke <jdk.internal.loader.LoaderPool: void lambda$new$0(java.lang.module.Configuration,java.util.List,jdk.internal.loader.Loader)>($r3, $r4, $r2);
+
+        return;
+    }
+}

@@ -1,0 +1,5 @@
+public interface  jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider extends java.lang.Object
+{
+
+    public abstract java.lang.String getString(int);
+}

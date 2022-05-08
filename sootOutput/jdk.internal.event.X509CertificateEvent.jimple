@@ -1,0 +1,23 @@
+public final class jdk.internal.event.X509CertificateEvent extends jdk.internal.event.Event
+{
+    public java.lang.String algorithm;
+    public java.lang.String serialNumber;
+    public java.lang.String subject;
+    public java.lang.String issuer;
+    public java.lang.String keyType;
+    public int keyLength;
+    public long certificateId;
+    public long validFrom;
+    public long validUntil;
+
+    public void <init>()
+    {
+        jdk.internal.event.X509CertificateEvent r0;
+
+        r0 := @this: jdk.internal.event.X509CertificateEvent;
+
+        specialinvoke r0.<jdk.internal.event.Event: void <init>()>();
+
+        return;
+    }
+}

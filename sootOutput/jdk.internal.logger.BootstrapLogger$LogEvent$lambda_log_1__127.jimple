@@ -1,0 +1,61 @@
+public final class jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    jdk.internal.logger.BootstrapLogger$LogEvent cap0;
+    java.lang.System$Logger cap1;
+
+    public static java.security.PrivilegedAction bootstrap$(jdk.internal.logger.BootstrapLogger$LogEvent, java.lang.System$Logger)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        java.lang.System$Logger $r1;
+        jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127 $r2;
+
+        $r0 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r1 := @parameter1: java.lang.System$Logger;
+
+        $r2 = new jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127;
+
+        specialinvoke $r2.<jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127: void <init>(jdk.internal.logger.BootstrapLogger$LogEvent,java.lang.System$Logger)>($r0, $r1);
+
+        return $r2;
+    }
+
+    public void <init>(jdk.internal.logger.BootstrapLogger$LogEvent, java.lang.System$Logger)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127 $r0;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r1;
+        java.lang.System$Logger $r2;
+
+        $r0 := @this: jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127;
+
+        $r1 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 := @parameter1: java.lang.System$Logger;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127: jdk.internal.logger.BootstrapLogger$LogEvent cap0> = $r1;
+
+        $r0.<jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127: java.lang.System$Logger cap1> = $r2;
+
+        return;
+    }
+
+    public java.lang.Object run()
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127 $r0;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r1;
+        java.lang.System$Logger $r2;
+        java.lang.Void $r3;
+
+        $r0 := @this: jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127;
+
+        $r1 = $r0.<jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127: jdk.internal.logger.BootstrapLogger$LogEvent cap0>;
+
+        $r2 = $r0.<jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127: java.lang.System$Logger cap1>;
+
+        $r3 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Void lambda$log$1(jdk.internal.logger.BootstrapLogger$LogEvent,java.lang.System$Logger)>($r1, $r2);
+
+        return $r3;
+    }
+}

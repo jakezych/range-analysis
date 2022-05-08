@@ -1,0 +1,5 @@
+public interface  jdk.internal.access.JavaObjectInputFilterAccess extends java.lang.Object
+{
+
+    public abstract java.io.ObjectInputFilter createFilter2(java.lang.String);
+}

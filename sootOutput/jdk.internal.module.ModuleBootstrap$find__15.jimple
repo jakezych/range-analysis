@@ -1,0 +1,55 @@
+public final class jdk.internal.module.ModuleBootstrap$find__15 extends java.lang.Object implements java.util.function.Function
+{
+    java.lang.module.ModuleFinder cap0;
+
+    public static java.util.function.Function bootstrap$(java.lang.module.ModuleFinder)
+    {
+        java.lang.module.ModuleFinder $r0;
+        jdk.internal.module.ModuleBootstrap$find__15 $r1;
+
+        $r0 := @parameter0: java.lang.module.ModuleFinder;
+
+        $r1 = new jdk.internal.module.ModuleBootstrap$find__15;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleBootstrap$find__15: void <init>(java.lang.module.ModuleFinder)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(java.lang.module.ModuleFinder)
+    {
+        jdk.internal.module.ModuleBootstrap$find__15 $r0;
+        java.lang.module.ModuleFinder $r1;
+
+        $r0 := @this: jdk.internal.module.ModuleBootstrap$find__15;
+
+        $r1 := @parameter0: java.lang.module.ModuleFinder;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModuleBootstrap$find__15: java.lang.module.ModuleFinder cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.module.ModuleBootstrap$find__15 $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2;
+        java.lang.module.ModuleFinder $r3;
+        java.util.Optional $r4;
+
+        $r0 := @this: jdk.internal.module.ModuleBootstrap$find__15;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) $r1;
+
+        $r3 = $r0.<jdk.internal.module.ModuleBootstrap$find__15: java.lang.module.ModuleFinder cap0>;
+
+        $r4 = interfaceinvoke $r3.<java.lang.module.ModuleFinder: java.util.Optional find(java.lang.String)>($r2);
+
+        return $r4;
+    }
+}

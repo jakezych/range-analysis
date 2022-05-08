@@ -1,0 +1,1420 @@
+public final class jdk.internal.logger.BootstrapLogger extends java.lang.Object implements java.lang.System$Logger, sun.util.logging.PlatformLogger$Bridge, sun.util.logging.PlatformLogger$ConfigurableBridge
+{
+    final jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder;
+    private static volatile java.util.function.BooleanSupplier isBooted;
+    private static volatile boolean logManagerConfigured;
+    static final boolean $assertionsDisabled;
+
+    void <init>(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor r1;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r1 := @parameter0: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder> = r1;
+
+        return;
+    }
+
+    void push(jdk.internal.logger.BootstrapLogger$LogEvent)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        jdk.internal.logger.BootstrapLogger r1;
+
+        r1 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r0 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        staticinvoke <jdk.internal.logger.BootstrapLogger$BootstrapExecutors: void enqueue(jdk.internal.logger.BootstrapLogger$LogEvent)>(r0);
+
+        virtualinvoke r1.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        return;
+    }
+
+    void flush(jdk.internal.logger.BootstrapLogger$LogEvent)
+    {
+        boolean $z0;
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        sun.util.logging.PlatformLogger$Level $r1;
+        jdk.internal.logger.BootstrapLogger r2, $r5;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r3, $r4;
+        java.lang.AssertionError $r6;
+        sun.util.logging.PlatformLogger$Bridge r7;
+        java.lang.System$Logger r8;
+
+        r2 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r0 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $z0 = <jdk.internal.logger.BootstrapLogger: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label1;
+
+        $r5 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger bootstrap>;
+
+        if $r5 == r2 goto label1;
+
+        $r6 = new java.lang.AssertionError;
+
+        specialinvoke $r6.<java.lang.AssertionError: void <init>()>();
+
+        throw $r6;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        if $r1 == null goto label2;
+
+        $r4 = r2.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r7 = virtualinvoke $r4.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge getConcretePlatformLogger(jdk.internal.logger.BootstrapLogger)>(r2);
+
+        staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: void log(jdk.internal.logger.BootstrapLogger$LogEvent,sun.util.logging.PlatformLogger$Bridge)>(r0, r7);
+
+        goto label3;
+
+     label2:
+        $r3 = r2.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r8 = virtualinvoke $r3.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger getConcreteLogger(jdk.internal.logger.BootstrapLogger)>(r2);
+
+        staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: void log(jdk.internal.logger.BootstrapLogger$LogEvent,java.lang.System$Logger)>(r0, r8);
+
+     label3:
+        return;
+    }
+
+    public java.lang.String getName()
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.String $r2;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        $r2 = $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.String name>;
+
+        return $r2;
+    }
+
+    boolean checkBootstrapping()
+    {
+        boolean $z0;
+        jdk.internal.logger.BootstrapLogger r0;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        $z0 = staticinvoke <jdk.internal.logger.BootstrapLogger: boolean isBooted()>();
+
+        if $z0 == 0 goto label1;
+
+        staticinvoke <jdk.internal.logger.BootstrapLogger$BootstrapExecutors: void flush()>();
+
+        return 0;
+
+     label1:
+        return 1;
+    }
+
+    public boolean isLoggable(java.lang.System$Logger$Level)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0, $z1, $z2;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.System$Logger r2;
+        java.lang.System$Logger$Level r3, $r4;
+        int $i0, $i1;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: java.lang.System$Logger$Level;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label3;
+
+        $i0 = virtualinvoke r3.<java.lang.System$Logger$Level: int getSeverity()>();
+
+        $r4 = <java.lang.System$Logger$Level: java.lang.System$Logger$Level INFO>;
+
+        $i1 = virtualinvoke $r4.<java.lang.System$Logger$Level: int getSeverity()>();
+
+        if $i0 < $i1 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+
+     label3:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        $z1 = interfaceinvoke r2.<java.lang.System$Logger: boolean isLoggable(java.lang.System$Logger$Level)>(r3);
+
+        return $z1;
+    }
+
+    public void log(java.lang.System$Logger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.System$Logger r2;
+        java.lang.System$Logger$Level r3;
+        java.util.ResourceBundle r4;
+        java.lang.String r5;
+        java.lang.Throwable r6;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r7;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: java.lang.System$Logger$Level;
+
+        r4 := @parameter1: java.util.ResourceBundle;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r7 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r0, r3, r4, r5, r6);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r7);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        interfaceinvoke r2.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r3, r4, r5, r6);
+
+     label2:
+        return;
+    }
+
+    public transient void log(java.lang.System$Logger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.System$Logger r2;
+        java.lang.System$Logger$Level r3;
+        java.util.ResourceBundle r4;
+        java.lang.String r5;
+        java.lang.Object[] r6;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r7;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: java.lang.System$Logger$Level;
+
+        r4 := @parameter1: java.util.ResourceBundle;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r7 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r0, r3, r4, r5, r6);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r7);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        interfaceinvoke r2.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r3, r4, r5, r6);
+
+     label2:
+        return;
+    }
+
+    public void log(java.lang.System$Logger$Level, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.System$Logger r2;
+        java.lang.System$Logger$Level r3;
+        java.lang.String r4;
+        java.lang.Throwable r5;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r6;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: java.lang.System$Logger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r6 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r0, r3, null, r4, r5);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r6);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        interfaceinvoke r2.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.String,java.lang.Throwable)>(r3, r4, r5);
+
+     label2:
+        return;
+    }
+
+    public transient void log(java.lang.System$Logger$Level, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.System$Logger r2;
+        java.lang.System$Logger$Level r3;
+        java.lang.String r4;
+        java.lang.Object[] r5;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r6;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: java.lang.System$Logger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r6 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r0, r3, null, r4, r5);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r6);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        interfaceinvoke r2.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.String,java.lang.Object[])>(r3, r4, r5);
+
+     label2:
+        return;
+    }
+
+    public void log(java.lang.System$Logger$Level, java.util.function.Supplier)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.System$Logger r2;
+        java.lang.System$Logger$Level r3;
+        java.util.function.Supplier r4;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r5;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: java.lang.System$Logger$Level;
+
+        r4 := @parameter1: java.util.function.Supplier;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r5 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.function.Supplier)>(r0, r3, r4);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r5);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        interfaceinvoke r2.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.function.Supplier)>(r3, r4);
+
+     label2:
+        return;
+    }
+
+    public void log(java.lang.System$Logger$Level, java.lang.Object)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.System$Logger r2;
+        java.lang.System$Logger$Level r3;
+        java.lang.Object r4;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: java.lang.System$Logger$Level;
+
+        r4 := @parameter1: java.lang.Object;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        specialinvoke r0.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.Object)>(r3, r4);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        interfaceinvoke r2.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.Object)>(r3, r4);
+
+     label2:
+        return;
+    }
+
+    public void log(java.lang.System$Logger$Level, java.lang.String)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.System$Logger r2;
+        java.lang.System$Logger$Level r3;
+        java.lang.String r4;
+        java.lang.Object[] $r5;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r6;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: java.lang.System$Logger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r5 = (java.lang.Object[]) null;
+
+        $r6 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r0, r3, null, r4, $r5);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r6);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        interfaceinvoke r2.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.String)>(r3, r4);
+
+     label2:
+        return;
+    }
+
+    public void log(java.lang.System$Logger$Level, java.util.function.Supplier, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        java.lang.System$Logger r2;
+        java.lang.System$Logger$Level r3;
+        java.util.function.Supplier r4;
+        java.lang.Throwable r5;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r6;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: java.lang.System$Logger$Level;
+
+        r4 := @parameter1: java.util.function.Supplier;
+
+        r5 := @parameter2: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r6 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.function.Supplier,java.lang.Throwable)>(r0, r3, r4, r5);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r6);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        interfaceinvoke r2.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.function.Supplier,java.lang.Throwable)>(r3, r4, r5);
+
+     label2:
+        return;
+    }
+
+    public boolean isLoggable(sun.util.logging.PlatformLogger$Level)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0, $z1, $z2;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3, $r4;
+        int $i0, $i1;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label3;
+
+        $i0 = virtualinvoke r3.<sun.util.logging.PlatformLogger$Level: int intValue()>();
+
+        $r4 = <sun.util.logging.PlatformLogger$Level: sun.util.logging.PlatformLogger$Level INFO>;
+
+        $i1 = virtualinvoke $r4.<sun.util.logging.PlatformLogger$Level: int intValue()>();
+
+        if $i0 < $i1 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+
+     label3:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        $z1 = interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: boolean isLoggable(sun.util.logging.PlatformLogger$Level)>(r3);
+
+        return $z1;
+    }
+
+    public boolean isEnabled()
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0, $z1;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        return 1;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        $z1 = interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: boolean isEnabled()>();
+
+        return $z1;
+    }
+
+    public void log(sun.util.logging.PlatformLogger$Level, java.lang.String)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r5;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r5 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String)>(r0, r3, r4);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r5);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void log(sun.util.logging.PlatformLogger$Level,java.lang.String)>(r3, r4);
+
+     label2:
+        return;
+    }
+
+    public void log(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4;
+        java.lang.Throwable r5;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r6;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r6 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.Throwable)>(r0, r3, r4, r5);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r6);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void log(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.Throwable)>(r3, r4, r5);
+
+     label2:
+        return;
+    }
+
+    public transient void log(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4;
+        java.lang.Object[] r5;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r6;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r6 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.Object[])>(r0, r3, r4, r5);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r6);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void log(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.Object[])>(r3, r4, r5);
+
+     label2:
+        return;
+    }
+
+    public void log(sun.util.logging.PlatformLogger$Level, java.util.function.Supplier)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.util.function.Supplier r4;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r5;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.util.function.Supplier;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r5 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.util.function.Supplier)>(r0, r3, r4);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r5);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void log(sun.util.logging.PlatformLogger$Level,java.util.function.Supplier)>(r3, r4);
+
+     label2:
+        return;
+    }
+
+    public void log(sun.util.logging.PlatformLogger$Level, java.lang.Throwable, java.util.function.Supplier)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.Throwable r4;
+        java.util.function.Supplier r5;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r6;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.Throwable;
+
+        r5 := @parameter2: java.util.function.Supplier;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r6 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent vaueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.util.function.Supplier,java.lang.Throwable)>(r0, r3, r5, r4);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r6);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void log(sun.util.logging.PlatformLogger$Level,java.lang.Throwable,java.util.function.Supplier)>(r3, r4, r5);
+
+     label2:
+        return;
+    }
+
+    public void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.String)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4, r5, r6;
+        java.lang.Object[] $r7;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r8;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.String;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r7 = (java.lang.Object[]) null;
+
+        $r8 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r0, r3, r4, r5, null, r6, $r7);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r8);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void logp(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.lang.String)>(r3, r4, r5, r6);
+
+     label2:
+        return;
+    }
+
+    public void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.function.Supplier)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4, r5;
+        java.util.function.Supplier r6;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r7;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.util.function.Supplier;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r7 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.function.Supplier,java.lang.Throwable)>(r0, r3, r4, r5, r6, null);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r7);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void logp(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.function.Supplier)>(r3, r4, r5, r6);
+
+     label2:
+        return;
+    }
+
+    public transient void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4, r5, r6;
+        java.lang.Object[] r7;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r8;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.String;
+
+        r7 := @parameter4: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r8 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r0, r3, r4, r5, null, r6, r7);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r8);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void logp(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.lang.String,java.lang.Object[])>(r3, r4, r5, r6, r7);
+
+     label2:
+        return;
+    }
+
+    public void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4, r5, r6;
+        java.lang.Throwable r7;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r8;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.String;
+
+        r7 := @parameter4: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r8 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r0, r3, r4, r5, null, r6, r7);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r8);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void logp(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.lang.String,java.lang.Throwable)>(r3, r4, r5, r6, r7);
+
+     label2:
+        return;
+    }
+
+    public void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.Throwable, java.util.function.Supplier)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4, r5;
+        java.lang.Throwable r6;
+        java.util.function.Supplier r7;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r8;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.Throwable;
+
+        r7 := @parameter4: java.util.function.Supplier;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r8 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.function.Supplier,java.lang.Throwable)>(r0, r3, r4, r5, r7, r6);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r8);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void logp(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.lang.Throwable,java.util.function.Supplier)>(r3, r4, r5, r6, r7);
+
+     label2:
+        return;
+    }
+
+    public transient void logrb(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.ResourceBundle, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4, r5, r7;
+        java.util.ResourceBundle r6;
+        java.lang.Object[] r8;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r9;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.util.ResourceBundle;
+
+        r7 := @parameter4: java.lang.String;
+
+        r8 := @parameter5: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r9 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r0, r3, r4, r5, r6, r7, r8);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r9);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void logrb(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r3, r4, r5, r6, r7, r8);
+
+     label2:
+        return;
+    }
+
+    public void logrb(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.ResourceBundle, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.lang.String r4, r5, r7;
+        java.util.ResourceBundle r6;
+        java.lang.Throwable r8;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r9;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.util.ResourceBundle;
+
+        r7 := @parameter4: java.lang.String;
+
+        r8 := @parameter5: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r9 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r0, r3, r4, r5, r6, r7, r8);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r9);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void logrb(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r3, r4, r5, r6, r7, r8);
+
+     label2:
+        return;
+    }
+
+    public transient void logrb(sun.util.logging.PlatformLogger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.util.ResourceBundle r4;
+        java.lang.String r5;
+        java.lang.Object[] r6;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r7;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.util.ResourceBundle;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.Object[];
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r7 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r0, r3, null, null, r4, r5, r6);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r7);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void logrb(sun.util.logging.PlatformLogger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r3, r4, r5, r6);
+
+     label2:
+        return;
+    }
+
+    public void logrb(sun.util.logging.PlatformLogger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$Level r3;
+        java.util.ResourceBundle r4;
+        java.lang.String r5;
+        java.lang.Throwable r6;
+        jdk.internal.logger.BootstrapLogger$LogEvent $r7;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r4 := @parameter1: java.util.ResourceBundle;
+
+        r5 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.Throwable;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r7 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r0, r3, null, null, r4, r5, r6);
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: void push(jdk.internal.logger.BootstrapLogger$LogEvent)>($r7);
+
+        goto label2;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        interfaceinvoke r2.<sun.util.logging.PlatformLogger$Bridge: void logrb(sun.util.logging.PlatformLogger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r3, r4, r5, r6);
+
+     label2:
+        return;
+    }
+
+    public sun.util.logging.PlatformLogger$ConfigurableBridge$LoggerConfiguration getLoggerConfiguration()
+    {
+        jdk.internal.logger.BootstrapLogger r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        sun.util.logging.PlatformLogger$ConfigurableBridge$LoggerConfiguration $r3, $r4;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger;
+
+        $z0 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger: boolean checkBootstrapping()>();
+
+        if $z0 == 0 goto label1;
+
+        $r4 = specialinvoke r0.<sun.util.logging.PlatformLogger$ConfigurableBridge: sun.util.logging.PlatformLogger$ConfigurableBridge$LoggerConfiguration getLoggerConfiguration()>();
+
+        return $r4;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor holder>;
+
+        r2 = virtualinvoke $r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        $r3 = staticinvoke <sun.util.logging.PlatformLogger$ConfigurableBridge: sun.util.logging.PlatformLogger$ConfigurableBridge$LoggerConfiguration getLoggerConfiguration(sun.util.logging.PlatformLogger$Bridge)>(r2);
+
+        return $r3;
+    }
+
+    public static boolean isBooted()
+    {
+        java.util.function.BooleanSupplier $r0, $r1;
+        boolean $z0, $z1;
+
+        $r0 = <jdk.internal.logger.BootstrapLogger: java.util.function.BooleanSupplier isBooted>;
+
+        if $r0 == null goto label1;
+
+        $r1 = <jdk.internal.logger.BootstrapLogger: java.util.function.BooleanSupplier isBooted>;
+
+        $z1 = interfaceinvoke $r1.<java.util.function.BooleanSupplier: boolean getAsBoolean()>();
+
+        return $z1;
+
+     label1:
+        $z0 = staticinvoke <jdk.internal.misc.VM: boolean isBooted()>();
+
+        return $z0;
+    }
+
+    private static boolean useSurrogateLoggers()
+    {
+        boolean $z0, $z1, $z2;
+        jdk.internal.logger.BootstrapLogger$LoggingBackend $r0, $r1;
+
+        $z0 = staticinvoke <jdk.internal.logger.BootstrapLogger: boolean isBooted()>();
+
+        if $z0 != 0 goto label1;
+
+        return 1;
+
+     label1:
+        $r1 = <jdk.internal.logger.BootstrapLogger$DetectBackend: jdk.internal.logger.BootstrapLogger$LoggingBackend detectedBackend>;
+
+        $r0 = <jdk.internal.logger.BootstrapLogger$LoggingBackend: jdk.internal.logger.BootstrapLogger$LoggingBackend JUL_DEFAULT>;
+
+        if $r1 != $r0 goto label2;
+
+        $z1 = <jdk.internal.logger.BootstrapLogger: boolean logManagerConfigured>;
+
+        if $z1 != 0 goto label2;
+
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    public static synchronized boolean useLazyLoggers()
+    {
+        boolean $z0, $z1, $z2;
+        jdk.internal.logger.BootstrapLogger$LoggingBackend $r0, $r1;
+
+        $z0 = staticinvoke <jdk.internal.logger.BootstrapLogger: boolean isBooted()>();
+
+        if $z0 == 0 goto label1;
+
+        $r1 = <jdk.internal.logger.BootstrapLogger$DetectBackend: jdk.internal.logger.BootstrapLogger$LoggingBackend detectedBackend>;
+
+        $r0 = <jdk.internal.logger.BootstrapLogger$LoggingBackend: jdk.internal.logger.BootstrapLogger$LoggingBackend CUSTOM>;
+
+        if $r1 == $r0 goto label1;
+
+        $z1 = staticinvoke <jdk.internal.logger.BootstrapLogger: boolean useSurrogateLoggers()>();
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    static java.lang.System$Logger getLogger(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)
+    {
+        boolean $z0, $z1, $z2;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor r0;
+        java.lang.System$Logger $r1, $r3;
+        jdk.internal.logger.BootstrapLogger $r4;
+        java.lang.Throwable $r5;
+
+        r0 := @parameter0: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor;
+
+        $z0 = staticinvoke <jdk.internal.logger.BootstrapLogger: boolean isBooted()>();
+
+        if $z0 != 0 goto label1;
+
+        $r4 = new jdk.internal.logger.BootstrapLogger;
+
+        specialinvoke $r4.<jdk.internal.logger.BootstrapLogger: void <init>(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)>(r0);
+
+        return $r4;
+
+     label1:
+        $z1 = staticinvoke <jdk.internal.logger.BootstrapLogger: boolean useSurrogateLoggers()>();
+
+        if $z1 == 0 goto label8;
+
+        entermonitor class "Ljdk/internal/logger/BootstrapLogger;";
+
+     label2:
+        $z2 = staticinvoke <jdk.internal.logger.BootstrapLogger: boolean useSurrogateLoggers()>();
+
+        if $z2 == 0 goto label4;
+
+        $r3 = staticinvoke <jdk.internal.logger.BootstrapLogger: java.lang.System$Logger createSurrogateLogger(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)>(r0);
+
+        exitmonitor class "Ljdk/internal/logger/BootstrapLogger;";
+
+     label3:
+        return $r3;
+
+     label4:
+        exitmonitor class "Ljdk/internal/logger/BootstrapLogger;";
+
+     label5:
+        goto label8;
+
+     label6:
+        $r5 := @caughtexception;
+
+        exitmonitor class "Ljdk/internal/logger/BootstrapLogger;";
+
+     label7:
+        throw $r5;
+
+     label8:
+        $r1 = virtualinvoke r0.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.System$Logger createLogger()>();
+
+        return $r1;
+
+        catch java.lang.Throwable from label2 to label3 with label6;
+        catch java.lang.Throwable from label4 to label5 with label6;
+        catch java.lang.Throwable from label6 to label7 with label6;
+    }
+
+    static synchronized java.lang.System$Logger createSurrogateLogger(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)
+    {
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor r0;
+        jdk.internal.logger.BootstrapLogger$RedirectedLoggers $r1;
+        jdk.internal.logger.SurrogateLogger $r2;
+
+        r0 := @parameter0: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor;
+
+        $r1 = <jdk.internal.logger.BootstrapLogger$RedirectedLoggers: jdk.internal.logger.BootstrapLogger$RedirectedLoggers INSTANCE>;
+
+        $r2 = virtualinvoke $r1.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: jdk.internal.logger.SurrogateLogger get(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)>(r0);
+
+        return $r2;
+    }
+
+    private static synchronized java.util.Map releaseSurrogateLoggers()
+    {
+        boolean z0;
+        jdk.internal.logger.BootstrapLogger$RedirectedLoggers $r0;
+        java.util.Map $r1;
+
+        z0 = staticinvoke <jdk.internal.logger.BootstrapLogger: boolean useSurrogateLoggers()>();
+
+        <jdk.internal.logger.BootstrapLogger: boolean logManagerConfigured> = 1;
+
+        if z0 == 0 goto label1;
+
+        $r0 = <jdk.internal.logger.BootstrapLogger$RedirectedLoggers: jdk.internal.logger.BootstrapLogger$RedirectedLoggers INSTANCE>;
+
+        $r1 = virtualinvoke $r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: java.util.Map drainLoggersMap()>();
+
+        return $r1;
+
+     label1:
+        return null;
+    }
+
+    public static void redirectTemporaryLoggers()
+    {
+        java.util.Map r0;
+
+        r0 = staticinvoke <jdk.internal.logger.BootstrapLogger: java.util.Map releaseSurrogateLoggers()>();
+
+        if r0 == null goto label1;
+
+        staticinvoke <jdk.internal.logger.BootstrapLogger$RedirectedLoggers: void replaceSurrogateLoggers(java.util.Map)>(r0);
+
+     label1:
+        staticinvoke <jdk.internal.logger.BootstrapLogger$BootstrapExecutors: void flush()>();
+
+        return;
+    }
+
+    static void awaitPendingTasks()
+    {
+        staticinvoke <jdk.internal.logger.BootstrapLogger$BootstrapExecutors: void awaitPendingTasks()>();
+
+        return;
+    }
+
+    static boolean isAlive()
+    {
+        boolean $z0;
+
+        $z0 = staticinvoke <jdk.internal.logger.BootstrapLogger$BootstrapExecutors: boolean isAlive()>();
+
+        return $z0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+
+        $r0 = class "Ljdk/internal/logger/BootstrapLogger;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <jdk.internal.logger.BootstrapLogger: boolean $assertionsDisabled> = $z1;
+
+        return;
+    }
+}

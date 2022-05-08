@@ -1,0 +1,115 @@
+public class inputs.InterTestSimple extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        inputs.InterTestSimple r0;
+
+        r0 := @this: inputs.InterTestSimple;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static int 'neg'(int)
+    {
+        int i0, $i1;
+
+        i0 := @parameter0: int;
+
+        $i1 = -1 * i0;
+
+        return $i1;
+    }
+
+    public static int more_neg(int)
+    {
+        int i0, $i1, $i2;
+
+        i0 := @parameter0: int;
+
+        $i1 = staticinvoke <inputs.InterTestSimple: int 'neg'(int)>(i0);
+
+        $i2 = $i1 - 1;
+
+        return $i2;
+    }
+
+    public static int even_more_neg(int)
+    {
+        int i0, $i1, $i2;
+
+        i0 := @parameter0: int;
+
+        $i1 = staticinvoke <inputs.InterTestSimple: int more_neg(int)>(i0);
+
+        $i2 = $i1 - 1;
+
+        return $i2;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int[] r0;
+        boolean $z0;
+        java.lang.String[] r1;
+        byte b0, b1;
+        int i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15;
+
+        r1 := @parameter0: java.lang.String[];
+
+        r0 = newarray (int)[5];
+
+        $z0 = staticinvoke <inputs.InterTestSimple: boolean condition()>();
+
+        if $z0 == 0 goto label1;
+
+        b0 = 1;
+
+        b1 = -1;
+
+        goto label2;
+
+     label1:
+        b0 = 2;
+
+        b1 = -2;
+
+     label2:
+        i2 = r0[b0];
+
+        i3 = r0[b1];
+
+        i4 = staticinvoke <inputs.InterTestSimple: int 'neg'(int)>(b0);
+
+        i5 = staticinvoke <inputs.InterTestSimple: int 'neg'(int)>(b1);
+
+        i6 = r0[i4];
+
+        i7 = r0[i5];
+
+        i8 = staticinvoke <inputs.InterTestSimple: int more_neg(int)>(b0);
+
+        i9 = staticinvoke <inputs.InterTestSimple: int more_neg(int)>(b1);
+
+        i10 = r0[i8];
+
+        i11 = r0[i9];
+
+        i12 = staticinvoke <inputs.InterTestSimple: int even_more_neg(int)>(b0);
+
+        i13 = staticinvoke <inputs.InterTestSimple: int even_more_neg(int)>(b1);
+
+        i14 = r0[i12];
+
+        i15 = r0[i13];
+
+        return;
+    }
+
+    public static boolean condition()
+    {
+        return 0;
+    }
+}

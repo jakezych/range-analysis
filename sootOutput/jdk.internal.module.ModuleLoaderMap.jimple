@@ -1,0 +1,250 @@
+public final class jdk.internal.module.ModuleLoaderMap extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        jdk.internal.module.ModuleLoaderMap r0;
+
+        r0 := @this: jdk.internal.module.ModuleLoaderMap;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.util.Set bootModules()
+    {
+        java.lang.String[] $r0;
+        java.util.HashSet $r2;
+        int $i0, i1, i2;
+        java.lang.String r5;
+
+        $r0 = newarray (java.lang.String)[23];
+
+        $r0[0] = "java.base";
+
+        $r0[1] = "java.datatransfer";
+
+        $r0[2] = "java.desktop";
+
+        $r0[3] = "java.instrument";
+
+        $r0[4] = "java.logging";
+
+        $r0[5] = "java.management";
+
+        $r0[6] = "java.management.rmi";
+
+        $r0[7] = "java.naming";
+
+        $r0[8] = "java.prefs";
+
+        $r0[9] = "java.rmi";
+
+        $r0[10] = "java.security.sasl";
+
+        $r0[11] = "java.xml";
+
+        $r0[12] = "jdk.incubator.foreign";
+
+        $r0[13] = "jdk.internal.vm.ci";
+
+        $r0[14] = "jdk.jfr";
+
+        $r0[15] = "jdk.management";
+
+        $r0[16] = "jdk.management.agent";
+
+        $r0[17] = "jdk.management.jfr";
+
+        $r0[18] = "jdk.naming.rmi";
+
+        $r0[19] = "jdk.net";
+
+        $r0[20] = "jdk.nio.mapmode";
+
+        $r0[21] = "jdk.sctp";
+
+        $r0[22] = "jdk.unsupported";
+
+        $r2 = new java.util.HashSet;
+
+        $i0 = lengthof $r0;
+
+        specialinvoke $r2.<java.util.HashSet: void <init>(int)>($i0);
+
+        i1 = lengthof $r0;
+
+        i2 = 0;
+
+     label1:
+        if i2 >= i1 goto label2;
+
+        r5 = $r0[i2];
+
+        interfaceinvoke $r2.<java.util.Set: boolean add(java.lang.Object)>(r5);
+
+        i2 = i2 + 1;
+
+        goto label1;
+
+     label2:
+        return $r2;
+    }
+
+    public static java.util.Set platformModules()
+    {
+        java.lang.String[] $r0;
+        java.util.HashSet $r2;
+        int $i0, i1, i2;
+        java.lang.String r5;
+
+        $r0 = newarray (java.lang.String)[27];
+
+        $r0[0] = "java.compiler";
+
+        $r0[1] = "java.net.http";
+
+        $r0[2] = "java.scripting";
+
+        $r0[3] = "java.se";
+
+        $r0[4] = "java.security.jgss";
+
+        $r0[5] = "java.smartcardio";
+
+        $r0[6] = "java.sql";
+
+        $r0[7] = "java.sql.rowset";
+
+        $r0[8] = "java.transaction.xa";
+
+        $r0[9] = "java.xml.crypto";
+
+        $r0[10] = "jdk.accessibility";
+
+        $r0[11] = "jdk.aot";
+
+        $r0[12] = "jdk.charsets";
+
+        $r0[13] = "jdk.crypto.cryptoki";
+
+        $r0[14] = "jdk.crypto.ec";
+
+        $r0[15] = "jdk.dynalink";
+
+        $r0[16] = "jdk.httpserver";
+
+        $r0[17] = "jdk.internal.vm.compiler";
+
+        $r0[18] = "jdk.internal.vm.compiler.management";
+
+        $r0[19] = "jdk.jsobject";
+
+        $r0[20] = "jdk.localedata";
+
+        $r0[21] = "jdk.naming.dns";
+
+        $r0[22] = "jdk.scripting.nashorn";
+
+        $r0[23] = "jdk.security.auth";
+
+        $r0[24] = "jdk.security.jgss";
+
+        $r0[25] = "jdk.xml.dom";
+
+        $r0[26] = "jdk.zipfs";
+
+        $r2 = new java.util.HashSet;
+
+        $i0 = lengthof $r0;
+
+        specialinvoke $r2.<java.util.HashSet: void <init>(int)>($i0);
+
+        i1 = lengthof $r0;
+
+        i2 = 0;
+
+     label1:
+        if i2 >= i1 goto label2;
+
+        r5 = $r0[i2];
+
+        interfaceinvoke $r2.<java.util.Set: boolean add(java.lang.Object)>(r5);
+
+        i2 = i2 + 1;
+
+        goto label1;
+
+     label2:
+        return $r2;
+    }
+
+    static java.util.function.Function mappingFunction(java.lang.module.Configuration)
+    {
+        java.util.Set r0, r1, $r7;
+        java.lang.ClassLoader r2, r3;
+        java.util.HashMap $r4;
+        java.lang.module.Configuration r6;
+        java.util.Iterator r8;
+        boolean $z0, $z1, $z2;
+        jdk.internal.module.ModuleLoaderMap$Mapper $r9;
+        java.lang.Object $r10;
+        java.lang.module.ResolvedModule r11;
+        java.lang.String r12;
+
+        r6 := @parameter0: java.lang.module.Configuration;
+
+        r0 = staticinvoke <jdk.internal.module.ModuleLoaderMap: java.util.Set bootModules()>();
+
+        r1 = staticinvoke <jdk.internal.module.ModuleLoaderMap: java.util.Set platformModules()>();
+
+        r2 = staticinvoke <jdk.internal.loader.ClassLoaders: java.lang.ClassLoader platformClassLoader()>();
+
+        r3 = staticinvoke <jdk.internal.loader.ClassLoaders: java.lang.ClassLoader appClassLoader()>();
+
+        $r4 = new java.util.HashMap;
+
+        specialinvoke $r4.<java.util.HashMap: void <init>()>();
+
+        $r7 = virtualinvoke r6.<java.lang.module.Configuration: java.util.Set modules()>();
+
+        r8 = interfaceinvoke $r7.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke r8.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r10 = interfaceinvoke r8.<java.util.Iterator: java.lang.Object next()>();
+
+        r11 = (java.lang.module.ResolvedModule) $r10;
+
+        r12 = virtualinvoke r11.<java.lang.module.ResolvedModule: java.lang.String name()>();
+
+        $z1 = interfaceinvoke r0.<java.util.Set: boolean contains(java.lang.Object)>(r12);
+
+        if $z1 != 0 goto label3;
+
+        $z2 = interfaceinvoke r1.<java.util.Set: boolean contains(java.lang.Object)>(r12);
+
+        if $z2 == 0 goto label2;
+
+        interfaceinvoke $r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r12, r2);
+
+        goto label3;
+
+     label2:
+        interfaceinvoke $r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r12, r3);
+
+     label3:
+        goto label1;
+
+     label4:
+        $r9 = new jdk.internal.module.ModuleLoaderMap$Mapper;
+
+        specialinvoke $r9.<jdk.internal.module.ModuleLoaderMap$Mapper: void <init>(java.util.Map)>($r4);
+
+        return $r9;
+    }
+}

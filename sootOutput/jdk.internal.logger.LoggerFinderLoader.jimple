@@ -1,0 +1,450 @@
+public final class jdk.internal.logger.LoggerFinderLoader extends java.lang.Object
+{
+    private static volatile java.lang.System$LoggerFinder service;
+    private static final java.lang.Object lock;
+    static final java.security.Permission CLASSLOADER_PERMISSION;
+    static final java.security.Permission READ_PERMISSION;
+    public static final java.lang.RuntimePermission LOGGERFINDER_PERMISSION;
+
+    private void <init>()
+    {
+        jdk.internal.logger.LoggerFinderLoader r0;
+        java.lang.InternalError $r1;
+
+        r0 := @this: jdk.internal.logger.LoggerFinderLoader;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.lang.InternalError;
+
+        specialinvoke $r1.<java.lang.InternalError: void <init>(java.lang.String)>("LoggerFinderLoader cannot be instantiated");
+
+        throw $r1;
+    }
+
+    private static java.lang.System$LoggerFinder service()
+    {
+        java.lang.System$LoggerFinder $r0, $r3, $r4, $r5, $r6, $r7;
+        java.lang.Object $r1;
+        java.lang.Throwable $r8;
+
+        $r0 = <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder service>;
+
+        if $r0 == null goto label1;
+
+        $r7 = <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder service>;
+
+        return $r7;
+
+     label1:
+        $r1 = <jdk.internal.logger.LoggerFinderLoader: java.lang.Object lock>;
+
+        entermonitor $r1;
+
+     label2:
+        $r3 = <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder service>;
+
+        if $r3 == null goto label4;
+
+        $r6 = <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder service>;
+
+        exitmonitor $r1;
+
+     label3:
+        return $r6;
+
+     label4:
+        $r4 = staticinvoke <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder loadLoggerFinder()>();
+
+        <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder service> = $r4;
+
+        exitmonitor $r1;
+
+     label5:
+        goto label8;
+
+     label6:
+        $r8 := @caughtexception;
+
+        exitmonitor $r1;
+
+     label7:
+        throw $r8;
+
+     label8:
+        staticinvoke <jdk.internal.logger.BootstrapLogger: void redirectTemporaryLoggers()>();
+
+        $r5 = <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder service>;
+
+        return $r5;
+
+        catch java.lang.Throwable from label2 to label3 with label6;
+        catch java.lang.Throwable from label4 to label5 with label6;
+        catch java.lang.Throwable from label6 to label7 with label6;
+    }
+
+    private static jdk.internal.logger.LoggerFinderLoader$ErrorPolicy configurationErrorPolicy()
+    {
+        java.lang.String r0, $r3;
+        jdk.internal.logger.LoggerFinderLoader$ErrorPolicy $r1, $r4, $r7;
+        boolean $z0;
+        java.util.Locale $r2;
+        java.lang.IllegalArgumentException $r5;
+
+        r0 = staticinvoke <sun.security.action.GetPropertyAction: java.lang.String privilegedGetProperty(java.lang.String)>("jdk.logger.finder.error");
+
+        if r0 == null goto label1;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 == 0 goto label2;
+
+     label1:
+        $r1 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy WARNING>;
+
+        return $r1;
+
+     label2:
+        $r2 = <java.util.Locale: java.util.Locale ROOT>;
+
+        $r3 = virtualinvoke r0.<java.lang.String: java.lang.String toUpperCase(java.util.Locale)>($r2);
+
+        $r4 = staticinvoke <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy valueOf(java.lang.String)>($r3);
+
+     label3:
+        return $r4;
+
+     label4:
+        $r5 := @caughtexception;
+
+        $r7 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy WARNING>;
+
+        return $r7;
+
+        catch java.lang.IllegalArgumentException from label2 to label3 with label4;
+    }
+
+    private static boolean ensureSingletonProvider()
+    {
+        java.lang.String $r0;
+        boolean $z0;
+
+        $r0 = staticinvoke <sun.security.action.GetPropertyAction: java.lang.String privilegedGetProperty(java.lang.String)>("jdk.logger.finder.singleton");
+
+        $z0 = staticinvoke <java.lang.Boolean: boolean parseBoolean(java.lang.String)>($r0);
+
+        return $z0;
+    }
+
+    private static java.util.Iterator findLoggerFinderProviders()
+    {
+        java.lang.SecurityManager $r0;
+        java.security.PrivilegedAction r1;
+        java.security.Permission[] $r2;
+        java.lang.RuntimePermission $r3;
+        java.security.Permission $r4, $r5;
+        java.lang.Object $r6;
+        java.lang.ClassLoader $r7;
+        java.util.ServiceLoader $r8;
+        java.util.Iterator r9;
+
+        $r0 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>();
+
+        if $r0 != null goto label1;
+
+        $r7 = staticinvoke <java.lang.ClassLoader: java.lang.ClassLoader getSystemClassLoader()>();
+
+        $r8 = staticinvoke <java.util.ServiceLoader: java.util.ServiceLoader load(java.lang.Class,java.lang.ClassLoader)>(class "Ljava/lang/System$LoggerFinder;", $r7);
+
+        r9 = virtualinvoke $r8.<java.util.ServiceLoader: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        r1 = staticinvoke <jdk.internal.logger.LoggerFinderLoader$lambda_findLoggerFinderProviders_0__118: java.security.PrivilegedAction bootstrap$()>();
+
+        $r2 = newarray (java.security.Permission)[3];
+
+        $r3 = <jdk.internal.logger.LoggerFinderLoader: java.lang.RuntimePermission LOGGERFINDER_PERMISSION>;
+
+        $r2[0] = $r3;
+
+        $r4 = <jdk.internal.logger.LoggerFinderLoader: java.security.Permission CLASSLOADER_PERMISSION>;
+
+        $r2[1] = $r4;
+
+        $r5 = <jdk.internal.logger.LoggerFinderLoader: java.security.Permission READ_PERMISSION>;
+
+        $r2[2] = $r5;
+
+        $r6 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction,java.security.AccessControlContext,java.security.Permission[])>(r1, null, $r2);
+
+        r9 = (java.util.Iterator) $r6;
+
+     label2:
+        return r9;
+    }
+
+    private static java.lang.System$LoggerFinder loadLoggerFinder()
+    {
+        boolean $z0, $z1, $z2, $z3;
+        java.lang.Object $r0;
+        java.util.ServiceConfigurationError $r1, $r12;
+        java.lang.Throwable $r2;
+        jdk.internal.logger.DefaultLoggerFinder $r3;
+        jdk.internal.logger.LoggerFinderLoader$ErrorPolicy r4, $r5, $r6, $r10;
+        jdk.internal.logger.SimpleConsoleLogger $r7;
+        java.lang.System$Logger$Level $r9, $r11;
+        java.util.Iterator r13;
+        java.lang.System$LoggerFinder r14;
+
+     label1:
+        r13 = staticinvoke <jdk.internal.logger.LoggerFinderLoader: java.util.Iterator findLoggerFinderProviders()>();
+
+        $z0 = interfaceinvoke r13.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r0 = interfaceinvoke r13.<java.util.Iterator: java.lang.Object next()>();
+
+        r14 = (java.lang.System$LoggerFinder) $r0;
+
+        $z1 = interfaceinvoke r13.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label3;
+
+        $z2 = staticinvoke <jdk.internal.logger.LoggerFinderLoader: boolean ensureSingletonProvider()>();
+
+        if $z2 == 0 goto label3;
+
+        $r1 = new java.util.ServiceConfigurationError;
+
+        specialinvoke $r1.<java.util.ServiceConfigurationError: void <init>(java.lang.String)>("More than on LoggerFinder implementation");
+
+        throw $r1;
+
+     label2:
+        r14 = staticinvoke <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder loadDefaultImplementation()>();
+
+     label3:
+        goto label7;
+
+     label4:
+        $r2 := @caughtexception;
+
+        $r3 = new jdk.internal.logger.DefaultLoggerFinder;
+
+        specialinvoke $r3.<jdk.internal.logger.DefaultLoggerFinder: void <init>()>();
+
+        r14 = $r3;
+
+        <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder service> = $r3;
+
+        r4 = staticinvoke <jdk.internal.logger.LoggerFinderLoader: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy configurationErrorPolicy()>();
+
+        $r5 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy ERROR>;
+
+        if r4 != $r5 goto label6;
+
+        $z3 = $r2 instanceof java.lang.Error;
+
+        if $z3 == 0 goto label5;
+
+        throw $r2;
+
+     label5:
+        $r12 = new java.util.ServiceConfigurationError;
+
+        specialinvoke $r12.<java.util.ServiceConfigurationError: void <init>(java.lang.String,java.lang.Throwable)>("Failed to instantiate LoggerFinder provider; Using default.", $r2);
+
+        throw $r12;
+
+     label6:
+        $r6 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy QUIET>;
+
+        if r4 == $r6 goto label7;
+
+        $r7 = new jdk.internal.logger.SimpleConsoleLogger;
+
+        specialinvoke $r7.<jdk.internal.logger.SimpleConsoleLogger: void <init>(java.lang.String,boolean)>("jdk.internal.logger", 0);
+
+        $r9 = <java.lang.System$Logger$Level: java.lang.System$Logger$Level WARNING>;
+
+        virtualinvoke $r7.<jdk.internal.logger.SimpleConsoleLogger: void log(java.lang.System$Logger$Level,java.lang.String)>($r9, "Failed to instantiate LoggerFinder provider; Using default.");
+
+        $r10 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy DEBUG>;
+
+        if r4 != $r10 goto label7;
+
+        $r11 = <java.lang.System$Logger$Level: java.lang.System$Logger$Level WARNING>;
+
+        virtualinvoke $r7.<jdk.internal.logger.SimpleConsoleLogger: void log(java.lang.System$Logger$Level,java.lang.String,java.lang.Throwable)>($r11, "Exception raised trying to instantiate LoggerFinder", $r2);
+
+     label7:
+        return r14;
+
+        catch java.lang.Error from label1 to label3 with label4;
+        catch java.lang.RuntimeException from label1 to label3 with label4;
+    }
+
+    private static java.lang.System$LoggerFinder loadDefaultImplementation()
+    {
+        java.lang.SecurityManager r0;
+        java.security.Permission[] $r1;
+        java.lang.RuntimePermission $r2;
+        java.security.Permission $r3, $r4;
+        java.lang.Object $r5, $r7;
+        boolean $z0;
+        jdk.internal.logger.DefaultLoggerFinder $r6, r14;
+        java.util.ServiceLoader $r8;
+        java.lang.RuntimeException $r9;
+        java.util.ServiceConfigurationError $r11;
+        java.util.Iterator r12;
+        java.security.PrivilegedAction r13;
+
+        r0 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>();
+
+        if r0 != null goto label1;
+
+        $r8 = staticinvoke <java.util.ServiceLoader: java.util.ServiceLoader loadInstalled(java.lang.Class)>(class "Ljdk/internal/logger/DefaultLoggerFinder;");
+
+        r12 = virtualinvoke $r8.<java.util.ServiceLoader: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        r13 = staticinvoke <jdk.internal.logger.LoggerFinderLoader$lambda_loadDefaultImplementation_1__119: java.security.PrivilegedAction bootstrap$()>();
+
+        $r1 = newarray (java.security.Permission)[3];
+
+        $r2 = <jdk.internal.logger.LoggerFinderLoader: java.lang.RuntimePermission LOGGERFINDER_PERMISSION>;
+
+        $r1[0] = $r2;
+
+        $r3 = <jdk.internal.logger.LoggerFinderLoader: java.security.Permission CLASSLOADER_PERMISSION>;
+
+        $r1[1] = $r3;
+
+        $r4 = <jdk.internal.logger.LoggerFinderLoader: java.security.Permission READ_PERMISSION>;
+
+        $r1[2] = $r4;
+
+        $r5 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction,java.security.AccessControlContext,java.security.Permission[])>(r13, null, $r1);
+
+        r12 = (java.util.Iterator) $r5;
+
+     label2:
+        r14 = null;
+
+     label3:
+        $z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r7 = interfaceinvoke r12.<java.util.Iterator: java.lang.Object next()>();
+
+        r14 = (jdk.internal.logger.DefaultLoggerFinder) $r7;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r9 := @caughtexception;
+
+        $r11 = new java.util.ServiceConfigurationError;
+
+        specialinvoke $r11.<java.util.ServiceConfigurationError: void <init>(java.lang.String,java.lang.Throwable)>("Failed to instantiate default LoggerFinder", $r9);
+
+        throw $r11;
+
+     label6:
+        if r14 != null goto label7;
+
+        $r6 = new jdk.internal.logger.DefaultLoggerFinder;
+
+        specialinvoke $r6.<jdk.internal.logger.DefaultLoggerFinder: void <init>()>();
+
+        r14 = $r6;
+
+     label7:
+        return r14;
+
+        catch java.lang.RuntimeException from label3 to label4 with label5;
+    }
+
+    public static java.lang.System$LoggerFinder getLoggerFinder()
+    {
+        java.lang.SecurityManager r0;
+        java.lang.System$LoggerFinder $r1;
+        java.lang.RuntimePermission $r2;
+
+        r0 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>();
+
+        if r0 == null goto label1;
+
+        $r2 = <jdk.internal.logger.LoggerFinderLoader: java.lang.RuntimePermission LOGGERFINDER_PERMISSION>;
+
+        virtualinvoke r0.<java.lang.SecurityManager: void checkPermission(java.security.Permission)>($r2);
+
+     label1:
+        $r1 = staticinvoke <jdk.internal.logger.LoggerFinderLoader: java.lang.System$LoggerFinder service()>();
+
+        return $r1;
+    }
+
+    public static java.util.Iterator lambda$loadDefaultImplementation$1()
+    {
+        java.util.ServiceLoader $r0;
+        java.util.Iterator $r1;
+
+        $r0 = staticinvoke <java.util.ServiceLoader: java.util.ServiceLoader loadInstalled(java.lang.Class)>(class "Ljdk/internal/logger/DefaultLoggerFinder;");
+
+        $r1 = virtualinvoke $r0.<java.util.ServiceLoader: java.util.Iterator iterator()>();
+
+        return $r1;
+    }
+
+    public static java.util.Iterator lambda$findLoggerFinderProviders$0()
+    {
+        java.lang.ClassLoader $r0;
+        java.util.ServiceLoader $r1;
+        java.util.Iterator $r2;
+
+        $r0 = staticinvoke <java.lang.ClassLoader: java.lang.ClassLoader getSystemClassLoader()>();
+
+        $r1 = staticinvoke <java.util.ServiceLoader: java.util.ServiceLoader load(java.lang.Class,java.lang.ClassLoader)>(class "Ljava/lang/System$LoggerFinder;", $r0);
+
+        $r2 = virtualinvoke $r1.<java.util.ServiceLoader: java.util.Iterator iterator()>();
+
+        return $r2;
+    }
+
+    static void <clinit>()
+    {
+        int[] $r0;
+        java.lang.RuntimePermission $r1, $r3;
+        java.io.FilePermission $r2;
+
+        $r0 = newarray (int)[0];
+
+        <jdk.internal.logger.LoggerFinderLoader: java.lang.Object lock> = $r0;
+
+        $r1 = <sun.security.util.SecurityConstants: java.lang.RuntimePermission GET_CLASSLOADER_PERMISSION>;
+
+        <jdk.internal.logger.LoggerFinderLoader: java.security.Permission CLASSLOADER_PERMISSION> = $r1;
+
+        $r2 = new java.io.FilePermission;
+
+        specialinvoke $r2.<java.io.FilePermission: void <init>(java.lang.String,java.lang.String)>("<<ALL FILES>>", "read");
+
+        <jdk.internal.logger.LoggerFinderLoader: java.security.Permission READ_PERMISSION> = $r2;
+
+        $r3 = new java.lang.RuntimePermission;
+
+        specialinvoke $r3.<java.lang.RuntimePermission: void <init>(java.lang.String)>("loggerFinder");
+
+        <jdk.internal.logger.LoggerFinderLoader: java.lang.RuntimePermission LOGGERFINDER_PERMISSION> = $r3;
+
+        return;
+    }
+}

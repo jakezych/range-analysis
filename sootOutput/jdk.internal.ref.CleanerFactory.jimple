@@ -1,0 +1,40 @@
+public final class jdk.internal.ref.CleanerFactory extends java.lang.Object
+{
+    private static final java.lang.ref.Cleaner commonCleaner;
+
+    public void <init>()
+    {
+        jdk.internal.ref.CleanerFactory r0;
+
+        r0 := @this: jdk.internal.ref.CleanerFactory;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.lang.ref.Cleaner cleaner()
+    {
+        java.lang.ref.Cleaner $r0;
+
+        $r0 = <jdk.internal.ref.CleanerFactory: java.lang.ref.Cleaner commonCleaner>;
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.ref.CleanerFactory$1 $r0;
+        java.lang.ref.Cleaner $r1;
+
+        $r0 = new jdk.internal.ref.CleanerFactory$1;
+
+        specialinvoke $r0.<jdk.internal.ref.CleanerFactory$1: void <init>()>();
+
+        $r1 = staticinvoke <java.lang.ref.Cleaner: java.lang.ref.Cleaner create(java.util.concurrent.ThreadFactory)>($r0);
+
+        <jdk.internal.ref.CleanerFactory: java.lang.ref.Cleaner commonCleaner> = $r1;
+
+        return;
+    }
+}

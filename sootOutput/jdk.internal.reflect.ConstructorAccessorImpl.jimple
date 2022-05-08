@@ -1,0 +1,16 @@
+abstract class jdk.internal.reflect.ConstructorAccessorImpl extends jdk.internal.reflect.MagicAccessorImpl implements jdk.internal.reflect.ConstructorAccessor
+{
+
+    void <init>()
+    {
+        jdk.internal.reflect.ConstructorAccessorImpl r0;
+
+        r0 := @this: jdk.internal.reflect.ConstructorAccessorImpl;
+
+        specialinvoke r0.<jdk.internal.reflect.MagicAccessorImpl: void <init>()>();
+
+        return;
+    }
+
+    public abstract java.lang.Object newInstance(java.lang.Object[]) throws java.lang.InstantiationException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException;
+}

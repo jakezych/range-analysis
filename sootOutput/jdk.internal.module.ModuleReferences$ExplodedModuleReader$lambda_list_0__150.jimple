@@ -1,0 +1,55 @@
+public final class jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150 extends java.lang.Object implements java.util.function.Function
+{
+    jdk.internal.module.ModuleReferences$ExplodedModuleReader cap0;
+
+    public static java.util.function.Function bootstrap$(jdk.internal.module.ModuleReferences$ExplodedModuleReader)
+    {
+        jdk.internal.module.ModuleReferences$ExplodedModuleReader $r0;
+        jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150 $r1;
+
+        $r0 := @parameter0: jdk.internal.module.ModuleReferences$ExplodedModuleReader;
+
+        $r1 = new jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150: void <init>(jdk.internal.module.ModuleReferences$ExplodedModuleReader)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(jdk.internal.module.ModuleReferences$ExplodedModuleReader)
+    {
+        jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150 $r0;
+        jdk.internal.module.ModuleReferences$ExplodedModuleReader $r1;
+
+        $r0 := @this: jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150;
+
+        $r1 := @parameter0: jdk.internal.module.ModuleReferences$ExplodedModuleReader;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150: jdk.internal.module.ModuleReferences$ExplodedModuleReader cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150 $r0;
+        java.lang.Object $r1;
+        java.nio.file.Path $r2;
+        jdk.internal.module.ModuleReferences$ExplodedModuleReader $r3;
+        java.lang.String $r4;
+
+        $r0 := @this: jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.nio.file.Path) $r1;
+
+        $r3 = $r0.<jdk.internal.module.ModuleReferences$ExplodedModuleReader$lambda_list_0__150: jdk.internal.module.ModuleReferences$ExplodedModuleReader cap0>;
+
+        $r4 = virtualinvoke $r3.<jdk.internal.module.ModuleReferences$ExplodedModuleReader: java.lang.String lambda$list$0(java.nio.file.Path)>($r2);
+
+        return $r4;
+    }
+}

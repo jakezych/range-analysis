@@ -1,0 +1,53 @@
+class jdk.internal.logger.DefaultLoggerFinder$1 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    final java.lang.Module val$m;
+
+    void <init>(java.lang.Module)
+    {
+        jdk.internal.logger.DefaultLoggerFinder$1 r0;
+        java.lang.Module r1;
+
+        r0 := @this: jdk.internal.logger.DefaultLoggerFinder$1;
+
+        r1 := @parameter0: java.lang.Module;
+
+        r0.<jdk.internal.logger.DefaultLoggerFinder$1: java.lang.Module val$m> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Boolean run()
+    {
+        jdk.internal.logger.DefaultLoggerFinder$1 r0;
+        java.lang.Module $r1;
+        java.lang.ClassLoader $r2;
+        boolean $z0;
+        java.lang.Boolean $r3;
+
+        r0 := @this: jdk.internal.logger.DefaultLoggerFinder$1;
+
+        $r1 = r0.<jdk.internal.logger.DefaultLoggerFinder$1: java.lang.Module val$m>;
+
+        $r2 = virtualinvoke $r1.<java.lang.Module: java.lang.ClassLoader getClassLoader()>();
+
+        $z0 = staticinvoke <jdk.internal.misc.VM: boolean isSystemDomainLoader(java.lang.ClassLoader)>($r2);
+
+        $r3 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        return $r3;
+    }
+
+    public volatile java.lang.Object run()
+    {
+        jdk.internal.logger.DefaultLoggerFinder$1 r0;
+        java.lang.Boolean $r1;
+
+        r0 := @this: jdk.internal.logger.DefaultLoggerFinder$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.logger.DefaultLoggerFinder$1: java.lang.Boolean run()>();
+
+        return $r1;
+    }
+}

@@ -1,0 +1,42 @@
+public final class jdk.internal.module.ModuleBootstrap$lambda_boot_5__4 extends java.lang.Object implements java.util.function.Consumer
+{
+
+    public static java.util.function.Consumer bootstrap$()
+    {
+        jdk.internal.module.ModuleBootstrap$lambda_boot_5__4 $r0;
+
+        $r0 = new jdk.internal.module.ModuleBootstrap$lambda_boot_5__4;
+
+        specialinvoke $r0.<jdk.internal.module.ModuleBootstrap$lambda_boot_5__4: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.module.ModuleBootstrap$lambda_boot_5__4 $r0;
+
+        $r0 := @this: jdk.internal.module.ModuleBootstrap$lambda_boot_5__4;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void accept(java.lang.Object)
+    {
+        jdk.internal.module.ModuleBootstrap$lambda_boot_5__4 $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: jdk.internal.module.ModuleBootstrap$lambda_boot_5__4;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) $r1;
+
+        staticinvoke <jdk.internal.module.ModuleBootstrap: void lambda$boot$5(java.lang.String)>($r2);
+
+        return;
+    }
+}

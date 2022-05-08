@@ -1,0 +1,106 @@
+final enum class jdk.internal.logger.LoggerFinderLoader$ErrorPolicy extends java.lang.Enum
+{
+    public static final enum jdk.internal.logger.LoggerFinderLoader$ErrorPolicy ERROR;
+    public static final enum jdk.internal.logger.LoggerFinderLoader$ErrorPolicy WARNING;
+    public static final enum jdk.internal.logger.LoggerFinderLoader$ErrorPolicy DEBUG;
+    public static final enum jdk.internal.logger.LoggerFinderLoader$ErrorPolicy QUIET;
+    private static final jdk.internal.logger.LoggerFinderLoader$ErrorPolicy[] $VALUES;
+
+    public static jdk.internal.logger.LoggerFinderLoader$ErrorPolicy[] values()
+    {
+        jdk.internal.logger.LoggerFinderLoader$ErrorPolicy[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (jdk.internal.logger.LoggerFinderLoader$ErrorPolicy[]) $r1;
+
+        return $r2;
+    }
+
+    public static jdk.internal.logger.LoggerFinderLoader$ErrorPolicy valueOf(java.lang.String)
+    {
+        java.lang.String r0;
+        java.lang.Enum $r1;
+        jdk.internal.logger.LoggerFinderLoader$ErrorPolicy $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Ljdk/internal/logger/LoggerFinderLoader$ErrorPolicy;", r0);
+
+        $r2 = (jdk.internal.logger.LoggerFinderLoader$ErrorPolicy) $r1;
+
+        return $r2;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        jdk.internal.logger.LoggerFinderLoader$ErrorPolicy r0;
+        java.lang.String r1;
+        int i0;
+
+        r0 := @this: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.logger.LoggerFinderLoader$ErrorPolicy $r0, $r1, $r2, $r3, $r5, $r6, $r7, $r8;
+        jdk.internal.logger.LoggerFinderLoader$ErrorPolicy[] $r4;
+
+        $r0 = new jdk.internal.logger.LoggerFinderLoader$ErrorPolicy;
+
+        specialinvoke $r0.<jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: void <init>(java.lang.String,int)>("ERROR", 0);
+
+        <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy ERROR> = $r0;
+
+        $r1 = new jdk.internal.logger.LoggerFinderLoader$ErrorPolicy;
+
+        specialinvoke $r1.<jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: void <init>(java.lang.String,int)>("WARNING", 1);
+
+        <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy WARNING> = $r1;
+
+        $r2 = new jdk.internal.logger.LoggerFinderLoader$ErrorPolicy;
+
+        specialinvoke $r2.<jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: void <init>(java.lang.String,int)>("DEBUG", 2);
+
+        <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy DEBUG> = $r2;
+
+        $r3 = new jdk.internal.logger.LoggerFinderLoader$ErrorPolicy;
+
+        specialinvoke $r3.<jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: void <init>(java.lang.String,int)>("QUIET", 3);
+
+        <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy QUIET> = $r3;
+
+        $r4 = newarray (jdk.internal.logger.LoggerFinderLoader$ErrorPolicy)[4];
+
+        $r5 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy ERROR>;
+
+        $r4[0] = $r5;
+
+        $r6 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy WARNING>;
+
+        $r4[1] = $r6;
+
+        $r7 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy DEBUG>;
+
+        $r4[2] = $r7;
+
+        $r8 = <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy QUIET>;
+
+        $r4[3] = $r8;
+
+        <jdk.internal.logger.LoggerFinderLoader$ErrorPolicy: jdk.internal.logger.LoggerFinderLoader$ErrorPolicy[] $VALUES> = $r4;
+
+        return;
+    }
+}

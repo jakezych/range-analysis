@@ -1,0 +1,40 @@
+public final class jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_2__157 extends java.lang.Object implements java.util.function.IntFunction
+{
+
+    public static java.util.function.IntFunction bootstrap$()
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_2__157 $r0;
+
+        $r0 = new jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_2__157;
+
+        specialinvoke $r0.<jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_2__157: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_2__157 $r0;
+
+        $r0 := @this: jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_2__157;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object apply(int)
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_2__157 $r0;
+        int $i0;
+        java.lang.String[] $r1;
+
+        $r0 := @this: jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_2__157;
+
+        $i0 := @parameter0: int;
+
+        $r1 = staticinvoke <jdk.internal.jimage.BasicImageReader: java.lang.String[] lambda$getEntryNames$2(int)>($i0);
+
+        return $r1;
+    }
+}

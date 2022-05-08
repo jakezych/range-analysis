@@ -1,0 +1,22 @@
+class jdk.internal.loader.AbstractClassLoaderValue$Memoizer$RecursiveInvocationException extends java.lang.IllegalStateException
+{
+    private static final long serialVersionUID;
+
+    void <init>()
+    {
+        jdk.internal.loader.AbstractClassLoaderValue$Memoizer$RecursiveInvocationException r0;
+
+        r0 := @this: jdk.internal.loader.AbstractClassLoaderValue$Memoizer$RecursiveInvocationException;
+
+        specialinvoke r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>("Recursive call");
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <jdk.internal.loader.AbstractClassLoaderValue$Memoizer$RecursiveInvocationException: long serialVersionUID> = 1L;
+
+        return;
+    }
+}

@@ -1,0 +1,11 @@
+public interface  jdk.internal.access.JavaNioAccess$BufferPool extends java.lang.Object
+{
+
+    public abstract java.lang.String getName();
+
+    public abstract long getCount();
+
+    public abstract long getTotalCapacity();
+
+    public abstract long getMemoryUsed();
+}

@@ -1,0 +1,37 @@
+abstract class jdk.internal.reflect.UnsafeStaticFieldAccessorImpl extends jdk.internal.reflect.UnsafeFieldAccessorImpl
+{
+    protected final java.lang.Object base;
+
+    void <init>(java.lang.reflect.Field)
+    {
+        jdk.internal.reflect.UnsafeStaticFieldAccessorImpl r0;
+        java.lang.reflect.Field r1;
+        jdk.internal.misc.Unsafe $r2;
+        java.lang.Object $r3;
+
+        r0 := @this: jdk.internal.reflect.UnsafeStaticFieldAccessorImpl;
+
+        r1 := @parameter0: java.lang.reflect.Field;
+
+        specialinvoke r0.<jdk.internal.reflect.UnsafeFieldAccessorImpl: void <init>(java.lang.reflect.Field)>(r1);
+
+        $r2 = <jdk.internal.reflect.UnsafeStaticFieldAccessorImpl: jdk.internal.misc.Unsafe unsafe>;
+
+        $r3 = virtualinvoke $r2.<jdk.internal.misc.Unsafe: java.lang.Object staticFieldBase(java.lang.reflect.Field)>(r1);
+
+        r0.<jdk.internal.reflect.UnsafeStaticFieldAccessorImpl: java.lang.Object base> = $r3;
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.util.Set $r0;
+
+        $r0 = staticinvoke <java.util.Set: java.util.Set of(java.lang.Object)>("base");
+
+        staticinvoke <jdk.internal.reflect.Reflection: void registerFieldsToFilter(java.lang.Class,java.util.Set)>(class "Ljdk/internal/reflect/UnsafeStaticFieldAccessorImpl;", $r0);
+
+        return;
+    }
+}

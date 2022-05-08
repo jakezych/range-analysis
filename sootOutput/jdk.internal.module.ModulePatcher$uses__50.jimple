@@ -1,0 +1,54 @@
+public final class jdk.internal.module.ModulePatcher$uses__50 extends java.lang.Object implements java.util.function.Consumer
+{
+    java.lang.module.ModuleDescriptor$Builder cap0;
+
+    public static java.util.function.Consumer bootstrap$(java.lang.module.ModuleDescriptor$Builder)
+    {
+        java.lang.module.ModuleDescriptor$Builder $r0;
+        jdk.internal.module.ModulePatcher$uses__50 $r1;
+
+        $r0 := @parameter0: java.lang.module.ModuleDescriptor$Builder;
+
+        $r1 = new jdk.internal.module.ModulePatcher$uses__50;
+
+        specialinvoke $r1.<jdk.internal.module.ModulePatcher$uses__50: void <init>(java.lang.module.ModuleDescriptor$Builder)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(java.lang.module.ModuleDescriptor$Builder)
+    {
+        jdk.internal.module.ModulePatcher$uses__50 $r0;
+        java.lang.module.ModuleDescriptor$Builder $r1;
+
+        $r0 := @this: jdk.internal.module.ModulePatcher$uses__50;
+
+        $r1 := @parameter0: java.lang.module.ModuleDescriptor$Builder;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModulePatcher$uses__50: java.lang.module.ModuleDescriptor$Builder cap0> = $r1;
+
+        return;
+    }
+
+    public void accept(java.lang.Object)
+    {
+        jdk.internal.module.ModulePatcher$uses__50 $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2;
+        java.lang.module.ModuleDescriptor$Builder $r3;
+
+        $r0 := @this: jdk.internal.module.ModulePatcher$uses__50;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) $r1;
+
+        $r3 = $r0.<jdk.internal.module.ModulePatcher$uses__50: java.lang.module.ModuleDescriptor$Builder cap0>;
+
+        virtualinvoke $r3.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder uses(java.lang.String)>($r2);
+
+        return;
+    }
+}

@@ -1,0 +1,445 @@
+public class jdk.internal.module.IllegalAccessMaps extends java.lang.Object
+{
+    private final java.util.Map concealedPackagesToOpen;
+    private final java.util.Map exportedPackagesToOpen;
+
+    private void <init>(java.util.Map, java.util.Map)
+    {
+        jdk.internal.module.IllegalAccessMaps r0;
+        java.util.Map r1, r2;
+
+        r0 := @this: jdk.internal.module.IllegalAccessMaps;
+
+        r1 := @parameter0: java.util.Map;
+
+        r2 := @parameter1: java.util.Map;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.module.IllegalAccessMaps: java.util.Map concealedPackagesToOpen> = r1;
+
+        r0.<jdk.internal.module.IllegalAccessMaps: java.util.Map exportedPackagesToOpen> = r2;
+
+        return;
+    }
+
+    public java.util.Map concealedPackagesToOpen()
+    {
+        jdk.internal.module.IllegalAccessMaps r0;
+        java.util.Map $r1;
+
+        r0 := @this: jdk.internal.module.IllegalAccessMaps;
+
+        $r1 = r0.<jdk.internal.module.IllegalAccessMaps: java.util.Map concealedPackagesToOpen>;
+
+        return $r1;
+    }
+
+    public java.util.Map exportedPackagesToOpen()
+    {
+        jdk.internal.module.IllegalAccessMaps r0;
+        java.util.Map $r1;
+
+        r0 := @this: jdk.internal.module.IllegalAccessMaps;
+
+        $r1 = r0.<jdk.internal.module.IllegalAccessMaps: java.util.Map exportedPackagesToOpen>;
+
+        return $r1;
+    }
+
+    public static jdk.internal.module.IllegalAccessMaps generate(java.lang.module.ModuleFinder)
+    {
+        java.util.HashMap $r0, $r8, $r10;
+        java.lang.module.ModuleFinder r2;
+        java.util.Set $r3;
+        java.util.stream.Stream $r4, $r6, $r18, $r20;
+        java.util.function.Function $r5;
+        java.util.function.Consumer $r7, $r21;
+        java.lang.Class $r13;
+        java.io.InputStream r14;
+        java.io.BufferedReader $r15;
+        java.io.InputStreamReader $r16;
+        sun.nio.cs.UTF_8 $r17;
+        java.util.function.Predicate $r19;
+        jdk.internal.module.IllegalAccessMaps $r22;
+        java.lang.InternalError $r23;
+        java.lang.StringBuilder $r24, $r25, $r26;
+        java.lang.String $r27;
+        java.io.IOException $r28;
+        java.io.UncheckedIOException $r29;
+        java.lang.Throwable $r30, $r33;
+
+        r2 := @parameter0: java.lang.module.ModuleFinder;
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        $r3 = interfaceinvoke r2.<java.lang.module.ModuleFinder: java.util.Set findAll()>();
+
+        $r4 = interfaceinvoke $r3.<java.util.Set: java.util.stream.Stream stream()>();
+
+        $r5 = staticinvoke <jdk.internal.module.IllegalAccessMaps$descriptor__109: java.util.function.Function bootstrap$()>();
+
+        $r6 = interfaceinvoke $r4.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r5);
+
+        $r7 = staticinvoke <jdk.internal.module.IllegalAccessMaps$lambda_generate_1__110: java.util.function.Consumer bootstrap$(java.util.Map)>($r0);
+
+        interfaceinvoke $r6.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r7);
+
+        $r8 = new java.util.HashMap;
+
+        specialinvoke $r8.<java.util.HashMap: void <init>()>();
+
+        $r10 = new java.util.HashMap;
+
+        specialinvoke $r10.<java.util.HashMap: void <init>()>();
+
+        $r13 = class "Ljdk/internal/module/IllegalAccessMaps;";
+
+        r14 = virtualinvoke $r13.<java.lang.Class: java.io.InputStream getResourceAsStream(java.lang.String)>("jdk8_packages.dat");
+
+        if r14 != null goto label01;
+
+        $r23 = new java.lang.InternalError;
+
+        $r24 = new java.lang.StringBuilder;
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>()>();
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("jdk8_packages.dat");
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" not found");
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r23.<java.lang.InternalError: void <init>(java.lang.String)>($r27);
+
+        throw $r23;
+
+     label01:
+        $r15 = new java.io.BufferedReader;
+
+        $r16 = new java.io.InputStreamReader;
+
+        $r17 = <sun.nio.cs.UTF_8: sun.nio.cs.UTF_8 INSTANCE>;
+
+        specialinvoke $r16.<java.io.InputStreamReader: void <init>(java.io.InputStream,java.nio.charset.Charset)>(r14, $r17);
+
+        specialinvoke $r15.<java.io.BufferedReader: void <init>(java.io.Reader)>($r16);
+
+     label02:
+        $r18 = virtualinvoke $r15.<java.io.BufferedReader: java.util.stream.Stream lines()>();
+
+        $r19 = staticinvoke <jdk.internal.module.IllegalAccessMaps$lambda_generate_2__111: java.util.function.Predicate bootstrap$()>();
+
+        $r20 = interfaceinvoke $r18.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r19);
+
+        $r21 = staticinvoke <jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112: java.util.function.Consumer bootstrap$(java.util.Map,java.util.Map,java.util.Map)>($r0, $r10, $r8);
+
+        interfaceinvoke $r20.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r21);
+
+     label03:
+        virtualinvoke $r15.<java.io.BufferedReader: void close()>();
+
+        goto label09;
+
+     label04:
+        $r33 := @caughtexception;
+
+     label05:
+        virtualinvoke $r15.<java.io.BufferedReader: void close()>();
+
+     label06:
+        goto label08;
+
+     label07:
+        $r30 := @caughtexception;
+
+        virtualinvoke $r33.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r30);
+
+     label08:
+        throw $r33;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r28 := @caughtexception;
+
+        $r29 = new java.io.UncheckedIOException;
+
+        specialinvoke $r29.<java.io.UncheckedIOException: void <init>(java.io.IOException)>($r28);
+
+        throw $r29;
+
+     label11:
+        $r22 = new jdk.internal.module.IllegalAccessMaps;
+
+        specialinvoke $r22.<jdk.internal.module.IllegalAccessMaps: void <init>(java.util.Map,java.util.Map)>($r8, $r10);
+
+        return $r22;
+
+        catch java.lang.Throwable from label02 to label03 with label04;
+        catch java.lang.Throwable from label05 to label06 with label07;
+        catch java.io.IOException from label01 to label09 with label10;
+    }
+
+    private static boolean isExported(java.lang.module.ModuleDescriptor, java.lang.String)
+    {
+        java.lang.module.ModuleDescriptor r0;
+        java.util.Set $r1;
+        java.util.stream.Stream $r2;
+        java.lang.String r3;
+        java.util.function.Predicate $r4;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.module.ModuleDescriptor;
+
+        r3 := @parameter1: java.lang.String;
+
+        $r1 = virtualinvoke r0.<java.lang.module.ModuleDescriptor: java.util.Set exports()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.Set: java.util.stream.Stream stream()>();
+
+        $r4 = staticinvoke <jdk.internal.module.IllegalAccessMaps$lambda_isExported_6__113: java.util.function.Predicate bootstrap$(java.lang.String)>(r3);
+
+        $z0 = interfaceinvoke $r2.<java.util.stream.Stream: boolean anyMatch(java.util.function.Predicate)>($r4);
+
+        return $z0;
+    }
+
+    private static boolean isOpen(java.lang.module.ModuleDescriptor, java.lang.String)
+    {
+        java.lang.module.ModuleDescriptor r0;
+        java.util.Set $r1;
+        java.util.stream.Stream $r2;
+        java.lang.String r3;
+        java.util.function.Predicate $r4;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.module.ModuleDescriptor;
+
+        r3 := @parameter1: java.lang.String;
+
+        $r1 = virtualinvoke r0.<java.lang.module.ModuleDescriptor: java.util.Set opens()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.Set: java.util.stream.Stream stream()>();
+
+        $r4 = staticinvoke <jdk.internal.module.IllegalAccessMaps$lambda_isOpen_7__114: java.util.function.Predicate bootstrap$(java.lang.String)>(r3);
+
+        $z0 = interfaceinvoke $r2.<java.util.stream.Stream: boolean anyMatch(java.util.function.Predicate)>($r4);
+
+        return $z0;
+    }
+
+    public static boolean lambda$isOpen$7(java.lang.String, java.lang.module.ModuleDescriptor$Opens)
+    {
+        java.lang.module.ModuleDescriptor$Opens r0;
+        java.lang.String $r1, r2;
+        boolean $z0, $z1, $z2;
+
+        r2 := @parameter0: java.lang.String;
+
+        r0 := @parameter1: java.lang.module.ModuleDescriptor$Opens;
+
+        $r1 = virtualinvoke r0.<java.lang.module.ModuleDescriptor$Opens: java.lang.String source()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(r2);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = virtualinvoke r0.<java.lang.module.ModuleDescriptor$Opens: boolean isQualified()>();
+
+        if $z1 != 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    public static boolean lambda$isExported$6(java.lang.String, java.lang.module.ModuleDescriptor$Exports)
+    {
+        java.lang.module.ModuleDescriptor$Exports r0;
+        java.lang.String $r1, r2;
+        boolean $z0, $z1, $z2;
+
+        r2 := @parameter0: java.lang.String;
+
+        r0 := @parameter1: java.lang.module.ModuleDescriptor$Exports;
+
+        $r1 = virtualinvoke r0.<java.lang.module.ModuleDescriptor$Exports: java.lang.String source()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(r2);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = virtualinvoke r0.<java.lang.module.ModuleDescriptor$Exports: boolean isQualified()>();
+
+        if $z1 != 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    public static void lambda$generate$5(java.util.Map, java.util.Map, java.util.Map, java.lang.String)
+    {
+        java.util.Map r0, r5, r9;
+        java.lang.String r1, r4;
+        java.lang.Object $r2, $r7, $r11;
+        java.lang.module.ModuleDescriptor r3;
+        boolean $z0, $z1;
+        java.util.function.Function $r6, $r10;
+        java.util.Set $r8, $r12;
+
+        r0 := @parameter0: java.util.Map;
+
+        r9 := @parameter1: java.util.Map;
+
+        r5 := @parameter2: java.util.Map;
+
+        r1 := @parameter3: java.lang.String;
+
+        $r2 = interfaceinvoke r0.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1);
+
+        r3 = (java.lang.module.ModuleDescriptor) $r2;
+
+        if r3 == null goto label2;
+
+        $z0 = staticinvoke <jdk.internal.module.IllegalAccessMaps: boolean isOpen(java.lang.module.ModuleDescriptor,java.lang.String)>(r3, r1);
+
+        if $z0 != 0 goto label2;
+
+        r4 = virtualinvoke r3.<java.lang.module.ModuleDescriptor: java.lang.String name()>();
+
+        $z1 = staticinvoke <jdk.internal.module.IllegalAccessMaps: boolean isExported(java.lang.module.ModuleDescriptor,java.lang.String)>(r3, r1);
+
+        if $z1 == 0 goto label1;
+
+        $r10 = staticinvoke <jdk.internal.module.IllegalAccessMaps$lambda_generate_3__116: java.util.function.Function bootstrap$()>();
+
+        $r11 = interfaceinvoke r9.<java.util.Map: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>(r4, $r10);
+
+        $r12 = (java.util.Set) $r11;
+
+        interfaceinvoke $r12.<java.util.Set: boolean add(java.lang.Object)>(r1);
+
+        goto label2;
+
+     label1:
+        $r6 = staticinvoke <jdk.internal.module.IllegalAccessMaps$lambda_generate_4__115: java.util.function.Function bootstrap$()>();
+
+        $r7 = interfaceinvoke r5.<java.util.Map: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>(r4, $r6);
+
+        $r8 = (java.util.Set) $r7;
+
+        interfaceinvoke $r8.<java.util.Set: boolean add(java.lang.Object)>(r1);
+
+     label2:
+        return;
+    }
+
+    public static java.util.Set lambda$generate$4(java.lang.String)
+    {
+        java.util.HashSet $r0;
+        java.lang.String r1;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.util.HashSet;
+
+        specialinvoke $r0.<java.util.HashSet: void <init>()>();
+
+        return $r0;
+    }
+
+    public static java.util.Set lambda$generate$3(java.lang.String)
+    {
+        java.util.HashSet $r0;
+        java.lang.String r1;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.util.HashSet;
+
+        specialinvoke $r0.<java.util.HashSet: void <init>()>();
+
+        return $r0;
+    }
+
+    public static boolean lambda$generate$2(java.lang.String)
+    {
+        java.lang.String r0;
+        boolean $z0, $z1, $z2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>("#");
+
+        if $z1 != 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    public static void lambda$generate$1(java.util.Map, java.lang.module.ModuleDescriptor)
+    {
+        java.lang.module.ModuleDescriptor r0;
+        java.util.Set $r1;
+        java.util.Map r2;
+        java.util.function.Consumer $r3;
+
+        r2 := @parameter0: java.util.Map;
+
+        r0 := @parameter1: java.lang.module.ModuleDescriptor;
+
+        $r1 = virtualinvoke r0.<java.lang.module.ModuleDescriptor: java.util.Set packages()>();
+
+        $r3 = staticinvoke <jdk.internal.module.IllegalAccessMaps$lambda_generate_0__117: java.util.function.Consumer bootstrap$(java.util.Map,java.lang.module.ModuleDescriptor)>(r2, r0);
+
+        interfaceinvoke $r1.<java.util.Set: void forEach(java.util.function.Consumer)>($r3);
+
+        return;
+    }
+
+    public static void lambda$generate$0(java.util.Map, java.lang.module.ModuleDescriptor, java.lang.String)
+    {
+        java.util.Map r0;
+        java.lang.String r1;
+        java.lang.module.ModuleDescriptor r2;
+
+        r0 := @parameter0: java.util.Map;
+
+        r2 := @parameter1: java.lang.module.ModuleDescriptor;
+
+        r1 := @parameter2: java.lang.String;
+
+        interfaceinvoke r0.<java.util.Map: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>(r1, r2);
+
+        return;
+    }
+}

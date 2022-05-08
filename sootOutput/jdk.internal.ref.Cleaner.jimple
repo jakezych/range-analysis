@@ -1,0 +1,198 @@
+public class jdk.internal.ref.Cleaner extends java.lang.ref.PhantomReference
+{
+    private static final java.lang.ref.ReferenceQueue dummyQueue;
+    private static jdk.internal.ref.Cleaner first;
+    private jdk.internal.ref.Cleaner next;
+    private jdk.internal.ref.Cleaner prev;
+    private final java.lang.Runnable thunk;
+
+    private static synchronized jdk.internal.ref.Cleaner add(jdk.internal.ref.Cleaner)
+    {
+        jdk.internal.ref.Cleaner $r0, r1, $r2, $r3;
+
+        r1 := @parameter0: jdk.internal.ref.Cleaner;
+
+        $r0 = <jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner first>;
+
+        if $r0 == null goto label1;
+
+        $r2 = <jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner first>;
+
+        r1.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next> = $r2;
+
+        $r3 = <jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner first>;
+
+        $r3.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner prev> = r1;
+
+     label1:
+        <jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner first> = r1;
+
+        return r1;
+    }
+
+    private static synchronized boolean remove(jdk.internal.ref.Cleaner)
+    {
+        jdk.internal.ref.Cleaner r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11;
+
+        r0 := @parameter0: jdk.internal.ref.Cleaner;
+
+        $r1 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next>;
+
+        if $r1 != r0 goto label1;
+
+        return 0;
+
+     label1:
+        $r2 = <jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner first>;
+
+        if $r2 != r0 goto label3;
+
+        $r8 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next>;
+
+        if $r8 == null goto label2;
+
+        $r10 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next>;
+
+        <jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner first> = $r10;
+
+        goto label3;
+
+     label2:
+        $r9 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner prev>;
+
+        <jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner first> = $r9;
+
+     label3:
+        $r11 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next>;
+
+        if $r11 == null goto label4;
+
+        $r7 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next>;
+
+        $r6 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner prev>;
+
+        $r7.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner prev> = $r6;
+
+     label4:
+        $r3 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner prev>;
+
+        if $r3 == null goto label5;
+
+        $r5 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner prev>;
+
+        $r4 = r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next>;
+
+        $r5.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next> = $r4;
+
+     label5:
+        r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next> = r0;
+
+        r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner prev> = r0;
+
+        return 1;
+    }
+
+    private void <init>(java.lang.Object, java.lang.Runnable)
+    {
+        jdk.internal.ref.Cleaner r0;
+        java.lang.Object r1;
+        java.lang.ref.ReferenceQueue $r2;
+        java.lang.Runnable r3;
+
+        r0 := @this: jdk.internal.ref.Cleaner;
+
+        r1 := @parameter0: java.lang.Object;
+
+        r3 := @parameter1: java.lang.Runnable;
+
+        $r2 = <jdk.internal.ref.Cleaner: java.lang.ref.ReferenceQueue dummyQueue>;
+
+        specialinvoke r0.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>(r1, $r2);
+
+        r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner next> = null;
+
+        r0.<jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner prev> = null;
+
+        r0.<jdk.internal.ref.Cleaner: java.lang.Runnable thunk> = r3;
+
+        return;
+    }
+
+    public static jdk.internal.ref.Cleaner create(java.lang.Object, java.lang.Runnable)
+    {
+        java.lang.Runnable r0;
+        jdk.internal.ref.Cleaner $r1, $r3;
+        java.lang.Object r2;
+
+        r2 := @parameter0: java.lang.Object;
+
+        r0 := @parameter1: java.lang.Runnable;
+
+        if r0 != null goto label1;
+
+        return null;
+
+     label1:
+        $r1 = new jdk.internal.ref.Cleaner;
+
+        specialinvoke $r1.<jdk.internal.ref.Cleaner: void <init>(java.lang.Object,java.lang.Runnable)>(r2, r0);
+
+        $r3 = staticinvoke <jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner add(jdk.internal.ref.Cleaner)>($r1);
+
+        return $r3;
+    }
+
+    public void clean()
+    {
+        jdk.internal.ref.Cleaner r0;
+        boolean $z0;
+        java.lang.Runnable $r1;
+        java.lang.Throwable $r2;
+        jdk.internal.ref.Cleaner$1 $r4;
+
+        r0 := @this: jdk.internal.ref.Cleaner;
+
+        $z0 = staticinvoke <jdk.internal.ref.Cleaner: boolean remove(jdk.internal.ref.Cleaner)>(r0);
+
+        if $z0 != 0 goto label1;
+
+        return;
+
+     label1:
+        $r1 = r0.<jdk.internal.ref.Cleaner: java.lang.Runnable thunk>;
+
+        interfaceinvoke $r1.<java.lang.Runnable: void run()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+        $r4 = new jdk.internal.ref.Cleaner$1;
+
+        specialinvoke $r4.<jdk.internal.ref.Cleaner$1: void <init>(jdk.internal.ref.Cleaner,java.lang.Throwable)>(r0, $r2);
+
+        staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r4);
+
+     label4:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.ref.ReferenceQueue $r0;
+
+        $r0 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r0.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        <jdk.internal.ref.Cleaner: java.lang.ref.ReferenceQueue dummyQueue> = $r0;
+
+        <jdk.internal.ref.Cleaner: jdk.internal.ref.Cleaner first> = null;
+
+        return;
+    }
+}

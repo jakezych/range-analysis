@@ -1,0 +1,17 @@
+class jdk.internal.reflect.DelegatingClassLoader extends java.lang.ClassLoader
+{
+
+    void <init>(java.lang.ClassLoader)
+    {
+        jdk.internal.reflect.DelegatingClassLoader r0;
+        java.lang.ClassLoader r1;
+
+        r0 := @this: jdk.internal.reflect.DelegatingClassLoader;
+
+        r1 := @parameter0: java.lang.ClassLoader;
+
+        specialinvoke r0.<java.lang.ClassLoader: void <init>(java.lang.ClassLoader)>(r1);
+
+        return;
+    }
+}

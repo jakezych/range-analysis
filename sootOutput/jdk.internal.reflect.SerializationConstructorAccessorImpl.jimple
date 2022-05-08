@@ -1,0 +1,14 @@
+abstract class jdk.internal.reflect.SerializationConstructorAccessorImpl extends jdk.internal.reflect.ConstructorAccessorImpl
+{
+
+    void <init>()
+    {
+        jdk.internal.reflect.SerializationConstructorAccessorImpl r0;
+
+        r0 := @this: jdk.internal.reflect.SerializationConstructorAccessorImpl;
+
+        specialinvoke r0.<jdk.internal.reflect.ConstructorAccessorImpl: void <init>()>();
+
+        return;
+    }
+}

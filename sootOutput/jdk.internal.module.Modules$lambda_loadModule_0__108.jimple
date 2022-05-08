@@ -1,0 +1,78 @@
+public final class jdk.internal.module.Modules$lambda_loadModule_0__108 extends java.lang.Object implements java.util.function.Consumer
+{
+    java.util.Map cap0;
+    java.lang.Module cap1;
+    java.lang.module.ModuleDescriptor$Exports cap2;
+
+    public static java.util.function.Consumer bootstrap$(java.util.Map, java.lang.Module, java.lang.module.ModuleDescriptor$Exports)
+    {
+        java.util.Map $r0;
+        java.lang.Module $r1;
+        java.lang.module.ModuleDescriptor$Exports $r2;
+        jdk.internal.module.Modules$lambda_loadModule_0__108 $r3;
+
+        $r0 := @parameter0: java.util.Map;
+
+        $r1 := @parameter1: java.lang.Module;
+
+        $r2 := @parameter2: java.lang.module.ModuleDescriptor$Exports;
+
+        $r3 = new jdk.internal.module.Modules$lambda_loadModule_0__108;
+
+        specialinvoke $r3.<jdk.internal.module.Modules$lambda_loadModule_0__108: void <init>(java.util.Map,java.lang.Module,java.lang.module.ModuleDescriptor$Exports)>($r0, $r1, $r2);
+
+        return $r3;
+    }
+
+    public void <init>(java.util.Map, java.lang.Module, java.lang.module.ModuleDescriptor$Exports)
+    {
+        jdk.internal.module.Modules$lambda_loadModule_0__108 $r0;
+        java.util.Map $r1;
+        java.lang.Module $r2;
+        java.lang.module.ModuleDescriptor$Exports $r3;
+
+        $r0 := @this: jdk.internal.module.Modules$lambda_loadModule_0__108;
+
+        $r1 := @parameter0: java.util.Map;
+
+        $r2 := @parameter1: java.lang.Module;
+
+        $r3 := @parameter2: java.lang.module.ModuleDescriptor$Exports;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.Modules$lambda_loadModule_0__108: java.util.Map cap0> = $r1;
+
+        $r0.<jdk.internal.module.Modules$lambda_loadModule_0__108: java.lang.Module cap1> = $r2;
+
+        $r0.<jdk.internal.module.Modules$lambda_loadModule_0__108: java.lang.module.ModuleDescriptor$Exports cap2> = $r3;
+
+        return;
+    }
+
+    public void accept(java.lang.Object)
+    {
+        jdk.internal.module.Modules$lambda_loadModule_0__108 $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2;
+        java.util.Map $r3;
+        java.lang.Module $r4;
+        java.lang.module.ModuleDescriptor$Exports $r5;
+
+        $r0 := @this: jdk.internal.module.Modules$lambda_loadModule_0__108;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) $r1;
+
+        $r3 = $r0.<jdk.internal.module.Modules$lambda_loadModule_0__108: java.util.Map cap0>;
+
+        $r4 = $r0.<jdk.internal.module.Modules$lambda_loadModule_0__108: java.lang.Module cap1>;
+
+        $r5 = $r0.<jdk.internal.module.Modules$lambda_loadModule_0__108: java.lang.module.ModuleDescriptor$Exports cap2>;
+
+        staticinvoke <jdk.internal.module.Modules: void lambda$loadModule$0(java.util.Map,java.lang.Module,java.lang.module.ModuleDescriptor$Exports,java.lang.String)>($r3, $r4, $r5, $r2);
+
+        return;
+    }
+}

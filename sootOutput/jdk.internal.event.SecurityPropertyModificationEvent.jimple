@@ -1,0 +1,16 @@
+public final class jdk.internal.event.SecurityPropertyModificationEvent extends jdk.internal.event.Event
+{
+    public java.lang.String key;
+    public java.lang.String value;
+
+    public void <init>()
+    {
+        jdk.internal.event.SecurityPropertyModificationEvent r0;
+
+        r0 := @this: jdk.internal.event.SecurityPropertyModificationEvent;
+
+        specialinvoke r0.<jdk.internal.event.Event: void <init>()>();
+
+        return;
+    }
+}

@@ -1,0 +1,1635 @@
+public final class jdk.internal.loader.Loader extends java.security.SecureClassLoader
+{
+    private final jdk.internal.loader.LoaderPool pool;
+    private final java.lang.ClassLoader parent;
+    private final java.util.Map nameToModule;
+    private final java.util.Map localPackageToModule;
+    private final java.util.Map remotePackageToLoader;
+    private final java.util.Map moduleToReader;
+    private final java.security.AccessControlContext acc;
+    static final boolean $assertionsDisabled;
+
+    public void <init>(java.lang.module.ResolvedModule, jdk.internal.loader.LoaderPool, java.lang.ClassLoader)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.StringBuilder $r1, $r2, $r5;
+        java.lang.module.ResolvedModule r3;
+        java.lang.String $r4, $r6, r13;
+        java.lang.ClassLoader r7;
+        java.util.concurrent.ConcurrentHashMap $r8, $r9;
+        jdk.internal.loader.LoaderPool r10;
+        java.lang.module.ModuleReference r11;
+        java.lang.module.ModuleDescriptor r12;
+        java.util.Map $r14;
+        java.util.HashMap $r15;
+        jdk.internal.loader.Loader$LoadedModule $r17;
+        java.util.Set $r19;
+        java.util.function.Consumer $r20;
+        java.security.AccessControlContext $r21;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r3 := @parameter0: java.lang.module.ResolvedModule;
+
+        r10 := @parameter1: jdk.internal.loader.LoaderPool;
+
+        r7 := @parameter2: java.lang.ClassLoader;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Loader-");
+
+        $r4 = virtualinvoke r3.<java.lang.module.ResolvedModule: java.lang.String name()>();
+
+        $r5 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke r0.<java.security.SecureClassLoader: void <init>(java.lang.String,java.lang.ClassLoader)>($r6, r7);
+
+        $r8 = new java.util.concurrent.ConcurrentHashMap;
+
+        specialinvoke $r8.<java.util.concurrent.ConcurrentHashMap: void <init>()>();
+
+        r0.<jdk.internal.loader.Loader: java.util.Map remotePackageToLoader> = $r8;
+
+        $r9 = new java.util.concurrent.ConcurrentHashMap;
+
+        specialinvoke $r9.<java.util.concurrent.ConcurrentHashMap: void <init>()>();
+
+        r0.<jdk.internal.loader.Loader: java.util.Map moduleToReader> = $r9;
+
+        r0.<jdk.internal.loader.Loader: jdk.internal.loader.LoaderPool pool> = r10;
+
+        r0.<jdk.internal.loader.Loader: java.lang.ClassLoader parent> = r7;
+
+        r11 = virtualinvoke r3.<java.lang.module.ResolvedModule: java.lang.module.ModuleReference reference()>();
+
+        r12 = virtualinvoke r11.<java.lang.module.ModuleReference: java.lang.module.ModuleDescriptor descriptor()>();
+
+        r13 = virtualinvoke r12.<java.lang.module.ModuleDescriptor: java.lang.String name()>();
+
+        $r14 = staticinvoke <java.util.Map: java.util.Map of(java.lang.Object,java.lang.Object)>(r13, r11);
+
+        r0.<jdk.internal.loader.Loader: java.util.Map nameToModule> = $r14;
+
+        $r15 = new java.util.HashMap;
+
+        specialinvoke $r15.<java.util.HashMap: void <init>()>();
+
+        $r17 = new jdk.internal.loader.Loader$LoadedModule;
+
+        specialinvoke $r17.<jdk.internal.loader.Loader$LoadedModule: void <init>(java.lang.module.ModuleReference)>(r11);
+
+        $r19 = virtualinvoke r12.<java.lang.module.ModuleDescriptor: java.util.Set packages()>();
+
+        $r20 = staticinvoke <jdk.internal.loader.Loader$lambda_new_0__32: java.util.function.Consumer bootstrap$(java.util.Map,jdk.internal.loader.Loader$LoadedModule)>($r15, $r17);
+
+        interfaceinvoke $r19.<java.util.Set: void forEach(java.util.function.Consumer)>($r20);
+
+        r0.<jdk.internal.loader.Loader: java.util.Map localPackageToModule> = $r15;
+
+        $r21 = staticinvoke <java.security.AccessController: java.security.AccessControlContext getContext()>();
+
+        r0.<jdk.internal.loader.Loader: java.security.AccessControlContext acc> = $r21;
+
+        return;
+    }
+
+    public void <init>(java.util.Collection, java.lang.ClassLoader)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.ClassLoader r1;
+        java.util.concurrent.ConcurrentHashMap $r2, $r3;
+        java.util.HashMap $r4, $r6;
+        java.util.Collection r8;
+        java.util.Iterator r9;
+        boolean $z0;
+        java.security.AccessControlContext $r10;
+        java.lang.Object $r11;
+        java.lang.module.ResolvedModule r12;
+        java.lang.module.ModuleReference r13;
+        java.lang.module.ModuleDescriptor r14;
+        java.lang.String $r15;
+        java.util.Set $r17;
+        java.util.function.Consumer $r18;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r8 := @parameter0: java.util.Collection;
+
+        r1 := @parameter1: java.lang.ClassLoader;
+
+        specialinvoke r0.<java.security.SecureClassLoader: void <init>(java.lang.ClassLoader)>(r1);
+
+        $r2 = new java.util.concurrent.ConcurrentHashMap;
+
+        specialinvoke $r2.<java.util.concurrent.ConcurrentHashMap: void <init>()>();
+
+        r0.<jdk.internal.loader.Loader: java.util.Map remotePackageToLoader> = $r2;
+
+        $r3 = new java.util.concurrent.ConcurrentHashMap;
+
+        specialinvoke $r3.<java.util.concurrent.ConcurrentHashMap: void <init>()>();
+
+        r0.<jdk.internal.loader.Loader: java.util.Map moduleToReader> = $r3;
+
+        r0.<jdk.internal.loader.Loader: jdk.internal.loader.LoaderPool pool> = null;
+
+        r0.<jdk.internal.loader.Loader: java.lang.ClassLoader parent> = r1;
+
+        $r4 = new java.util.HashMap;
+
+        specialinvoke $r4.<java.util.HashMap: void <init>()>();
+
+        $r6 = new java.util.HashMap;
+
+        specialinvoke $r6.<java.util.HashMap: void <init>()>();
+
+        r9 = interfaceinvoke r8.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r11 = interfaceinvoke r9.<java.util.Iterator: java.lang.Object next()>();
+
+        r12 = (java.lang.module.ResolvedModule) $r11;
+
+        r13 = virtualinvoke r12.<java.lang.module.ResolvedModule: java.lang.module.ModuleReference reference()>();
+
+        r14 = virtualinvoke r13.<java.lang.module.ModuleReference: java.lang.module.ModuleDescriptor descriptor()>();
+
+        $r15 = virtualinvoke r14.<java.lang.module.ModuleDescriptor: java.lang.String name()>();
+
+        interfaceinvoke $r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r15, r13);
+
+        $r17 = virtualinvoke r14.<java.lang.module.ModuleDescriptor: java.util.Set packages()>();
+
+        $r18 = staticinvoke <jdk.internal.loader.Loader$lambda_new_1__33: java.util.function.Consumer bootstrap$(java.lang.module.ModuleReference,java.util.Map)>(r13, $r6);
+
+        interfaceinvoke $r17.<java.util.Set: void forEach(java.util.function.Consumer)>($r18);
+
+        goto label1;
+
+     label2:
+        r0.<jdk.internal.loader.Loader: java.util.Map nameToModule> = $r4;
+
+        r0.<jdk.internal.loader.Loader: java.util.Map localPackageToModule> = $r6;
+
+        $r10 = staticinvoke <java.security.AccessController: java.security.AccessControlContext getContext()>();
+
+        r0.<jdk.internal.loader.Loader: java.security.AccessControlContext acc> = $r10;
+
+        return;
+    }
+
+    public jdk.internal.loader.Loader initRemotePackageMap(java.lang.module.Configuration, java.util.List)
+    {
+        jdk.internal.loader.Loader r0;
+        java.util.Map $r1, $r39;
+        java.util.Set $r2, $r10, $r25, $r31, $r32;
+        java.util.Iterator r3, r11, r26;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9, $z10, $z11, $z12, z13;
+        java.lang.Object $r4, $r8, $r12, $r24, $r27;
+        java.lang.String r5, r14, $r29, r48;
+        java.lang.module.Configuration r6, $r15, $r30, $r41;
+        java.util.Optional $r7, $r22, $r34;
+        java.lang.module.ResolvedModule r9, r13;
+        java.util.List r16;
+        java.util.stream.Stream $r17, $r19, $r21;
+        java.util.function.Function $r18, $r20;
+        java.util.function.Supplier $r23;
+        java.lang.module.ModuleDescriptor$Exports r28;
+        java.util.function.Consumer $r33;
+        java.lang.AssertionError $r35, $r38, $r40, $r42;
+        jdk.internal.loader.LoaderPool $r36, $r37;
+        java.lang.ClassLoader r43;
+        java.lang.ModuleLayer r44;
+        java.lang.module.ModuleReference $r45;
+        java.lang.module.ModuleDescriptor r46;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r6 := @parameter0: java.lang.module.Configuration;
+
+        r16 := @parameter1: java.util.List;
+
+        $r1 = r0.<jdk.internal.loader.Loader: java.util.Map nameToModule>;
+
+        $r2 = interfaceinvoke $r1.<java.util.Map: java.util.Set keySet()>();
+
+        r3 = interfaceinvoke $r2.<java.util.Set: java.util.Iterator iterator()>();
+
+     label01:
+        $z0 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label17;
+
+        $r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+
+        r5 = (java.lang.String) $r4;
+
+        $r7 = virtualinvoke r6.<java.lang.module.Configuration: java.util.Optional findModule(java.lang.String)>(r5);
+
+        $r8 = virtualinvoke $r7.<java.util.Optional: java.lang.Object get()>();
+
+        r9 = (java.lang.module.ResolvedModule) $r8;
+
+        $z1 = <jdk.internal.loader.Loader: boolean $assertionsDisabled>;
+
+        if $z1 != 0 goto label02;
+
+        $r41 = virtualinvoke r9.<java.lang.module.ResolvedModule: java.lang.module.Configuration configuration()>();
+
+        if $r41 == r6 goto label02;
+
+        $r42 = new java.lang.AssertionError;
+
+        specialinvoke $r42.<java.lang.AssertionError: void <init>()>();
+
+        throw $r42;
+
+     label02:
+        $r10 = virtualinvoke r9.<java.lang.module.ResolvedModule: java.util.Set reads()>();
+
+        r11 = interfaceinvoke $r10.<java.util.Set: java.util.Iterator iterator()>();
+
+     label03:
+        $z10 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>();
+
+        if $z10 == 0 goto label16;
+
+        $r12 = interfaceinvoke r11.<java.util.Iterator: java.lang.Object next()>();
+
+        r13 = (java.lang.module.ResolvedModule) $r12;
+
+        r14 = virtualinvoke r13.<java.lang.module.ResolvedModule: java.lang.String name()>();
+
+        $r15 = virtualinvoke r13.<java.lang.module.ResolvedModule: java.lang.module.Configuration configuration()>();
+
+        if $r15 != r6 goto label05;
+
+        $r36 = r0.<jdk.internal.loader.Loader: jdk.internal.loader.LoaderPool pool>;
+
+        if $r36 != null goto label04;
+
+        $z8 = <jdk.internal.loader.Loader: boolean $assertionsDisabled>;
+
+        if $z8 != 0 goto label03;
+
+        $r39 = r0.<jdk.internal.loader.Loader: java.util.Map nameToModule>;
+
+        $z9 = interfaceinvoke $r39.<java.util.Map: boolean containsKey(java.lang.Object)>(r14);
+
+        if $z9 != 0 goto label03;
+
+        $r40 = new java.lang.AssertionError;
+
+        specialinvoke $r40.<java.lang.AssertionError: void <init>()>();
+
+        throw $r40;
+
+     label04:
+        $r37 = r0.<jdk.internal.loader.Loader: jdk.internal.loader.LoaderPool pool>;
+
+        r43 = virtualinvoke $r37.<jdk.internal.loader.LoaderPool: jdk.internal.loader.Loader loaderFor(java.lang.String)>(r14);
+
+        $z7 = <jdk.internal.loader.Loader: boolean $assertionsDisabled>;
+
+        if $z7 != 0 goto label07;
+
+        if r43 != null goto label07;
+
+        $r38 = new java.lang.AssertionError;
+
+        specialinvoke $r38.<java.lang.AssertionError: void <init>()>();
+
+        throw $r38;
+
+     label05:
+        $r17 = interfaceinvoke r16.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r18 = staticinvoke <jdk.internal.loader.Loader$lambda_initRemotePackageMap_2__34: java.util.function.Function bootstrap$(jdk.internal.loader.Loader,java.lang.module.ResolvedModule)>(r0, r13);
+
+        $r19 = interfaceinvoke $r17.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r18);
+
+        $r20 = staticinvoke <jdk.internal.loader.Loader$stream__35: java.util.function.Function bootstrap$()>();
+
+        $r21 = interfaceinvoke $r19.<java.util.stream.Stream: java.util.stream.Stream flatMap(java.util.function.Function)>($r20);
+
+        $r22 = interfaceinvoke $r21.<java.util.stream.Stream: java.util.Optional findAny()>();
+
+        $r23 = staticinvoke <jdk.internal.loader.Loader$lambda_initRemotePackageMap_3__36: java.util.function.Supplier bootstrap$()>();
+
+        $r24 = virtualinvoke $r22.<java.util.Optional: java.lang.Object orElseThrow(java.util.function.Supplier)>($r23);
+
+        r44 = (java.lang.ModuleLayer) $r24;
+
+        $z2 = <jdk.internal.loader.Loader: boolean $assertionsDisabled>;
+
+        if $z2 != 0 goto label06;
+
+        $r34 = virtualinvoke r44.<java.lang.ModuleLayer: java.util.Optional findModule(java.lang.String)>(r14);
+
+        $z6 = virtualinvoke $r34.<java.util.Optional: boolean isPresent()>();
+
+        if $z6 != 0 goto label06;
+
+        $r35 = new java.lang.AssertionError;
+
+        specialinvoke $r35.<java.lang.AssertionError: void <init>()>();
+
+        throw $r35;
+
+     label06:
+        r43 = virtualinvoke r44.<java.lang.ModuleLayer: java.lang.ClassLoader findLoader(java.lang.String)>(r14);
+
+        if r43 != null goto label07;
+
+        r43 = staticinvoke <jdk.internal.loader.ClassLoaders: java.lang.ClassLoader platformClassLoader()>();
+
+     label07:
+        $r45 = virtualinvoke r13.<java.lang.module.ResolvedModule: java.lang.module.ModuleReference reference()>();
+
+        r46 = virtualinvoke $r45.<java.lang.module.ModuleReference: java.lang.module.ModuleDescriptor descriptor()>();
+
+        $z11 = virtualinvoke r46.<java.lang.module.ModuleDescriptor: boolean isAutomatic()>();
+
+        if $z11 == 0 goto label08;
+
+        $r32 = virtualinvoke r46.<java.lang.module.ModuleDescriptor: java.util.Set packages()>();
+
+        $r33 = staticinvoke <jdk.internal.loader.Loader$lambda_initRemotePackageMap_4__37: java.util.function.Consumer bootstrap$(jdk.internal.loader.Loader,java.lang.ClassLoader)>(r0, r43);
+
+        interfaceinvoke $r32.<java.util.Set: void forEach(java.util.function.Consumer)>($r33);
+
+        goto label15;
+
+     label08:
+        r48 = virtualinvoke r9.<java.lang.module.ResolvedModule: java.lang.String name()>();
+
+        $r25 = virtualinvoke r46.<java.lang.module.ModuleDescriptor: java.util.Set exports()>();
+
+        r26 = interfaceinvoke $r25.<java.util.Set: java.util.Iterator iterator()>();
+
+     label09:
+        $z3 = interfaceinvoke r26.<java.util.Iterator: boolean hasNext()>();
+
+        if $z3 == 0 goto label15;
+
+        $r27 = interfaceinvoke r26.<java.util.Iterator: java.lang.Object next()>();
+
+        r28 = (java.lang.module.ModuleDescriptor$Exports) $r27;
+
+        $z4 = virtualinvoke r28.<java.lang.module.ModuleDescriptor$Exports: boolean isQualified()>();
+
+        if $z4 == 0 goto label12;
+
+        $r30 = virtualinvoke r13.<java.lang.module.ResolvedModule: java.lang.module.Configuration configuration()>();
+
+        if $r30 != r6 goto label10;
+
+        $r31 = virtualinvoke r28.<java.lang.module.ModuleDescriptor$Exports: java.util.Set targets()>();
+
+        $z5 = interfaceinvoke $r31.<java.util.Set: boolean contains(java.lang.Object)>(r48);
+
+        if $z5 == 0 goto label10;
+
+        $z12 = 1;
+
+        goto label11;
+
+     label10:
+        $z12 = 0;
+
+     label11:
+        z13 = $z12;
+
+        goto label13;
+
+     label12:
+        z13 = 1;
+
+     label13:
+        if z13 == 0 goto label14;
+
+        $r29 = virtualinvoke r28.<java.lang.module.ModuleDescriptor$Exports: java.lang.String source()>();
+
+        virtualinvoke r0.<jdk.internal.loader.Loader: void remotePackage(java.lang.String,java.lang.ClassLoader)>($r29, r43);
+
+     label14:
+        goto label09;
+
+     label15:
+        goto label03;
+
+     label16:
+        goto label01;
+
+     label17:
+        return r0;
+    }
+
+    private void remotePackage(java.lang.String, java.lang.ClassLoader)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.String r1, $r11;
+        java.lang.ClassLoader r2, r5;
+        java.util.Map $r3;
+        java.lang.Object $r4;
+        java.lang.IllegalStateException $r6;
+        java.lang.StringBuilder $r7, $r8, $r9, $r10;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.ClassLoader;
+
+        $r3 = r0.<jdk.internal.loader.Loader: java.util.Map remotePackageToLoader>;
+
+        $r4 = interfaceinvoke $r3.<java.util.Map: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>(r1, r2);
+
+        r5 = (java.lang.ClassLoader) $r4;
+
+        if r5 == null goto label1;
+
+        if r5 == r2 goto label1;
+
+        $r6 = new java.lang.IllegalStateException;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Package ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" cannot be imported from multiple loaders");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r6.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r11);
+
+        throw $r6;
+
+     label1:
+        return;
+    }
+
+    private java.util.Optional findModuleLayer(java.lang.ModuleLayer, java.lang.module.Configuration)
+    {
+        jdk.internal.access.JavaLangAccess $r0;
+        java.lang.ModuleLayer r1;
+        java.util.stream.Stream $r2, $r5;
+        java.lang.module.Configuration r3;
+        java.util.function.Predicate $r4;
+        java.util.Optional $r6;
+        jdk.internal.loader.Loader r7;
+
+        r7 := @this: jdk.internal.loader.Loader;
+
+        r1 := @parameter0: java.lang.ModuleLayer;
+
+        r3 := @parameter1: java.lang.module.Configuration;
+
+        $r0 = staticinvoke <jdk.internal.access.SharedSecrets: jdk.internal.access.JavaLangAccess getJavaLangAccess()>();
+
+        $r2 = interfaceinvoke $r0.<jdk.internal.access.JavaLangAccess: java.util.stream.Stream layers(java.lang.ModuleLayer)>(r1);
+
+        $r4 = staticinvoke <jdk.internal.loader.Loader$lambda_findModuleLayer_5__38: java.util.function.Predicate bootstrap$(java.lang.module.Configuration)>(r3);
+
+        $r5 = interfaceinvoke $r2.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r4);
+
+        $r6 = interfaceinvoke $r5.<java.util.stream.Stream: java.util.Optional findAny()>();
+
+        return $r6;
+    }
+
+    public jdk.internal.loader.LoaderPool pool()
+    {
+        jdk.internal.loader.Loader r0;
+        jdk.internal.loader.LoaderPool $r1;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        $r1 = r0.<jdk.internal.loader.Loader: jdk.internal.loader.LoaderPool pool>;
+
+        return $r1;
+    }
+
+    protected java.net.URL findResource(java.lang.String, java.lang.String) throws java.io.IOException
+    {
+        java.lang.String r0, r4;
+        jdk.internal.loader.Loader$1 $r2;
+        jdk.internal.loader.Loader r3;
+        java.lang.Object $r5, $r9, $r11;
+        java.lang.SecurityManager $r6;
+        jdk.internal.loader.Loader$2 $r7;
+        java.security.AccessControlContext $r8;
+        java.util.Map $r10;
+        java.security.PrivilegedActionException $r12, $r13;
+        java.lang.Throwable $r14;
+        java.io.IOException $r15;
+        java.lang.module.ModuleReference $r16;
+        java.net.URL r17;
+
+        r3 := @this: jdk.internal.loader.Loader;
+
+        r0 := @parameter0: java.lang.String;
+
+        r4 := @parameter1: java.lang.String;
+
+        if r0 == null goto label01;
+
+        $r10 = r3.<jdk.internal.loader.Loader: java.util.Map nameToModule>;
+
+        $r11 = interfaceinvoke $r10.<java.util.Map: java.lang.Object get(java.lang.Object)>(r0);
+
+        $r16 = (java.lang.module.ModuleReference) $r11;
+
+        goto label02;
+
+     label01:
+        $r16 = null;
+
+     label02:
+        if $r16 != null goto label03;
+
+        return null;
+
+     label03:
+        $r2 = new jdk.internal.loader.Loader$1;
+
+        specialinvoke $r2.<jdk.internal.loader.Loader$1: void <init>(jdk.internal.loader.Loader,java.lang.module.ModuleReference,java.lang.String)>(r3, $r16, r4);
+
+        $r5 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedExceptionAction)>($r2);
+
+        r17 = (java.net.URL) $r5;
+
+     label04:
+        goto label06;
+
+     label05:
+        $r13 := @caughtexception;
+
+        $r14 = virtualinvoke $r13.<java.security.PrivilegedActionException: java.lang.Throwable getCause()>();
+
+        $r15 = (java.io.IOException) $r14;
+
+        throw $r15;
+
+     label06:
+        if r17 == null goto label10;
+
+        $r6 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>();
+
+        if $r6 == null goto label10;
+
+     label07:
+        $r7 = new jdk.internal.loader.Loader$2;
+
+        specialinvoke $r7.<jdk.internal.loader.Loader$2: void <init>(jdk.internal.loader.Loader,java.net.URL)>(r3, r17);
+
+        $r8 = r3.<jdk.internal.loader.Loader: java.security.AccessControlContext acc>;
+
+        $r9 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedExceptionAction,java.security.AccessControlContext)>($r7, $r8);
+
+        r17 = (java.net.URL) $r9;
+
+     label08:
+        goto label10;
+
+     label09:
+        $r12 := @caughtexception;
+
+        r17 = null;
+
+     label10:
+        return r17;
+
+        catch java.security.PrivilegedActionException from label03 to label04 with label05;
+        catch java.security.PrivilegedActionException from label07 to label08 with label09;
+    }
+
+    public java.net.URL findResource(java.lang.String)
+    {
+        java.lang.String r0, r1, $r11, $r12, $r13;
+        jdk.internal.loader.Loader r2;
+        java.util.Map $r3, $r6;
+        java.lang.Object $r4, $r8;
+        jdk.internal.loader.Loader$LoadedModule r5;
+        java.util.Collection $r7;
+        boolean $z0, $z1, $z2, $z3;
+        java.lang.module.ModuleReference r9, $r14;
+        java.lang.module.ModuleDescriptor $r10;
+        java.io.IOException $r15, $r16;
+        java.net.URL r17, r21;
+        java.util.Iterator r20;
+
+        r2 := @this: jdk.internal.loader.Loader;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 = staticinvoke <jdk.internal.module.Resources: java.lang.String toPackageName(java.lang.String)>(r0);
+
+        $r3 = r2.<jdk.internal.loader.Loader: java.util.Map localPackageToModule>;
+
+        $r4 = interfaceinvoke $r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1);
+
+        r5 = (jdk.internal.loader.Loader$LoadedModule) $r4;
+
+        if r5 == null goto label05;
+
+     label01:
+        $r12 = virtualinvoke r5.<jdk.internal.loader.Loader$LoadedModule: java.lang.String name()>();
+
+        r17 = virtualinvoke r2.<jdk.internal.loader.Loader: java.net.URL findResource(java.lang.String,java.lang.String)>($r12, r0);
+
+        if r17 == null goto label03;
+
+        $z1 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>(".class");
+
+        if $z1 != 0 goto label02;
+
+        $r13 = virtualinvoke r17.<java.net.URL: java.lang.String toString()>();
+
+        $z2 = virtualinvoke $r13.<java.lang.String: boolean endsWith(java.lang.String)>("/");
+
+        if $z2 != 0 goto label02;
+
+        $r14 = virtualinvoke r5.<jdk.internal.loader.Loader$LoadedModule: java.lang.module.ModuleReference mref()>();
+
+        $z3 = virtualinvoke r2.<jdk.internal.loader.Loader: boolean isOpen(java.lang.module.ModuleReference,java.lang.String)>($r14, r1);
+
+        if $z3 == 0 goto label03;
+
+     label02:
+        return r17;
+
+     label03:
+        goto label12;
+
+     label04:
+        $r16 := @caughtexception;
+
+        goto label12;
+
+     label05:
+        $r6 = r2.<jdk.internal.loader.Loader: java.util.Map nameToModule>;
+
+        $r7 = interfaceinvoke $r6.<java.util.Map: java.util.Collection values()>();
+
+        r20 = interfaceinvoke $r7.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label06:
+        $z0 = interfaceinvoke r20.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label12;
+
+        $r8 = interfaceinvoke r20.<java.util.Iterator: java.lang.Object next()>();
+
+        r9 = (java.lang.module.ModuleReference) $r8;
+
+     label07:
+        $r10 = virtualinvoke r9.<java.lang.module.ModuleReference: java.lang.module.ModuleDescriptor descriptor()>();
+
+        $r11 = virtualinvoke $r10.<java.lang.module.ModuleDescriptor: java.lang.String name()>();
+
+        r21 = virtualinvoke r2.<jdk.internal.loader.Loader: java.net.URL findResource(java.lang.String,java.lang.String)>($r11, r0);
+
+        if r21 == null goto label09;
+
+     label08:
+        return r21;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r15 := @caughtexception;
+
+     label11:
+        goto label06;
+
+     label12:
+        return null;
+
+        catch java.io.IOException from label01 to label02 with label04;
+        catch java.io.IOException from label07 to label08 with label10;
+    }
+
+    public java.util.Enumeration findResources(java.lang.String) throws java.io.IOException
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.String r1;
+        java.util.List $r2;
+        java.util.Enumeration $r3;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = virtualinvoke r0.<jdk.internal.loader.Loader: java.util.List findResourcesAsList(java.lang.String)>(r1);
+
+        $r3 = staticinvoke <java.util.Collections: java.util.Enumeration enumeration(java.util.Collection)>($r2);
+
+        return $r3;
+    }
+
+    public java.net.URL getResource(java.lang.String)
+    {
+        java.lang.String r0;
+        jdk.internal.loader.Loader r2;
+        java.lang.ClassLoader $r3, $r4;
+        java.net.URL r5;
+
+        r2 := @this: jdk.internal.loader.Loader;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        r5 = virtualinvoke r2.<jdk.internal.loader.Loader: java.net.URL findResource(java.lang.String)>(r0);
+
+        if r5 != null goto label2;
+
+        $r3 = r2.<jdk.internal.loader.Loader: java.lang.ClassLoader parent>;
+
+        if $r3 == null goto label1;
+
+        $r4 = r2.<jdk.internal.loader.Loader: java.lang.ClassLoader parent>;
+
+        r5 = virtualinvoke $r4.<java.lang.ClassLoader: java.net.URL getResource(java.lang.String)>(r0);
+
+        goto label2;
+
+     label1:
+        r5 = staticinvoke <jdk.internal.loader.BootLoader: java.net.URL findResource(java.lang.String)>(r0);
+
+     label2:
+        return r5;
+    }
+
+    public java.util.Enumeration getResources(java.lang.String) throws java.io.IOException
+    {
+        java.lang.String r0;
+        jdk.internal.loader.Loader r2;
+        java.util.List r3;
+        java.lang.ClassLoader $r4, $r6;
+        jdk.internal.loader.Loader$3 $r5;
+        java.util.Enumeration r7;
+
+        r2 := @this: jdk.internal.loader.Loader;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        r3 = virtualinvoke r2.<jdk.internal.loader.Loader: java.util.List findResourcesAsList(java.lang.String)>(r0);
+
+        $r4 = r2.<jdk.internal.loader.Loader: java.lang.ClassLoader parent>;
+
+        if $r4 == null goto label1;
+
+        $r6 = r2.<jdk.internal.loader.Loader: java.lang.ClassLoader parent>;
+
+        r7 = virtualinvoke $r6.<java.lang.ClassLoader: java.util.Enumeration getResources(java.lang.String)>(r0);
+
+        goto label2;
+
+     label1:
+        r7 = staticinvoke <jdk.internal.loader.BootLoader: java.util.Enumeration findResources(java.lang.String)>(r0);
+
+     label2:
+        $r5 = new jdk.internal.loader.Loader$3;
+
+        specialinvoke $r5.<jdk.internal.loader.Loader$3: void <init>(jdk.internal.loader.Loader,java.util.List,java.util.Enumeration)>(r2, r3, r7);
+
+        return $r5;
+    }
+
+    private java.util.List findResourcesAsList(java.lang.String) throws java.io.IOException
+    {
+        java.lang.String r0, r1, $r13, $r15, $r17;
+        jdk.internal.loader.Loader r2;
+        java.util.Map $r3, $r7;
+        java.lang.Object $r4, $r10;
+        jdk.internal.loader.Loader$LoadedModule r5;
+        java.util.ArrayList $r6;
+        java.util.Collection $r8;
+        java.util.Iterator r9;
+        boolean $z0, $z2, $z3, $z4;
+        java.lang.module.ModuleReference r11, $r18;
+        java.lang.module.ModuleDescriptor $r12;
+        java.net.URL r14, r19;
+        java.util.List $r16, $r20;
+
+        r2 := @this: jdk.internal.loader.Loader;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 = staticinvoke <jdk.internal.module.Resources: java.lang.String toPackageName(java.lang.String)>(r0);
+
+        $r3 = r2.<jdk.internal.loader.Loader: java.util.Map localPackageToModule>;
+
+        $r4 = interfaceinvoke $r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1);
+
+        r5 = (jdk.internal.loader.Loader$LoadedModule) $r4;
+
+        if r5 == null goto label3;
+
+        $r15 = virtualinvoke r5.<jdk.internal.loader.Loader$LoadedModule: java.lang.String name()>();
+
+        r19 = virtualinvoke r2.<jdk.internal.loader.Loader: java.net.URL findResource(java.lang.String,java.lang.String)>($r15, r0);
+
+        if r19 == null goto label2;
+
+        $z2 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>(".class");
+
+        if $z2 != 0 goto label1;
+
+        $r17 = virtualinvoke r19.<java.net.URL: java.lang.String toString()>();
+
+        $z3 = virtualinvoke $r17.<java.lang.String: boolean endsWith(java.lang.String)>("/");
+
+        if $z3 != 0 goto label1;
+
+        $r18 = virtualinvoke r5.<jdk.internal.loader.Loader$LoadedModule: java.lang.module.ModuleReference mref()>();
+
+        $z4 = virtualinvoke r2.<jdk.internal.loader.Loader: boolean isOpen(java.lang.module.ModuleReference,java.lang.String)>($r18, r1);
+
+        if $z4 == 0 goto label2;
+
+     label1:
+        $r20 = staticinvoke <java.util.List: java.util.List of(java.lang.Object)>(r19);
+
+        return $r20;
+
+     label2:
+        $r16 = staticinvoke <java.util.Collections: java.util.List emptyList()>();
+
+        return $r16;
+
+     label3:
+        $r6 = new java.util.ArrayList;
+
+        specialinvoke $r6.<java.util.ArrayList: void <init>()>();
+
+        $r7 = r2.<jdk.internal.loader.Loader: java.util.Map nameToModule>;
+
+        $r8 = interfaceinvoke $r7.<java.util.Map: java.util.Collection values()>();
+
+        r9 = interfaceinvoke $r8.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label4:
+        $z0 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label6;
+
+        $r10 = interfaceinvoke r9.<java.util.Iterator: java.lang.Object next()>();
+
+        r11 = (java.lang.module.ModuleReference) $r10;
+
+        $r12 = virtualinvoke r11.<java.lang.module.ModuleReference: java.lang.module.ModuleDescriptor descriptor()>();
+
+        $r13 = virtualinvoke $r12.<java.lang.module.ModuleDescriptor: java.lang.String name()>();
+
+        r14 = virtualinvoke r2.<jdk.internal.loader.Loader: java.net.URL findResource(java.lang.String,java.lang.String)>($r13, r0);
+
+        if r14 == null goto label5;
+
+        interfaceinvoke $r6.<java.util.List: boolean add(java.lang.Object)>(r14);
+
+     label5:
+        goto label4;
+
+     label6:
+        return $r6;
+    }
+
+    protected java.lang.Class findClass(java.lang.String) throws java.lang.ClassNotFoundException
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.String r1;
+        jdk.internal.loader.Loader$LoadedModule r2;
+        java.lang.ClassNotFoundException $r3;
+        java.lang.Class r4;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r4 = null;
+
+        r2 = virtualinvoke r0.<jdk.internal.loader.Loader: jdk.internal.loader.Loader$LoadedModule findLoadedModule(java.lang.String)>(r1);
+
+        if r2 == null goto label1;
+
+        r4 = virtualinvoke r0.<jdk.internal.loader.Loader: java.lang.Class findClassInModuleOrNull(jdk.internal.loader.Loader$LoadedModule,java.lang.String)>(r2, r1);
+
+     label1:
+        if r4 != null goto label2;
+
+        $r3 = new java.lang.ClassNotFoundException;
+
+        specialinvoke $r3.<java.lang.ClassNotFoundException: void <init>(java.lang.String)>(r1);
+
+        throw $r3;
+
+     label2:
+        return r4;
+    }
+
+    protected java.lang.Class findClass(java.lang.String, java.lang.String)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.String r1, $r3, r4;
+        jdk.internal.loader.Loader$LoadedModule r2;
+        boolean $z0;
+        java.lang.Class r5;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r4 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.String;
+
+        r5 = null;
+
+        r2 = virtualinvoke r0.<jdk.internal.loader.Loader: jdk.internal.loader.Loader$LoadedModule findLoadedModule(java.lang.String)>(r1);
+
+        if r2 == null goto label1;
+
+        $r3 = virtualinvoke r2.<jdk.internal.loader.Loader$LoadedModule: java.lang.String name()>();
+
+        $z0 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>(r4);
+
+        if $z0 == 0 goto label1;
+
+        r5 = virtualinvoke r0.<jdk.internal.loader.Loader: java.lang.Class findClassInModuleOrNull(jdk.internal.loader.Loader$LoadedModule,java.lang.String)>(r2, r1);
+
+     label1:
+        return r5;
+    }
+
+    protected java.lang.Class loadClass(java.lang.String, boolean) throws java.lang.ClassNotFoundException
+    {
+        java.lang.SecurityManager r0;
+        jdk.internal.loader.Loader r1;
+        java.lang.String r2, r6, r11;
+        boolean z0, $z1;
+        java.lang.ClassNotFoundException $r4;
+        jdk.internal.loader.Loader$LoadedModule r5;
+        java.util.Map $r7;
+        java.lang.Object $r8, $r12;
+        java.lang.Throwable $r9;
+        java.lang.Class r14;
+        java.lang.ClassLoader r15;
+
+        r1 := @this: jdk.internal.loader.Loader;
+
+        r2 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        r0 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>();
+
+        if r0 == null goto label01;
+
+        r11 = virtualinvoke r1.<jdk.internal.loader.Loader: java.lang.String packageName(java.lang.String)>(r2);
+
+        $z1 = virtualinvoke r11.<java.lang.String: boolean isEmpty()>();
+
+        if $z1 != 0 goto label01;
+
+        virtualinvoke r0.<java.lang.SecurityManager: void checkPackageAccess(java.lang.String)>(r11);
+
+     label01:
+        $r12 = virtualinvoke r1.<jdk.internal.loader.Loader: java.lang.Object getClassLoadingLock(java.lang.String)>(r2);
+
+        entermonitor $r12;
+
+     label02:
+        r14 = virtualinvoke r1.<jdk.internal.loader.Loader: java.lang.Class findLoadedClass(java.lang.String)>(r2);
+
+        if r14 != null goto label06;
+
+        r5 = virtualinvoke r1.<jdk.internal.loader.Loader: jdk.internal.loader.Loader$LoadedModule findLoadedModule(java.lang.String)>(r2);
+
+        if r5 == null goto label03;
+
+        r14 = virtualinvoke r1.<jdk.internal.loader.Loader: java.lang.Class findClassInModuleOrNull(jdk.internal.loader.Loader$LoadedModule,java.lang.String)>(r5, r2);
+
+        goto label06;
+
+     label03:
+        r6 = virtualinvoke r1.<jdk.internal.loader.Loader: java.lang.String packageName(java.lang.String)>(r2);
+
+        $r7 = r1.<jdk.internal.loader.Loader: java.util.Map remotePackageToLoader>;
+
+        $r8 = interfaceinvoke $r7.<java.util.Map: java.lang.Object get(java.lang.Object)>(r6);
+
+        r15 = (java.lang.ClassLoader) $r8;
+
+        if r15 != null goto label04;
+
+        r15 = r1.<jdk.internal.loader.Loader: java.lang.ClassLoader parent>;
+
+     label04:
+        if r15 != null goto label05;
+
+        r14 = staticinvoke <jdk.internal.loader.BootLoader: java.lang.Class loadClassOrNull(java.lang.String)>(r2);
+
+        goto label06;
+
+     label05:
+        r14 = virtualinvoke r15.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>(r2);
+
+     label06:
+        if r14 != null goto label07;
+
+        $r4 = new java.lang.ClassNotFoundException;
+
+        specialinvoke $r4.<java.lang.ClassNotFoundException: void <init>(java.lang.String)>(r2);
+
+        throw $r4;
+
+     label07:
+        if z0 == 0 goto label08;
+
+        virtualinvoke r1.<jdk.internal.loader.Loader: void resolveClass(java.lang.Class)>(r14);
+
+     label08:
+        exitmonitor $r12;
+
+     label09:
+        return r14;
+
+     label10:
+        $r9 := @caughtexception;
+
+        exitmonitor $r12;
+
+     label11:
+        throw $r9;
+
+        catch java.lang.Throwable from label02 to label09 with label10;
+        catch java.lang.Throwable from label10 to label11 with label10;
+    }
+
+    private java.lang.Class findClassInModuleOrNull(jdk.internal.loader.Loader$LoadedModule, java.lang.String)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.String r1;
+        jdk.internal.loader.Loader$LoadedModule r2;
+        java.security.PrivilegedAction r3;
+        java.security.AccessControlContext $r4;
+        java.lang.Object $r5;
+        java.lang.Class $r6;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r2 := @parameter0: jdk.internal.loader.Loader$LoadedModule;
+
+        r1 := @parameter1: java.lang.String;
+
+        r3 = staticinvoke <jdk.internal.loader.Loader$lambda_findClassInModuleOrNull_6__39: java.security.PrivilegedAction bootstrap$(jdk.internal.loader.Loader,java.lang.String,jdk.internal.loader.Loader$LoadedModule)>(r0, r1, r2);
+
+        $r4 = r0.<jdk.internal.loader.Loader: java.security.AccessControlContext acc>;
+
+        $r5 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction,java.security.AccessControlContext)>(r3, $r4);
+
+        $r6 = (java.lang.Class) $r5;
+
+        return $r6;
+    }
+
+    private java.lang.Class defineClass(java.lang.String, jdk.internal.loader.Loader$LoadedModule)
+    {
+        jdk.internal.loader.Loader r0;
+        jdk.internal.loader.Loader$LoadedModule r1;
+        java.lang.module.ModuleReference $r2;
+        java.lang.module.ModuleReader r3;
+        java.lang.String r4, $r5, r14;
+        java.util.Optional $r6;
+        java.lang.Object $r7;
+        java.nio.ByteBuffer r8;
+        java.security.CodeSource $r9;
+        java.lang.Class r10;
+        java.io.IOException $r11;
+        java.lang.Throwable $r12;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r4 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: jdk.internal.loader.Loader$LoadedModule;
+
+        $r2 = virtualinvoke r1.<jdk.internal.loader.Loader$LoadedModule: java.lang.module.ModuleReference mref()>();
+
+        r3 = virtualinvoke r0.<jdk.internal.loader.Loader: java.lang.module.ModuleReader moduleReaderFor(java.lang.module.ModuleReference)>($r2);
+
+     label1:
+        $r5 = virtualinvoke r4.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+
+        r14 = virtualinvoke $r5.<java.lang.String: java.lang.String concat(java.lang.String)>(".class");
+
+        $r6 = interfaceinvoke r3.<java.lang.module.ModuleReader: java.util.Optional read(java.lang.String)>(r14);
+
+        $r7 = virtualinvoke $r6.<java.util.Optional: java.lang.Object orElse(java.lang.Object)>(null);
+
+        r8 = (java.nio.ByteBuffer) $r7;
+
+        if r8 != null goto label3;
+
+     label2:
+        return null;
+
+     label3:
+        $r9 = virtualinvoke r1.<jdk.internal.loader.Loader$LoadedModule: java.security.CodeSource codeSource()>();
+
+        r10 = virtualinvoke r0.<jdk.internal.loader.Loader: java.lang.Class defineClass(java.lang.String,java.nio.ByteBuffer,java.security.CodeSource)>(r4, r8, $r9);
+
+     label4:
+        interfaceinvoke r3.<java.lang.module.ModuleReader: void release(java.nio.ByteBuffer)>(r8);
+
+     label5:
+        return r10;
+
+     label6:
+        $r12 := @caughtexception;
+
+     label7:
+        interfaceinvoke r3.<java.lang.module.ModuleReader: void release(java.nio.ByteBuffer)>(r8);
+
+        throw $r12;
+
+     label8:
+        $r11 := @caughtexception;
+
+        return null;
+
+        catch java.lang.Throwable from label3 to label4 with label6;
+        catch java.lang.Throwable from label6 to label7 with label6;
+        catch java.io.IOException from label1 to label2 with label8;
+        catch java.io.IOException from label3 to label5 with label8;
+        catch java.io.IOException from label6 to label8 with label8;
+    }
+
+    protected java.security.PermissionCollection getPermissions(java.security.CodeSource)
+    {
+        jdk.internal.loader.Loader r0;
+        java.security.CodeSource r1;
+        java.security.PermissionCollection r2;
+        java.net.URL r3;
+        java.net.URLConnection $r4;
+        boolean $z0, $z1;
+        java.lang.String $r5, r12, r13;
+        java.lang.StringBuilder $r6, $r7, $r8;
+        java.io.FilePermission $r9;
+        java.io.IOException $r10;
+        java.security.Permission r11;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r1 := @parameter0: java.security.CodeSource;
+
+        r2 = specialinvoke r0.<java.security.SecureClassLoader: java.security.PermissionCollection getPermissions(java.security.CodeSource)>(r1);
+
+        r3 = virtualinvoke r1.<java.security.CodeSource: java.net.URL getLocation()>();
+
+        if r3 != null goto label1;
+
+        return r2;
+
+     label1:
+        $r4 = virtualinvoke r3.<java.net.URL: java.net.URLConnection openConnection()>();
+
+        r11 = virtualinvoke $r4.<java.net.URLConnection: java.security.Permission getPermission()>();
+
+        if r11 == null goto label3;
+
+        $z0 = r11 instanceof java.io.FilePermission;
+
+        if $z0 == 0 goto label2;
+
+        r12 = virtualinvoke r11.<java.security.Permission: java.lang.String getName()>();
+
+        $r5 = <java.io.File: java.lang.String separator>;
+
+        $z1 = virtualinvoke r12.<java.lang.String: boolean endsWith(java.lang.String)>($r5);
+
+        if $z1 == 0 goto label2;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r12);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("-");
+
+        r13 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r9 = new java.io.FilePermission;
+
+        specialinvoke $r9.<java.io.FilePermission: void <init>(java.lang.String,java.lang.String)>(r13, "read");
+
+        r11 = $r9;
+
+     label2:
+        virtualinvoke r2.<java.security.PermissionCollection: void add(java.security.Permission)>(r11);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r10 := @caughtexception;
+
+     label5:
+        return r2;
+
+        catch java.io.IOException from label1 to label3 with label4;
+    }
+
+    private jdk.internal.loader.Loader$LoadedModule findLoadedModule(java.lang.String)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.String r1, r2;
+        boolean $z0;
+        java.util.Map $r3;
+        java.lang.Object $r4;
+        jdk.internal.loader.Loader$LoadedModule $r5;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 = virtualinvoke r0.<jdk.internal.loader.Loader: java.lang.String packageName(java.lang.String)>(r1);
+
+        $z0 = virtualinvoke r2.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 == 0 goto label1;
+
+        $r5 = null;
+
+        goto label2;
+
+     label1:
+        $r3 = r0.<jdk.internal.loader.Loader: java.util.Map localPackageToModule>;
+
+        $r4 = interfaceinvoke $r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r2);
+
+        $r5 = (jdk.internal.loader.Loader$LoadedModule) $r4;
+
+     label2:
+        return $r5;
+    }
+
+    private java.lang.String packageName(java.lang.String)
+    {
+        java.lang.String r0, $r2;
+        int i0;
+        jdk.internal.loader.Loader r1;
+
+        r1 := @this: jdk.internal.loader.Loader;
+
+        r0 := @parameter0: java.lang.String;
+
+        i0 = virtualinvoke r0.<java.lang.String: int lastIndexOf(int)>(46);
+
+        if i0 >= 0 goto label1;
+
+        $r2 = "";
+
+        goto label2;
+
+     label1:
+        $r2 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(0, i0);
+
+     label2:
+        return $r2;
+    }
+
+    private java.lang.module.ModuleReader moduleReaderFor(java.lang.module.ModuleReference)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.module.ModuleReference r1;
+        java.util.Map $r2;
+        java.util.function.Function $r3;
+        java.lang.Object $r4;
+        java.lang.module.ModuleReader $r5;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r1 := @parameter0: java.lang.module.ModuleReference;
+
+        $r2 = r0.<jdk.internal.loader.Loader: java.util.Map moduleToReader>;
+
+        $r3 = staticinvoke <jdk.internal.loader.Loader$lambda_moduleReaderFor_7__40: java.util.function.Function bootstrap$(jdk.internal.loader.Loader,java.lang.module.ModuleReference)>(r0, r1);
+
+        $r4 = interfaceinvoke $r2.<java.util.Map: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>(r1, $r3);
+
+        $r5 = (java.lang.module.ModuleReader) $r4;
+
+        return $r5;
+    }
+
+    private java.lang.module.ModuleReader createModuleReader(java.lang.module.ModuleReference)
+    {
+        java.lang.module.ModuleReference r0;
+        java.lang.module.ModuleReader $r1;
+        java.io.IOException $r2;
+        jdk.internal.loader.Loader$NullModuleReader $r4;
+        jdk.internal.loader.Loader r5;
+
+        r5 := @this: jdk.internal.loader.Loader;
+
+        r0 := @parameter0: java.lang.module.ModuleReference;
+
+     label1:
+        $r1 = virtualinvoke r0.<java.lang.module.ModuleReference: java.lang.module.ModuleReader open()>();
+
+     label2:
+        return $r1;
+
+     label3:
+        $r2 := @caughtexception;
+
+        $r4 = new jdk.internal.loader.Loader$NullModuleReader;
+
+        specialinvoke $r4.<jdk.internal.loader.Loader$NullModuleReader: void <init>()>();
+
+        return $r4;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    private boolean isOpen(java.lang.module.ModuleReference, java.lang.String)
+    {
+        java.lang.module.ModuleReference r0;
+        java.lang.module.ModuleDescriptor r1;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        java.util.Set $r2;
+        java.util.Iterator r3;
+        java.lang.Object $r4;
+        java.lang.module.ModuleDescriptor$Opens r5;
+        java.lang.String r6, r7;
+        jdk.internal.loader.Loader r8;
+
+        r8 := @this: jdk.internal.loader.Loader;
+
+        r0 := @parameter0: java.lang.module.ModuleReference;
+
+        r7 := @parameter1: java.lang.String;
+
+        r1 = virtualinvoke r0.<java.lang.module.ModuleReference: java.lang.module.ModuleDescriptor descriptor()>();
+
+        $z0 = virtualinvoke r1.<java.lang.module.ModuleDescriptor: boolean isOpen()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = virtualinvoke r1.<java.lang.module.ModuleDescriptor: boolean isAutomatic()>();
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        return 1;
+
+     label2:
+        $r2 = virtualinvoke r1.<java.lang.module.ModuleDescriptor: java.util.Set opens()>();
+
+        r3 = interfaceinvoke $r2.<java.util.Set: java.util.Iterator iterator()>();
+
+     label3:
+        $z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label5;
+
+        $r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+
+        r5 = (java.lang.module.ModuleDescriptor$Opens) $r4;
+
+        r6 = virtualinvoke r5.<java.lang.module.ModuleDescriptor$Opens: java.lang.String source()>();
+
+        $z3 = virtualinvoke r5.<java.lang.module.ModuleDescriptor$Opens: boolean isQualified()>();
+
+        if $z3 != 0 goto label4;
+
+        $z4 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>(r7);
+
+        if $z4 == 0 goto label4;
+
+        return 1;
+
+     label4:
+        goto label3;
+
+     label5:
+        return 0;
+    }
+
+    public java.lang.module.ModuleReader lambda$moduleReaderFor$7(java.lang.module.ModuleReference, java.lang.module.ModuleReference)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.module.ModuleReference r1, r3;
+        java.lang.module.ModuleReader $r2;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r1 := @parameter0: java.lang.module.ModuleReference;
+
+        r3 := @parameter1: java.lang.module.ModuleReference;
+
+        $r2 = virtualinvoke r0.<jdk.internal.loader.Loader: java.lang.module.ModuleReader createModuleReader(java.lang.module.ModuleReference)>(r1);
+
+        return $r2;
+    }
+
+    public java.lang.Class lambda$findClassInModuleOrNull$6(java.lang.String, jdk.internal.loader.Loader$LoadedModule)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.String r1;
+        jdk.internal.loader.Loader$LoadedModule r2;
+        java.lang.Class $r3;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: jdk.internal.loader.Loader$LoadedModule;
+
+        $r3 = virtualinvoke r0.<jdk.internal.loader.Loader: java.lang.Class defineClass(java.lang.String,jdk.internal.loader.Loader$LoadedModule)>(r1, r2);
+
+        return $r3;
+    }
+
+    public static boolean lambda$findModuleLayer$5(java.lang.module.Configuration, java.lang.ModuleLayer)
+    {
+        java.lang.ModuleLayer r0;
+        java.lang.module.Configuration $r1, r2;
+        boolean $z0;
+
+        r2 := @parameter0: java.lang.module.Configuration;
+
+        r0 := @parameter1: java.lang.ModuleLayer;
+
+        $r1 = virtualinvoke r0.<java.lang.ModuleLayer: java.lang.module.Configuration configuration()>();
+
+        if $r1 != r2 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public void lambda$initRemotePackageMap$4(java.lang.ClassLoader, java.lang.String)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.String r1;
+        java.lang.ClassLoader r2;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r2 := @parameter0: java.lang.ClassLoader;
+
+        r1 := @parameter1: java.lang.String;
+
+        virtualinvoke r0.<jdk.internal.loader.Loader: void remotePackage(java.lang.String,java.lang.ClassLoader)>(r1, r2);
+
+        return;
+    }
+
+    public static java.lang.InternalError lambda$initRemotePackageMap$3()
+    {
+        java.lang.InternalError $r0;
+
+        $r0 = new java.lang.InternalError;
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>(java.lang.String)>("Unable to find parent layer");
+
+        return $r0;
+    }
+
+    public java.util.Optional lambda$initRemotePackageMap$2(java.lang.module.ResolvedModule, java.lang.ModuleLayer)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.ModuleLayer r1;
+        java.lang.module.ResolvedModule r2;
+        java.lang.module.Configuration $r3;
+        java.util.Optional $r4;
+
+        r0 := @this: jdk.internal.loader.Loader;
+
+        r2 := @parameter0: java.lang.module.ResolvedModule;
+
+        r1 := @parameter1: java.lang.ModuleLayer;
+
+        $r3 = virtualinvoke r2.<java.lang.module.ResolvedModule: java.lang.module.Configuration configuration()>();
+
+        $r4 = virtualinvoke r0.<jdk.internal.loader.Loader: java.util.Optional findModuleLayer(java.lang.ModuleLayer,java.lang.module.Configuration)>(r1, $r3);
+
+        return $r4;
+    }
+
+    public static void lambda$new$1(java.lang.module.ModuleReference, java.util.Map, java.lang.String)
+    {
+        jdk.internal.loader.Loader$LoadedModule $r0;
+        java.lang.module.ModuleReference r1;
+        java.util.Map r3;
+        java.lang.String r4, $r11;
+        java.lang.Object $r5;
+        java.lang.IllegalArgumentException $r6;
+        java.lang.StringBuilder $r7, $r8, $r9, $r10;
+
+        r1 := @parameter0: java.lang.module.ModuleReference;
+
+        r3 := @parameter1: java.util.Map;
+
+        r4 := @parameter2: java.lang.String;
+
+        $r0 = new jdk.internal.loader.Loader$LoadedModule;
+
+        specialinvoke $r0.<jdk.internal.loader.Loader$LoadedModule: void <init>(java.lang.module.ModuleReference)>(r1);
+
+        $r5 = interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r4, $r0);
+
+        if $r5 == null goto label1;
+
+        $r6 = new java.lang.IllegalArgumentException;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Package ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r4);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in more than one module");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r6.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r11);
+
+        throw $r6;
+
+     label1:
+        return;
+    }
+
+    public static void lambda$new$0(java.util.Map, jdk.internal.loader.Loader$LoadedModule, java.lang.String)
+    {
+        java.util.Map r0;
+        java.lang.String r1;
+        jdk.internal.loader.Loader$LoadedModule r2;
+
+        r0 := @parameter0: java.util.Map;
+
+        r2 := @parameter1: jdk.internal.loader.Loader$LoadedModule;
+
+        r1 := @parameter2: java.lang.String;
+
+        interfaceinvoke r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r1, r2);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z2;
+
+        $r0 = class "Ljdk/internal/loader/Loader;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        <jdk.internal.loader.Loader: boolean $assertionsDisabled> = $z2;
+
+        staticinvoke <java.lang.ClassLoader: boolean registerAsParallelCapable()>();
+
+        return;
+    }
+}

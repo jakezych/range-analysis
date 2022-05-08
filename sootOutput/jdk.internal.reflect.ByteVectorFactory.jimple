@@ -1,0 +1,39 @@
+class jdk.internal.reflect.ByteVectorFactory extends java.lang.Object
+{
+
+    void <init>()
+    {
+        jdk.internal.reflect.ByteVectorFactory r0;
+
+        r0 := @this: jdk.internal.reflect.ByteVectorFactory;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static jdk.internal.reflect.ByteVector create()
+    {
+        jdk.internal.reflect.ByteVectorImpl $r0;
+
+        $r0 = new jdk.internal.reflect.ByteVectorImpl;
+
+        specialinvoke $r0.<jdk.internal.reflect.ByteVectorImpl: void <init>()>();
+
+        return $r0;
+    }
+
+    static jdk.internal.reflect.ByteVector create(int)
+    {
+        jdk.internal.reflect.ByteVectorImpl $r0;
+        int i0;
+
+        i0 := @parameter0: int;
+
+        $r0 = new jdk.internal.reflect.ByteVectorImpl;
+
+        specialinvoke $r0.<jdk.internal.reflect.ByteVectorImpl: void <init>(int)>(i0);
+
+        return $r0;
+    }
+}

@@ -1,0 +1,43 @@
+public final class jdk.internal.module.ModulePatcher$lambda_new_0__42 extends java.lang.Object implements java.util.function.Function
+{
+
+    public static java.util.function.Function bootstrap$()
+    {
+        jdk.internal.module.ModulePatcher$lambda_new_0__42 $r0;
+
+        $r0 = new jdk.internal.module.ModulePatcher$lambda_new_0__42;
+
+        specialinvoke $r0.<jdk.internal.module.ModulePatcher$lambda_new_0__42: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.module.ModulePatcher$lambda_new_0__42 $r0;
+
+        $r0 := @this: jdk.internal.module.ModulePatcher$lambda_new_0__42;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.module.ModulePatcher$lambda_new_0__42 $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2;
+        java.nio.file.Path $r3;
+
+        $r0 := @this: jdk.internal.module.ModulePatcher$lambda_new_0__42;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) $r1;
+
+        $r3 = staticinvoke <jdk.internal.module.ModulePatcher: java.nio.file.Path lambda$new$0(java.lang.String)>($r2);
+
+        return $r3;
+    }
+}

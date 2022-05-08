@@ -1,0 +1,7 @@
+public interface  jdk.internal.jimage.decompressor.ResourceDecompressor extends java.lang.Object
+{
+
+    public abstract java.lang.String getName();
+
+    public abstract byte[] decompress(jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider, byte[], int, long) throws java.lang.Exception;
+}

@@ -1,0 +1,75 @@
+class jdk.internal.loader.BootLoader$PackageHelper$1 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    final java.lang.String val$location;
+
+    void <init>(java.lang.String)
+    {
+        jdk.internal.loader.BootLoader$PackageHelper$1 r0;
+        java.lang.String r1;
+
+        r0 := @this: jdk.internal.loader.BootLoader$PackageHelper$1;
+
+        r1 := @parameter0: java.lang.String;
+
+        r0.<jdk.internal.loader.BootLoader$PackageHelper$1: java.lang.String val$location> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.net.URL run()
+    {
+        jdk.internal.loader.BootLoader$PackageHelper$1 r0;
+        java.lang.String[] $r1;
+        java.lang.String $r2;
+        java.nio.file.Path r3;
+        java.nio.file.LinkOption[] $r4;
+        boolean $z0;
+        java.net.URI $r5;
+        java.net.URL $r6;
+        java.net.MalformedURLException $r7;
+
+        r0 := @this: jdk.internal.loader.BootLoader$PackageHelper$1;
+
+        $r2 = r0.<jdk.internal.loader.BootLoader$PackageHelper$1: java.lang.String val$location>;
+
+        $r1 = newarray (java.lang.String)[0];
+
+        r3 = staticinvoke <java.nio.file.Path: java.nio.file.Path of(java.lang.String,java.lang.String[])>($r2, $r1);
+
+        $r4 = newarray (java.nio.file.LinkOption)[0];
+
+        $z0 = staticinvoke <java.nio.file.Files: boolean isRegularFile(java.nio.file.Path,java.nio.file.LinkOption[])>(r3, $r4);
+
+        if $z0 == 0 goto label4;
+
+     label1:
+        $r5 = interfaceinvoke r3.<java.nio.file.Path: java.net.URI toUri()>();
+
+        $r6 = virtualinvoke $r5.<java.net.URI: java.net.URL toURL()>();
+
+     label2:
+        return $r6;
+
+     label3:
+        $r7 := @caughtexception;
+
+     label4:
+        return null;
+
+        catch java.net.MalformedURLException from label1 to label2 with label3;
+    }
+
+    public volatile java.lang.Object run()
+    {
+        jdk.internal.loader.BootLoader$PackageHelper$1 r0;
+        java.net.URL $r1;
+
+        r0 := @this: jdk.internal.loader.BootLoader$PackageHelper$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.loader.BootLoader$PackageHelper$1: java.net.URL run()>();
+
+        return $r1;
+    }
+}

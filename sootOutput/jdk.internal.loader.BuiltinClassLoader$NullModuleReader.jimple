@@ -1,0 +1,55 @@
+class jdk.internal.loader.BuiltinClassLoader$NullModuleReader extends java.lang.Object implements java.lang.module.ModuleReader
+{
+
+    private void <init>()
+    {
+        jdk.internal.loader.BuiltinClassLoader$NullModuleReader r0;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$NullModuleReader;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.util.Optional find(java.lang.String)
+    {
+        java.util.Optional $r0;
+        jdk.internal.loader.BuiltinClassLoader$NullModuleReader r1;
+        java.lang.String r2;
+
+        r1 := @this: jdk.internal.loader.BuiltinClassLoader$NullModuleReader;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.util.Optional: java.util.Optional empty()>();
+
+        return $r0;
+    }
+
+    public java.util.stream.Stream list()
+    {
+        java.util.stream.Stream $r0;
+        jdk.internal.loader.BuiltinClassLoader$NullModuleReader r1;
+
+        r1 := @this: jdk.internal.loader.BuiltinClassLoader$NullModuleReader;
+
+        $r0 = staticinvoke <java.util.stream.Stream: java.util.stream.Stream empty()>();
+
+        return $r0;
+    }
+
+    public void close()
+    {
+        java.lang.InternalError $r0;
+        jdk.internal.loader.BuiltinClassLoader$NullModuleReader r1;
+
+        r1 := @this: jdk.internal.loader.BuiltinClassLoader$NullModuleReader;
+
+        $r0 = new java.lang.InternalError;
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>(java.lang.String)>("Should not get here");
+
+        throw $r0;
+    }
+}

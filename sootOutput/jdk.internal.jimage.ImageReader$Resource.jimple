@@ -1,0 +1,138 @@
+class jdk.internal.jimage.ImageReader$Resource extends jdk.internal.jimage.ImageReader$Node
+{
+    private final jdk.internal.jimage.ImageLocation loc;
+
+    private void <init>(jdk.internal.jimage.ImageLocation, java.nio.file.attribute.BasicFileAttributes)
+    {
+        jdk.internal.jimage.ImageReader$Resource r0;
+        jdk.internal.jimage.ImageLocation r1;
+        java.lang.String $r2;
+        java.nio.file.attribute.BasicFileAttributes r3;
+
+        r0 := @this: jdk.internal.jimage.ImageReader$Resource;
+
+        r1 := @parameter0: jdk.internal.jimage.ImageLocation;
+
+        r3 := @parameter1: java.nio.file.attribute.BasicFileAttributes;
+
+        $r2 = virtualinvoke r1.<jdk.internal.jimage.ImageLocation: java.lang.String getFullName(boolean)>(1);
+
+        specialinvoke r0.<jdk.internal.jimage.ImageReader$Node: void <init>(java.lang.String,java.nio.file.attribute.BasicFileAttributes)>($r2, r3);
+
+        r0.<jdk.internal.jimage.ImageReader$Resource: jdk.internal.jimage.ImageLocation loc> = r1;
+
+        return;
+    }
+
+    static jdk.internal.jimage.ImageReader$Resource create(jdk.internal.jimage.ImageReader$Directory, jdk.internal.jimage.ImageLocation, java.nio.file.attribute.BasicFileAttributes)
+    {
+        jdk.internal.jimage.ImageReader$Resource $r0;
+        jdk.internal.jimage.ImageLocation r1;
+        java.nio.file.attribute.BasicFileAttributes r2;
+        jdk.internal.jimage.ImageReader$Directory r4;
+
+        r4 := @parameter0: jdk.internal.jimage.ImageReader$Directory;
+
+        r1 := @parameter1: jdk.internal.jimage.ImageLocation;
+
+        r2 := @parameter2: java.nio.file.attribute.BasicFileAttributes;
+
+        $r0 = new jdk.internal.jimage.ImageReader$Resource;
+
+        specialinvoke $r0.<jdk.internal.jimage.ImageReader$Resource: void <init>(jdk.internal.jimage.ImageLocation,java.nio.file.attribute.BasicFileAttributes)>(r1, r2);
+
+        virtualinvoke r4.<jdk.internal.jimage.ImageReader$Directory: void addChild(jdk.internal.jimage.ImageReader$Node)>($r0);
+
+        return $r0;
+    }
+
+    public boolean isCompleted()
+    {
+        jdk.internal.jimage.ImageReader$Resource r0;
+
+        r0 := @this: jdk.internal.jimage.ImageReader$Resource;
+
+        return 1;
+    }
+
+    public boolean isResource()
+    {
+        jdk.internal.jimage.ImageReader$Resource r0;
+
+        r0 := @this: jdk.internal.jimage.ImageReader$Resource;
+
+        return 1;
+    }
+
+    public jdk.internal.jimage.ImageLocation getLocation()
+    {
+        jdk.internal.jimage.ImageReader$Resource r0;
+        jdk.internal.jimage.ImageLocation $r1;
+
+        r0 := @this: jdk.internal.jimage.ImageReader$Resource;
+
+        $r1 = r0.<jdk.internal.jimage.ImageReader$Resource: jdk.internal.jimage.ImageLocation loc>;
+
+        return $r1;
+    }
+
+    public long size()
+    {
+        jdk.internal.jimage.ImageReader$Resource r0;
+        jdk.internal.jimage.ImageLocation $r1;
+        long $l0;
+
+        r0 := @this: jdk.internal.jimage.ImageReader$Resource;
+
+        $r1 = r0.<jdk.internal.jimage.ImageReader$Resource: jdk.internal.jimage.ImageLocation loc>;
+
+        $l0 = virtualinvoke $r1.<jdk.internal.jimage.ImageLocation: long getUncompressedSize()>();
+
+        return $l0;
+    }
+
+    public long compressedSize()
+    {
+        jdk.internal.jimage.ImageReader$Resource r0;
+        jdk.internal.jimage.ImageLocation $r1;
+        long $l0;
+
+        r0 := @this: jdk.internal.jimage.ImageReader$Resource;
+
+        $r1 = r0.<jdk.internal.jimage.ImageReader$Resource: jdk.internal.jimage.ImageLocation loc>;
+
+        $l0 = virtualinvoke $r1.<jdk.internal.jimage.ImageLocation: long getCompressedSize()>();
+
+        return $l0;
+    }
+
+    public java.lang.String extension()
+    {
+        jdk.internal.jimage.ImageReader$Resource r0;
+        jdk.internal.jimage.ImageLocation $r1;
+        java.lang.String $r2;
+
+        r0 := @this: jdk.internal.jimage.ImageReader$Resource;
+
+        $r1 = r0.<jdk.internal.jimage.ImageReader$Resource: jdk.internal.jimage.ImageLocation loc>;
+
+        $r2 = virtualinvoke $r1.<jdk.internal.jimage.ImageLocation: java.lang.String getExtension()>();
+
+        return $r2;
+    }
+
+    public long contentOffset()
+    {
+        jdk.internal.jimage.ImageReader$Resource r0;
+        jdk.internal.jimage.ImageLocation $r1;
+        long $l0;
+
+        r0 := @this: jdk.internal.jimage.ImageReader$Resource;
+
+        $r1 = r0.<jdk.internal.jimage.ImageReader$Resource: jdk.internal.jimage.ImageLocation loc>;
+
+        $l0 = virtualinvoke $r1.<jdk.internal.jimage.ImageLocation: long getContentOffset()>();
+
+        return $l0;
+    }
+}

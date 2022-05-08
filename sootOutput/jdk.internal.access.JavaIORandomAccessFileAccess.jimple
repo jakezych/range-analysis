@@ -1,0 +1,5 @@
+public interface  jdk.internal.access.JavaIORandomAccessFileAccess extends java.lang.Object
+{
+
+    public abstract java.io.RandomAccessFile openAndDelete(java.io.File, java.lang.String) throws java.io.IOException;
+}

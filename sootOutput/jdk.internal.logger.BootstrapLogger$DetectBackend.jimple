@@ -1,0 +1,34 @@
+final class jdk.internal.logger.BootstrapLogger$DetectBackend extends java.lang.Object
+{
+    static final jdk.internal.logger.BootstrapLogger$LoggingBackend detectedBackend;
+
+    private void <init>()
+    {
+        jdk.internal.logger.BootstrapLogger$DetectBackend r0;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$DetectBackend;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.logger.BootstrapLogger$DetectBackend$1 $r0;
+        java.lang.Object $r1;
+        jdk.internal.logger.BootstrapLogger$LoggingBackend $r2;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$DetectBackend$1;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$DetectBackend$1: void <init>()>();
+
+        $r1 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r0);
+
+        $r2 = (jdk.internal.logger.BootstrapLogger$LoggingBackend) $r1;
+
+        <jdk.internal.logger.BootstrapLogger$DetectBackend: jdk.internal.logger.BootstrapLogger$LoggingBackend detectedBackend> = $r2;
+
+        return;
+    }
+}

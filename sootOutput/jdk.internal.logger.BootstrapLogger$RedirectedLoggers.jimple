@@ -1,0 +1,238 @@
+final class jdk.internal.logger.BootstrapLogger$RedirectedLoggers extends java.lang.Object implements java.util.function.Function
+{
+    final java.util.Map redirectedLoggers;
+    boolean cleared;
+    static final jdk.internal.logger.BootstrapLogger$RedirectedLoggers INSTANCE;
+
+    void <init>()
+    {
+        jdk.internal.logger.BootstrapLogger$RedirectedLoggers r0;
+        java.util.HashMap $r1;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$RedirectedLoggers;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: java.util.Map redirectedLoggers> = $r1;
+
+        return;
+    }
+
+    public jdk.internal.logger.SurrogateLogger apply(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)
+    {
+        jdk.internal.logger.BootstrapLogger$RedirectedLoggers r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor r1;
+        java.lang.String $r2;
+        jdk.internal.logger.SurrogateLogger $r3;
+        java.lang.IllegalStateException $r4;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$RedirectedLoggers;
+
+        r1 := @parameter0: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor;
+
+        $z0 = r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: boolean cleared>;
+
+        if $z0 == 0 goto label1;
+
+        $r4 = new java.lang.IllegalStateException;
+
+        specialinvoke $r4.<java.lang.IllegalStateException: void <init>(java.lang.String)>("LoggerFinder already initialized");
+
+        throw $r4;
+
+     label1:
+        $r2 = virtualinvoke r1.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: java.lang.String getLoggerName()>();
+
+        $r3 = staticinvoke <jdk.internal.logger.SurrogateLogger: jdk.internal.logger.SurrogateLogger makeSurrogateLogger(java.lang.String)>($r2);
+
+        return $r3;
+    }
+
+    jdk.internal.logger.SurrogateLogger get(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)
+    {
+        jdk.internal.logger.BootstrapLogger$RedirectedLoggers r0;
+        boolean $z0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor r1;
+        java.util.Map $r2;
+        java.lang.Object $r3;
+        jdk.internal.logger.SurrogateLogger $r4;
+        java.lang.IllegalStateException $r5;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$RedirectedLoggers;
+
+        r1 := @parameter0: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor;
+
+        $z0 = r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: boolean cleared>;
+
+        if $z0 == 0 goto label1;
+
+        $r5 = new java.lang.IllegalStateException;
+
+        specialinvoke $r5.<java.lang.IllegalStateException: void <init>(java.lang.String)>("LoggerFinder already initialized");
+
+        throw $r5;
+
+     label1:
+        $r2 = r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: java.util.Map redirectedLoggers>;
+
+        $r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>(r1, r0);
+
+        $r4 = (jdk.internal.logger.SurrogateLogger) $r3;
+
+        return $r4;
+    }
+
+    java.util.Map drainLoggersMap()
+    {
+        jdk.internal.logger.BootstrapLogger$RedirectedLoggers r0;
+        java.util.Map $r1, $r3, $r5;
+        boolean $z0, $z1;
+        java.util.HashMap $r2;
+        java.lang.IllegalStateException $r6;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$RedirectedLoggers;
+
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: java.util.Map redirectedLoggers>;
+
+        $z0 = interfaceinvoke $r1.<java.util.Map: boolean isEmpty()>();
+
+        if $z0 == 0 goto label1;
+
+        return null;
+
+     label1:
+        $z1 = r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: boolean cleared>;
+
+        if $z1 == 0 goto label2;
+
+        $r6 = new java.lang.IllegalStateException;
+
+        specialinvoke $r6.<java.lang.IllegalStateException: void <init>(java.lang.String)>("LoggerFinder already initialized");
+
+        throw $r6;
+
+     label2:
+        $r2 = new java.util.HashMap;
+
+        $r3 = r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: java.util.Map redirectedLoggers>;
+
+        specialinvoke $r2.<java.util.HashMap: void <init>(java.util.Map)>($r3);
+
+        $r5 = r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: java.util.Map redirectedLoggers>;
+
+        interfaceinvoke $r5.<java.util.Map: void clear()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: boolean cleared> = 1;
+
+        return $r2;
+    }
+
+    static void replaceSurrogateLoggers(java.util.Map)
+    {
+        jdk.internal.logger.BootstrapLogger$LoggingBackend r0, $r1, $r10;
+        boolean z0, $z1, $z2, $z3;
+        java.util.Map r2;
+        java.util.Iterator r3;
+        java.lang.Object $r4, $r6, $r8;
+        java.util.Map$Entry r5;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r7;
+        jdk.internal.logger.SimpleConsoleLogger $r9;
+        java.util.Set $r11;
+
+        r2 := @parameter0: java.util.Map;
+
+        r0 = <jdk.internal.logger.BootstrapLogger$DetectBackend: jdk.internal.logger.BootstrapLogger$LoggingBackend detectedBackend>;
+
+        $r1 = <jdk.internal.logger.BootstrapLogger$LoggingBackend: jdk.internal.logger.BootstrapLogger$LoggingBackend JUL_DEFAULT>;
+
+        if r0 == $r1 goto label1;
+
+        $r10 = <jdk.internal.logger.BootstrapLogger$LoggingBackend: jdk.internal.logger.BootstrapLogger$LoggingBackend JUL_WITH_CONFIG>;
+
+        if r0 == $r10 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        z0 = $z1;
+
+        $r11 = interfaceinvoke r2.<java.util.Map: java.util.Set entrySet()>();
+
+        r3 = interfaceinvoke $r11.<java.util.Set: java.util.Iterator iterator()>();
+
+     label3:
+        $z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label6;
+
+        $r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+
+        r5 = (java.util.Map$Entry) $r4;
+
+        $r6 = interfaceinvoke r5.<java.util.Map$Entry: java.lang.Object getKey()>();
+
+        $r7 = (jdk.internal.logger.LazyLoggers$LazyLoggerAccessor) $r6;
+
+        $r8 = interfaceinvoke r5.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        $r9 = (jdk.internal.logger.SimpleConsoleLogger) $r8;
+
+        if z0 != 0 goto label4;
+
+        $z3 = 1;
+
+        goto label5;
+
+     label4:
+        $z3 = 0;
+
+     label5:
+        virtualinvoke $r7.<jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: void release(jdk.internal.logger.SimpleConsoleLogger,boolean)>($r9, $z3);
+
+        goto label3;
+
+     label6:
+        return;
+    }
+
+    public volatile java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.logger.BootstrapLogger$RedirectedLoggers r0;
+        java.lang.Object r1;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r2;
+        jdk.internal.logger.SurrogateLogger $r3;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$RedirectedLoggers;
+
+        r1 := @parameter0: java.lang.Object;
+
+        $r2 = (jdk.internal.logger.LazyLoggers$LazyLoggerAccessor) r1;
+
+        $r3 = virtualinvoke r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: jdk.internal.logger.SurrogateLogger apply(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)>($r2);
+
+        return $r3;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.logger.BootstrapLogger$RedirectedLoggers $r0;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$RedirectedLoggers;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$RedirectedLoggers: void <init>()>();
+
+        <jdk.internal.logger.BootstrapLogger$RedirectedLoggers: jdk.internal.logger.BootstrapLogger$RedirectedLoggers INSTANCE> = $r0;
+
+        return;
+    }
+}

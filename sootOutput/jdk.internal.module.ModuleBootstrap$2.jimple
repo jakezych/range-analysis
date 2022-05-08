@@ -1,0 +1,100 @@
+class jdk.internal.module.ModuleBootstrap$2 extends java.lang.Object implements java.util.Iterator
+{
+    final java.util.Iterator val$iterator1;
+    final java.util.Iterator val$iterator2;
+
+    void <init>(java.util.Iterator, java.util.Iterator)
+    {
+        jdk.internal.module.ModuleBootstrap$2 r0;
+        java.util.Iterator r1, r2;
+
+        r0 := @this: jdk.internal.module.ModuleBootstrap$2;
+
+        r1 := @parameter0: java.util.Iterator;
+
+        r2 := @parameter1: java.util.Iterator;
+
+        r0.<jdk.internal.module.ModuleBootstrap$2: java.util.Iterator val$iterator1> = r1;
+
+        r0.<jdk.internal.module.ModuleBootstrap$2: java.util.Iterator val$iterator2> = r2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public boolean hasNext()
+    {
+        jdk.internal.module.ModuleBootstrap$2 r0;
+        java.util.Iterator $r1, $r2;
+        boolean $z0, $z1, $z2;
+
+        r0 := @this: jdk.internal.module.ModuleBootstrap$2;
+
+        $r1 = r0.<jdk.internal.module.ModuleBootstrap$2: java.util.Iterator val$iterator1>;
+
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        $r2 = r0.<jdk.internal.module.ModuleBootstrap$2: java.util.Iterator val$iterator2>;
+
+        $z1 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    public java.lang.Object next()
+    {
+        jdk.internal.module.ModuleBootstrap$2 r0;
+        java.util.Iterator $r1, $r2, $r4, $r6;
+        boolean $z0, $z1;
+        java.util.NoSuchElementException $r3;
+        java.lang.Object $r5, $r7;
+
+        r0 := @this: jdk.internal.module.ModuleBootstrap$2;
+
+        $r1 = r0.<jdk.internal.module.ModuleBootstrap$2: java.util.Iterator val$iterator1>;
+
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label1;
+
+        $r6 = r0.<jdk.internal.module.ModuleBootstrap$2: java.util.Iterator val$iterator1>;
+
+        $r7 = interfaceinvoke $r6.<java.util.Iterator: java.lang.Object next()>();
+
+        return $r7;
+
+     label1:
+        $r2 = r0.<jdk.internal.module.ModuleBootstrap$2: java.util.Iterator val$iterator2>;
+
+        $z1 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label2;
+
+        $r4 = r0.<jdk.internal.module.ModuleBootstrap$2: java.util.Iterator val$iterator2>;
+
+        $r5 = interfaceinvoke $r4.<java.util.Iterator: java.lang.Object next()>();
+
+        return $r5;
+
+     label2:
+        $r3 = new java.util.NoSuchElementException;
+
+        specialinvoke $r3.<java.util.NoSuchElementException: void <init>()>();
+
+        throw $r3;
+    }
+}

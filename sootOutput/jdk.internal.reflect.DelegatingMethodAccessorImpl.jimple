@@ -1,0 +1,54 @@
+class jdk.internal.reflect.DelegatingMethodAccessorImpl extends jdk.internal.reflect.MethodAccessorImpl
+{
+    private jdk.internal.reflect.MethodAccessorImpl delegate;
+
+    void <init>(jdk.internal.reflect.MethodAccessorImpl)
+    {
+        jdk.internal.reflect.DelegatingMethodAccessorImpl r0;
+        jdk.internal.reflect.MethodAccessorImpl r1;
+
+        r0 := @this: jdk.internal.reflect.DelegatingMethodAccessorImpl;
+
+        r1 := @parameter0: jdk.internal.reflect.MethodAccessorImpl;
+
+        specialinvoke r0.<jdk.internal.reflect.MethodAccessorImpl: void <init>()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.DelegatingMethodAccessorImpl: void setDelegate(jdk.internal.reflect.MethodAccessorImpl)>(r1);
+
+        return;
+    }
+
+    public java.lang.Object invoke(java.lang.Object, java.lang.Object[]) throws java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException
+    {
+        jdk.internal.reflect.DelegatingMethodAccessorImpl r0;
+        java.lang.Object r1, $r4;
+        java.lang.Object[] r2;
+        jdk.internal.reflect.MethodAccessorImpl $r3;
+
+        r0 := @this: jdk.internal.reflect.DelegatingMethodAccessorImpl;
+
+        r1 := @parameter0: java.lang.Object;
+
+        r2 := @parameter1: java.lang.Object[];
+
+        $r3 = r0.<jdk.internal.reflect.DelegatingMethodAccessorImpl: jdk.internal.reflect.MethodAccessorImpl delegate>;
+
+        $r4 = virtualinvoke $r3.<jdk.internal.reflect.MethodAccessorImpl: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r1, r2);
+
+        return $r4;
+    }
+
+    void setDelegate(jdk.internal.reflect.MethodAccessorImpl)
+    {
+        jdk.internal.reflect.DelegatingMethodAccessorImpl r0;
+        jdk.internal.reflect.MethodAccessorImpl r1;
+
+        r0 := @this: jdk.internal.reflect.DelegatingMethodAccessorImpl;
+
+        r1 := @parameter0: jdk.internal.reflect.MethodAccessorImpl;
+
+        r0.<jdk.internal.reflect.DelegatingMethodAccessorImpl: jdk.internal.reflect.MethodAccessorImpl delegate> = r1;
+
+        return;
+    }
+}

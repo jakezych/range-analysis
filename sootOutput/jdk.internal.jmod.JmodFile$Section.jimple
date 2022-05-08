@@ -1,0 +1,156 @@
+public final enum class jdk.internal.jmod.JmodFile$Section extends java.lang.Enum
+{
+    public static final enum jdk.internal.jmod.JmodFile$Section CLASSES;
+    public static final enum jdk.internal.jmod.JmodFile$Section CONFIG;
+    public static final enum jdk.internal.jmod.JmodFile$Section HEADER_FILES;
+    public static final enum jdk.internal.jmod.JmodFile$Section LEGAL_NOTICES;
+    public static final enum jdk.internal.jmod.JmodFile$Section MAN_PAGES;
+    public static final enum jdk.internal.jmod.JmodFile$Section NATIVE_LIBS;
+    public static final enum jdk.internal.jmod.JmodFile$Section NATIVE_CMDS;
+    private final java.lang.String jmodDir;
+    private static final jdk.internal.jmod.JmodFile$Section[] $VALUES;
+
+    public static jdk.internal.jmod.JmodFile$Section[] values()
+    {
+        jdk.internal.jmod.JmodFile$Section[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (jdk.internal.jmod.JmodFile$Section[]) $r1;
+
+        return $r2;
+    }
+
+    public static jdk.internal.jmod.JmodFile$Section valueOf(java.lang.String)
+    {
+        java.lang.String r0;
+        java.lang.Enum $r1;
+        jdk.internal.jmod.JmodFile$Section $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Ljdk/internal/jmod/JmodFile$Section;", r0);
+
+        $r2 = (jdk.internal.jmod.JmodFile$Section) $r1;
+
+        return $r2;
+    }
+
+    private void <init>(java.lang.String, int, java.lang.String)
+    {
+        jdk.internal.jmod.JmodFile$Section r0;
+        java.lang.String r1, r2;
+        int i0;
+
+        r0 := @this: jdk.internal.jmod.JmodFile$Section;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        r0.<jdk.internal.jmod.JmodFile$Section: java.lang.String jmodDir> = r2;
+
+        return;
+    }
+
+    public java.lang.String jmodDir()
+    {
+        jdk.internal.jmod.JmodFile$Section r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.jmod.JmodFile$Section;
+
+        $r1 = r0.<jdk.internal.jmod.JmodFile$Section: java.lang.String jmodDir>;
+
+        return $r1;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.jmod.JmodFile$Section $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r8, $r9, $r10, $r11, $r12, $r13, $r14;
+        jdk.internal.jmod.JmodFile$Section[] $r7;
+
+        $r0 = new jdk.internal.jmod.JmodFile$Section;
+
+        specialinvoke $r0.<jdk.internal.jmod.JmodFile$Section: void <init>(java.lang.String,int,java.lang.String)>("CLASSES", 0, "classes");
+
+        <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section CLASSES> = $r0;
+
+        $r1 = new jdk.internal.jmod.JmodFile$Section;
+
+        specialinvoke $r1.<jdk.internal.jmod.JmodFile$Section: void <init>(java.lang.String,int,java.lang.String)>("CONFIG", 1, "conf");
+
+        <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section CONFIG> = $r1;
+
+        $r2 = new jdk.internal.jmod.JmodFile$Section;
+
+        specialinvoke $r2.<jdk.internal.jmod.JmodFile$Section: void <init>(java.lang.String,int,java.lang.String)>("HEADER_FILES", 2, "include");
+
+        <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section HEADER_FILES> = $r2;
+
+        $r3 = new jdk.internal.jmod.JmodFile$Section;
+
+        specialinvoke $r3.<jdk.internal.jmod.JmodFile$Section: void <init>(java.lang.String,int,java.lang.String)>("LEGAL_NOTICES", 3, "legal");
+
+        <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section LEGAL_NOTICES> = $r3;
+
+        $r4 = new jdk.internal.jmod.JmodFile$Section;
+
+        specialinvoke $r4.<jdk.internal.jmod.JmodFile$Section: void <init>(java.lang.String,int,java.lang.String)>("MAN_PAGES", 4, "man");
+
+        <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section MAN_PAGES> = $r4;
+
+        $r5 = new jdk.internal.jmod.JmodFile$Section;
+
+        specialinvoke $r5.<jdk.internal.jmod.JmodFile$Section: void <init>(java.lang.String,int,java.lang.String)>("NATIVE_LIBS", 5, "lib");
+
+        <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section NATIVE_LIBS> = $r5;
+
+        $r6 = new jdk.internal.jmod.JmodFile$Section;
+
+        specialinvoke $r6.<jdk.internal.jmod.JmodFile$Section: void <init>(java.lang.String,int,java.lang.String)>("NATIVE_CMDS", 6, "bin");
+
+        <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section NATIVE_CMDS> = $r6;
+
+        $r7 = newarray (jdk.internal.jmod.JmodFile$Section)[7];
+
+        $r8 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section CLASSES>;
+
+        $r7[0] = $r8;
+
+        $r9 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section CONFIG>;
+
+        $r7[1] = $r9;
+
+        $r10 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section HEADER_FILES>;
+
+        $r7[2] = $r10;
+
+        $r11 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section LEGAL_NOTICES>;
+
+        $r7[3] = $r11;
+
+        $r12 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section MAN_PAGES>;
+
+        $r7[4] = $r12;
+
+        $r13 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section NATIVE_LIBS>;
+
+        $r7[5] = $r13;
+
+        $r14 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section NATIVE_CMDS>;
+
+        $r7[6] = $r14;
+
+        <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section[] $VALUES> = $r7;
+
+        return;
+    }
+}

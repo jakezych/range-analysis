@@ -1,0 +1,35 @@
+class jdk.internal.module.SystemModuleFinders$SystemImage extends java.lang.Object
+{
+    static final jdk.internal.jimage.ImageReader READER;
+
+    private void <init>()
+    {
+        jdk.internal.module.SystemModuleFinders$SystemImage r0;
+
+        r0 := @this: jdk.internal.module.SystemModuleFinders$SystemImage;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static jdk.internal.jimage.ImageReader reader()
+    {
+        jdk.internal.jimage.ImageReader $r0;
+
+        $r0 = <jdk.internal.module.SystemModuleFinders$SystemImage: jdk.internal.jimage.ImageReader READER>;
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.jimage.ImageReader $r0;
+
+        $r0 = staticinvoke <jdk.internal.jimage.ImageReaderFactory: jdk.internal.jimage.ImageReader getImageReader()>();
+
+        <jdk.internal.module.SystemModuleFinders$SystemImage: jdk.internal.jimage.ImageReader READER> = $r0;
+
+        return;
+    }
+}

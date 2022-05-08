@@ -3,14 +3,12 @@ package range_analysis;
 import common.ErrorMessage;
 import common.Range;
 import common.Utils;
-import soot.Local;
-import soot.Unit;
-import soot.Value;
-import soot.ValueBox;
+import soot.*;
 import soot.jimple.*;
 import soot.jimple.internal.ImmediateBox;
 import soot.jimple.internal.JAssignStmt;
 import soot.jimple.internal.JIfStmt;
+import soot.jimple.internal.JReturnStmt;
 import soot.jimple.toolkits.annotation.logic.Loop;
 import soot.jimple.toolkits.annotation.logic.LoopFinder;
 import soot.toolkits.graph.ExceptionalUnitGraph;
@@ -245,14 +243,15 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
     }
 
     /**
-     * Handle flowing the state when a variable is being assigned
+     * Handle evaluating an expression given a current state
      *
      * @param inValue  The initial Sigma at this point
-     * @param lhs   The current variable to be updated
-     * @param rhs  The assign expression to evaluate
-     * @param outValue The updated Sigma after the flow function
+     * @param lhs The local variable being assigned to (if it exists)
+     * @param rhs The expression to evaluate the assignment statement for
+     * @param outValue The Sigma after evaluating the unit
+     * @return the lattice value to map the left hand side variable to
      */
-    private void handleAssign(Sigma inValue, Local lhs, Value rhs, Sigma outValue) {
+    private Range evaluateExpression(Sigma inValue, Local lhs, Value rhs, Sigma outValue) {
         if (rhs instanceof AddExpr) {
             AddExpr addStmt = (AddExpr) rhs;
             Value op1 = addStmt.getOp1();
@@ -260,7 +259,9 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             Range v1 = getDomain(inValue, op1);
             Range v2 = getDomain(inValue, op2);
             if (!v1.isBottom() && !v2.isBottom()) {
-                outValue.map.put(lhs, Range.combine(v1, v2, ADD));
+                return Range.combine(v1, v2, ADD);
+            } else {
+                return outValue.map.get(lhs);
             }
         } else if (rhs instanceof SubExpr) {
             SubExpr subStmt = (SubExpr) rhs;
@@ -269,7 +270,9 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             Range v1 = getDomain(inValue, op1);
             Range v2 = getDomain(inValue, op2);
             if (!v1.isBottom() && !v2.isBottom()) {
-                outValue.map.put(lhs, Range.combine(v1, v2, SUB));
+                return Range.combine(v1, v2, SUB);
+            } else {
+                return outValue.map.get(lhs);
             }
         } else if (rhs instanceof MulExpr) {
             MulExpr mulStmt = (MulExpr) rhs;
@@ -278,7 +281,9 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             Range v1 = getDomain(inValue, op1);
             Range v2 = getDomain(inValue, op2);
             if (!v1.isBottom() && !v2.isBottom()) {
-                outValue.map.put(lhs, Range.combine(v1, v2, MUL));
+                return Range.combine(v1, v2, MUL);
+            } else {
+                return outValue.map.get(lhs);
             }
         } else if (rhs instanceof DivExpr) {
             DivExpr divStmt = (DivExpr) rhs;
@@ -287,10 +292,12 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             Range v1 = getDomain(inValue, op1);
             Range v2 = getDomain(inValue, op2);
             if (!v1.isBottom() && !v2.isBottom()) {
-                outValue.map.put(lhs, Range.combine(v1, v2, DIV));
+                return Range.combine(v1, v2, DIV);
+            } else {
+                return outValue.map.get(lhs);
             }
         } else {
-            outValue.map.put(lhs, getDomain(inValue, rhs));
+            return getDomain(inValue, rhs);
         }
     }
 
@@ -303,12 +310,44 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      */
     @Override
     protected void flowThrough(Sigma inValue, Unit unit, Sigma outValue) {
+        System.out.print("unit: " + unit.toString());
+        if (ctx != null) {
+            System.out.println(" context: " + ctx.toString());
+        } else {
+            System.out.println();
+        }
         inValue.copy(outValue);
         if (unit instanceof JAssignStmt) {
-            JAssignStmt stmt = (JAssignStmt) unit;
-            Local lhs = (Local) stmt.getLeftOp();
-            Value rhs = stmt.getRightOp();
-            handleAssign(inValue, lhs, rhs, outValue);
+            JAssignStmt assignStmt = (JAssignStmt) unit;
+            Local lhs = (Local) assignStmt.getLeftOp();
+            Value rhs = assignStmt.getRightOp();
+            // processes an assign statement containing a function call as long as interprocedural analysis is being run
+            if (assignStmt.containsInvokeExpr() && ctx != null) {
+                // get the method being invoked
+                SootMethod method = assignStmt.getInvokeExpr().getMethod();
+                Context calleeCtx = Context.getCtx(method, ctx, unit.getJavaSourceStartLineNumber());
+                List<Value> localValues = assignStmt.getInvokeExpr().getArgs();
+                // map the return value to the lhs side by getting its lattice value
+                for (Map.Entry<Local, Range> entry1 : resultsFor(calleeCtx, inValue, localValues).map.entrySet()) {
+                    if (entry1.getKey().getName().equals("return")) {
+                        outValue.map.put(lhs, entry1.getValue());
+                    }
+                }
+
+                // initialize an entry in callers if this context has not been used before
+                if (!InterRangeAnalysis.callers.containsKey(calleeCtx)) {
+                    InterRangeAnalysis.callers.put(calleeCtx, new HashSet<>());
+                }
+                InterRangeAnalysis.callers.get(calleeCtx).add(ctx);
+            } else {
+                // only assign if the left-hand side is a variable
+                if (!(assignStmt.getLeftOp() instanceof Local)) {
+                    return;
+                }
+                System.out.println("evaluating expression in assign case: " + unit.toString() + " with inValue: " + inValue);
+                Range value = evaluateExpression(inValue, lhs, rhs, outValue);
+                outValue.map.put(lhs, value);
+            }
         } else if (unit instanceof JIfStmt) {
             Stmt conditional = (Stmt) unit;
             JIfStmt ifStmt = (JIfStmt) unit;
@@ -358,10 +397,69 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             // if n is within range, assign it
             if (lRange.getLow() <= intExpr.value && intExpr.value <= lRange.getHigh()) {
                 System.out.println("Assigning " + l + " to " + rhs);
-                handleAssign(inValue, l, rhs, outValue);
+                System.out.println("evaluating expression in loop: " + unit.toString());
+                Range value = evaluateExpression(inValue, l, rhs, outValue);
+                outValue.map.put(l, value);
+            }
+        } else if (unit instanceof JReturnStmt) {
+            JReturnStmt returnStmt = (JReturnStmt) unit;
+            Local result = Jimple.v().newLocal("return", returnStmt.getOp().getType());
+            Value expression = returnStmt.getOp();
+            System.out.println("evaluating expression in return statement: " + unit.toString());
+            Range value = evaluateExpression(inValue, result, expression, outValue);
+            // perform a merge over the return values for the result being returned
+            if (outValue.map.containsKey(result)) {
+                Range previousValue = outValue.map.get(result);
+                outValue.map.put(result, Sigma.join(previousValue, value));
+            } else {
+                outValue.map.put(result, value);
             }
         }
+        if (ctx != null) {
+            InterRangeAnalysis.results.get(ctx).output = outValue;
+        }
         System.out.println("outValue:" + outValue.map.toString());
+    }
+
+    /**
+     * Returns the results when running the analysis given the current context and input state.
+     *
+     * @param ctx context to check the current results for
+     * @param sigma_i input state to check the current results
+     * @param localValues values of the local variables being passed in as parameters to ctx.fn
+     * @return the resulting state given the context and input state
+     */
+    public Sigma resultsFor(Context ctx, Sigma sigma_i, List<Value> localValues) {
+        Map<Context, Summary> results = InterRangeAnalysis.results;
+        Set<Context> analyzing = InterRangeAnalysis.analyzing;
+        if (results.containsKey(ctx)) {
+            if (InterRangeAnalysis.isLessPreciseThan(sigma_i, results.get(ctx).input)) {
+                return results.get(ctx).output;
+            }
+            else {
+                Sigma joined = new Sigma();
+                merge(sigma_i, results.get(ctx).input, joined);
+                results.get(ctx).input = joined;
+            }
+        } else {
+            // create new inValue that contains the parameters of the method with their mappings from the previous analysis
+            Sigma newInput = new Sigma(ctx.fn.getActiveBody().getParameterLocals(), new Range(Integer.MIN_VALUE, Integer.MAX_VALUE));
+            List<Local> locals = ctx.fn.getActiveBody().getParameterLocals();
+            for(int i = 0; i < locals.size(); i++) {
+                Local parameter = (Local) localValues.get(i);
+                Local variable = locals.get(i);
+                // map the local variable to the parameter's domain value
+                newInput.map.put(variable, sigma_i.map.get(parameter));
+            }
+            Sigma newOutput = new Sigma(ctx.fn.getActiveBody().getParameterLocals(), new Range(Integer.MAX_VALUE, Integer.MIN_VALUE));
+            Summary summary = new Summary(newInput, newOutput);
+            results.put(ctx, summary);
+        }
+        if(analyzing.contains(ctx)) {
+            return results.get(ctx).output;
+        } else {
+            return InterRangeAnalysis.analyze(ctx, results.get(ctx).input);
+        }
     }
 
     /**

@@ -1,0 +1,120 @@
+public class jdk.internal.jimage.ImageReaderFactory extends java.lang.Object
+{
+    private static final java.lang.String JAVA_HOME;
+    private static final java.nio.file.Path BOOT_MODULES_JIMAGE;
+    private static final java.util.Map readers;
+    private static java.util.function.Function OPENER;
+
+    private void <init>()
+    {
+        jdk.internal.jimage.ImageReaderFactory r0;
+
+        r0 := @this: jdk.internal.jimage.ImageReaderFactory;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static jdk.internal.jimage.ImageReader get(java.nio.file.Path) throws java.io.IOException
+    {
+        java.nio.file.Path r0;
+        java.util.function.Function $r2;
+        java.util.Map $r3;
+        java.lang.Object $r4;
+        jdk.internal.jimage.ImageReader $r5;
+        java.io.UncheckedIOException $r6;
+        java.io.IOException $r8;
+
+        r0 := @parameter0: java.nio.file.Path;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+     label1:
+        $r3 = <jdk.internal.jimage.ImageReaderFactory: java.util.Map readers>;
+
+        $r2 = <jdk.internal.jimage.ImageReaderFactory: java.util.function.Function OPENER>;
+
+        $r4 = interfaceinvoke $r3.<java.util.Map: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>(r0, $r2);
+
+        $r5 = (jdk.internal.jimage.ImageReader) $r4;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r6 := @caughtexception;
+
+        $r8 = virtualinvoke $r6.<java.io.UncheckedIOException: java.io.IOException getCause()>();
+
+        throw $r8;
+
+        catch java.io.UncheckedIOException from label1 to label2 with label3;
+    }
+
+    public static jdk.internal.jimage.ImageReader getImageReader()
+    {
+        java.nio.file.Path $r0;
+        jdk.internal.jimage.ImageReader $r1;
+        java.io.IOException $r2;
+        java.io.UncheckedIOException $r4;
+
+     label1:
+        $r0 = <jdk.internal.jimage.ImageReaderFactory: java.nio.file.Path BOOT_MODULES_JIMAGE>;
+
+        $r1 = staticinvoke <jdk.internal.jimage.ImageReaderFactory: jdk.internal.jimage.ImageReader get(java.nio.file.Path)>($r0);
+
+     label2:
+        return $r1;
+
+     label3:
+        $r2 := @caughtexception;
+
+        $r4 = new java.io.UncheckedIOException;
+
+        specialinvoke $r4.<java.io.UncheckedIOException: void <init>(java.io.IOException)>($r2);
+
+        throw $r4;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.String $r0, $r2;
+        java.lang.String[] $r1;
+        java.nio.file.Path $r3;
+        java.util.concurrent.ConcurrentHashMap $r4;
+        jdk.internal.jimage.ImageReaderFactory$1 $r5;
+
+        $r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("java.home");
+
+        <jdk.internal.jimage.ImageReaderFactory: java.lang.String JAVA_HOME> = $r0;
+
+        $r2 = <jdk.internal.jimage.ImageReaderFactory: java.lang.String JAVA_HOME>;
+
+        $r1 = newarray (java.lang.String)[2];
+
+        $r1[0] = "lib";
+
+        $r1[1] = "modules";
+
+        $r3 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>($r2, $r1);
+
+        <jdk.internal.jimage.ImageReaderFactory: java.nio.file.Path BOOT_MODULES_JIMAGE> = $r3;
+
+        $r4 = new java.util.concurrent.ConcurrentHashMap;
+
+        specialinvoke $r4.<java.util.concurrent.ConcurrentHashMap: void <init>()>();
+
+        <jdk.internal.jimage.ImageReaderFactory: java.util.Map readers> = $r4;
+
+        $r5 = new jdk.internal.jimage.ImageReaderFactory$1;
+
+        specialinvoke $r5.<jdk.internal.jimage.ImageReaderFactory$1: void <init>()>();
+
+        <jdk.internal.jimage.ImageReaderFactory: java.util.function.Function OPENER> = $r5;
+
+        return;
+    }
+}

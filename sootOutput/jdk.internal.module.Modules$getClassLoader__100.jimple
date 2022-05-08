@@ -1,0 +1,49 @@
+public final class jdk.internal.module.Modules$getClassLoader__100 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    java.lang.Module cap0;
+
+    public static java.security.PrivilegedAction bootstrap$(java.lang.Module)
+    {
+        java.lang.Module $r0;
+        jdk.internal.module.Modules$getClassLoader__100 $r1;
+
+        $r0 := @parameter0: java.lang.Module;
+
+        $r1 = new jdk.internal.module.Modules$getClassLoader__100;
+
+        specialinvoke $r1.<jdk.internal.module.Modules$getClassLoader__100: void <init>(java.lang.Module)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(java.lang.Module)
+    {
+        jdk.internal.module.Modules$getClassLoader__100 $r0;
+        java.lang.Module $r1;
+
+        $r0 := @this: jdk.internal.module.Modules$getClassLoader__100;
+
+        $r1 := @parameter0: java.lang.Module;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.Modules$getClassLoader__100: java.lang.Module cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object run()
+    {
+        jdk.internal.module.Modules$getClassLoader__100 $r0;
+        java.lang.Module $r1;
+        java.lang.ClassLoader $r2;
+
+        $r0 := @this: jdk.internal.module.Modules$getClassLoader__100;
+
+        $r1 = $r0.<jdk.internal.module.Modules$getClassLoader__100: java.lang.Module cap0>;
+
+        $r2 = virtualinvoke $r1.<java.lang.Module: java.lang.ClassLoader getClassLoader()>();
+
+        return $r2;
+    }
+}

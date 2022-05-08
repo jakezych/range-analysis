@@ -1,0 +1,37 @@
+public final class jdk.internal.module.IllegalAccessLogger$StackWalkerHolder$lambda_static_0__120 extends java.lang.Object implements java.security.PrivilegedAction
+{
+
+    public static java.security.PrivilegedAction bootstrap$()
+    {
+        jdk.internal.module.IllegalAccessLogger$StackWalkerHolder$lambda_static_0__120 $r0;
+
+        $r0 = new jdk.internal.module.IllegalAccessLogger$StackWalkerHolder$lambda_static_0__120;
+
+        specialinvoke $r0.<jdk.internal.module.IllegalAccessLogger$StackWalkerHolder$lambda_static_0__120: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.module.IllegalAccessLogger$StackWalkerHolder$lambda_static_0__120 $r0;
+
+        $r0 := @this: jdk.internal.module.IllegalAccessLogger$StackWalkerHolder$lambda_static_0__120;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object run()
+    {
+        jdk.internal.module.IllegalAccessLogger$StackWalkerHolder$lambda_static_0__120 $r0;
+        java.lang.StackWalker $r1;
+
+        $r0 := @this: jdk.internal.module.IllegalAccessLogger$StackWalkerHolder$lambda_static_0__120;
+
+        $r1 = staticinvoke <jdk.internal.module.IllegalAccessLogger$StackWalkerHolder: java.lang.StackWalker lambda$static$0()>();
+
+        return $r1;
+    }
+}

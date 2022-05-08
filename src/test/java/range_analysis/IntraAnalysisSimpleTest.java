@@ -27,5 +27,6 @@ public class IntraAnalysisSimpleTest extends AnalysisTest {
         addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 35);
         addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 44);
         Assert.assertEquals(expected, Utils.getErrors());
+        Utils.resetErrors();
     }
 }

@@ -1,0 +1,40 @@
+class jdk.internal.math.FloatingDecimal$1 extends java.lang.ThreadLocal
+{
+
+    void <init>()
+    {
+        jdk.internal.math.FloatingDecimal$1 r0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$1;
+
+        specialinvoke r0.<java.lang.ThreadLocal: void <init>()>();
+
+        return;
+    }
+
+    protected jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer initialValue()
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer $r0;
+        jdk.internal.math.FloatingDecimal$1 r1;
+
+        r1 := @this: jdk.internal.math.FloatingDecimal$1;
+
+        $r0 = new jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        specialinvoke $r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: void <init>()>();
+
+        return $r0;
+    }
+
+    protected volatile java.lang.Object initialValue()
+    {
+        jdk.internal.math.FloatingDecimal$1 r0;
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer $r1;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.math.FloatingDecimal$1: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer initialValue()>();
+
+        return $r1;
+    }
+}

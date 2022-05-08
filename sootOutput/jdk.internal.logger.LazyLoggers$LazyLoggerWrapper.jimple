@@ -1,0 +1,75 @@
+class jdk.internal.logger.LazyLoggers$LazyLoggerWrapper extends jdk.internal.logger.AbstractLoggerWrapper
+{
+    final jdk.internal.logger.LazyLoggers$LoggerAccessor loggerAccessor;
+
+    public void <init>(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)
+    {
+        jdk.internal.logger.LazyLoggers$LazyLoggerWrapper r0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor r1, $r4;
+        java.lang.Object $r2;
+        java.lang.Void $r3;
+
+        r0 := @this: jdk.internal.logger.LazyLoggers$LazyLoggerWrapper;
+
+        r1 := @parameter0: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.LazyLoggers$LazyLoggerAccessor) $r2;
+
+        $r3 = (java.lang.Void) null;
+
+        specialinvoke r0.<jdk.internal.logger.LazyLoggers$LazyLoggerWrapper: void <init>(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor,java.lang.Void)>($r4, $r3);
+
+        return;
+    }
+
+    private void <init>(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor, java.lang.Void)
+    {
+        jdk.internal.logger.LazyLoggers$LazyLoggerWrapper r0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor r1;
+        java.lang.Void r2;
+
+        r0 := @this: jdk.internal.logger.LazyLoggers$LazyLoggerWrapper;
+
+        r1 := @parameter0: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor;
+
+        r2 := @parameter1: java.lang.Void;
+
+        specialinvoke r0.<jdk.internal.logger.AbstractLoggerWrapper: void <init>()>();
+
+        r0.<jdk.internal.logger.LazyLoggers$LazyLoggerWrapper: jdk.internal.logger.LazyLoggers$LoggerAccessor loggerAccessor> = r1;
+
+        return;
+    }
+
+    final java.lang.System$Logger wrapped()
+    {
+        jdk.internal.logger.LazyLoggers$LazyLoggerWrapper r0;
+        jdk.internal.logger.LazyLoggers$LoggerAccessor $r1;
+        java.lang.System$Logger $r2;
+
+        r0 := @this: jdk.internal.logger.LazyLoggers$LazyLoggerWrapper;
+
+        $r1 = r0.<jdk.internal.logger.LazyLoggers$LazyLoggerWrapper: jdk.internal.logger.LazyLoggers$LoggerAccessor loggerAccessor>;
+
+        $r2 = interfaceinvoke $r1.<jdk.internal.logger.LazyLoggers$LoggerAccessor: java.lang.System$Logger wrapped()>();
+
+        return $r2;
+    }
+
+    sun.util.logging.PlatformLogger$Bridge platformProxy()
+    {
+        jdk.internal.logger.LazyLoggers$LazyLoggerWrapper r0;
+        jdk.internal.logger.LazyLoggers$LoggerAccessor $r1;
+        sun.util.logging.PlatformLogger$Bridge $r2;
+
+        r0 := @this: jdk.internal.logger.LazyLoggers$LazyLoggerWrapper;
+
+        $r1 = r0.<jdk.internal.logger.LazyLoggers$LazyLoggerWrapper: jdk.internal.logger.LazyLoggers$LoggerAccessor loggerAccessor>;
+
+        $r2 = interfaceinvoke $r1.<jdk.internal.logger.LazyLoggers$LoggerAccessor: sun.util.logging.PlatformLogger$Bridge platform()>();
+
+        return $r2;
+    }
+}

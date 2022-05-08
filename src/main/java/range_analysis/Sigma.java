@@ -50,7 +50,7 @@ public class Sigma {
      * @param v2 right operand lattice value
      * @return true if v1 is at least as precise as v2, false otherwise
      */
-    public boolean isLessThan(Range v1, Range v2) {
+    public static boolean isLessThan(Range v1, Range v2) {
         return v2.getLow() <= v1.getLow() && v1.getHigh() <= v2.getHigh();
     }
 

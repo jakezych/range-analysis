@@ -1,0 +1,37 @@
+public interface  jdk.internal.access.JavaLangInvokeAccess extends java.lang.Object
+{
+
+    public abstract java.lang.Object newMemberName();
+
+    public abstract java.lang.String getName(java.lang.Object);
+
+    public abstract java.lang.invoke.MethodType getMethodType(java.lang.Object);
+
+    public abstract java.lang.String getMethodDescriptor(java.lang.Object);
+
+    public abstract boolean isNative(java.lang.Object);
+
+    public abstract java.lang.Class getDeclaringClass(java.lang.Object);
+
+    public abstract byte[] generateDirectMethodHandleHolderClassBytes(java.lang.String, java.lang.invoke.MethodType[], int[]);
+
+    public abstract byte[] generateDelegatingMethodHandleHolderClassBytes(java.lang.String, java.lang.invoke.MethodType[]);
+
+    public abstract java.util.Map$Entry generateConcreteBMHClassBytes(java.lang.String);
+
+    public abstract byte[] generateBasicFormsClassBytes(java.lang.String);
+
+    public abstract byte[] generateInvokersHolderClassBytes(java.lang.String, java.lang.invoke.MethodType[], java.lang.invoke.MethodType[]);
+
+    public abstract java.lang.invoke.VarHandle memoryAddressViewVarHandle(java.lang.Class, long, java.nio.ByteOrder, long, long[]);
+
+    public abstract java.lang.Class memoryAddressCarrier(java.lang.invoke.VarHandle);
+
+    public abstract long memoryAddressAlignmentMask(java.lang.invoke.VarHandle);
+
+    public abstract java.nio.ByteOrder memoryAddressByteOrder(java.lang.invoke.VarHandle);
+
+    public abstract long memoryAddressOffset(java.lang.invoke.VarHandle);
+
+    public abstract long[] memoryAddressStrides(java.lang.invoke.VarHandle);
+}

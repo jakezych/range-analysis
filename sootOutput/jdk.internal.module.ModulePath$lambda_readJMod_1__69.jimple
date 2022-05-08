@@ -1,0 +1,61 @@
+public final class jdk.internal.module.ModulePath$lambda_readJMod_1__69 extends java.lang.Object implements java.util.function.Supplier
+{
+    jdk.internal.module.ModulePath cap0;
+    jdk.internal.jmod.JmodFile cap1;
+
+    public static java.util.function.Supplier bootstrap$(jdk.internal.module.ModulePath, jdk.internal.jmod.JmodFile)
+    {
+        jdk.internal.module.ModulePath $r0;
+        jdk.internal.jmod.JmodFile $r1;
+        jdk.internal.module.ModulePath$lambda_readJMod_1__69 $r2;
+
+        $r0 := @parameter0: jdk.internal.module.ModulePath;
+
+        $r1 := @parameter1: jdk.internal.jmod.JmodFile;
+
+        $r2 = new jdk.internal.module.ModulePath$lambda_readJMod_1__69;
+
+        specialinvoke $r2.<jdk.internal.module.ModulePath$lambda_readJMod_1__69: void <init>(jdk.internal.module.ModulePath,jdk.internal.jmod.JmodFile)>($r0, $r1);
+
+        return $r2;
+    }
+
+    public void <init>(jdk.internal.module.ModulePath, jdk.internal.jmod.JmodFile)
+    {
+        jdk.internal.module.ModulePath$lambda_readJMod_1__69 $r0;
+        jdk.internal.module.ModulePath $r1;
+        jdk.internal.jmod.JmodFile $r2;
+
+        $r0 := @this: jdk.internal.module.ModulePath$lambda_readJMod_1__69;
+
+        $r1 := @parameter0: jdk.internal.module.ModulePath;
+
+        $r2 := @parameter1: jdk.internal.jmod.JmodFile;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModulePath$lambda_readJMod_1__69: jdk.internal.module.ModulePath cap0> = $r1;
+
+        $r0.<jdk.internal.module.ModulePath$lambda_readJMod_1__69: jdk.internal.jmod.JmodFile cap1> = $r2;
+
+        return;
+    }
+
+    public java.lang.Object get()
+    {
+        jdk.internal.module.ModulePath$lambda_readJMod_1__69 $r0;
+        jdk.internal.module.ModulePath $r1;
+        jdk.internal.jmod.JmodFile $r2;
+        java.util.Set $r3;
+
+        $r0 := @this: jdk.internal.module.ModulePath$lambda_readJMod_1__69;
+
+        $r1 = $r0.<jdk.internal.module.ModulePath$lambda_readJMod_1__69: jdk.internal.module.ModulePath cap0>;
+
+        $r2 = $r0.<jdk.internal.module.ModulePath$lambda_readJMod_1__69: jdk.internal.jmod.JmodFile cap1>;
+
+        $r3 = virtualinvoke $r1.<jdk.internal.module.ModulePath: java.util.Set lambda$readJMod$1(jdk.internal.jmod.JmodFile)>($r2);
+
+        return $r3;
+    }
+}

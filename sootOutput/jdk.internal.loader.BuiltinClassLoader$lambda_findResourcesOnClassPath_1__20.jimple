@@ -1,0 +1,61 @@
+public final class jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    jdk.internal.loader.BuiltinClassLoader cap0;
+    java.lang.String cap1;
+
+    public static java.security.PrivilegedAction bootstrap$(jdk.internal.loader.BuiltinClassLoader, java.lang.String)
+    {
+        jdk.internal.loader.BuiltinClassLoader $r0;
+        java.lang.String $r1;
+        jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20 $r2;
+
+        $r0 := @parameter0: jdk.internal.loader.BuiltinClassLoader;
+
+        $r1 := @parameter1: java.lang.String;
+
+        $r2 = new jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20;
+
+        specialinvoke $r2.<jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20: void <init>(jdk.internal.loader.BuiltinClassLoader,java.lang.String)>($r0, $r1);
+
+        return $r2;
+    }
+
+    public void <init>(jdk.internal.loader.BuiltinClassLoader, java.lang.String)
+    {
+        jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20 $r0;
+        jdk.internal.loader.BuiltinClassLoader $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20;
+
+        $r1 := @parameter0: jdk.internal.loader.BuiltinClassLoader;
+
+        $r2 := @parameter1: java.lang.String;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20: jdk.internal.loader.BuiltinClassLoader cap0> = $r1;
+
+        $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20: java.lang.String cap1> = $r2;
+
+        return;
+    }
+
+    public java.lang.Object run()
+    {
+        jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20 $r0;
+        jdk.internal.loader.BuiltinClassLoader $r1;
+        java.lang.String $r2;
+        java.util.Enumeration $r3;
+
+        $r0 := @this: jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20;
+
+        $r1 = $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20: jdk.internal.loader.BuiltinClassLoader cap0>;
+
+        $r2 = $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findResourcesOnClassPath_1__20: java.lang.String cap1>;
+
+        $r3 = virtualinvoke $r1.<jdk.internal.loader.BuiltinClassLoader: java.util.Enumeration lambda$findResourcesOnClassPath$1(java.lang.String)>($r2);
+
+        return $r3;
+    }
+}

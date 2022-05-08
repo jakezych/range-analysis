@@ -1,0 +1,43 @@
+public final class jdk.internal.module.ModulePathValidator$lambda_scanAllModules_0__94 extends java.lang.Object implements java.util.function.Function
+{
+
+    public static java.util.function.Function bootstrap$()
+    {
+        jdk.internal.module.ModulePathValidator$lambda_scanAllModules_0__94 $r0;
+
+        $r0 = new jdk.internal.module.ModulePathValidator$lambda_scanAllModules_0__94;
+
+        specialinvoke $r0.<jdk.internal.module.ModulePathValidator$lambda_scanAllModules_0__94: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.module.ModulePathValidator$lambda_scanAllModules_0__94 $r0;
+
+        $r0 := @this: jdk.internal.module.ModulePathValidator$lambda_scanAllModules_0__94;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.module.ModulePathValidator$lambda_scanAllModules_0__94 $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2;
+        java.nio.file.Path $r3;
+
+        $r0 := @this: jdk.internal.module.ModulePathValidator$lambda_scanAllModules_0__94;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) $r1;
+
+        $r3 = staticinvoke <jdk.internal.module.ModulePathValidator: java.nio.file.Path lambda$scanAllModules$0(java.lang.String)>($r2);
+
+        return $r3;
+    }
+}

@@ -1,0 +1,52 @@
+class jdk.internal.loader.Loader$2 extends java.lang.Object implements java.security.PrivilegedExceptionAction
+{
+    final java.net.URL val$urlToCheck;
+    final jdk.internal.loader.Loader this$0;
+
+    void <init>(jdk.internal.loader.Loader, java.net.URL)
+    {
+        jdk.internal.loader.Loader$2 r0;
+        jdk.internal.loader.Loader r1;
+        java.net.URL r2;
+
+        r0 := @this: jdk.internal.loader.Loader$2;
+
+        r1 := @parameter0: jdk.internal.loader.Loader;
+
+        r2 := @parameter1: java.net.URL;
+
+        r0.<jdk.internal.loader.Loader$2: jdk.internal.loader.Loader this$0> = r1;
+
+        r0.<jdk.internal.loader.Loader$2: java.net.URL val$urlToCheck> = r2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.net.URL run() throws java.io.IOException
+    {
+        jdk.internal.loader.Loader$2 r0;
+        java.net.URL $r1, $r2;
+
+        r0 := @this: jdk.internal.loader.Loader$2;
+
+        $r1 = r0.<jdk.internal.loader.Loader$2: java.net.URL val$urlToCheck>;
+
+        $r2 = staticinvoke <jdk.internal.loader.URLClassPath: java.net.URL checkURL(java.net.URL)>($r1);
+
+        return $r2;
+    }
+
+    public volatile java.lang.Object run() throws java.lang.Exception
+    {
+        jdk.internal.loader.Loader$2 r0;
+        java.net.URL $r1;
+
+        r0 := @this: jdk.internal.loader.Loader$2;
+
+        $r1 = virtualinvoke r0.<jdk.internal.loader.Loader$2: java.net.URL run()>();
+
+        return $r1;
+    }
+}

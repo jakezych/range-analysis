@@ -1,0 +1,206 @@
+public final class jdk.internal.org.objectweb.asm.util.TraceModuleVisitor extends jdk.internal.org.objectweb.asm.ModuleVisitor
+{
+    public final jdk.internal.org.objectweb.asm.util.Printer p;
+
+    public void <init>(jdk.internal.org.objectweb.asm.util.Printer)
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        r1 := @parameter0: jdk.internal.org.objectweb.asm.util.Printer;
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: void <init>(jdk.internal.org.objectweb.asm.ModuleVisitor,jdk.internal.org.objectweb.asm.util.Printer)>(null, r1);
+
+        return;
+    }
+
+    public void <init>(jdk.internal.org.objectweb.asm.ModuleVisitor, jdk.internal.org.objectweb.asm.util.Printer)
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        jdk.internal.org.objectweb.asm.ModuleVisitor r1;
+        jdk.internal.org.objectweb.asm.util.Printer r2;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        r1 := @parameter0: jdk.internal.org.objectweb.asm.ModuleVisitor;
+
+        r2 := @parameter1: jdk.internal.org.objectweb.asm.util.Printer;
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.ModuleVisitor: void <init>(int,jdk.internal.org.objectweb.asm.ModuleVisitor)>(458752, r1);
+
+        r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: jdk.internal.org.objectweb.asm.util.Printer p> = r2;
+
+        return;
+    }
+
+    public void visitMainClass(java.lang.String)
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        java.lang.String r1;
+        jdk.internal.org.objectweb.asm.util.Printer $r2;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: jdk.internal.org.objectweb.asm.util.Printer p>;
+
+        virtualinvoke $r2.<jdk.internal.org.objectweb.asm.util.Printer: void visitMainClass(java.lang.String)>(r1);
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.ModuleVisitor: void visitMainClass(java.lang.String)>(r1);
+
+        return;
+    }
+
+    public void visitPackage(java.lang.String)
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        java.lang.String r1;
+        jdk.internal.org.objectweb.asm.util.Printer $r2;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: jdk.internal.org.objectweb.asm.util.Printer p>;
+
+        virtualinvoke $r2.<jdk.internal.org.objectweb.asm.util.Printer: void visitPackage(java.lang.String)>(r1);
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.ModuleVisitor: void visitPackage(java.lang.String)>(r1);
+
+        return;
+    }
+
+    public void visitRequire(java.lang.String, int, java.lang.String)
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        java.lang.String r1, r2;
+        int i0;
+        jdk.internal.org.objectweb.asm.util.Printer $r3;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String;
+
+        $r3 = r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: jdk.internal.org.objectweb.asm.util.Printer p>;
+
+        virtualinvoke $r3.<jdk.internal.org.objectweb.asm.util.Printer: void visitRequire(java.lang.String,int,java.lang.String)>(r1, i0, r2);
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.ModuleVisitor: void visitRequire(java.lang.String,int,java.lang.String)>(r1, i0, r2);
+
+        return;
+    }
+
+    public transient void visitExport(java.lang.String, int, java.lang.String[])
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        java.lang.String r1;
+        int i0;
+        java.lang.String[] r2;
+        jdk.internal.org.objectweb.asm.util.Printer $r3;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String[];
+
+        $r3 = r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: jdk.internal.org.objectweb.asm.util.Printer p>;
+
+        virtualinvoke $r3.<jdk.internal.org.objectweb.asm.util.Printer: void visitExport(java.lang.String,int,java.lang.String[])>(r1, i0, r2);
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.ModuleVisitor: void visitExport(java.lang.String,int,java.lang.String[])>(r1, i0, r2);
+
+        return;
+    }
+
+    public transient void visitOpen(java.lang.String, int, java.lang.String[])
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        java.lang.String r1;
+        int i0;
+        java.lang.String[] r2;
+        jdk.internal.org.objectweb.asm.util.Printer $r3;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String[];
+
+        $r3 = r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: jdk.internal.org.objectweb.asm.util.Printer p>;
+
+        virtualinvoke $r3.<jdk.internal.org.objectweb.asm.util.Printer: void visitOpen(java.lang.String,int,java.lang.String[])>(r1, i0, r2);
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.ModuleVisitor: void visitOpen(java.lang.String,int,java.lang.String[])>(r1, i0, r2);
+
+        return;
+    }
+
+    public void visitUse(java.lang.String)
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        java.lang.String r1;
+        jdk.internal.org.objectweb.asm.util.Printer $r2;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: jdk.internal.org.objectweb.asm.util.Printer p>;
+
+        virtualinvoke $r2.<jdk.internal.org.objectweb.asm.util.Printer: void visitUse(java.lang.String)>(r1);
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.ModuleVisitor: void visitUse(java.lang.String)>(r1);
+
+        return;
+    }
+
+    public transient void visitProvide(java.lang.String, java.lang.String[])
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        java.lang.String r1;
+        java.lang.String[] r2;
+        jdk.internal.org.objectweb.asm.util.Printer $r3;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String[];
+
+        $r3 = r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: jdk.internal.org.objectweb.asm.util.Printer p>;
+
+        virtualinvoke $r3.<jdk.internal.org.objectweb.asm.util.Printer: void visitProvide(java.lang.String,java.lang.String[])>(r1, r2);
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.ModuleVisitor: void visitProvide(java.lang.String,java.lang.String[])>(r1, r2);
+
+        return;
+    }
+
+    public void visitEnd()
+    {
+        jdk.internal.org.objectweb.asm.util.TraceModuleVisitor r0;
+        jdk.internal.org.objectweb.asm.util.Printer $r1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.TraceModuleVisitor;
+
+        $r1 = r0.<jdk.internal.org.objectweb.asm.util.TraceModuleVisitor: jdk.internal.org.objectweb.asm.util.Printer p>;
+
+        virtualinvoke $r1.<jdk.internal.org.objectweb.asm.util.Printer: void visitModuleEnd()>();
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.ModuleVisitor: void visitEnd()>();
+
+        return;
+    }
+}

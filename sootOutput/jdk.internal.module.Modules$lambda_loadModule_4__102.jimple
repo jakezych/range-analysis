@@ -1,0 +1,37 @@
+public final class jdk.internal.module.Modules$lambda_loadModule_4__102 extends java.lang.Object implements java.util.function.Supplier
+{
+
+    public static java.util.function.Supplier bootstrap$()
+    {
+        jdk.internal.module.Modules$lambda_loadModule_4__102 $r0;
+
+        $r0 = new jdk.internal.module.Modules$lambda_loadModule_4__102;
+
+        specialinvoke $r0.<jdk.internal.module.Modules$lambda_loadModule_4__102: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.module.Modules$lambda_loadModule_4__102 $r0;
+
+        $r0 := @this: jdk.internal.module.Modules$lambda_loadModule_4__102;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object get()
+    {
+        jdk.internal.module.Modules$lambda_loadModule_4__102 $r0;
+        java.lang.InternalError $r1;
+
+        $r0 := @this: jdk.internal.module.Modules$lambda_loadModule_4__102;
+
+        $r1 = staticinvoke <jdk.internal.module.Modules: java.lang.InternalError lambda$loadModule$4()>();
+
+        return $r1;
+    }
+}

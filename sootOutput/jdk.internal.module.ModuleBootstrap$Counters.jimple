@@ -1,0 +1,170 @@
+class jdk.internal.module.ModuleBootstrap$Counters extends java.lang.Object
+{
+    private static final boolean PUBLISH_COUNTERS;
+    private static final boolean PRINT_COUNTERS;
+    private static java.util.Map counters;
+
+    void <init>()
+    {
+        jdk.internal.module.ModuleBootstrap$Counters r0;
+
+        r0 := @this: jdk.internal.module.ModuleBootstrap$Counters;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static void add(java.lang.String, long)
+    {
+        boolean $z0, $z1;
+        java.lang.String r0;
+        java.util.Map $r1;
+        long $l0, l1, $l2;
+        java.lang.Long $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        l1 := @parameter1: long;
+
+        $z0 = <jdk.internal.module.ModuleBootstrap$Counters: boolean PUBLISH_COUNTERS>;
+
+        if $z0 != 0 goto label1;
+
+        $z1 = <jdk.internal.module.ModuleBootstrap$Counters: boolean PRINT_COUNTERS>;
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $r1 = <jdk.internal.module.ModuleBootstrap$Counters: java.util.Map counters>;
+
+        $l0 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $l2 = $l0 - l1;
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        interfaceinvoke $r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r0, $r2);
+
+     label2:
+        return;
+    }
+
+    static void publish()
+    {
+        boolean $z0, $z1, $z2, $z3, $z4;
+        java.util.Map $r0;
+        java.util.Set $r1;
+        java.util.Iterator r2;
+        java.lang.Object $r3, $r5, $r7;
+        java.util.Map$Entry r4;
+        java.lang.String r6, $r14;
+        java.lang.Long $r8;
+        long l0;
+        java.lang.StringBuilder $r9, $r11, $r12, $r13;
+        java.io.PrintStream $r10;
+        jdk.internal.perf.PerfCounter $r15;
+
+        $z0 = <jdk.internal.module.ModuleBootstrap$Counters: boolean PUBLISH_COUNTERS>;
+
+        if $z0 != 0 goto label1;
+
+        $z3 = <jdk.internal.module.ModuleBootstrap$Counters: boolean PRINT_COUNTERS>;
+
+        if $z3 == 0 goto label5;
+
+     label1:
+        $r0 = <jdk.internal.module.ModuleBootstrap$Counters: java.util.Map counters>;
+
+        $r1 = interfaceinvoke $r0.<java.util.Map: java.util.Set entrySet()>();
+
+        r2 = interfaceinvoke $r1.<java.util.Set: java.util.Iterator iterator()>();
+
+     label2:
+        $z4 = interfaceinvoke r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z4 == 0 goto label5;
+
+        $r3 = interfaceinvoke r2.<java.util.Iterator: java.lang.Object next()>();
+
+        r4 = (java.util.Map$Entry) $r3;
+
+        $r5 = interfaceinvoke r4.<java.util.Map$Entry: java.lang.Object getKey()>();
+
+        r6 = (java.lang.String) $r5;
+
+        $r7 = interfaceinvoke r4.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        $r8 = (java.lang.Long) $r7;
+
+        l0 = virtualinvoke $r8.<java.lang.Long: long longValue()>();
+
+        $z1 = <jdk.internal.module.ModuleBootstrap$Counters: boolean PUBLISH_COUNTERS>;
+
+        if $z1 == 0 goto label3;
+
+        $r15 = staticinvoke <jdk.internal.perf.PerfCounter: jdk.internal.perf.PerfCounter newPerfCounter(java.lang.String)>(r6);
+
+        virtualinvoke $r15.<jdk.internal.perf.PerfCounter: void set(long)>(l0);
+
+     label3:
+        $z2 = <jdk.internal.module.ModuleBootstrap$Counters: boolean PRINT_COUNTERS>;
+
+        if $z2 == 0 goto label4;
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = ");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+     label4:
+        goto label2;
+
+     label5:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.String r0;
+        boolean $z0;
+        java.util.LinkedHashMap $r1;
+
+        r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("jdk.module.boot.usePerfData");
+
+        if r0 != null goto label1;
+
+        <jdk.internal.module.ModuleBootstrap$Counters: boolean PUBLISH_COUNTERS> = 0;
+
+        <jdk.internal.module.ModuleBootstrap$Counters: boolean PRINT_COUNTERS> = 0;
+
+        goto label2;
+
+     label1:
+        <jdk.internal.module.ModuleBootstrap$Counters: boolean PUBLISH_COUNTERS> = 1;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("debug");
+
+        <jdk.internal.module.ModuleBootstrap$Counters: boolean PRINT_COUNTERS> = $z0;
+
+        $r1 = new java.util.LinkedHashMap;
+
+        specialinvoke $r1.<java.util.LinkedHashMap: void <init>()>();
+
+        <jdk.internal.module.ModuleBootstrap$Counters: java.util.Map counters> = $r1;
+
+     label2:
+        return;
+    }
+}

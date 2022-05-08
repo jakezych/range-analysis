@@ -1,0 +1,73 @@
+public final class jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    jdk.internal.loader.BuiltinClassLoader cap0;
+    java.lang.String cap1;
+    jdk.internal.loader.BuiltinClassLoader$LoadedModule cap2;
+
+    public static java.security.PrivilegedAction bootstrap$(jdk.internal.loader.BuiltinClassLoader, java.lang.String, jdk.internal.loader.BuiltinClassLoader$LoadedModule)
+    {
+        jdk.internal.loader.BuiltinClassLoader $r0;
+        java.lang.String $r1;
+        jdk.internal.loader.BuiltinClassLoader$LoadedModule $r2;
+        jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21 $r3;
+
+        $r0 := @parameter0: jdk.internal.loader.BuiltinClassLoader;
+
+        $r1 := @parameter1: java.lang.String;
+
+        $r2 := @parameter2: jdk.internal.loader.BuiltinClassLoader$LoadedModule;
+
+        $r3 = new jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21;
+
+        specialinvoke $r3.<jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21: void <init>(jdk.internal.loader.BuiltinClassLoader,java.lang.String,jdk.internal.loader.BuiltinClassLoader$LoadedModule)>($r0, $r1, $r2);
+
+        return $r3;
+    }
+
+    public void <init>(jdk.internal.loader.BuiltinClassLoader, java.lang.String, jdk.internal.loader.BuiltinClassLoader$LoadedModule)
+    {
+        jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21 $r0;
+        jdk.internal.loader.BuiltinClassLoader $r1;
+        java.lang.String $r2;
+        jdk.internal.loader.BuiltinClassLoader$LoadedModule $r3;
+
+        $r0 := @this: jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21;
+
+        $r1 := @parameter0: jdk.internal.loader.BuiltinClassLoader;
+
+        $r2 := @parameter1: java.lang.String;
+
+        $r3 := @parameter2: jdk.internal.loader.BuiltinClassLoader$LoadedModule;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21: jdk.internal.loader.BuiltinClassLoader cap0> = $r1;
+
+        $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21: java.lang.String cap1> = $r2;
+
+        $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21: jdk.internal.loader.BuiltinClassLoader$LoadedModule cap2> = $r3;
+
+        return;
+    }
+
+    public java.lang.Object run()
+    {
+        jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21 $r0;
+        jdk.internal.loader.BuiltinClassLoader $r1;
+        java.lang.String $r2;
+        jdk.internal.loader.BuiltinClassLoader$LoadedModule $r3;
+        java.lang.Class $r4;
+
+        $r0 := @this: jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21;
+
+        $r1 = $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21: jdk.internal.loader.BuiltinClassLoader cap0>;
+
+        $r2 = $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21: java.lang.String cap1>;
+
+        $r3 = $r0.<jdk.internal.loader.BuiltinClassLoader$lambda_findClassInModuleOrNull_2__21: jdk.internal.loader.BuiltinClassLoader$LoadedModule cap2>;
+
+        $r4 = virtualinvoke $r1.<jdk.internal.loader.BuiltinClassLoader: java.lang.Class lambda$findClassInModuleOrNull$2(java.lang.String,jdk.internal.loader.BuiltinClassLoader$LoadedModule)>($r2, $r3);
+
+        return $r4;
+    }
+}

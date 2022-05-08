@@ -1,0 +1,37 @@
+public final class jdk.internal.loader.Loader$lambda_initRemotePackageMap_3__36 extends java.lang.Object implements java.util.function.Supplier
+{
+
+    public static java.util.function.Supplier bootstrap$()
+    {
+        jdk.internal.loader.Loader$lambda_initRemotePackageMap_3__36 $r0;
+
+        $r0 = new jdk.internal.loader.Loader$lambda_initRemotePackageMap_3__36;
+
+        specialinvoke $r0.<jdk.internal.loader.Loader$lambda_initRemotePackageMap_3__36: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.loader.Loader$lambda_initRemotePackageMap_3__36 $r0;
+
+        $r0 := @this: jdk.internal.loader.Loader$lambda_initRemotePackageMap_3__36;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object get()
+    {
+        jdk.internal.loader.Loader$lambda_initRemotePackageMap_3__36 $r0;
+        java.lang.InternalError $r1;
+
+        $r0 := @this: jdk.internal.loader.Loader$lambda_initRemotePackageMap_3__36;
+
+        $r1 = staticinvoke <jdk.internal.loader.Loader: java.lang.InternalError lambda$initRemotePackageMap$3()>();
+
+        return $r1;
+    }
+}

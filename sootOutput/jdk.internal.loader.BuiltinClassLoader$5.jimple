@@ -1,0 +1,76 @@
+class jdk.internal.loader.BuiltinClassLoader$5 extends java.lang.Object implements java.util.function.Function
+{
+    final java.lang.module.ModuleReference val$mref;
+    final jdk.internal.loader.BuiltinClassLoader this$0;
+
+    void <init>(jdk.internal.loader.BuiltinClassLoader, java.lang.module.ModuleReference)
+    {
+        jdk.internal.loader.BuiltinClassLoader$5 r0;
+        jdk.internal.loader.BuiltinClassLoader r1;
+        java.lang.module.ModuleReference r2;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$5;
+
+        r1 := @parameter0: jdk.internal.loader.BuiltinClassLoader;
+
+        r2 := @parameter1: java.lang.module.ModuleReference;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$5: jdk.internal.loader.BuiltinClassLoader this$0> = r1;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$5: java.lang.module.ModuleReference val$mref> = r2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.module.ModuleReader apply(java.lang.module.ModuleReference)
+    {
+        jdk.internal.loader.BuiltinClassLoader$5 r0;
+        java.lang.module.ModuleReference $r1, r6;
+        java.lang.module.ModuleReader $r2;
+        java.io.IOException $r3;
+        jdk.internal.loader.BuiltinClassLoader$NullModuleReader $r5;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$5;
+
+        r6 := @parameter0: java.lang.module.ModuleReference;
+
+     label1:
+        $r1 = r0.<jdk.internal.loader.BuiltinClassLoader$5: java.lang.module.ModuleReference val$mref>;
+
+        $r2 = virtualinvoke $r1.<java.lang.module.ModuleReference: java.lang.module.ModuleReader open()>();
+
+     label2:
+        return $r2;
+
+     label3:
+        $r3 := @caughtexception;
+
+        $r5 = new jdk.internal.loader.BuiltinClassLoader$NullModuleReader;
+
+        specialinvoke $r5.<jdk.internal.loader.BuiltinClassLoader$NullModuleReader: void <init>()>();
+
+        return $r5;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    public volatile java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.loader.BuiltinClassLoader$5 r0;
+        java.lang.Object r1;
+        java.lang.module.ModuleReference $r2;
+        java.lang.module.ModuleReader $r3;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$5;
+
+        r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.module.ModuleReference) r1;
+
+        $r3 = virtualinvoke r0.<jdk.internal.loader.BuiltinClassLoader$5: java.lang.module.ModuleReader apply(java.lang.module.ModuleReference)>($r2);
+
+        return $r3;
+    }
+}

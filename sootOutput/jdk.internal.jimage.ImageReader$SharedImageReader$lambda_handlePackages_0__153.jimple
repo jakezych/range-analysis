@@ -1,0 +1,51 @@
+public final class jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153 extends java.lang.Object implements jdk.internal.jimage.ImageReader$SharedImageReader$LocationVisitor
+{
+    jdk.internal.jimage.ImageReader$SharedImageReader cap0;
+
+    public static jdk.internal.jimage.ImageReader$SharedImageReader$LocationVisitor bootstrap$(jdk.internal.jimage.ImageReader$SharedImageReader)
+    {
+        jdk.internal.jimage.ImageReader$SharedImageReader $r0;
+        jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153 $r1;
+
+        $r0 := @parameter0: jdk.internal.jimage.ImageReader$SharedImageReader;
+
+        $r1 = new jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153;
+
+        specialinvoke $r1.<jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153: void <init>(jdk.internal.jimage.ImageReader$SharedImageReader)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(jdk.internal.jimage.ImageReader$SharedImageReader)
+    {
+        jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153 $r0;
+        jdk.internal.jimage.ImageReader$SharedImageReader $r1;
+
+        $r0 := @this: jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153;
+
+        $r1 := @parameter0: jdk.internal.jimage.ImageReader$SharedImageReader;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153: jdk.internal.jimage.ImageReader$SharedImageReader cap0> = $r1;
+
+        return;
+    }
+
+    public void visit(jdk.internal.jimage.ImageLocation)
+    {
+        jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153 $r0;
+        jdk.internal.jimage.ImageLocation $r1;
+        jdk.internal.jimage.ImageReader$SharedImageReader $r2;
+
+        $r0 := @this: jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153;
+
+        $r1 := @parameter0: jdk.internal.jimage.ImageLocation;
+
+        $r2 = $r0.<jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handlePackages_0__153: jdk.internal.jimage.ImageReader$SharedImageReader cap0>;
+
+        virtualinvoke $r2.<jdk.internal.jimage.ImageReader$SharedImageReader: void lambda$handlePackages$0(jdk.internal.jimage.ImageLocation)>($r1);
+
+        return;
+    }
+}

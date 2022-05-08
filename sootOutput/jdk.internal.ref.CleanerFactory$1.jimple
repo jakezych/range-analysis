@@ -1,0 +1,37 @@
+class jdk.internal.ref.CleanerFactory$1 extends java.lang.Object implements java.util.concurrent.ThreadFactory
+{
+
+    void <init>()
+    {
+        jdk.internal.ref.CleanerFactory$1 r0;
+
+        r0 := @this: jdk.internal.ref.CleanerFactory$1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Thread newThread(java.lang.Runnable)
+    {
+        jdk.internal.ref.CleanerFactory$1$1 $r0;
+        jdk.internal.ref.CleanerFactory$1 r1;
+        java.lang.Runnable r2;
+        java.lang.Object $r3;
+        java.lang.Thread $r4;
+
+        r1 := @this: jdk.internal.ref.CleanerFactory$1;
+
+        r2 := @parameter0: java.lang.Runnable;
+
+        $r0 = new jdk.internal.ref.CleanerFactory$1$1;
+
+        specialinvoke $r0.<jdk.internal.ref.CleanerFactory$1$1: void <init>(jdk.internal.ref.CleanerFactory$1,java.lang.Runnable)>(r1, r2);
+
+        $r3 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r0);
+
+        $r4 = (java.lang.Thread) $r3;
+
+        return $r4;
+    }
+}

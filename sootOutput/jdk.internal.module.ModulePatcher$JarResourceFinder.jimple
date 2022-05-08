@@ -1,0 +1,99 @@
+class jdk.internal.module.ModulePatcher$JarResourceFinder extends java.lang.Object implements jdk.internal.module.ModulePatcher$ResourceFinder
+{
+    private final java.util.jar.JarFile jf;
+    private final java.net.URL csURL;
+
+    void <init>(java.nio.file.Path) throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder r0;
+        java.util.jar.JarFile $r1;
+        java.nio.file.Path r2;
+        java.lang.String $r3;
+        java.net.URI $r4;
+        java.net.URL $r5;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder;
+
+        r2 := @parameter0: java.nio.file.Path;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.jar.JarFile;
+
+        $r3 = interfaceinvoke r2.<java.nio.file.Path: java.lang.String toString()>();
+
+        specialinvoke $r1.<java.util.jar.JarFile: void <init>(java.lang.String)>($r3);
+
+        r0.<jdk.internal.module.ModulePatcher$JarResourceFinder: java.util.jar.JarFile jf> = $r1;
+
+        $r4 = interfaceinvoke r2.<java.nio.file.Path: java.net.URI toUri()>();
+
+        $r5 = virtualinvoke $r4.<java.net.URI: java.net.URL toURL()>();
+
+        r0.<jdk.internal.module.ModulePatcher$JarResourceFinder: java.net.URL csURL> = $r5;
+
+        return;
+    }
+
+    public void close() throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder r0;
+        java.util.jar.JarFile $r1;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder: java.util.jar.JarFile jf>;
+
+        virtualinvoke $r1.<java.util.jar.JarFile: void close()>();
+
+        return;
+    }
+
+    public jdk.internal.loader.Resource find(java.lang.String) throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder r0;
+        java.lang.String r1;
+        java.util.jar.JarFile $r2;
+        java.util.jar.JarEntry r3;
+        jdk.internal.module.ModulePatcher$JarResourceFinder$1 $r4;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder: java.util.jar.JarFile jf>;
+
+        r3 = virtualinvoke $r2.<java.util.jar.JarFile: java.util.jar.JarEntry getJarEntry(java.lang.String)>(r1);
+
+        if r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r4 = new jdk.internal.module.ModulePatcher$JarResourceFinder$1;
+
+        specialinvoke $r4.<jdk.internal.module.ModulePatcher$JarResourceFinder$1: void <init>(jdk.internal.module.ModulePatcher$JarResourceFinder,java.lang.String,java.util.jar.JarEntry)>(r0, r1, r3);
+
+        return $r4;
+    }
+
+    public java.util.stream.Stream list() throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$JarResourceFinder r0;
+        java.util.jar.JarFile $r1;
+        java.util.stream.Stream $r2, $r4;
+        java.util.function.Function $r3;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$JarResourceFinder;
+
+        $r1 = r0.<jdk.internal.module.ModulePatcher$JarResourceFinder: java.util.jar.JarFile jf>;
+
+        $r2 = virtualinvoke $r1.<java.util.jar.JarFile: java.util.stream.Stream stream()>();
+
+        $r3 = staticinvoke <jdk.internal.module.ModulePatcher$JarResourceFinder$getName__137: java.util.function.Function bootstrap$()>();
+
+        $r4 = interfaceinvoke $r2.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r3);
+
+        return $r4;
+    }
+}

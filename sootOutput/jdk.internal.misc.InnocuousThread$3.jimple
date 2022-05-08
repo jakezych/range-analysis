@@ -1,0 +1,48 @@
+class jdk.internal.misc.InnocuousThread$3 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    final java.lang.ThreadGroup val$root;
+
+    void <init>(java.lang.ThreadGroup)
+    {
+        jdk.internal.misc.InnocuousThread$3 r0;
+        java.lang.ThreadGroup r1;
+
+        r0 := @this: jdk.internal.misc.InnocuousThread$3;
+
+        r1 := @parameter0: java.lang.ThreadGroup;
+
+        r0.<jdk.internal.misc.InnocuousThread$3: java.lang.ThreadGroup val$root> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.ThreadGroup run()
+    {
+        java.lang.ThreadGroup $r0, $r2;
+        jdk.internal.misc.InnocuousThread$3 r1;
+
+        r1 := @this: jdk.internal.misc.InnocuousThread$3;
+
+        $r0 = new java.lang.ThreadGroup;
+
+        $r2 = r1.<jdk.internal.misc.InnocuousThread$3: java.lang.ThreadGroup val$root>;
+
+        specialinvoke $r0.<java.lang.ThreadGroup: void <init>(java.lang.ThreadGroup,java.lang.String)>($r2, "InnocuousThreadGroup");
+
+        return $r0;
+    }
+
+    public volatile java.lang.Object run()
+    {
+        jdk.internal.misc.InnocuousThread$3 r0;
+        java.lang.ThreadGroup $r1;
+
+        r0 := @this: jdk.internal.misc.InnocuousThread$3;
+
+        $r1 = virtualinvoke r0.<jdk.internal.misc.InnocuousThread$3: java.lang.ThreadGroup run()>();
+
+        return $r1;
+    }
+}

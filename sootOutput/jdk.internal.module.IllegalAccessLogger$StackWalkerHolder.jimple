@@ -1,0 +1,44 @@
+class jdk.internal.module.IllegalAccessLogger$StackWalkerHolder extends java.lang.Object
+{
+    static final java.lang.StackWalker INSTANCE;
+
+    private void <init>()
+    {
+        jdk.internal.module.IllegalAccessLogger$StackWalkerHolder r0;
+
+        r0 := @this: jdk.internal.module.IllegalAccessLogger$StackWalkerHolder;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.lang.StackWalker lambda$static$0()
+    {
+        java.lang.StackWalker$Option $r0;
+        java.lang.StackWalker $r1;
+
+        $r0 = <java.lang.StackWalker$Option: java.lang.StackWalker$Option RETAIN_CLASS_REFERENCE>;
+
+        $r1 = staticinvoke <java.lang.StackWalker: java.lang.StackWalker getInstance(java.lang.StackWalker$Option)>($r0);
+
+        return $r1;
+    }
+
+    static void <clinit>()
+    {
+        java.security.PrivilegedAction r0;
+        java.lang.Object $r1;
+        java.lang.StackWalker $r2;
+
+        r0 = staticinvoke <jdk.internal.module.IllegalAccessLogger$StackWalkerHolder$lambda_static_0__120: java.security.PrivilegedAction bootstrap$()>();
+
+        $r1 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>(r0);
+
+        $r2 = (java.lang.StackWalker) $r1;
+
+        <jdk.internal.module.IllegalAccessLogger$StackWalkerHolder: java.lang.StackWalker INSTANCE> = $r2;
+
+        return;
+    }
+}

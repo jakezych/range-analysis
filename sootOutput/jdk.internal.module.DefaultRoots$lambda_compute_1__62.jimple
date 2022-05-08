@@ -1,0 +1,55 @@
+public final class jdk.internal.module.DefaultRoots$lambda_compute_1__62 extends java.lang.Object implements java.util.function.Predicate
+{
+    java.lang.module.ModuleFinder cap0;
+
+    public static java.util.function.Predicate bootstrap$(java.lang.module.ModuleFinder)
+    {
+        java.lang.module.ModuleFinder $r0;
+        jdk.internal.module.DefaultRoots$lambda_compute_1__62 $r1;
+
+        $r0 := @parameter0: java.lang.module.ModuleFinder;
+
+        $r1 = new jdk.internal.module.DefaultRoots$lambda_compute_1__62;
+
+        specialinvoke $r1.<jdk.internal.module.DefaultRoots$lambda_compute_1__62: void <init>(java.lang.module.ModuleFinder)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(java.lang.module.ModuleFinder)
+    {
+        jdk.internal.module.DefaultRoots$lambda_compute_1__62 $r0;
+        java.lang.module.ModuleFinder $r1;
+
+        $r0 := @this: jdk.internal.module.DefaultRoots$lambda_compute_1__62;
+
+        $r1 := @parameter0: java.lang.module.ModuleFinder;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.DefaultRoots$lambda_compute_1__62: java.lang.module.ModuleFinder cap0> = $r1;
+
+        return;
+    }
+
+    public boolean test(java.lang.Object)
+    {
+        jdk.internal.module.DefaultRoots$lambda_compute_1__62 $r0;
+        java.lang.Object $r1;
+        java.lang.module.ModuleDescriptor $r2;
+        java.lang.module.ModuleFinder $r3;
+        boolean $z0;
+
+        $r0 := @this: jdk.internal.module.DefaultRoots$lambda_compute_1__62;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.module.ModuleDescriptor) $r1;
+
+        $r3 = $r0.<jdk.internal.module.DefaultRoots$lambda_compute_1__62: java.lang.module.ModuleFinder cap0>;
+
+        $z0 = staticinvoke <jdk.internal.module.DefaultRoots: boolean lambda$compute$1(java.lang.module.ModuleFinder,java.lang.module.ModuleDescriptor)>($r3, $r2);
+
+        return $z0;
+    }
+}

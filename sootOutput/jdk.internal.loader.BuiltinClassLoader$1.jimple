@@ -1,0 +1,165 @@
+class jdk.internal.loader.BuiltinClassLoader$1 extends java.lang.Object implements java.util.Enumeration
+{
+    final java.util.Iterator iterator;
+    java.net.URL next;
+    final java.util.List val$checked;
+    final java.util.Enumeration val$e;
+    final jdk.internal.loader.BuiltinClassLoader this$0;
+
+    void <init>(jdk.internal.loader.BuiltinClassLoader, java.util.List, java.util.Enumeration)
+    {
+        jdk.internal.loader.BuiltinClassLoader$1 r0;
+        jdk.internal.loader.BuiltinClassLoader r1;
+        java.util.List r2, $r4;
+        java.util.Enumeration r3;
+        java.util.Iterator $r5;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$1;
+
+        r1 := @parameter0: jdk.internal.loader.BuiltinClassLoader;
+
+        r2 := @parameter1: java.util.List;
+
+        r3 := @parameter2: java.util.Enumeration;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$1: jdk.internal.loader.BuiltinClassLoader this$0> = r1;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$1: java.util.List val$checked> = r2;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$1: java.util.Enumeration val$e> = r3;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r4 = r0.<jdk.internal.loader.BuiltinClassLoader$1: java.util.List val$checked>;
+
+        $r5 = interfaceinvoke $r4.<java.util.List: java.util.Iterator iterator()>();
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$1: java.util.Iterator iterator> = $r5;
+
+        return;
+    }
+
+    private boolean hasNext()
+    {
+        jdk.internal.loader.BuiltinClassLoader$1 r0;
+        java.net.URL $r1, $r4, $r5, $r8, $r9, $r12;
+        java.util.Iterator $r2, $r10;
+        boolean $z0, $z1, $z2;
+        java.util.Enumeration $r3, $r6;
+        java.lang.Object $r7, $r11;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$1;
+
+        $r1 = r0.<jdk.internal.loader.BuiltinClassLoader$1: java.net.URL next>;
+
+        if $r1 == null goto label1;
+
+        return 1;
+
+     label1:
+        $r2 = r0.<jdk.internal.loader.BuiltinClassLoader$1: java.util.Iterator iterator>;
+
+        $z0 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r10 = r0.<jdk.internal.loader.BuiltinClassLoader$1: java.util.Iterator iterator>;
+
+        $r11 = interfaceinvoke $r10.<java.util.Iterator: java.lang.Object next()>();
+
+        $r12 = (java.net.URL) $r11;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$1: java.net.URL next> = $r12;
+
+        return 1;
+
+     label2:
+        $r3 = r0.<jdk.internal.loader.BuiltinClassLoader$1: java.util.Enumeration val$e>;
+
+        $z1 = interfaceinvoke $r3.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z1 == 0 goto label3;
+
+        $r5 = r0.<jdk.internal.loader.BuiltinClassLoader$1: java.net.URL next>;
+
+        if $r5 != null goto label3;
+
+        $r6 = r0.<jdk.internal.loader.BuiltinClassLoader$1: java.util.Enumeration val$e>;
+
+        $r7 = interfaceinvoke $r6.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        $r8 = (java.net.URL) $r7;
+
+        $r9 = staticinvoke <jdk.internal.loader.BuiltinClassLoader: java.net.URL checkURL(java.net.URL)>($r8);
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$1: java.net.URL next> = $r9;
+
+        goto label2;
+
+     label3:
+        $r4 = r0.<jdk.internal.loader.BuiltinClassLoader$1: java.net.URL next>;
+
+        if $r4 == null goto label4;
+
+        $z2 = 1;
+
+        goto label5;
+
+     label4:
+        $z2 = 0;
+
+     label5:
+        return $z2;
+    }
+
+    public boolean hasMoreElements()
+    {
+        jdk.internal.loader.BuiltinClassLoader$1 r0;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$1;
+
+        $z0 = virtualinvoke r0.<jdk.internal.loader.BuiltinClassLoader$1: boolean hasNext()>();
+
+        return $z0;
+    }
+
+    public java.net.URL nextElement()
+    {
+        jdk.internal.loader.BuiltinClassLoader$1 r0;
+        boolean $z0;
+        java.util.NoSuchElementException $r1;
+        java.net.URL r2;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$1;
+
+        $z0 = virtualinvoke r0.<jdk.internal.loader.BuiltinClassLoader$1: boolean hasNext()>();
+
+        if $z0 == 0 goto label1;
+
+        r2 = r0.<jdk.internal.loader.BuiltinClassLoader$1: java.net.URL next>;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$1: java.net.URL next> = null;
+
+        return r2;
+
+     label1:
+        $r1 = new java.util.NoSuchElementException;
+
+        specialinvoke $r1.<java.util.NoSuchElementException: void <init>()>();
+
+        throw $r1;
+    }
+
+    public volatile java.lang.Object nextElement()
+    {
+        jdk.internal.loader.BuiltinClassLoader$1 r0;
+        java.net.URL $r1;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.loader.BuiltinClassLoader$1: java.net.URL nextElement()>();
+
+        return $r1;
+    }
+}

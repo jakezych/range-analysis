@@ -1,0 +1,61 @@
+public final class jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    java.lang.module.ModuleFinder cap0;
+    java.lang.String cap1;
+
+    public static java.security.PrivilegedAction bootstrap$(java.lang.module.ModuleFinder, java.lang.String)
+    {
+        java.lang.module.ModuleFinder $r0;
+        java.lang.String $r1;
+        jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140 $r2;
+
+        $r0 := @parameter0: java.lang.module.ModuleFinder;
+
+        $r1 := @parameter1: java.lang.String;
+
+        $r2 = new jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140;
+
+        specialinvoke $r2.<jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140: void <init>(java.lang.module.ModuleFinder,java.lang.String)>($r0, $r1);
+
+        return $r2;
+    }
+
+    public void <init>(java.lang.module.ModuleFinder, java.lang.String)
+    {
+        jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140 $r0;
+        java.lang.module.ModuleFinder $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140;
+
+        $r1 := @parameter0: java.lang.module.ModuleFinder;
+
+        $r2 := @parameter1: java.lang.String;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140: java.lang.module.ModuleFinder cap0> = $r1;
+
+        $r0.<jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140: java.lang.String cap1> = $r2;
+
+        return;
+    }
+
+    public java.lang.Object run()
+    {
+        jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140 $r0;
+        java.lang.module.ModuleFinder $r1;
+        java.lang.String $r2;
+        java.util.Optional $r3;
+
+        $r0 := @this: jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140;
+
+        $r1 = $r0.<jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140: java.lang.module.ModuleFinder cap0>;
+
+        $r2 = $r0.<jdk.internal.module.SystemModuleFinders$1$lambda_find_0__140: java.lang.String cap1>;
+
+        $r3 = staticinvoke <jdk.internal.module.SystemModuleFinders$1: java.util.Optional lambda$find$0(java.lang.module.ModuleFinder,java.lang.String)>($r1, $r2);
+
+        return $r3;
+    }
+}

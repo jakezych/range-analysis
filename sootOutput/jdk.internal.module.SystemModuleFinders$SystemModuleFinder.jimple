@@ -1,0 +1,95 @@
+class jdk.internal.module.SystemModuleFinders$SystemModuleFinder extends java.lang.Object implements java.lang.module.ModuleFinder
+{
+    final java.util.Set mrefs;
+    final java.util.Map nameToModule;
+
+    void <init>(java.lang.module.ModuleReference[], java.util.Map$Entry[])
+    {
+        jdk.internal.module.SystemModuleFinders$SystemModuleFinder r0;
+        java.lang.module.ModuleReference[] r1;
+        java.util.Set $r2;
+        java.util.Map$Entry[] r3;
+        java.util.Map $r4;
+
+        r0 := @this: jdk.internal.module.SystemModuleFinders$SystemModuleFinder;
+
+        r1 := @parameter0: java.lang.module.ModuleReference[];
+
+        r3 := @parameter1: java.util.Map$Entry[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = staticinvoke <java.util.Set: java.util.Set of(java.lang.Object[])>(r1);
+
+        r0.<jdk.internal.module.SystemModuleFinders$SystemModuleFinder: java.util.Set mrefs> = $r2;
+
+        $r4 = staticinvoke <java.util.Map: java.util.Map ofEntries(java.util.Map$Entry[])>(r3);
+
+        r0.<jdk.internal.module.SystemModuleFinders$SystemModuleFinder: java.util.Map nameToModule> = $r4;
+
+        return;
+    }
+
+    void <init>(java.util.Set, java.util.Map)
+    {
+        jdk.internal.module.SystemModuleFinders$SystemModuleFinder r0;
+        java.util.Set r1, $r2;
+        java.util.Map r3, $r4;
+
+        r0 := @this: jdk.internal.module.SystemModuleFinders$SystemModuleFinder;
+
+        r1 := @parameter0: java.util.Set;
+
+        r3 := @parameter1: java.util.Map;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = staticinvoke <java.util.Set: java.util.Set copyOf(java.util.Collection)>(r1);
+
+        r0.<jdk.internal.module.SystemModuleFinders$SystemModuleFinder: java.util.Set mrefs> = $r2;
+
+        $r4 = staticinvoke <java.util.Map: java.util.Map copyOf(java.util.Map)>(r3);
+
+        r0.<jdk.internal.module.SystemModuleFinders$SystemModuleFinder: java.util.Map nameToModule> = $r4;
+
+        return;
+    }
+
+    public java.util.Optional find(java.lang.String)
+    {
+        java.lang.String r0;
+        jdk.internal.module.SystemModuleFinders$SystemModuleFinder r2;
+        java.util.Map $r3;
+        java.lang.Object $r4;
+        java.lang.module.ModuleReference $r5;
+        java.util.Optional $r6;
+
+        r2 := @this: jdk.internal.module.SystemModuleFinders$SystemModuleFinder;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        $r3 = r2.<jdk.internal.module.SystemModuleFinders$SystemModuleFinder: java.util.Map nameToModule>;
+
+        $r4 = interfaceinvoke $r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r0);
+
+        $r5 = (java.lang.module.ModuleReference) $r4;
+
+        $r6 = staticinvoke <java.util.Optional: java.util.Optional ofNullable(java.lang.Object)>($r5);
+
+        return $r6;
+    }
+
+    public java.util.Set findAll()
+    {
+        jdk.internal.module.SystemModuleFinders$SystemModuleFinder r0;
+        java.util.Set $r1;
+
+        r0 := @this: jdk.internal.module.SystemModuleFinders$SystemModuleFinder;
+
+        $r1 = r0.<jdk.internal.module.SystemModuleFinders$SystemModuleFinder: java.util.Set mrefs>;
+
+        return $r1;
+    }
+}

@@ -1,0 +1,126 @@
+class jdk.internal.module.ExplodedSystemModules extends java.lang.Object implements jdk.internal.module.SystemModules
+{
+
+    void <init>()
+    {
+        jdk.internal.module.ExplodedSystemModules r0;
+
+        r0 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public boolean hasSplitPackages()
+    {
+        jdk.internal.module.ExplodedSystemModules r0;
+
+        r0 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        return 1;
+    }
+
+    public boolean hasIncubatorModules()
+    {
+        jdk.internal.module.ExplodedSystemModules r0;
+
+        r0 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        return 1;
+    }
+
+    public java.lang.module.ModuleDescriptor[] moduleDescriptors()
+    {
+        java.lang.InternalError $r0;
+        jdk.internal.module.ExplodedSystemModules r1;
+
+        r1 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        $r0 = new java.lang.InternalError;
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>()>();
+
+        throw $r0;
+    }
+
+    public jdk.internal.module.ModuleTarget[] moduleTargets()
+    {
+        java.lang.InternalError $r0;
+        jdk.internal.module.ExplodedSystemModules r1;
+
+        r1 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        $r0 = new java.lang.InternalError;
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>()>();
+
+        throw $r0;
+    }
+
+    public jdk.internal.module.ModuleHashes[] moduleHashes()
+    {
+        java.lang.InternalError $r0;
+        jdk.internal.module.ExplodedSystemModules r1;
+
+        r1 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        $r0 = new java.lang.InternalError;
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>()>();
+
+        throw $r0;
+    }
+
+    public jdk.internal.module.ModuleResolution[] moduleResolutions()
+    {
+        java.lang.InternalError $r0;
+        jdk.internal.module.ExplodedSystemModules r1;
+
+        r1 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        $r0 = new java.lang.InternalError;
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>()>();
+
+        throw $r0;
+    }
+
+    public java.util.Map moduleReads()
+    {
+        java.lang.InternalError $r0;
+        jdk.internal.module.ExplodedSystemModules r1;
+
+        r1 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        $r0 = new java.lang.InternalError;
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>()>();
+
+        throw $r0;
+    }
+
+    public java.util.Map concealedPackagesToOpen()
+    {
+        java.util.Map $r0;
+        jdk.internal.module.ExplodedSystemModules r1;
+
+        r1 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        $r0 = staticinvoke <java.util.Map: java.util.Map of()>();
+
+        return $r0;
+    }
+
+    public java.util.Map exportedPackagesToOpen()
+    {
+        java.util.Map $r0;
+        jdk.internal.module.ExplodedSystemModules r1;
+
+        r1 := @this: jdk.internal.module.ExplodedSystemModules;
+
+        $r0 = staticinvoke <java.util.Map: java.util.Map of()>();
+
+        return $r0;
+    }
+}

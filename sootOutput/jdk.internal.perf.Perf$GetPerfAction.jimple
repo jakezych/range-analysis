@@ -1,0 +1,38 @@
+public class jdk.internal.perf.Perf$GetPerfAction extends java.lang.Object implements java.security.PrivilegedAction
+{
+
+    public void <init>()
+    {
+        jdk.internal.perf.Perf$GetPerfAction r0;
+
+        r0 := @this: jdk.internal.perf.Perf$GetPerfAction;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public jdk.internal.perf.Perf run()
+    {
+        jdk.internal.perf.Perf $r0;
+        jdk.internal.perf.Perf$GetPerfAction r1;
+
+        r1 := @this: jdk.internal.perf.Perf$GetPerfAction;
+
+        $r0 = staticinvoke <jdk.internal.perf.Perf: jdk.internal.perf.Perf getPerf()>();
+
+        return $r0;
+    }
+
+    public volatile java.lang.Object run()
+    {
+        jdk.internal.perf.Perf$GetPerfAction r0;
+        jdk.internal.perf.Perf $r1;
+
+        r0 := @this: jdk.internal.perf.Perf$GetPerfAction;
+
+        $r1 = virtualinvoke r0.<jdk.internal.perf.Perf$GetPerfAction: jdk.internal.perf.Perf run()>();
+
+        return $r1;
+    }
+}

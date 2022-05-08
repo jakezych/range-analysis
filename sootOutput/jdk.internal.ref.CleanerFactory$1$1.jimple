@@ -1,0 +1,55 @@
+class jdk.internal.ref.CleanerFactory$1$1 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    final java.lang.Runnable val$r;
+    final jdk.internal.ref.CleanerFactory$1 this$0;
+
+    void <init>(jdk.internal.ref.CleanerFactory$1, java.lang.Runnable)
+    {
+        jdk.internal.ref.CleanerFactory$1$1 r0;
+        jdk.internal.ref.CleanerFactory$1 r1;
+        java.lang.Runnable r2;
+
+        r0 := @this: jdk.internal.ref.CleanerFactory$1$1;
+
+        r1 := @parameter0: jdk.internal.ref.CleanerFactory$1;
+
+        r2 := @parameter1: java.lang.Runnable;
+
+        r0.<jdk.internal.ref.CleanerFactory$1$1: jdk.internal.ref.CleanerFactory$1 this$0> = r1;
+
+        r0.<jdk.internal.ref.CleanerFactory$1$1: java.lang.Runnable val$r> = r2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Thread run()
+    {
+        jdk.internal.ref.CleanerFactory$1$1 r0;
+        java.lang.Runnable $r1;
+        java.lang.Thread r2;
+
+        r0 := @this: jdk.internal.ref.CleanerFactory$1$1;
+
+        $r1 = r0.<jdk.internal.ref.CleanerFactory$1$1: java.lang.Runnable val$r>;
+
+        r2 = staticinvoke <jdk.internal.misc.InnocuousThread: java.lang.Thread newSystemThread(java.lang.String,java.lang.Runnable)>("Common-Cleaner", $r1);
+
+        virtualinvoke r2.<java.lang.Thread: void setPriority(int)>(8);
+
+        return r2;
+    }
+
+    public volatile java.lang.Object run()
+    {
+        jdk.internal.ref.CleanerFactory$1$1 r0;
+        java.lang.Thread $r1;
+
+        r0 := @this: jdk.internal.ref.CleanerFactory$1$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.ref.CleanerFactory$1$1: java.lang.Thread run()>();
+
+        return $r1;
+    }
+}

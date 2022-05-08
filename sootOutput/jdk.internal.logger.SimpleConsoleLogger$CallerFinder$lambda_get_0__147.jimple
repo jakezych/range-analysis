@@ -1,0 +1,55 @@
+public final class jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147 extends java.lang.Object implements java.util.function.Function
+{
+    jdk.internal.logger.SimpleConsoleLogger$CallerFinder cap0;
+
+    public static java.util.function.Function bootstrap$(jdk.internal.logger.SimpleConsoleLogger$CallerFinder)
+    {
+        jdk.internal.logger.SimpleConsoleLogger$CallerFinder $r0;
+        jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147 $r1;
+
+        $r0 := @parameter0: jdk.internal.logger.SimpleConsoleLogger$CallerFinder;
+
+        $r1 = new jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147;
+
+        specialinvoke $r1.<jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147: void <init>(jdk.internal.logger.SimpleConsoleLogger$CallerFinder)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(jdk.internal.logger.SimpleConsoleLogger$CallerFinder)
+    {
+        jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147 $r0;
+        jdk.internal.logger.SimpleConsoleLogger$CallerFinder $r1;
+
+        $r0 := @this: jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147;
+
+        $r1 := @parameter0: jdk.internal.logger.SimpleConsoleLogger$CallerFinder;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147: jdk.internal.logger.SimpleConsoleLogger$CallerFinder cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147 $r0;
+        java.lang.Object $r1;
+        java.util.stream.Stream $r2;
+        jdk.internal.logger.SimpleConsoleLogger$CallerFinder $r3;
+        java.util.Optional $r4;
+
+        $r0 := @this: jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.util.stream.Stream) $r1;
+
+        $r3 = $r0.<jdk.internal.logger.SimpleConsoleLogger$CallerFinder$lambda_get_0__147: jdk.internal.logger.SimpleConsoleLogger$CallerFinder cap0>;
+
+        $r4 = virtualinvoke $r3.<jdk.internal.logger.SimpleConsoleLogger$CallerFinder: java.util.Optional lambda$get$0(java.util.stream.Stream)>($r2);
+
+        return $r4;
+    }
+}

@@ -1,0 +1,627 @@
+final class jdk.internal.org.objectweb.asm.FieldWriter extends jdk.internal.org.objectweb.asm.FieldVisitor
+{
+    private final jdk.internal.org.objectweb.asm.SymbolTable symbolTable;
+    private final int accessFlags;
+    private final int nameIndex;
+    private final int descriptorIndex;
+    private int signatureIndex;
+    private int constantValueIndex;
+    private jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleAnnotation;
+    private jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleAnnotation;
+    private jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleTypeAnnotation;
+    private jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleTypeAnnotation;
+    private jdk.internal.org.objectweb.asm.Attribute firstAttribute;
+
+    void <init>(jdk.internal.org.objectweb.asm.SymbolTable, int, java.lang.String, java.lang.String, java.lang.String, java.lang.Object)
+    {
+        jdk.internal.org.objectweb.asm.FieldWriter r0;
+        jdk.internal.org.objectweb.asm.SymbolTable r1;
+        int i0, $i1, $i2, $i3, $i4;
+        java.lang.String r2, r3, r4;
+        java.lang.Object r5;
+        jdk.internal.org.objectweb.asm.Symbol $r6;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.FieldWriter;
+
+        r1 := @parameter0: jdk.internal.org.objectweb.asm.SymbolTable;
+
+        i0 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String;
+
+        r3 := @parameter3: java.lang.String;
+
+        r4 := @parameter4: java.lang.String;
+
+        r5 := @parameter5: java.lang.Object;
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.FieldVisitor: void <init>(int)>(458752);
+
+        r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable> = r1;
+
+        r0.<jdk.internal.org.objectweb.asm.FieldWriter: int accessFlags> = i0;
+
+        $i1 = virtualinvoke r1.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>(r2);
+
+        r0.<jdk.internal.org.objectweb.asm.FieldWriter: int nameIndex> = $i1;
+
+        $i2 = virtualinvoke r1.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>(r3);
+
+        r0.<jdk.internal.org.objectweb.asm.FieldWriter: int descriptorIndex> = $i2;
+
+        if r4 == null goto label1;
+
+        $i4 = virtualinvoke r1.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>(r4);
+
+        r0.<jdk.internal.org.objectweb.asm.FieldWriter: int signatureIndex> = $i4;
+
+     label1:
+        if r5 == null goto label2;
+
+        $r6 = virtualinvoke r1.<jdk.internal.org.objectweb.asm.SymbolTable: jdk.internal.org.objectweb.asm.Symbol addConstant(java.lang.Object)>(r5);
+
+        $i3 = $r6.<jdk.internal.org.objectweb.asm.Symbol: int index>;
+
+        r0.<jdk.internal.org.objectweb.asm.FieldWriter: int constantValueIndex> = $i3;
+
+     label2:
+        return;
+    }
+
+    public jdk.internal.org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, boolean)
+    {
+        jdk.internal.org.objectweb.asm.ByteVector $r0, $r5;
+        jdk.internal.org.objectweb.asm.FieldWriter r2;
+        java.lang.String r3;
+        jdk.internal.org.objectweb.asm.SymbolTable $r4, $r9, $r12;
+        int $i0;
+        boolean z0;
+        jdk.internal.org.objectweb.asm.AnnotationWriter $r7, $r8, $r10, $r11;
+
+        r2 := @this: jdk.internal.org.objectweb.asm.FieldWriter;
+
+        r3 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        $r0 = new jdk.internal.org.objectweb.asm.ByteVector;
+
+        specialinvoke $r0.<jdk.internal.org.objectweb.asm.ByteVector: void <init>()>();
+
+        $r4 = r2.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i0 = virtualinvoke $r4.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>(r3);
+
+        $r5 = virtualinvoke $r0.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i0);
+
+        virtualinvoke $r5.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>(0);
+
+        if z0 == 0 goto label1;
+
+        $r10 = new jdk.internal.org.objectweb.asm.AnnotationWriter;
+
+        $r12 = r2.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $r11 = r2.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleAnnotation>;
+
+        specialinvoke $r10.<jdk.internal.org.objectweb.asm.AnnotationWriter: void <init>(jdk.internal.org.objectweb.asm.SymbolTable,jdk.internal.org.objectweb.asm.ByteVector,jdk.internal.org.objectweb.asm.AnnotationWriter)>($r12, $r0, $r11);
+
+        r2.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleAnnotation> = $r10;
+
+        return $r10;
+
+     label1:
+        $r7 = new jdk.internal.org.objectweb.asm.AnnotationWriter;
+
+        $r9 = r2.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $r8 = r2.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleAnnotation>;
+
+        specialinvoke $r7.<jdk.internal.org.objectweb.asm.AnnotationWriter: void <init>(jdk.internal.org.objectweb.asm.SymbolTable,jdk.internal.org.objectweb.asm.ByteVector,jdk.internal.org.objectweb.asm.AnnotationWriter)>($r9, $r0, $r8);
+
+        r2.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleAnnotation> = $r7;
+
+        return $r7;
+    }
+
+    public jdk.internal.org.objectweb.asm.AnnotationVisitor visitTypeAnnotation(int, jdk.internal.org.objectweb.asm.TypePath, java.lang.String, boolean)
+    {
+        jdk.internal.org.objectweb.asm.ByteVector $r0, $r6;
+        int i0, $i1;
+        jdk.internal.org.objectweb.asm.TypePath r2;
+        jdk.internal.org.objectweb.asm.FieldWriter r3;
+        java.lang.String r4;
+        jdk.internal.org.objectweb.asm.SymbolTable $r5, $r10, $r13;
+        boolean z0;
+        jdk.internal.org.objectweb.asm.AnnotationWriter $r8, $r9, $r11, $r12;
+
+        r3 := @this: jdk.internal.org.objectweb.asm.FieldWriter;
+
+        i0 := @parameter0: int;
+
+        r2 := @parameter1: jdk.internal.org.objectweb.asm.TypePath;
+
+        r4 := @parameter2: java.lang.String;
+
+        z0 := @parameter3: boolean;
+
+        $r0 = new jdk.internal.org.objectweb.asm.ByteVector;
+
+        specialinvoke $r0.<jdk.internal.org.objectweb.asm.ByteVector: void <init>()>();
+
+        staticinvoke <jdk.internal.org.objectweb.asm.TypeReference: void putTarget(int,jdk.internal.org.objectweb.asm.ByteVector)>(i0, $r0);
+
+        staticinvoke <jdk.internal.org.objectweb.asm.TypePath: void put(jdk.internal.org.objectweb.asm.TypePath,jdk.internal.org.objectweb.asm.ByteVector)>(r2, $r0);
+
+        $r5 = r3.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i1 = virtualinvoke $r5.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>(r4);
+
+        $r6 = virtualinvoke $r0.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i1);
+
+        virtualinvoke $r6.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>(0);
+
+        if z0 == 0 goto label1;
+
+        $r11 = new jdk.internal.org.objectweb.asm.AnnotationWriter;
+
+        $r13 = r3.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $r12 = r3.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleTypeAnnotation>;
+
+        specialinvoke $r11.<jdk.internal.org.objectweb.asm.AnnotationWriter: void <init>(jdk.internal.org.objectweb.asm.SymbolTable,jdk.internal.org.objectweb.asm.ByteVector,jdk.internal.org.objectweb.asm.AnnotationWriter)>($r13, $r0, $r12);
+
+        r3.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleTypeAnnotation> = $r11;
+
+        return $r11;
+
+     label1:
+        $r8 = new jdk.internal.org.objectweb.asm.AnnotationWriter;
+
+        $r10 = r3.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $r9 = r3.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleTypeAnnotation>;
+
+        specialinvoke $r8.<jdk.internal.org.objectweb.asm.AnnotationWriter: void <init>(jdk.internal.org.objectweb.asm.SymbolTable,jdk.internal.org.objectweb.asm.ByteVector,jdk.internal.org.objectweb.asm.AnnotationWriter)>($r10, $r0, $r9);
+
+        r3.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleTypeAnnotation> = $r8;
+
+        return $r8;
+    }
+
+    public void visitAttribute(jdk.internal.org.objectweb.asm.Attribute)
+    {
+        jdk.internal.org.objectweb.asm.Attribute r0, $r2;
+        jdk.internal.org.objectweb.asm.FieldWriter r1;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.FieldWriter;
+
+        r0 := @parameter0: jdk.internal.org.objectweb.asm.Attribute;
+
+        $r2 = r1.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.Attribute firstAttribute>;
+
+        r0.<jdk.internal.org.objectweb.asm.Attribute: jdk.internal.org.objectweb.asm.Attribute nextAttribute> = $r2;
+
+        r1.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.Attribute firstAttribute> = r0;
+
+        return;
+    }
+
+    public void visitEnd()
+    {
+        jdk.internal.org.objectweb.asm.FieldWriter r0;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.FieldWriter;
+
+        return;
+    }
+
+    int computeFieldInfoSize()
+    {
+        jdk.internal.org.objectweb.asm.FieldWriter r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i12, i15, $i16;
+        jdk.internal.org.objectweb.asm.AnnotationWriter $r1, $r2, $r3, $r4, $r8, $r9, $r10, $r11;
+        jdk.internal.org.objectweb.asm.Attribute $r5, $r7;
+        jdk.internal.org.objectweb.asm.SymbolTable $r6, $r12, $r13, $r14, $r15, $r16;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.FieldWriter;
+
+        i15 = 8;
+
+        $i0 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int constantValueIndex>;
+
+        if $i0 == 0 goto label1;
+
+        $r16 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        virtualinvoke $r16.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("ConstantValue");
+
+        i15 = 8 + 8;
+
+     label1:
+        $i1 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int accessFlags>;
+
+        $i2 = $i1 & 4096;
+
+        if $i2 == 0 goto label2;
+
+        $r14 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i12 = virtualinvoke $r14.<jdk.internal.org.objectweb.asm.SymbolTable: int getMajorVersion()>();
+
+        if $i12 >= 49 goto label2;
+
+        $r15 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        virtualinvoke $r15.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("Synthetic");
+
+        i15 = i15 + 6;
+
+     label2:
+        $i16 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int signatureIndex>;
+
+        if $i16 == 0 goto label3;
+
+        $r13 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        virtualinvoke $r13.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("Signature");
+
+        i15 = i15 + 8;
+
+     label3:
+        $i3 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int accessFlags>;
+
+        $i4 = $i3 & 131072;
+
+        if $i4 == 0 goto label4;
+
+        $r12 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        virtualinvoke $r12.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("Deprecated");
+
+        i15 = i15 + 6;
+
+     label4:
+        $r1 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleAnnotation>;
+
+        if $r1 == null goto label5;
+
+        $r11 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleAnnotation>;
+
+        $i9 = virtualinvoke $r11.<jdk.internal.org.objectweb.asm.AnnotationWriter: int computeAnnotationsSize(java.lang.String)>("RuntimeVisibleAnnotations");
+
+        i15 = i15 + $i9;
+
+     label5:
+        $r2 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleAnnotation>;
+
+        if $r2 == null goto label6;
+
+        $r10 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleAnnotation>;
+
+        $i8 = virtualinvoke $r10.<jdk.internal.org.objectweb.asm.AnnotationWriter: int computeAnnotationsSize(java.lang.String)>("RuntimeInvisibleAnnotations");
+
+        i15 = i15 + $i8;
+
+     label6:
+        $r3 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleTypeAnnotation>;
+
+        if $r3 == null goto label7;
+
+        $r9 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleTypeAnnotation>;
+
+        $i7 = virtualinvoke $r9.<jdk.internal.org.objectweb.asm.AnnotationWriter: int computeAnnotationsSize(java.lang.String)>("RuntimeVisibleTypeAnnotations");
+
+        i15 = i15 + $i7;
+
+     label7:
+        $r4 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleTypeAnnotation>;
+
+        if $r4 == null goto label8;
+
+        $r8 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleTypeAnnotation>;
+
+        $i6 = virtualinvoke $r8.<jdk.internal.org.objectweb.asm.AnnotationWriter: int computeAnnotationsSize(java.lang.String)>("RuntimeInvisibleTypeAnnotations");
+
+        i15 = i15 + $i6;
+
+     label8:
+        $r5 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.Attribute firstAttribute>;
+
+        if $r5 == null goto label9;
+
+        $r7 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.Attribute firstAttribute>;
+
+        $r6 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i5 = virtualinvoke $r7.<jdk.internal.org.objectweb.asm.Attribute: int computeAttributesSize(jdk.internal.org.objectweb.asm.SymbolTable)>($r6);
+
+        i15 = i15 + $i5;
+
+     label9:
+        return i15;
+    }
+
+    void putFieldInfo(jdk.internal.org.objectweb.asm.ByteVector)
+    {
+        jdk.internal.org.objectweb.asm.FieldWriter r0;
+        jdk.internal.org.objectweb.asm.SymbolTable $r1, $r17, $r19, $r21, $r23, $r25, $r27, $r30, $r34, $r37;
+        int $i0, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i24, $i25, $i26, $i27, i29, $i30, $i31;
+        boolean z0, $z1;
+        jdk.internal.org.objectweb.asm.ByteVector r2, $r3, $r4, $r28, $r31, $r32, $r35, $r38, $r39;
+        jdk.internal.org.objectweb.asm.AnnotationWriter $r6, $r7, $r8, $r9, $r12, $r13, $r14, $r15, $r20, $r22, $r24, $r26;
+        jdk.internal.org.objectweb.asm.Attribute $r10, $r16, $r18, $r41;
+        short $s28;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.FieldWriter;
+
+        r2 := @parameter0: jdk.internal.org.objectweb.asm.ByteVector;
+
+        $r1 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i0 = virtualinvoke $r1.<jdk.internal.org.objectweb.asm.SymbolTable: int getMajorVersion()>();
+
+        if $i0 >= 49 goto label01;
+
+        $z1 = 1;
+
+        goto label02;
+
+     label01:
+        $z1 = 0;
+
+     label02:
+        z0 = $z1;
+
+        if $z1 == 0 goto label03;
+
+        $s28 = 4096;
+
+        goto label04;
+
+     label03:
+        $s28 = 0;
+
+     label04:
+        $i3 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int accessFlags>;
+
+        $i2 = $s28 ^ -1;
+
+        $i4 = $i3 & $i2;
+
+        $r3 = virtualinvoke r2.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i4);
+
+        $i5 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int nameIndex>;
+
+        $r4 = virtualinvoke $r3.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i5);
+
+        $i6 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int descriptorIndex>;
+
+        virtualinvoke $r4.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i6);
+
+        i29 = 0;
+
+        $i7 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int constantValueIndex>;
+
+        if $i7 == 0 goto label05;
+
+        i29 = 0 + 1;
+
+     label05:
+        $i8 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int accessFlags>;
+
+        $i9 = $i8 & 4096;
+
+        if $i9 == 0 goto label06;
+
+        if z0 == 0 goto label06;
+
+        i29 = i29 + 1;
+
+     label06:
+        $i30 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int signatureIndex>;
+
+        if $i30 == 0 goto label07;
+
+        i29 = i29 + 1;
+
+     label07:
+        $i10 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int accessFlags>;
+
+        $i11 = $i10 & 131072;
+
+        if $i11 == 0 goto label08;
+
+        i29 = i29 + 1;
+
+     label08:
+        $r6 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleAnnotation>;
+
+        if $r6 == null goto label09;
+
+        i29 = i29 + 1;
+
+     label09:
+        $r7 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleAnnotation>;
+
+        if $r7 == null goto label10;
+
+        i29 = i29 + 1;
+
+     label10:
+        $r8 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleTypeAnnotation>;
+
+        if $r8 == null goto label11;
+
+        i29 = i29 + 1;
+
+     label11:
+        $r9 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleTypeAnnotation>;
+
+        if $r9 == null goto label12;
+
+        i29 = i29 + 1;
+
+     label12:
+        $r10 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.Attribute firstAttribute>;
+
+        if $r10 == null goto label13;
+
+        $r41 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.Attribute firstAttribute>;
+
+        $i27 = virtualinvoke $r41.<jdk.internal.org.objectweb.asm.Attribute: int getAttributeCount()>();
+
+        i29 = i29 + $i27;
+
+     label13:
+        virtualinvoke r2.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>(i29);
+
+        $i12 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int constantValueIndex>;
+
+        if $i12 == 0 goto label14;
+
+        $r37 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i25 = virtualinvoke $r37.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("ConstantValue");
+
+        $r38 = virtualinvoke r2.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i25);
+
+        $r39 = virtualinvoke $r38.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putInt(int)>(2);
+
+        $i26 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int constantValueIndex>;
+
+        virtualinvoke $r39.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i26);
+
+     label14:
+        $i13 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int accessFlags>;
+
+        $i14 = $i13 & 4096;
+
+        if $i14 == 0 goto label15;
+
+        if z0 == 0 goto label15;
+
+        $r34 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i24 = virtualinvoke $r34.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("Synthetic");
+
+        $r35 = virtualinvoke r2.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i24);
+
+        virtualinvoke $r35.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putInt(int)>(0);
+
+     label15:
+        $i31 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int signatureIndex>;
+
+        if $i31 == 0 goto label16;
+
+        $r30 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i22 = virtualinvoke $r30.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("Signature");
+
+        $r31 = virtualinvoke r2.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i22);
+
+        $r32 = virtualinvoke $r31.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putInt(int)>(2);
+
+        $i23 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int signatureIndex>;
+
+        virtualinvoke $r32.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i23);
+
+     label16:
+        $i15 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: int accessFlags>;
+
+        $i16 = $i15 & 131072;
+
+        if $i16 == 0 goto label17;
+
+        $r27 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i21 = virtualinvoke $r27.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("Deprecated");
+
+        $r28 = virtualinvoke r2.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putShort(int)>($i21);
+
+        virtualinvoke $r28.<jdk.internal.org.objectweb.asm.ByteVector: jdk.internal.org.objectweb.asm.ByteVector putInt(int)>(0);
+
+     label17:
+        $r12 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleAnnotation>;
+
+        if $r12 == null goto label18;
+
+        $r26 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleAnnotation>;
+
+        $r25 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i20 = virtualinvoke $r25.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("RuntimeVisibleAnnotations");
+
+        virtualinvoke $r26.<jdk.internal.org.objectweb.asm.AnnotationWriter: void putAnnotations(int,jdk.internal.org.objectweb.asm.ByteVector)>($i20, r2);
+
+     label18:
+        $r13 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleAnnotation>;
+
+        if $r13 == null goto label19;
+
+        $r24 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleAnnotation>;
+
+        $r23 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i19 = virtualinvoke $r23.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("RuntimeInvisibleAnnotations");
+
+        virtualinvoke $r24.<jdk.internal.org.objectweb.asm.AnnotationWriter: void putAnnotations(int,jdk.internal.org.objectweb.asm.ByteVector)>($i19, r2);
+
+     label19:
+        $r14 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleTypeAnnotation>;
+
+        if $r14 == null goto label20;
+
+        $r22 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeVisibleTypeAnnotation>;
+
+        $r21 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i18 = virtualinvoke $r21.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("RuntimeVisibleTypeAnnotations");
+
+        virtualinvoke $r22.<jdk.internal.org.objectweb.asm.AnnotationWriter: void putAnnotations(int,jdk.internal.org.objectweb.asm.ByteVector)>($i18, r2);
+
+     label20:
+        $r15 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleTypeAnnotation>;
+
+        if $r15 == null goto label21;
+
+        $r20 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.AnnotationWriter lastRuntimeInvisibleTypeAnnotation>;
+
+        $r19 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        $i17 = virtualinvoke $r19.<jdk.internal.org.objectweb.asm.SymbolTable: int addConstantUtf8(java.lang.String)>("RuntimeInvisibleTypeAnnotations");
+
+        virtualinvoke $r20.<jdk.internal.org.objectweb.asm.AnnotationWriter: void putAnnotations(int,jdk.internal.org.objectweb.asm.ByteVector)>($i17, r2);
+
+     label21:
+        $r16 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.Attribute firstAttribute>;
+
+        if $r16 == null goto label22;
+
+        $r18 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.Attribute firstAttribute>;
+
+        $r17 = r0.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.SymbolTable symbolTable>;
+
+        virtualinvoke $r18.<jdk.internal.org.objectweb.asm.Attribute: void putAttributes(jdk.internal.org.objectweb.asm.SymbolTable,jdk.internal.org.objectweb.asm.ByteVector)>($r17, r2);
+
+     label22:
+        return;
+    }
+
+    final void collectAttributePrototypes(jdk.internal.org.objectweb.asm.Attribute$Set)
+    {
+        jdk.internal.org.objectweb.asm.Attribute$Set r0;
+        jdk.internal.org.objectweb.asm.FieldWriter r1;
+        jdk.internal.org.objectweb.asm.Attribute $r2;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.FieldWriter;
+
+        r0 := @parameter0: jdk.internal.org.objectweb.asm.Attribute$Set;
+
+        $r2 = r1.<jdk.internal.org.objectweb.asm.FieldWriter: jdk.internal.org.objectweb.asm.Attribute firstAttribute>;
+
+        virtualinvoke r0.<jdk.internal.org.objectweb.asm.Attribute$Set: void addAttributes(jdk.internal.org.objectweb.asm.Attribute)>($r2);
+
+        return;
+    }
+}

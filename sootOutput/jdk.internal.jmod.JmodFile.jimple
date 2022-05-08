@@ -1,0 +1,427 @@
+public class jdk.internal.jmod.JmodFile extends java.lang.Object implements java.lang.AutoCloseable
+{
+    private static final int JMOD_MAJOR_VERSION;
+    private static final int JMOD_MINOR_VERSION;
+    private static final byte[] JMOD_MAGIC_NUMBER;
+    private final java.nio.file.Path file;
+    private final java.util.zip.ZipFile zipfile;
+
+    public static void checkMagic(java.nio.file.Path) throws java.io.IOException
+    {
+        java.nio.file.Path r0;
+        java.nio.file.OpenOption[] $r1;
+        java.io.InputStream r2;
+        java.io.BufferedInputStream $r3;
+        byte[] $r4, $r11, r28;
+        byte $b1, $b2, $b3, $b4, $b5, $b6, $b7, $b8, $b9;
+        java.io.IOException $r5, $r12;
+        java.lang.StringBuilder $r6, $r7, $r9, $r13, $r14, $r15, $r16, $r17, $r18, $r20;
+        java.lang.String $r8, $r10, $r19, $r21;
+        java.lang.Throwable $r22, $r23, $r24, $r26;
+
+        r0 := @parameter0: java.nio.file.Path;
+
+        $r1 = newarray (java.nio.file.OpenOption)[0];
+
+        r2 = staticinvoke <java.nio.file.Files: java.io.InputStream newInputStream(java.nio.file.Path,java.nio.file.OpenOption[])>(r0, $r1);
+
+     label01:
+        $r3 = new java.io.BufferedInputStream;
+
+        specialinvoke $r3.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>(r2);
+
+     label02:
+        r28 = newarray (byte)[4];
+
+        virtualinvoke $r3.<java.io.BufferedInputStream: int read(byte[])>(r28);
+
+        $b2 = r28[0];
+
+        $r4 = <jdk.internal.jmod.JmodFile: byte[] JMOD_MAGIC_NUMBER>;
+
+        $b1 = $r4[0];
+
+        if $b2 != $b1 goto label03;
+
+        $b4 = r28[1];
+
+        $r11 = <jdk.internal.jmod.JmodFile: byte[] JMOD_MAGIC_NUMBER>;
+
+        $b3 = $r11[1];
+
+        if $b4 == $b3 goto label04;
+
+     label03:
+        $r5 = new java.io.IOException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Invalid JMOD file: ");
+
+        $r8 = interfaceinvoke r0.<java.nio.file.Path: java.lang.String toString()>();
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<java.io.IOException: void <init>(java.lang.String)>($r10);
+
+        throw $r5;
+
+     label04:
+        $b5 = r28[2];
+
+        if $b5 > 1 goto label05;
+
+        $b8 = r28[2];
+
+        if $b8 != 1 goto label06;
+
+        $b9 = r28[3];
+
+        if $b9 <= 0 goto label06;
+
+     label05:
+        $r12 = new java.io.IOException;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unsupported jmod version: ");
+
+        $b6 = r28[2];
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($b6);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $b7 = r28[3];
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($b7);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in ");
+
+        $r19 = interfaceinvoke r0.<java.nio.file.Path: java.lang.String toString()>();
+
+        $r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19);
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r12.<java.io.IOException: void <init>(java.lang.String)>($r21);
+
+        throw $r12;
+
+     label06:
+        virtualinvoke $r3.<java.io.BufferedInputStream: void close()>();
+
+        goto label12;
+
+     label07:
+        $r26 := @caughtexception;
+
+     label08:
+        virtualinvoke $r3.<java.io.BufferedInputStream: void close()>();
+
+     label09:
+        goto label11;
+
+     label10:
+        $r24 := @caughtexception;
+
+        virtualinvoke $r26.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r24);
+
+     label11:
+        throw $r26;
+
+     label12:
+        if r2 == null goto label18;
+
+        virtualinvoke r2.<java.io.InputStream: void close()>();
+
+        goto label18;
+
+     label13:
+        $r23 := @caughtexception;
+
+        if r2 == null goto label17;
+
+     label14:
+        virtualinvoke r2.<java.io.InputStream: void close()>();
+
+     label15:
+        goto label17;
+
+     label16:
+        $r22 := @caughtexception;
+
+        virtualinvoke $r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r22);
+
+     label17:
+        throw $r23;
+
+     label18:
+        return;
+
+        catch java.lang.Throwable from label02 to label06 with label07;
+        catch java.lang.Throwable from label08 to label09 with label10;
+        catch java.lang.Throwable from label01 to label12 with label13;
+        catch java.lang.Throwable from label14 to label15 with label16;
+    }
+
+    public void <init>(java.nio.file.Path) throws java.io.IOException
+    {
+        jdk.internal.jmod.JmodFile r0;
+        java.nio.file.Path r1;
+        java.util.zip.ZipFile $r2;
+        java.io.File $r3;
+
+        r0 := @this: jdk.internal.jmod.JmodFile;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        staticinvoke <jdk.internal.jmod.JmodFile: void checkMagic(java.nio.file.Path)>(r1);
+
+        r0.<jdk.internal.jmod.JmodFile: java.nio.file.Path file> = r1;
+
+        $r2 = new java.util.zip.ZipFile;
+
+        $r3 = interfaceinvoke r1.<java.nio.file.Path: java.io.File toFile()>();
+
+        specialinvoke $r2.<java.util.zip.ZipFile: void <init>(java.io.File)>($r3);
+
+        r0.<jdk.internal.jmod.JmodFile: java.util.zip.ZipFile zipfile> = $r2;
+
+        return;
+    }
+
+    public static void writeMagicNumber(java.io.OutputStream) throws java.io.IOException
+    {
+        java.io.OutputStream r0;
+        byte[] $r1;
+
+        r0 := @parameter0: java.io.OutputStream;
+
+        $r1 = <jdk.internal.jmod.JmodFile: byte[] JMOD_MAGIC_NUMBER>;
+
+        virtualinvoke r0.<java.io.OutputStream: void write(byte[])>($r1);
+
+        return;
+    }
+
+    public jdk.internal.jmod.JmodFile$Entry getEntry(jdk.internal.jmod.JmodFile$Section, java.lang.String)
+    {
+        java.lang.StringBuilder $r0, $r3, $r4, $r6;
+        jdk.internal.jmod.JmodFile$Section r1;
+        java.lang.String $r2, r5, r7;
+        jdk.internal.jmod.JmodFile r8;
+        java.util.zip.ZipFile $r9;
+        java.util.zip.ZipEntry r10;
+        jdk.internal.jmod.JmodFile$Entry $r11;
+
+        r8 := @this: jdk.internal.jmod.JmodFile;
+
+        r1 := @parameter0: jdk.internal.jmod.JmodFile$Section;
+
+        r5 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke r1.<jdk.internal.jmod.JmodFile$Section: java.lang.String jmodDir()>();
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5);
+
+        r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r9 = r8.<jdk.internal.jmod.JmodFile: java.util.zip.ZipFile zipfile>;
+
+        r10 = virtualinvoke $r9.<java.util.zip.ZipFile: java.util.zip.ZipEntry getEntry(java.lang.String)>(r7);
+
+        if r10 == null goto label1;
+
+        $r11 = new jdk.internal.jmod.JmodFile$Entry;
+
+        specialinvoke $r11.<jdk.internal.jmod.JmodFile$Entry: void <init>(java.util.zip.ZipEntry)>(r10);
+
+        goto label2;
+
+     label1:
+        $r11 = null;
+
+     label2:
+        return $r11;
+    }
+
+    public java.io.InputStream getInputStream(jdk.internal.jmod.JmodFile$Section, java.lang.String) throws java.io.IOException
+    {
+        java.lang.StringBuilder $r0, $r3, $r4, $r6, $r14, $r15, $r16, $r18;
+        jdk.internal.jmod.JmodFile$Section r1;
+        java.lang.String $r2, r5, r7, $r19;
+        jdk.internal.jmod.JmodFile r8;
+        java.util.zip.ZipFile $r9, $r11;
+        java.util.zip.ZipEntry r10;
+        java.io.InputStream $r12;
+        java.io.IOException $r13;
+        java.nio.file.Path $r17;
+
+        r8 := @this: jdk.internal.jmod.JmodFile;
+
+        r1 := @parameter0: jdk.internal.jmod.JmodFile$Section;
+
+        r5 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke r1.<jdk.internal.jmod.JmodFile$Section: java.lang.String jmodDir()>();
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5);
+
+        r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r9 = r8.<jdk.internal.jmod.JmodFile: java.util.zip.ZipFile zipfile>;
+
+        r10 = virtualinvoke $r9.<java.util.zip.ZipFile: java.util.zip.ZipEntry getEntry(java.lang.String)>(r7);
+
+        if r10 != null goto label1;
+
+        $r13 = new java.io.IOException;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" not found: ");
+
+        $r17 = r8.<jdk.internal.jmod.JmodFile: java.nio.file.Path file>;
+
+        $r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r17);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r13.<java.io.IOException: void <init>(java.lang.String)>($r19);
+
+        throw $r13;
+
+     label1:
+        $r11 = r8.<jdk.internal.jmod.JmodFile: java.util.zip.ZipFile zipfile>;
+
+        $r12 = virtualinvoke $r11.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r10);
+
+        return $r12;
+    }
+
+    public java.io.InputStream getInputStream(jdk.internal.jmod.JmodFile$Entry) throws java.io.IOException
+    {
+        jdk.internal.jmod.JmodFile r0;
+        jdk.internal.jmod.JmodFile$Entry r1;
+        java.util.zip.ZipFile $r2;
+        java.util.zip.ZipEntry $r3;
+        java.io.InputStream $r4;
+
+        r0 := @this: jdk.internal.jmod.JmodFile;
+
+        r1 := @parameter0: jdk.internal.jmod.JmodFile$Entry;
+
+        $r2 = r0.<jdk.internal.jmod.JmodFile: java.util.zip.ZipFile zipfile>;
+
+        $r3 = virtualinvoke r1.<jdk.internal.jmod.JmodFile$Entry: java.util.zip.ZipEntry zipEntry()>();
+
+        $r4 = virtualinvoke $r2.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>($r3);
+
+        return $r4;
+    }
+
+    public java.util.stream.Stream stream()
+    {
+        jdk.internal.jmod.JmodFile r0;
+        java.util.zip.ZipFile $r1;
+        java.util.stream.Stream $r2, $r4;
+        java.util.function.Function $r3;
+
+        r0 := @this: jdk.internal.jmod.JmodFile;
+
+        $r1 = r0.<jdk.internal.jmod.JmodFile: java.util.zip.ZipFile zipfile>;
+
+        $r2 = virtualinvoke $r1.<java.util.zip.ZipFile: java.util.stream.Stream stream()>();
+
+        $r3 = staticinvoke <jdk.internal.jmod.JmodFile$lambda_stream_0__130: java.util.function.Function bootstrap$()>();
+
+        $r4 = interfaceinvoke $r2.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r3);
+
+        return $r4;
+    }
+
+    public void close() throws java.io.IOException
+    {
+        jdk.internal.jmod.JmodFile r0;
+        java.util.zip.ZipFile $r1, $r2;
+
+        r0 := @this: jdk.internal.jmod.JmodFile;
+
+        $r1 = r0.<jdk.internal.jmod.JmodFile: java.util.zip.ZipFile zipfile>;
+
+        if $r1 == null goto label1;
+
+        $r2 = r0.<jdk.internal.jmod.JmodFile: java.util.zip.ZipFile zipfile>;
+
+        virtualinvoke $r2.<java.util.zip.ZipFile: void close()>();
+
+     label1:
+        return;
+    }
+
+    public static jdk.internal.jmod.JmodFile$Entry lambda$stream$0(java.util.zip.ZipEntry)
+    {
+        jdk.internal.jmod.JmodFile$Entry $r0;
+        java.util.zip.ZipEntry r1;
+
+        r1 := @parameter0: java.util.zip.ZipEntry;
+
+        $r0 = new jdk.internal.jmod.JmodFile$Entry;
+
+        specialinvoke $r0.<jdk.internal.jmod.JmodFile$Entry: void <init>(java.util.zip.ZipEntry)>(r1);
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        byte[] $r0;
+
+        <jdk.internal.jmod.JmodFile: int JMOD_MINOR_VERSION> = 0;
+
+        <jdk.internal.jmod.JmodFile: int JMOD_MAJOR_VERSION> = 1;
+
+        $r0 = newarray (byte)[4];
+
+        $r0[0] = 74;
+
+        $r0[1] = 77;
+
+        $r0[2] = 1;
+
+        $r0[3] = 0;
+
+        <jdk.internal.jmod.JmodFile: byte[] JMOD_MAGIC_NUMBER> = $r0;
+
+        return;
+    }
+}

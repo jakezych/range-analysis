@@ -1,0 +1,43 @@
+public final class jdk.internal.module.IllegalAccessLogger$lambda_log_3__25 extends java.lang.Object implements java.util.function.Function
+{
+
+    public static java.util.function.Function bootstrap$()
+    {
+        jdk.internal.module.IllegalAccessLogger$lambda_log_3__25 $r0;
+
+        $r0 = new jdk.internal.module.IllegalAccessLogger$lambda_log_3__25;
+
+        specialinvoke $r0.<jdk.internal.module.IllegalAccessLogger$lambda_log_3__25: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.module.IllegalAccessLogger$lambda_log_3__25 $r0;
+
+        $r0 := @this: jdk.internal.module.IllegalAccessLogger$lambda_log_3__25;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.module.IllegalAccessLogger$lambda_log_3__25 $r0;
+        java.lang.Object $r1;
+        java.lang.Class $r2;
+        jdk.internal.module.IllegalAccessLogger$Usages $r3;
+
+        $r0 := @this: jdk.internal.module.IllegalAccessLogger$lambda_log_3__25;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.Class) $r1;
+
+        $r3 = staticinvoke <jdk.internal.module.IllegalAccessLogger: jdk.internal.module.IllegalAccessLogger$Usages lambda$log$3(java.lang.Class)>($r2);
+
+        return $r3;
+    }
+}

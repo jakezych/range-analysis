@@ -1,0 +1,387 @@
+public class jdk.internal.logger.LocalizedLoggerWrapper extends jdk.internal.logger.LoggerWrapper
+{
+    private final java.util.ResourceBundle bundle;
+
+    public void <init>(java.lang.System$Logger, java.util.ResourceBundle)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger r1;
+        java.util.ResourceBundle r2;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger;
+
+        r2 := @parameter1: java.util.ResourceBundle;
+
+        specialinvoke r0.<jdk.internal.logger.LoggerWrapper: void <init>(java.lang.System$Logger)>(r1);
+
+        r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle> = r2;
+
+        return;
+    }
+
+    public final java.util.ResourceBundle getBundle()
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.util.ResourceBundle $r1;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        $r1 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        return $r1;
+    }
+
+    public final void log(java.lang.System$Logger$Level, java.lang.String)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger$Level r1;
+        java.lang.String r2;
+        java.lang.Object[] $r3;
+        java.util.ResourceBundle $r4;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        $r4 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        $r3 = (java.lang.Object[]) null;
+
+        virtualinvoke r0.<jdk.internal.logger.LocalizedLoggerWrapper: void log(java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r1, $r4, r2, $r3);
+
+        return;
+    }
+
+    public final void log(java.lang.System$Logger$Level, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger$Level r1;
+        java.lang.String r2;
+        java.lang.Throwable r3;
+        java.util.ResourceBundle $r4;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.Throwable;
+
+        $r4 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        virtualinvoke r0.<jdk.internal.logger.LocalizedLoggerWrapper: void log(java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r1, $r4, r2, r3);
+
+        return;
+    }
+
+    public final transient void log(java.lang.System$Logger$Level, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger$Level r1;
+        java.lang.String r2;
+        java.lang.Object[] r3;
+        java.util.ResourceBundle $r4;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.Object[];
+
+        $r4 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        virtualinvoke r0.<jdk.internal.logger.LocalizedLoggerWrapper: void log(java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r1, $r4, r2, r3);
+
+        return;
+    }
+
+    public final void log(java.lang.System$Logger$Level, java.lang.Object)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger$Level r1;
+        java.lang.Object r2;
+        java.lang.System$Logger $r3;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $r3 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.lang.System$Logger wrapped>;
+
+        interfaceinvoke $r3.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.Object)>(r1, r2);
+
+        return;
+    }
+
+    public final void log(java.lang.System$Logger$Level, java.util.function.Supplier)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger$Level r1;
+        java.util.function.Supplier r2;
+        java.lang.System$Logger $r3;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.util.function.Supplier;
+
+        $r3 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.lang.System$Logger wrapped>;
+
+        interfaceinvoke $r3.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.function.Supplier)>(r1, r2);
+
+        return;
+    }
+
+    public final void log(java.lang.System$Logger$Level, java.util.function.Supplier, java.lang.Throwable)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger$Level r1;
+        java.util.function.Supplier r2;
+        java.lang.Throwable r3;
+        java.lang.System$Logger $r4;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.util.function.Supplier;
+
+        r3 := @parameter2: java.lang.Throwable;
+
+        $r4 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.lang.System$Logger wrapped>;
+
+        interfaceinvoke $r4.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.function.Supplier,java.lang.Throwable)>(r1, r2, r3);
+
+        return;
+    }
+
+    public final transient void log(java.lang.System$Logger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger$Level r1;
+        java.util.ResourceBundle r2;
+        java.lang.String r3;
+        java.lang.Object[] r4;
+        java.lang.System$Logger $r5;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.util.ResourceBundle;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.Object[];
+
+        $r5 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.lang.System$Logger wrapped>;
+
+        interfaceinvoke $r5.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r1, r2, r3, r4);
+
+        return;
+    }
+
+    public final void log(java.lang.System$Logger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger$Level r1;
+        java.util.ResourceBundle r2;
+        java.lang.String r3;
+        java.lang.Throwable r4;
+        java.lang.System$Logger $r5;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        r2 := @parameter1: java.util.ResourceBundle;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.Throwable;
+
+        $r5 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.lang.System$Logger wrapped>;
+
+        interfaceinvoke $r5.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r1, r2, r3, r4);
+
+        return;
+    }
+
+    public final boolean isLoggable(java.lang.System$Logger$Level)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        java.lang.System$Logger$Level r1;
+        java.lang.System$Logger $r2;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: java.lang.System$Logger$Level;
+
+        $r2 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.lang.System$Logger wrapped>;
+
+        $z0 = interfaceinvoke $r2.<java.lang.System$Logger: boolean isLoggable(java.lang.System$Logger$Level)>(r1);
+
+        return $z0;
+    }
+
+    public final void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.String)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        java.lang.String r2, r3, r4;
+        java.lang.Object[] $r5;
+        java.util.ResourceBundle $r6;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+        $r6 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        $r5 = (java.lang.Object[]) null;
+
+        virtualinvoke r0.<jdk.internal.logger.LocalizedLoggerWrapper: void logrb(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r1, r2, r3, $r6, r4, $r5);
+
+        return;
+    }
+
+    public final void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        java.lang.String r2, r3, r4;
+        java.lang.Throwable r5;
+        java.util.ResourceBundle $r6;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+        r5 := @parameter4: java.lang.Throwable;
+
+        $r6 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        virtualinvoke r0.<jdk.internal.logger.LocalizedLoggerWrapper: void logrb(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r1, r2, r3, $r6, r4, r5);
+
+        return;
+    }
+
+    public final transient void logp(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        java.lang.String r2, r3, r4;
+        java.lang.Object[] r5;
+        java.util.ResourceBundle $r6;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+        r5 := @parameter4: java.lang.Object[];
+
+        $r6 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        virtualinvoke r0.<jdk.internal.logger.LocalizedLoggerWrapper: void logrb(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r1, r2, r3, $r6, r4, r5);
+
+        return;
+    }
+
+    public final void log(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        java.lang.String r2;
+        java.lang.Throwable r3;
+        java.util.ResourceBundle $r4;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.Throwable;
+
+        $r4 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        virtualinvoke r0.<jdk.internal.logger.LocalizedLoggerWrapper: void logrb(sun.util.logging.PlatformLogger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>(r1, $r4, r2, r3);
+
+        return;
+    }
+
+    public final void log(sun.util.logging.PlatformLogger$Level, java.lang.String)
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        java.lang.String r2;
+        java.lang.Object[] $r3;
+        java.util.ResourceBundle $r4;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        $r4 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        $r3 = (java.lang.Object[]) null;
+
+        virtualinvoke r0.<jdk.internal.logger.LocalizedLoggerWrapper: void logrb(sun.util.logging.PlatformLogger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r1, $r4, r2, $r3);
+
+        return;
+    }
+
+    public final transient void log(sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.LocalizedLoggerWrapper r0;
+        sun.util.logging.PlatformLogger$Level r1;
+        java.lang.String r2;
+        java.lang.Object[] r3;
+        java.util.ResourceBundle $r4;
+
+        r0 := @this: jdk.internal.logger.LocalizedLoggerWrapper;
+
+        r1 := @parameter0: sun.util.logging.PlatformLogger$Level;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.Object[];
+
+        $r4 = r0.<jdk.internal.logger.LocalizedLoggerWrapper: java.util.ResourceBundle bundle>;
+
+        virtualinvoke r0.<jdk.internal.logger.LocalizedLoggerWrapper: void logrb(sun.util.logging.PlatformLogger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>(r1, $r4, r2, r3);
+
+        return;
+    }
+}

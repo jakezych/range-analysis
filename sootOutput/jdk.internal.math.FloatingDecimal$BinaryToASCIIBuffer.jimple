@@ -1,0 +1,2124 @@
+class jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer extends java.lang.Object implements jdk.internal.math.FloatingDecimal$BinaryToASCIIConverter
+{
+    private boolean isNegative;
+    private int decExponent;
+    private int firstDigitIndex;
+    private int nDigits;
+    private final char[] digits;
+    private final char[] buffer;
+    private boolean exactDecimalConversion;
+    private boolean decimalDigitsRoundedUp;
+    private static final int[] insignificantDigitsNumber;
+    private static final int[] N_5_BITS;
+    static final boolean $assertionsDisabled;
+
+    void <init>()
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        char[] $r1, $r2;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newarray (char)[26];
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] buffer> = $r1;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean exactDecimalConversion> = 0;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean decimalDigitsRoundedUp> = 0;
+
+        $r2 = newarray (char)[20];
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits> = $r2;
+
+        return;
+    }
+
+    void <init>(boolean, char[])
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        char[] $r1, r2;
+        boolean z0;
+        int $i0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        z0 := @parameter0: boolean;
+
+        r2 := @parameter1: char[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newarray (char)[26];
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] buffer> = $r1;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean exactDecimalConversion> = 0;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean decimalDigitsRoundedUp> = 0;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean isNegative> = z0;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent> = 0;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits> = r2;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex> = 0;
+
+        $i0 = lengthof r2;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits> = $i0;
+
+        return;
+    }
+
+    public java.lang.String toJavaFormatString()
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        char[] $r1, $r3;
+        int i0;
+        java.lang.String $r2;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        $r1 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] buffer>;
+
+        i0 = virtualinvoke r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int getChars(char[])>($r1);
+
+        $r2 = new java.lang.String;
+
+        $r3 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] buffer>;
+
+        specialinvoke $r2.<java.lang.String: void <init>(char[],int,int)>($r3, 0, i0);
+
+        return $r2;
+    }
+
+    public void appendTo(java.lang.Appendable)
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        char[] $r1, $r4, $r7;
+        int i0;
+        java.lang.Appendable r2;
+        boolean $z0, $z1, $z2;
+        java.lang.AssertionError $r3;
+        java.lang.StringBuffer $r5;
+        java.lang.StringBuilder $r8;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        r2 := @parameter0: java.lang.Appendable;
+
+        $r1 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] buffer>;
+
+        i0 = virtualinvoke r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int getChars(char[])>($r1);
+
+        $z0 = r2 instanceof java.lang.StringBuilder;
+
+        if $z0 == 0 goto label1;
+
+        $r8 = (java.lang.StringBuilder) r2;
+
+        $r7 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] buffer>;
+
+        virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(char[],int,int)>($r7, 0, i0);
+
+        goto label3;
+
+     label1:
+        $z1 = r2 instanceof java.lang.StringBuffer;
+
+        if $z1 == 0 goto label2;
+
+        $r5 = (java.lang.StringBuffer) r2;
+
+        $r4 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] buffer>;
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(char[],int,int)>($r4, 0, i0);
+
+        goto label3;
+
+     label2:
+        $z2 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z2 != 0 goto label3;
+
+        $r3 = new java.lang.AssertionError;
+
+        specialinvoke $r3.<java.lang.AssertionError: void <init>()>();
+
+        throw $r3;
+
+     label3:
+        return;
+    }
+
+    public int getDecimalExponent()
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        $i0 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        return $i0;
+    }
+
+    public int getDigits(char[])
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        char[] r1, $r2;
+        int $i0, $i1, $i2;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        r1 := @parameter0: char[];
+
+        $r2 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i1 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        $i0 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r2, $i1, r1, 0, $i0);
+
+        $i2 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        return $i2;
+    }
+
+    public boolean isNegative()
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        $z0 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean isNegative>;
+
+        return $z0;
+    }
+
+    public boolean isExceptional()
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        return 0;
+    }
+
+    public boolean digitsRoundedUp()
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        $z0 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean decimalDigitsRoundedUp>;
+
+        return $z0;
+    }
+
+    public boolean decimalDigitsExact()
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        $z0 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean exactDecimalConversion>;
+
+        return $z0;
+    }
+
+    private void setSign(boolean)
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        boolean z0;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        z0 := @parameter0: boolean;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean isNegative> = z0;
+
+        return;
+    }
+
+    private void developLongDigits(int, long, int)
+    {
+        int i0, $i3, $i5, $i6, $i7, $i8, $i9, $i13, $i15, $i16, i22, $i26, i27, i29, i30, i31, i32;
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        long $l1, $l11, $l12, $l19, $l20, l23, l24, l25, l33;
+        byte $b2, $b18, $b21, $b28;
+        char $c4, $c10, $c14, $c17;
+        char[] $r1, $r2, $r3, $r4, $r5, $r8;
+        boolean $z0;
+        java.lang.AssertionError $r6;
+        long[] $r7;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        i22 := @parameter0: int;
+
+        l23 := @parameter1: long;
+
+        i0 := @parameter2: int;
+
+        if i0 == 0 goto label01;
+
+        $r7 = <jdk.internal.math.FDBigInteger: long[] LONG_5_POW>;
+
+        $l19 = $r7[i0];
+
+        l24 = $l19 << i0;
+
+        l25 = l23 % l24;
+
+        l23 = l23 / l24;
+
+        i22 = i22 + i0;
+
+        $l20 = l24 >> 1;
+
+        $b21 = l25 cmp $l20;
+
+        if $b21 < 0 goto label01;
+
+        l23 = l23 + 1L;
+
+     label01:
+        $r8 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i26 = lengthof $r8;
+
+        i27 = $i26 - 1;
+
+        $b28 = l23 cmp 2147483647L;
+
+        if $b28 > 0 goto label06;
+
+        $z0 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label02;
+
+        $b18 = l23 cmp 0L;
+
+        if $b18 > 0 goto label02;
+
+        $r6 = new java.lang.AssertionError;
+
+        specialinvoke $r6.<java.lang.AssertionError: void <init>(long)>(l23);
+
+        throw $r6;
+
+     label02:
+        i29 = (int) l23;
+
+        i30 = i29 % 10;
+
+        i31 = i29 / 10;
+
+     label03:
+        if i30 != 0 goto label04;
+
+        i22 = i22 + 1;
+
+        i30 = i31 % 10;
+
+        i31 = i31 / 10;
+
+        goto label03;
+
+     label04:
+        if i31 == 0 goto label05;
+
+        $r5 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i15 = i27;
+
+        i27 = i27 + -1;
+
+        $i16 = i30 + 48;
+
+        $c17 = (char) $i16;
+
+        $r5[$i15] = $c17;
+
+        i22 = i22 + 1;
+
+        i30 = i31 % 10;
+
+        i31 = i31 / 10;
+
+        goto label04;
+
+     label05:
+        $r4 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i13 = i30 + 48;
+
+        $c14 = (char) $i13;
+
+        $r4[i27] = $c14;
+
+        goto label10;
+
+     label06:
+        $l1 = l23 % 10L;
+
+        i32 = (int) $l1;
+
+        l33 = l23 / 10L;
+
+     label07:
+        if i32 != 0 goto label08;
+
+        i22 = i22 + 1;
+
+        $l12 = l33 % 10L;
+
+        i32 = (int) $l12;
+
+        l33 = l33 / 10L;
+
+        goto label07;
+
+     label08:
+        $b2 = l33 cmp 0L;
+
+        if $b2 == 0 goto label09;
+
+        $r3 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i8 = i27;
+
+        i27 = i27 + -1;
+
+        $i9 = i32 + 48;
+
+        $c10 = (char) $i9;
+
+        $r3[$i8] = $c10;
+
+        i22 = i22 + 1;
+
+        $l11 = l33 % 10L;
+
+        i32 = (int) $l11;
+
+        l33 = l33 / 10L;
+
+        goto label08;
+
+     label09:
+        $r1 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i3 = i32 + 48;
+
+        $c4 = (char) $i3;
+
+        $r1[i27] = $c4;
+
+     label10:
+        $i5 = i22 + 1;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent> = $i5;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex> = i27;
+
+        $r2 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i6 = lengthof $r2;
+
+        $i7 = $i6 - i27;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits> = $i7;
+
+        return;
+    }
+
+    private void dtoa(int, long, int, boolean)
+    {
+        boolean $z0, $z1, $z2, z3, $z4, $z5, $z6, $z7, $z8, $z10, z11, $z12, z13, $z15, $z16, $z17, $z18, $z19, $z21, $z22, $z23, $z24, $z25, $z27, $z28, $z29;
+        int i0, i1, i2, $i3, $i4, i5, i6, i7, i9, i10, $i11, $i12, i13, $i14, $i15, $i16, $i17, i18, $i19, $i20, $i21, $i22, $i23, $i24, $i25, $i26, $i27, $i29, $i33, $i34, $i35, $i36, $i38, $i39, $i40, $i41, $i42, $i43, $i56, $i63, $i64, $i69, $i70, $i71, $i72, $i73, $i74, $i75, $i77, $i79, $i80, $i81, $i84, $i85, $i87, $i88, $i89, $i90, $i91, $i92, $i93, $i94, $i95, i100, i102, $i103, $i104, i105, i106, i107, $i109, i110, i111, i112, i113, $i114, $i115, i116, i117, i118, i119, i120, i121, i122, i123, i124, i129, i132, i133, i134, i135, $i136, $i137;
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        int[] $r1, $r2, $r17, $r18, $r19, $r25, $r26, $r28;
+        char $c30, $c37, $c44, $c57, $c65, $c78, $c86;
+        char[] $r3, $r4, $r6, $r12, $r14, $r20, $r22;
+        byte $b31, $b32, $b52, $b54, $b59, $b62, $b66, $b68, $b83, $b97, $b98;
+        java.lang.AssertionError $r7, $r8, $r15, $r16, $r23, $r24, $r29, $r30;
+        long[] $r9, $r10, $r11, $r27;
+        long $l45, $l46, $l47, $l48, l49, $l50, $l51, $l53, $l58, $l60, $l61, $l67, $l82, $l96, l99, l101, l108, l125, l126, l127, l128, l130, l131;
+        jdk.internal.math.FDBigInteger r31, r32, r33, r34, r35, $r36;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        i2 := @parameter0: int;
+
+        l99 := @parameter1: long;
+
+        i9 := @parameter2: int;
+
+        z3 := @parameter3: boolean;
+
+        $z0 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label01;
+
+        $b98 = l99 cmp 0L;
+
+        if $b98 > 0 goto label01;
+
+        $r30 = new java.lang.AssertionError;
+
+        specialinvoke $r30.<java.lang.AssertionError: void <init>()>();
+
+        throw $r30;
+
+     label01:
+        $z1 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z1 != 0 goto label02;
+
+        $l96 = l99 & 4503599627370496L;
+
+        $b97 = $l96 cmp 0L;
+
+        if $b97 != 0 goto label02;
+
+        $r29 = new java.lang.AssertionError;
+
+        specialinvoke $r29.<java.lang.AssertionError: void <init>()>();
+
+        throw $r29;
+
+     label02:
+        i0 = staticinvoke <java.lang.Long: int numberOfTrailingZeros(long)>(l99);
+
+        i1 = 53 - i0;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean decimalDigitsRoundedUp> = 0;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean exactDecimalConversion> = 0;
+
+        $i3 = i1 - i2;
+
+        $i4 = $i3 - 1;
+
+        i5 = staticinvoke <java.lang.Math: int max(int,int)>(0, $i4);
+
+        if i2 > 62 goto label07;
+
+        if i2 < -21 goto label07;
+
+        $r27 = <jdk.internal.math.FDBigInteger: long[] LONG_5_POW>;
+
+        $i89 = lengthof $r27;
+
+        if i5 >= $i89 goto label07;
+
+        $r28 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int[] N_5_BITS>;
+
+        $i90 = $r28[i5];
+
+        $i91 = i1 + $i90;
+
+        if $i91 >= 64 goto label07;
+
+        if i5 != 0 goto label07;
+
+        if i2 <= i9 goto label03;
+
+        $i94 = i2 - i9;
+
+        $i95 = $i94 - 1;
+
+        i100 = staticinvoke <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int insignificantDigitsForPow2(int)>($i95);
+
+        goto label04;
+
+     label03:
+        i100 = 0;
+
+     label04:
+        if i2 < 52 goto label05;
+
+        $i93 = i2 - 52;
+
+        l101 = l99 << $i93;
+
+        goto label06;
+
+     label05:
+        $i92 = 52 - i2;
+
+        l101 = l99 >>> $i92;
+
+     label06:
+        virtualinvoke r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: void developLongDigits(int,long,int)>(0, l101, i100);
+
+        return;
+
+     label07:
+        i102 = staticinvoke <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int estimateDecExp(long,int)>(l99, i2);
+
+        $i103 = neg i102;
+
+        i6 = staticinvoke <java.lang.Math: int max(int,int)>(0, $i103);
+
+        $i104 = i6 + i5;
+
+        i105 = $i104 + i2;
+
+        i7 = staticinvoke <java.lang.Math: int max(int,int)>(0, i102);
+
+        i106 = i7 + i5;
+
+        i107 = i105 - i9;
+
+        l108 = l99 >>> i0;
+
+        $i109 = i1 - 1;
+
+        i110 = i105 - $i109;
+
+        i10 = staticinvoke <java.lang.Math: int min(int,int)>(i110, i106);
+
+        i111 = i110 - i10;
+
+        i112 = i106 - i10;
+
+        i113 = i107 - i10;
+
+        if i1 != 1 goto label08;
+
+        i113 = i113 + -1;
+
+     label08:
+        if i113 >= 0 goto label09;
+
+        i111 = i111 - i113;
+
+        i112 = i112 - i113;
+
+        i113 = 0;
+
+     label09:
+        $i12 = i1 + i111;
+
+        $r1 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int[] N_5_BITS>;
+
+        $i11 = lengthof $r1;
+
+        if i6 >= $i11 goto label10;
+
+        $r26 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int[] N_5_BITS>;
+
+        $i114 = $r26[i6];
+
+        goto label11;
+
+     label10:
+        $i114 = i6 * 3;
+
+     label11:
+        i13 = $i12 + $i114;
+
+        $i17 = i112 + 1;
+
+        $i15 = i7 + 1;
+
+        $r2 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int[] N_5_BITS>;
+
+        $i14 = lengthof $r2;
+
+        if $i15 >= $i14 goto label12;
+
+        $r25 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int[] N_5_BITS>;
+
+        $i88 = i7 + 1;
+
+        $i115 = $r25[$i88];
+
+        goto label13;
+
+     label12:
+        $i16 = i7 + 1;
+
+        $i115 = $i16 * 3;
+
+     label13:
+        i18 = $i17 + $i115;
+
+        if i13 >= 64 goto label53;
+
+        if i18 >= 64 goto label53;
+
+        if i13 >= 32 goto label33;
+
+        if i18 >= 32 goto label33;
+
+        $i70 = (int) l108;
+
+        $r17 = <jdk.internal.math.FDBigInteger: int[] SMALL_5_POW>;
+
+        $i69 = $r17[i6];
+
+        $i71 = $i70 * $i69;
+
+        i116 = $i71 << i111;
+
+        $r18 = <jdk.internal.math.FDBigInteger: int[] SMALL_5_POW>;
+
+        $i72 = $r18[i7];
+
+        i117 = $i72 << i112;
+
+        $r19 = <jdk.internal.math.FDBigInteger: int[] SMALL_5_POW>;
+
+        $i73 = $r19[i6];
+
+        i118 = $i73 << i113;
+
+        i119 = i117 * 10;
+
+        i120 = 0;
+
+        i121 = i116 / i117;
+
+        $i74 = i116 % i117;
+
+        i122 = 10 * $i74;
+
+        i123 = i118 * 10;
+
+        if i122 >= i123 goto label14;
+
+        $z10 = 1;
+
+        goto label15;
+
+     label14:
+        $z10 = 0;
+
+     label15:
+        z11 = $z10;
+
+        $i75 = i122 + i123;
+
+        if $i75 <= i119 goto label16;
+
+        $z12 = 1;
+
+        goto label17;
+
+     label16:
+        $z12 = 0;
+
+     label17:
+        z13 = $z12;
+
+        $z7 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z7 != 0 goto label18;
+
+        if i121 < 10 goto label18;
+
+        $r24 = new java.lang.AssertionError;
+
+        specialinvoke $r24.<java.lang.AssertionError: void <init>(int)>(i121);
+
+        throw $r24;
+
+     label18:
+        if i121 != 0 goto label19;
+
+        if z13 != 0 goto label19;
+
+        i102 = i102 + -1;
+
+        goto label20;
+
+     label19:
+        $r20 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        i120 = 0 + 1;
+
+        $i77 = 48 + i121;
+
+        $c78 = (char) $i77;
+
+        $r20[0] = $c78;
+
+     label20:
+        if z3 == 0 goto label21;
+
+        if i102 < -3 goto label21;
+
+        if i102 < 8 goto label22;
+
+     label21:
+        z11 = 0;
+
+        z13 = 0;
+
+     label22:
+        if z11 != 0 goto label30;
+
+        if z13 != 0 goto label30;
+
+        i124 = i122 / i117;
+
+        $i81 = i122 % i117;
+
+        i122 = 10 * $i81;
+
+        i123 = i123 * 10;
+
+        $z8 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z8 != 0 goto label23;
+
+        if i124 < 10 goto label23;
+
+        $r23 = new java.lang.AssertionError;
+
+        specialinvoke $r23.<java.lang.AssertionError: void <init>(int)>(i124);
+
+        throw $r23;
+
+     label23:
+        $l82 = (long) i123;
+
+        $b83 = $l82 cmp 0L;
+
+        if $b83 <= 0 goto label28;
+
+        if i122 >= i123 goto label24;
+
+        $z15 = 1;
+
+        goto label25;
+
+     label24:
+        $z15 = 0;
+
+     label25:
+        z11 = $z15;
+
+        $i87 = i122 + i123;
+
+        if $i87 <= i119 goto label26;
+
+        $z16 = 1;
+
+        goto label27;
+
+     label26:
+        $z16 = 0;
+
+     label27:
+        z13 = $z16;
+
+        goto label29;
+
+     label28:
+        z11 = 1;
+
+        z13 = 1;
+
+     label29:
+        $r22 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i84 = i120;
+
+        i120 = i120 + 1;
+
+        $i85 = 48 + i124;
+
+        $c86 = (char) $i85;
+
+        $r22[$i84] = $c86;
+
+        goto label22;
+
+     label30:
+        $i79 = i122 << 1;
+
+        $i80 = $i79 - i119;
+
+        l125 = (long) $i80;
+
+        if i122 != 0 goto label31;
+
+        $z17 = 1;
+
+        goto label32;
+
+     label31:
+        $z17 = 0;
+
+     label32:
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean exactDecimalConversion> = $z17;
+
+        goto label73;
+
+     label33:
+        $r9 = <jdk.internal.math.FDBigInteger: long[] LONG_5_POW>;
+
+        $l45 = $r9[i6];
+
+        $l46 = l108 * $l45;
+
+        l126 = $l46 << i111;
+
+        $r10 = <jdk.internal.math.FDBigInteger: long[] LONG_5_POW>;
+
+        $l47 = $r10[i7];
+
+        l127 = $l47 << i112;
+
+        $r11 = <jdk.internal.math.FDBigInteger: long[] LONG_5_POW>;
+
+        $l48 = $r11[i6];
+
+        l128 = $l48 << i113;
+
+        l49 = l127 * 10L;
+
+        i120 = 0;
+
+        $l50 = l126 / l127;
+
+        i129 = (int) $l50;
+
+        $l51 = l126 % l127;
+
+        l130 = 10L * $l51;
+
+        l131 = l128 * 10L;
+
+        $b52 = l130 cmp l131;
+
+        if $b52 >= 0 goto label34;
+
+        $z18 = 1;
+
+        goto label35;
+
+     label34:
+        $z18 = 0;
+
+     label35:
+        z11 = $z18;
+
+        $l53 = l130 + l131;
+
+        $b54 = $l53 cmp l49;
+
+        if $b54 <= 0 goto label36;
+
+        $z19 = 1;
+
+        goto label37;
+
+     label36:
+        $z19 = 0;
+
+     label37:
+        z13 = $z19;
+
+        $z5 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z5 != 0 goto label38;
+
+        if i129 < 10 goto label38;
+
+        $r16 = new java.lang.AssertionError;
+
+        specialinvoke $r16.<java.lang.AssertionError: void <init>(int)>(i129);
+
+        throw $r16;
+
+     label38:
+        if i129 != 0 goto label39;
+
+        if z13 != 0 goto label39;
+
+        i102 = i102 + -1;
+
+        goto label40;
+
+     label39:
+        $r12 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        i120 = 0 + 1;
+
+        $i56 = 48 + i129;
+
+        $c57 = (char) $i56;
+
+        $r12[0] = $c57;
+
+     label40:
+        if z3 == 0 goto label41;
+
+        if i102 < -3 goto label41;
+
+        if i102 < 8 goto label42;
+
+     label41:
+        z11 = 0;
+
+        z13 = 0;
+
+     label42:
+        if z11 != 0 goto label50;
+
+        if z13 != 0 goto label50;
+
+        $l60 = l130 / l127;
+
+        i132 = (int) $l60;
+
+        $l61 = l130 % l127;
+
+        l130 = 10L * $l61;
+
+        l131 = l131 * 10L;
+
+        $z6 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z6 != 0 goto label43;
+
+        if i132 < 10 goto label43;
+
+        $r15 = new java.lang.AssertionError;
+
+        specialinvoke $r15.<java.lang.AssertionError: void <init>(int)>(i132);
+
+        throw $r15;
+
+     label43:
+        $b62 = l131 cmp 0L;
+
+        if $b62 <= 0 goto label48;
+
+        $b66 = l130 cmp l131;
+
+        if $b66 >= 0 goto label44;
+
+        $z21 = 1;
+
+        goto label45;
+
+     label44:
+        $z21 = 0;
+
+     label45:
+        z11 = $z21;
+
+        $l67 = l130 + l131;
+
+        $b68 = $l67 cmp l49;
+
+        if $b68 <= 0 goto label46;
+
+        $z22 = 1;
+
+        goto label47;
+
+     label46:
+        $z22 = 0;
+
+     label47:
+        z13 = $z22;
+
+        goto label49;
+
+     label48:
+        z11 = 1;
+
+        z13 = 1;
+
+     label49:
+        $r14 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i63 = i120;
+
+        i120 = i120 + 1;
+
+        $i64 = 48 + i132;
+
+        $c65 = (char) $i64;
+
+        $r14[$i63] = $c65;
+
+        goto label42;
+
+     label50:
+        $l58 = l130 << 1;
+
+        l125 = $l58 - l49;
+
+        $b59 = l130 cmp 0L;
+
+        if $b59 != 0 goto label51;
+
+        $z23 = 1;
+
+        goto label52;
+
+     label51:
+        $z23 = 0;
+
+     label52:
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean exactDecimalConversion> = $z23;
+
+        goto label73;
+
+     label53:
+        r31 = staticinvoke <jdk.internal.math.FDBigInteger: jdk.internal.math.FDBigInteger valueOfPow52(int,int)>(i7, i112);
+
+        i133 = virtualinvoke r31.<jdk.internal.math.FDBigInteger: int getNormalizationBias()>();
+
+        r32 = virtualinvoke r31.<jdk.internal.math.FDBigInteger: jdk.internal.math.FDBigInteger leftShift(int)>(i133);
+
+        $i19 = i111 + i133;
+
+        r33 = staticinvoke <jdk.internal.math.FDBigInteger: jdk.internal.math.FDBigInteger valueOfMulPow52(long,int,int)>(l108, i6, $i19);
+
+        $i22 = i6 + 1;
+
+        $i20 = i113 + i133;
+
+        $i21 = $i20 + 1;
+
+        r34 = staticinvoke <jdk.internal.math.FDBigInteger: jdk.internal.math.FDBigInteger valueOfPow52(int,int)>($i22, $i21);
+
+        $i25 = i7 + 1;
+
+        $i23 = i112 + i133;
+
+        $i24 = $i23 + 1;
+
+        r35 = staticinvoke <jdk.internal.math.FDBigInteger: jdk.internal.math.FDBigInteger valueOfPow52(int,int)>($i25, $i24);
+
+        i120 = 0;
+
+        i134 = virtualinvoke r33.<jdk.internal.math.FDBigInteger: int quoRemIteration(jdk.internal.math.FDBigInteger)>(r32);
+
+        $i26 = virtualinvoke r33.<jdk.internal.math.FDBigInteger: int 'cmp'(jdk.internal.math.FDBigInteger)>(r34);
+
+        if $i26 >= 0 goto label54;
+
+        $z24 = 1;
+
+        goto label55;
+
+     label54:
+        $z24 = 0;
+
+     label55:
+        z11 = $z24;
+
+        $i27 = virtualinvoke r35.<jdk.internal.math.FDBigInteger: int addAndCmp(jdk.internal.math.FDBigInteger,jdk.internal.math.FDBigInteger)>(r33, r34);
+
+        if $i27 > 0 goto label56;
+
+        $z25 = 1;
+
+        goto label57;
+
+     label56:
+        $z25 = 0;
+
+     label57:
+        z13 = $z25;
+
+        $z2 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z2 != 0 goto label58;
+
+        if i134 < 10 goto label58;
+
+        $r8 = new java.lang.AssertionError;
+
+        specialinvoke $r8.<java.lang.AssertionError: void <init>(int)>(i134);
+
+        throw $r8;
+
+     label58:
+        if i134 != 0 goto label59;
+
+        if z13 != 0 goto label59;
+
+        i102 = i102 + -1;
+
+        goto label60;
+
+     label59:
+        $r3 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        i120 = 0 + 1;
+
+        $i29 = 48 + i134;
+
+        $c30 = (char) $i29;
+
+        $r3[0] = $c30;
+
+     label60:
+        if z3 == 0 goto label61;
+
+        if i102 < -3 goto label61;
+
+        if i102 < 8 goto label62;
+
+     label61:
+        z11 = 0;
+
+        z13 = 0;
+
+     label62:
+        if z11 != 0 goto label68;
+
+        if z13 != 0 goto label68;
+
+        i135 = virtualinvoke r33.<jdk.internal.math.FDBigInteger: int quoRemIteration(jdk.internal.math.FDBigInteger)>(r32);
+
+        $z4 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z4 != 0 goto label63;
+
+        if i135 < 10 goto label63;
+
+        $r7 = new java.lang.AssertionError;
+
+        specialinvoke $r7.<java.lang.AssertionError: void <init>(int)>(i135);
+
+        throw $r7;
+
+     label63:
+        r34 = virtualinvoke r34.<jdk.internal.math.FDBigInteger: jdk.internal.math.FDBigInteger multBy10()>();
+
+        $i40 = virtualinvoke r33.<jdk.internal.math.FDBigInteger: int 'cmp'(jdk.internal.math.FDBigInteger)>(r34);
+
+        if $i40 >= 0 goto label64;
+
+        $z27 = 1;
+
+        goto label65;
+
+     label64:
+        $z27 = 0;
+
+     label65:
+        z11 = $z27;
+
+        $i41 = virtualinvoke r35.<jdk.internal.math.FDBigInteger: int addAndCmp(jdk.internal.math.FDBigInteger,jdk.internal.math.FDBigInteger)>(r33, r34);
+
+        if $i41 > 0 goto label66;
+
+        $z28 = 1;
+
+        goto label67;
+
+     label66:
+        $z28 = 0;
+
+     label67:
+        z13 = $z28;
+
+        $r6 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i42 = i120;
+
+        i120 = i120 + 1;
+
+        $i43 = 48 + i135;
+
+        $c44 = (char) $i43;
+
+        $r6[$i42] = $c44;
+
+        goto label62;
+
+     label68:
+        if z13 == 0 goto label69;
+
+        if z11 == 0 goto label69;
+
+        r33 = virtualinvoke r33.<jdk.internal.math.FDBigInteger: jdk.internal.math.FDBigInteger leftShift(int)>(1);
+
+        $i39 = virtualinvoke r33.<jdk.internal.math.FDBigInteger: int 'cmp'(jdk.internal.math.FDBigInteger)>(r35);
+
+        l125 = (long) $i39;
+
+        goto label70;
+
+     label69:
+        l125 = 0L;
+
+     label70:
+        $r36 = <jdk.internal.math.FDBigInteger: jdk.internal.math.FDBigInteger ZERO>;
+
+        $i136 = virtualinvoke r33.<jdk.internal.math.FDBigInteger: int 'cmp'(jdk.internal.math.FDBigInteger)>($r36);
+
+        if $i136 != 0 goto label71;
+
+        $z29 = 1;
+
+        goto label72;
+
+     label71:
+        $z29 = 0;
+
+     label72:
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean exactDecimalConversion> = $z29;
+
+     label73:
+        $i137 = i102 + 1;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent> = $i137;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex> = 0;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits> = i120;
+
+        if z13 == 0 goto label76;
+
+        if z11 == 0 goto label75;
+
+        $b31 = l125 cmp 0L;
+
+        if $b31 != 0 goto label74;
+
+        $r4 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i34 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        $i33 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        $i35 = $i34 + $i33;
+
+        $i36 = $i35 - 1;
+
+        $c37 = $r4[$i36];
+
+        $i38 = $c37 & 1;
+
+        if $i38 == 0 goto label76;
+
+        virtualinvoke r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: void roundup()>();
+
+        goto label76;
+
+     label74:
+        $b32 = l125 cmp 0L;
+
+        if $b32 <= 0 goto label76;
+
+        virtualinvoke r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: void roundup()>();
+
+        goto label76;
+
+     label75:
+        virtualinvoke r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: void roundup()>();
+
+     label76:
+        return;
+    }
+
+    private void roundup()
+    {
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        int $i0, $i1, $i2, $i3, $i5, $i6, $i7, $i8, i9;
+        char[] $r1, $r2, $r3, $r4, $r5;
+        char $c4, c10;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        $i1 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        $i0 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        $i2 = $i1 + $i0;
+
+        i9 = $i2 - 1;
+
+        $r1 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        c10 = $r1[i9];
+
+        if c10 != 57 goto label3;
+
+     label1:
+        if c10 != 57 goto label2;
+
+        $i8 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        if i9 <= $i8 goto label2;
+
+        $r4 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $r4[i9] = 48;
+
+        $r5 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        i9 = i9 + -1;
+
+        c10 = $r5[i9];
+
+        goto label1;
+
+     label2:
+        if c10 != 57 goto label3;
+
+        $i5 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        $i6 = $i5 + 1;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent> = $i6;
+
+        $r3 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i7 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        $r3[$i7] = 49;
+
+        return;
+
+     label3:
+        $r2 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i3 = c10 + 1;
+
+        $c4 = (char) $i3;
+
+        $r2[i9] = $c4;
+
+        r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean decimalDigitsRoundedUp> = 1;
+
+        return;
+    }
+
+    static int estimateDecExp(long, int)
+    {
+        long l0, $l1, $l2, l4, $l5, $l6, $l9, $l12, l14, $l15, $l17, $l18, $l20;
+        double d0, $d1, $d2, $d3, $d4, $d5, d6;
+        int i3, $i7, i8, $i11, $i16, i19, $i22, $i23;
+        byte $b10, $b13, $b21, $b24;
+        boolean z0, $z1;
+
+        l0 := @parameter0: long;
+
+        i3 := @parameter1: int;
+
+        $l1 = l0 & 4503599627370495L;
+
+        $l2 = 4607182418800017408L | $l1;
+
+        d0 = staticinvoke <java.lang.Double: double longBitsToDouble(long)>($l2);
+
+        $d1 = d0 - 1.5;
+
+        $d2 = $d1 * 0.289529654;
+
+        $d5 = $d2 + 0.176091259;
+
+        $d3 = (double) i3;
+
+        $d4 = $d3 * 0.301029995663981;
+
+        d6 = $d5 + $d4;
+
+        l4 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d6);
+
+        $l5 = l4 & 9218868437227405312L;
+
+        $l6 = $l5 >> 52;
+
+        $i7 = (int) $l6;
+
+        i8 = $i7 - 1023;
+
+        $l9 = l4 & -9223372036854775808L;
+
+        $b10 = $l9 cmp 0L;
+
+        if $b10 == 0 goto label01;
+
+        $z1 = 1;
+
+        goto label02;
+
+     label01:
+        $z1 = 0;
+
+     label02:
+        z0 = $z1;
+
+        if i8 < 0 goto label06;
+
+        if i8 >= 52 goto label06;
+
+        l14 = 4503599627370495L >> i8;
+
+        $l15 = l4 & 4503599627370495L;
+
+        $l17 = $l15 | 4503599627370496L;
+
+        $i16 = 52 - i8;
+
+        $l18 = $l17 >> $i16;
+
+        i19 = (int) $l18;
+
+        if $z1 == 0 goto label04;
+
+        $l20 = l14 & l4;
+
+        $b21 = $l20 cmp 0L;
+
+        if $b21 != 0 goto label03;
+
+        $i23 = neg i19;
+
+        goto label05;
+
+     label03:
+        $i22 = neg i19;
+
+        $i23 = $i22 - 1;
+
+        goto label05;
+
+     label04:
+        $i23 = i19;
+
+     label05:
+        return $i23;
+
+     label06:
+        if i8 >= 0 goto label10;
+
+        $l12 = l4 & 9223372036854775807L;
+
+        $b13 = $l12 cmp 0L;
+
+        if $b13 != 0 goto label07;
+
+        $b24 = 0;
+
+        goto label09;
+
+     label07:
+        if z0 == 0 goto label08;
+
+        $b24 = -1;
+
+        goto label09;
+
+     label08:
+        $b24 = 0;
+
+     label09:
+        return $b24;
+
+     label10:
+        $i11 = (int) d6;
+
+        return $i11;
+    }
+
+    private static int insignificantDigits(int)
+    {
+        long $l0, $l2, $l3;
+        byte $b1;
+        int i4, i5;
+
+        i4 := @parameter0: int;
+
+        i5 = 0;
+
+     label1:
+        $l0 = (long) i4;
+
+        $b1 = $l0 cmp 10L;
+
+        if $b1 < 0 goto label2;
+
+        $l2 = (long) i4;
+
+        $l3 = $l2 / 10L;
+
+        i4 = (int) $l3;
+
+        i5 = i5 + 1;
+
+        goto label1;
+
+     label2:
+        return i5;
+    }
+
+    private static int insignificantDigitsForPow2(int)
+    {
+        int i0, $i1, $i2;
+        int[] $r0, $r1;
+
+        i0 := @parameter0: int;
+
+        if i0 <= 1 goto label1;
+
+        $r0 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int[] insignificantDigitsNumber>;
+
+        $i1 = lengthof $r0;
+
+        if i0 >= $i1 goto label1;
+
+        $r1 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int[] insignificantDigitsNumber>;
+
+        $i2 = $r1[i0];
+
+        return $i2;
+
+     label1:
+        return 0;
+    }
+
+    private int getChars(char[])
+    {
+        boolean $z0, $z1;
+        jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer r0;
+        int $i0, $i1, $i2, $i4, $i5, $i6, $i7, $i8, $i10, $i11, $i13, $i14, $i16, $i17, $i19, $i20, $i22, $i24, $i25, $i26, $i27, $i28, $i29, $i30, $i31, $i32, $i33, $i34, $i35, $i36, $i37, $i38, $i39, $i40, $i41, $i42, $i43, $i44, $i45, $i46, $i47, i48, $i49, $i50, $i51, $i52, $i53, $i54, i56, i57, i58, i59, i60, i61, i62, i63, i64, i65, i66, i67, i68, i69, i70, i71, i72, i73;
+        char[] r1, $r2, $r3, $r4, $r5, $r6;
+        char $c3, $c9, $c12, $c15, $c18, $c21, $c23;
+        java.lang.AssertionError $r7;
+        byte b55;
+
+        r0 := @this: jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer;
+
+        r1 := @parameter0: char[];
+
+        $z0 = <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label01;
+
+        $i53 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        if $i53 <= 19 goto label01;
+
+        $r7 = new java.lang.AssertionError;
+
+        $i54 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        specialinvoke $r7.<java.lang.AssertionError: void <init>(int)>($i54);
+
+        throw $r7;
+
+     label01:
+        b55 = 0;
+
+        $z1 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean isNegative>;
+
+        if $z1 == 0 goto label02;
+
+        r1[0] = 45;
+
+        b55 = 1;
+
+     label02:
+        $i0 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        if $i0 <= 0 goto label06;
+
+        $i41 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        if $i41 >= 8 goto label06;
+
+        $i43 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        $i42 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        i56 = staticinvoke <java.lang.Math: int min(int,int)>($i43, $i42);
+
+        $r5 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i44 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r5, $i44, r1, b55, i56);
+
+        i57 = b55 + i56;
+
+        $i45 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        if i56 >= $i45 goto label03;
+
+        $i51 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        i58 = $i51 - i56;
+
+        $i52 = i57 + i58;
+
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>(r1, i57, $i52, 48);
+
+        i59 = i57 + i58;
+
+        i60 = i59 + 1;
+
+        r1[i59] = 46;
+
+        i61 = i60 + 1;
+
+        r1[i60] = 48;
+
+        goto label05;
+
+     label03:
+        i62 = i57 + 1;
+
+        r1[i57] = 46;
+
+        $i46 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        if i56 >= $i46 goto label04;
+
+        $i47 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        i48 = $i47 - i56;
+
+        $r6 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i49 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        $i50 = $i49 + i56;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r6, $i50, r1, i62, i48);
+
+        i61 = i62 + i48;
+
+        goto label05;
+
+     label04:
+        i61 = i62 + 1;
+
+        r1[i62] = 48;
+
+     label05:
+        goto label15;
+
+     label06:
+        $i1 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        if $i1 > 0 goto label08;
+
+        $i33 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        if $i33 <= -3 goto label08;
+
+        i63 = b55 + 1;
+
+        r1[b55] = 48;
+
+        i64 = i63 + 1;
+
+        r1[i63] = 46;
+
+        $i34 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        if $i34 == 0 goto label07;
+
+        $i38 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        $i39 = i64 - $i38;
+
+        staticinvoke <java.util.Arrays: void fill(char[],int,int,char)>(r1, i64, $i39, 48);
+
+        $i40 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        i64 = i64 - $i40;
+
+     label07:
+        $r4 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i36 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        $i35 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r4, $i36, r1, i64, $i35);
+
+        $i37 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        i61 = i64 + $i37;
+
+        goto label15;
+
+     label08:
+        i65 = b55 + 1;
+
+        $r2 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i2 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        $c3 = $r2[$i2];
+
+        r1[b55] = $c3;
+
+        i66 = i65 + 1;
+
+        r1[i65] = 46;
+
+        $i4 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        if $i4 <= 1 goto label09;
+
+        $r3 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: char[] digits>;
+
+        $i27 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int firstDigitIndex>;
+
+        $i30 = $i27 + 1;
+
+        $i28 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        $i29 = $i28 - 1;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r3, $i30, r1, i66, $i29);
+
+        $i31 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int nDigits>;
+
+        $i32 = $i31 - 1;
+
+        i67 = i66 + $i32;
+
+        goto label10;
+
+     label09:
+        i67 = i66 + 1;
+
+        r1[i66] = 48;
+
+     label10:
+        i68 = i67 + 1;
+
+        r1[i67] = 69;
+
+        $i5 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        if $i5 > 0 goto label11;
+
+        $i24 = i68;
+
+        i68 = i68 + 1;
+
+        r1[$i24] = 45;
+
+        $i25 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        $i26 = neg $i25;
+
+        i69 = $i26 + 1;
+
+        goto label12;
+
+     label11:
+        $i6 = r0.<jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int decExponent>;
+
+        i69 = $i6 - 1;
+
+     label12:
+        if i69 > 9 goto label13;
+
+        i61 = i68 + 1;
+
+        $i22 = i69 + 48;
+
+        $c23 = (char) $i22;
+
+        r1[i68] = $c23;
+
+        goto label15;
+
+     label13:
+        if i69 > 99 goto label14;
+
+        i70 = i68 + 1;
+
+        $i16 = i69 / 10;
+
+        $i17 = $i16 + 48;
+
+        $c18 = (char) $i17;
+
+        r1[i68] = $c18;
+
+        i61 = i70 + 1;
+
+        $i19 = i69 % 10;
+
+        $i20 = $i19 + 48;
+
+        $c21 = (char) $i20;
+
+        r1[i70] = $c21;
+
+        goto label15;
+
+     label14:
+        i71 = i68 + 1;
+
+        $i7 = i69 / 100;
+
+        $i8 = $i7 + 48;
+
+        $c9 = (char) $i8;
+
+        r1[i68] = $c9;
+
+        i72 = i69 % 100;
+
+        i73 = i71 + 1;
+
+        $i10 = i72 / 10;
+
+        $i11 = $i10 + 48;
+
+        $c12 = (char) $i11;
+
+        r1[i71] = $c12;
+
+        i61 = i73 + 1;
+
+        $i13 = i72 % 10;
+
+        $i14 = $i13 + 48;
+
+        $c15 = (char) $i14;
+
+        r1[i73] = $c15;
+
+     label15:
+        return i61;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+        int[] $r1, $r2;
+
+        $r0 = class "Ljdk/internal/math/FloatingDecimal;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: boolean $assertionsDisabled> = $z1;
+
+        $r1 = newarray (int)[64];
+
+        $r1[0] = 0;
+
+        $r1[1] = 0;
+
+        $r1[2] = 0;
+
+        $r1[3] = 0;
+
+        $r1[4] = 1;
+
+        $r1[5] = 1;
+
+        $r1[6] = 1;
+
+        $r1[7] = 2;
+
+        $r1[8] = 2;
+
+        $r1[9] = 2;
+
+        $r1[10] = 3;
+
+        $r1[11] = 3;
+
+        $r1[12] = 3;
+
+        $r1[13] = 3;
+
+        $r1[14] = 4;
+
+        $r1[15] = 4;
+
+        $r1[16] = 4;
+
+        $r1[17] = 5;
+
+        $r1[18] = 5;
+
+        $r1[19] = 5;
+
+        $r1[20] = 6;
+
+        $r1[21] = 6;
+
+        $r1[22] = 6;
+
+        $r1[23] = 6;
+
+        $r1[24] = 7;
+
+        $r1[25] = 7;
+
+        $r1[26] = 7;
+
+        $r1[27] = 8;
+
+        $r1[28] = 8;
+
+        $r1[29] = 8;
+
+        $r1[30] = 9;
+
+        $r1[31] = 9;
+
+        $r1[32] = 9;
+
+        $r1[33] = 9;
+
+        $r1[34] = 10;
+
+        $r1[35] = 10;
+
+        $r1[36] = 10;
+
+        $r1[37] = 11;
+
+        $r1[38] = 11;
+
+        $r1[39] = 11;
+
+        $r1[40] = 12;
+
+        $r1[41] = 12;
+
+        $r1[42] = 12;
+
+        $r1[43] = 12;
+
+        $r1[44] = 13;
+
+        $r1[45] = 13;
+
+        $r1[46] = 13;
+
+        $r1[47] = 14;
+
+        $r1[48] = 14;
+
+        $r1[49] = 14;
+
+        $r1[50] = 15;
+
+        $r1[51] = 15;
+
+        $r1[52] = 15;
+
+        $r1[53] = 15;
+
+        $r1[54] = 16;
+
+        $r1[55] = 16;
+
+        $r1[56] = 16;
+
+        $r1[57] = 17;
+
+        $r1[58] = 17;
+
+        $r1[59] = 17;
+
+        $r1[60] = 18;
+
+        $r1[61] = 18;
+
+        $r1[62] = 18;
+
+        $r1[63] = 19;
+
+        <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int[] insignificantDigitsNumber> = $r1;
+
+        $r2 = newarray (int)[27];
+
+        $r2[0] = 0;
+
+        $r2[1] = 3;
+
+        $r2[2] = 5;
+
+        $r2[3] = 7;
+
+        $r2[4] = 10;
+
+        $r2[5] = 12;
+
+        $r2[6] = 14;
+
+        $r2[7] = 17;
+
+        $r2[8] = 19;
+
+        $r2[9] = 21;
+
+        $r2[10] = 24;
+
+        $r2[11] = 26;
+
+        $r2[12] = 28;
+
+        $r2[13] = 31;
+
+        $r2[14] = 33;
+
+        $r2[15] = 35;
+
+        $r2[16] = 38;
+
+        $r2[17] = 40;
+
+        $r2[18] = 42;
+
+        $r2[19] = 45;
+
+        $r2[20] = 47;
+
+        $r2[21] = 49;
+
+        $r2[22] = 52;
+
+        $r2[23] = 54;
+
+        $r2[24] = 56;
+
+        $r2[25] = 59;
+
+        $r2[26] = 61;
+
+        <jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer: int[] N_5_BITS> = $r2;
+
+        return;
+    }
+}

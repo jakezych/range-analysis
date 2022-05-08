@@ -1,0 +1,164 @@
+class jdk.internal.loader.BuiltinClassLoader$LoadedModule extends java.lang.Object
+{
+    private final jdk.internal.loader.BuiltinClassLoader loader;
+    private final java.lang.module.ModuleReference mref;
+    private final java.net.URI uri;
+    private java.net.URL codeSourceURL;
+
+    void <init>(jdk.internal.loader.BuiltinClassLoader, java.lang.module.ModuleReference)
+    {
+        jdk.internal.loader.BuiltinClassLoader$LoadedModule r0;
+        java.lang.module.ModuleReference r1;
+        java.util.Optional $r2;
+        java.lang.Object $r3;
+        java.net.URI $r4, $r5, $r7, $r10;
+        jdk.internal.loader.BuiltinClassLoader r6;
+        java.lang.String $r8, $r9;
+        boolean $z0;
+        java.net.URL r11;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$LoadedModule;
+
+        r6 := @parameter0: jdk.internal.loader.BuiltinClassLoader;
+
+        r1 := @parameter1: java.lang.module.ModuleReference;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r11 = null;
+
+        $r2 = virtualinvoke r1.<java.lang.module.ModuleReference: java.util.Optional location()>();
+
+        $r3 = virtualinvoke $r2.<java.util.Optional: java.lang.Object orElse(java.lang.Object)>(null);
+
+        $r4 = (java.net.URI) $r3;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URI uri> = $r4;
+
+        $r5 = r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URI uri>;
+
+        if $r5 == null goto label1;
+
+        $r8 = "jrt";
+
+        $r7 = r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URI uri>;
+
+        $r9 = virtualinvoke $r7.<java.net.URI: java.lang.String getScheme()>();
+
+        $z0 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>($r9);
+
+        if $z0 != 0 goto label1;
+
+        $r10 = r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URI uri>;
+
+        r11 = virtualinvoke r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URL createURL(java.net.URI)>($r10);
+
+     label1:
+        r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: jdk.internal.loader.BuiltinClassLoader loader> = r6;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.lang.module.ModuleReference mref> = r1;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URL codeSourceURL> = r11;
+
+        return;
+    }
+
+    jdk.internal.loader.BuiltinClassLoader loader()
+    {
+        jdk.internal.loader.BuiltinClassLoader$LoadedModule r0;
+        jdk.internal.loader.BuiltinClassLoader $r1;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$LoadedModule;
+
+        $r1 = r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: jdk.internal.loader.BuiltinClassLoader loader>;
+
+        return $r1;
+    }
+
+    java.lang.module.ModuleReference mref()
+    {
+        jdk.internal.loader.BuiltinClassLoader$LoadedModule r0;
+        java.lang.module.ModuleReference $r1;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$LoadedModule;
+
+        $r1 = r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.lang.module.ModuleReference mref>;
+
+        return $r1;
+    }
+
+    java.lang.String name()
+    {
+        jdk.internal.loader.BuiltinClassLoader$LoadedModule r0;
+        java.lang.module.ModuleReference $r1;
+        java.lang.module.ModuleDescriptor $r2;
+        java.lang.String $r3;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$LoadedModule;
+
+        $r1 = r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.lang.module.ModuleReference mref>;
+
+        $r2 = virtualinvoke $r1.<java.lang.module.ModuleReference: java.lang.module.ModuleDescriptor descriptor()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.module.ModuleDescriptor: java.lang.String name()>();
+
+        return $r3;
+    }
+
+    java.net.URL codeSourceURL()
+    {
+        jdk.internal.loader.BuiltinClassLoader$LoadedModule r0;
+        java.net.URI $r1, $r2;
+        java.net.URL $r3, r4;
+
+        r0 := @this: jdk.internal.loader.BuiltinClassLoader$LoadedModule;
+
+        r4 = r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URL codeSourceURL>;
+
+        if r4 != null goto label1;
+
+        $r1 = r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URI uri>;
+
+        if $r1 == null goto label1;
+
+        $r2 = r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URI uri>;
+
+        $r3 = virtualinvoke r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URL createURL(java.net.URI)>($r2);
+
+        r4 = $r3;
+
+        r0.<jdk.internal.loader.BuiltinClassLoader$LoadedModule: java.net.URL codeSourceURL> = $r3;
+
+     label1:
+        return r4;
+    }
+
+    private java.net.URL createURL(java.net.URI)
+    {
+        java.net.URI r0;
+        java.lang.Exception $r1;
+        jdk.internal.loader.BuiltinClassLoader$LoadedModule r3;
+        java.net.URL r4;
+
+        r3 := @this: jdk.internal.loader.BuiltinClassLoader$LoadedModule;
+
+        r0 := @parameter0: java.net.URI;
+
+        r4 = null;
+
+     label1:
+        r4 = virtualinvoke r0.<java.net.URI: java.net.URL toURL()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+     label4:
+        return r4;
+
+        catch java.net.MalformedURLException from label1 to label2 with label3;
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
+    }
+}

@@ -1,0 +1,7 @@
+interface  jdk.internal.module.ModulePatcher$ResourceFinder extends java.lang.Object implements java.io.Closeable
+{
+
+    public abstract jdk.internal.loader.Resource find(java.lang.String) throws java.io.IOException;
+
+    public abstract java.util.stream.Stream list() throws java.io.IOException;
+}

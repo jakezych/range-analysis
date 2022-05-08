@@ -1,0 +1,7 @@
+public interface  jdk.internal.jimage.ImageStrings extends java.lang.Object
+{
+
+    public abstract java.lang.String get(int);
+
+    public abstract int add(java.lang.String);
+}

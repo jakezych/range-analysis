@@ -1,0 +1,284 @@
+public final enum class jdk.internal.reflect.ConstantPool$Tag extends java.lang.Enum
+{
+    public static final enum jdk.internal.reflect.ConstantPool$Tag UTF8;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag INTEGER;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag FLOAT;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag LONG;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag DOUBLE;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag CLASS;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag STRING;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag FIELDREF;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag METHODREF;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag INTERFACEMETHODREF;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag NAMEANDTYPE;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag METHODHANDLE;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag METHODTYPE;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag INVOKEDYNAMIC;
+    public static final enum jdk.internal.reflect.ConstantPool$Tag INVALID;
+    private final int tagCode;
+    private static final jdk.internal.reflect.ConstantPool$Tag[] $VALUES;
+
+    public static jdk.internal.reflect.ConstantPool$Tag[] values()
+    {
+        jdk.internal.reflect.ConstantPool$Tag[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (jdk.internal.reflect.ConstantPool$Tag[]) $r1;
+
+        return $r2;
+    }
+
+    public static jdk.internal.reflect.ConstantPool$Tag valueOf(java.lang.String)
+    {
+        java.lang.String r0;
+        java.lang.Enum $r1;
+        jdk.internal.reflect.ConstantPool$Tag $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Ljdk/internal/reflect/ConstantPool$Tag;", r0);
+
+        $r2 = (jdk.internal.reflect.ConstantPool$Tag) $r1;
+
+        return $r2;
+    }
+
+    private void <init>(java.lang.String, int, int)
+    {
+        jdk.internal.reflect.ConstantPool$Tag r0;
+        java.lang.String r1;
+        int i0, i1;
+
+        r0 := @this: jdk.internal.reflect.ConstantPool$Tag;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        r0.<jdk.internal.reflect.ConstantPool$Tag: int tagCode> = i1;
+
+        return;
+    }
+
+    private static jdk.internal.reflect.ConstantPool$Tag valueOf(byte)
+    {
+        jdk.internal.reflect.ConstantPool$Tag[] r0;
+        int i0, $i2, i3;
+        java.lang.IllegalArgumentException $r1;
+        java.lang.StringBuilder $r2, $r3, $r4;
+        byte b1;
+        java.lang.String $r5;
+        jdk.internal.reflect.ConstantPool$Tag r6;
+
+        b1 := @parameter0: byte;
+
+        r0 = staticinvoke <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag[] values()>();
+
+        i0 = lengthof r0;
+
+        i3 = 0;
+
+     label1:
+        if i3 >= i0 goto label3;
+
+        r6 = r0[i3];
+
+        $i2 = r6.<jdk.internal.reflect.ConstantPool$Tag: int tagCode>;
+
+        if $i2 != b1 goto label2;
+
+        return r6;
+
+     label2:
+        i3 = i3 + 1;
+
+        goto label1;
+
+     label3:
+        $r1 = new java.lang.IllegalArgumentException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unknown constant pool tag code ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r5);
+
+        throw $r1;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.reflect.ConstantPool$Tag $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30;
+        jdk.internal.reflect.ConstantPool$Tag[] $r15;
+
+        $r0 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r0.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("UTF8", 0, 1);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag UTF8> = $r0;
+
+        $r1 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r1.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("INTEGER", 1, 3);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag INTEGER> = $r1;
+
+        $r2 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r2.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("FLOAT", 2, 4);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag FLOAT> = $r2;
+
+        $r3 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r3.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("LONG", 3, 5);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag LONG> = $r3;
+
+        $r4 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r4.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("DOUBLE", 4, 6);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag DOUBLE> = $r4;
+
+        $r5 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r5.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("CLASS", 5, 7);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag CLASS> = $r5;
+
+        $r6 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r6.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("STRING", 6, 8);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag STRING> = $r6;
+
+        $r7 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r7.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("FIELDREF", 7, 9);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag FIELDREF> = $r7;
+
+        $r8 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r8.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("METHODREF", 8, 10);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag METHODREF> = $r8;
+
+        $r9 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r9.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("INTERFACEMETHODREF", 9, 11);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag INTERFACEMETHODREF> = $r9;
+
+        $r10 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r10.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("NAMEANDTYPE", 10, 12);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag NAMEANDTYPE> = $r10;
+
+        $r11 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r11.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("METHODHANDLE", 11, 15);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag METHODHANDLE> = $r11;
+
+        $r12 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r12.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("METHODTYPE", 12, 16);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag METHODTYPE> = $r12;
+
+        $r13 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r13.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("INVOKEDYNAMIC", 13, 18);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag INVOKEDYNAMIC> = $r13;
+
+        $r14 = new jdk.internal.reflect.ConstantPool$Tag;
+
+        specialinvoke $r14.<jdk.internal.reflect.ConstantPool$Tag: void <init>(java.lang.String,int,int)>("INVALID", 14, 0);
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag INVALID> = $r14;
+
+        $r15 = newarray (jdk.internal.reflect.ConstantPool$Tag)[15];
+
+        $r16 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag UTF8>;
+
+        $r15[0] = $r16;
+
+        $r17 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag INTEGER>;
+
+        $r15[1] = $r17;
+
+        $r18 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag FLOAT>;
+
+        $r15[2] = $r18;
+
+        $r19 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag LONG>;
+
+        $r15[3] = $r19;
+
+        $r20 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag DOUBLE>;
+
+        $r15[4] = $r20;
+
+        $r21 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag CLASS>;
+
+        $r15[5] = $r21;
+
+        $r22 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag STRING>;
+
+        $r15[6] = $r22;
+
+        $r23 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag FIELDREF>;
+
+        $r15[7] = $r23;
+
+        $r24 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag METHODREF>;
+
+        $r15[8] = $r24;
+
+        $r25 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag INTERFACEMETHODREF>;
+
+        $r15[9] = $r25;
+
+        $r26 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag NAMEANDTYPE>;
+
+        $r15[10] = $r26;
+
+        $r27 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag METHODHANDLE>;
+
+        $r15[11] = $r27;
+
+        $r28 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag METHODTYPE>;
+
+        $r15[12] = $r28;
+
+        $r29 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag INVOKEDYNAMIC>;
+
+        $r15[13] = $r29;
+
+        $r30 = <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag INVALID>;
+
+        $r15[14] = $r30;
+
+        <jdk.internal.reflect.ConstantPool$Tag: jdk.internal.reflect.ConstantPool$Tag[] $VALUES> = $r15;
+
+        return;
+    }
+}

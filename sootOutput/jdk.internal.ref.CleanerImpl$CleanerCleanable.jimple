@@ -1,0 +1,26 @@
+final class jdk.internal.ref.CleanerImpl$CleanerCleanable extends jdk.internal.ref.PhantomCleanable
+{
+
+    void <init>(java.lang.ref.Cleaner)
+    {
+        jdk.internal.ref.CleanerImpl$CleanerCleanable r0;
+        java.lang.ref.Cleaner r1;
+
+        r0 := @this: jdk.internal.ref.CleanerImpl$CleanerCleanable;
+
+        r1 := @parameter0: java.lang.ref.Cleaner;
+
+        specialinvoke r0.<jdk.internal.ref.PhantomCleanable: void <init>(java.lang.Object,java.lang.ref.Cleaner)>(r1, r1);
+
+        return;
+    }
+
+    protected void performCleanup()
+    {
+        jdk.internal.ref.CleanerImpl$CleanerCleanable r0;
+
+        r0 := @this: jdk.internal.ref.CleanerImpl$CleanerCleanable;
+
+        return;
+    }
+}

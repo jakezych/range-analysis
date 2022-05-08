@@ -1,0 +1,33 @@
+final class jdk.internal.org.objectweb.asm.Context extends java.lang.Object
+{
+    jdk.internal.org.objectweb.asm.Attribute[] attributePrototypes;
+    int parsingOptions;
+    char[] charBuffer;
+    int currentMethodAccessFlags;
+    java.lang.String currentMethodName;
+    java.lang.String currentMethodDescriptor;
+    jdk.internal.org.objectweb.asm.Label[] currentMethodLabels;
+    int currentTypeAnnotationTarget;
+    jdk.internal.org.objectweb.asm.TypePath currentTypeAnnotationTargetPath;
+    jdk.internal.org.objectweb.asm.Label[] currentLocalVariableAnnotationRangeStarts;
+    jdk.internal.org.objectweb.asm.Label[] currentLocalVariableAnnotationRangeEnds;
+    int[] currentLocalVariableAnnotationRangeIndices;
+    int currentFrameOffset;
+    int currentFrameType;
+    int currentFrameLocalCount;
+    int currentFrameLocalCountDelta;
+    java.lang.Object[] currentFrameLocalTypes;
+    int currentFrameStackCount;
+    java.lang.Object[] currentFrameStackTypes;
+
+    void <init>()
+    {
+        jdk.internal.org.objectweb.asm.Context r0;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.Context;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

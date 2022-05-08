@@ -1,0 +1,36 @@
+final class jdk.internal.misc.UnsafeConstants extends java.lang.Object
+{
+    static final int ADDRESS_SIZE0;
+    static final int PAGE_SIZE;
+    static final boolean BIG_ENDIAN;
+    static final boolean UNALIGNED_ACCESS;
+    static final int DATA_CACHE_LINE_FLUSH_SIZE;
+
+    private void <init>()
+    {
+        jdk.internal.misc.UnsafeConstants r0;
+
+        r0 := @this: jdk.internal.misc.UnsafeConstants;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        <jdk.internal.misc.UnsafeConstants: int ADDRESS_SIZE0> = 0;
+
+        <jdk.internal.misc.UnsafeConstants: int ADDRESS_SIZE0> = 0;
+
+        <jdk.internal.misc.UnsafeConstants: int PAGE_SIZE> = 0;
+
+        <jdk.internal.misc.UnsafeConstants: boolean BIG_ENDIAN> = 0;
+
+        <jdk.internal.misc.UnsafeConstants: boolean UNALIGNED_ACCESS> = 0;
+
+        <jdk.internal.misc.UnsafeConstants: int DATA_CACHE_LINE_FLUSH_SIZE> = 0;
+
+        return;
+    }
+}

@@ -1,0 +1,346 @@
+public final class jdk.internal.event.EventHelper extends java.lang.Object
+{
+    private static final java.lang.System$Logger$Level LOG_LEVEL;
+    private static final java.lang.String SECURITY_LOGGER_NAME;
+    private static final java.lang.System$Logger SECURITY_LOGGER;
+    private static final boolean LOGGING_SECURITY;
+
+    public void <init>()
+    {
+        jdk.internal.event.EventHelper r0;
+
+        r0 := @this: jdk.internal.event.EventHelper;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void logTLSHandshakeEvent(java.time.Instant, java.lang.String, int, java.lang.String, java.lang.String, long)
+    {
+        java.time.Instant r0;
+        java.lang.String r1, $r7, r9, r11, r12;
+        java.lang.StringBuilder $r2, $r5, $r6;
+        java.lang.System$Logger $r3;
+        java.lang.System$Logger$Level $r4;
+        java.lang.Object[] $r8;
+        int i0;
+        java.lang.Integer $r10;
+        long l1;
+        java.lang.Long $r13;
+
+        r0 := @parameter0: java.time.Instant;
+
+        r9 := @parameter1: java.lang.String;
+
+        i0 := @parameter2: int;
+
+        r12 := @parameter3: java.lang.String;
+
+        r11 := @parameter4: java.lang.String;
+
+        l1 := @parameter5: long;
+
+        r1 = staticinvoke <jdk.internal.event.EventHelper: java.lang.String getDurationString(java.time.Instant)>(r0);
+
+        $r3 = <jdk.internal.event.EventHelper: java.lang.System$Logger SECURITY_LOGGER>;
+
+        $r4 = <jdk.internal.event.EventHelper: java.lang.System$Logger$Level LOG_LEVEL>;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" TLSHandshake: {0}:{1,number,#}, {2}, {3}, {4,number,#}");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r8 = newarray (java.lang.Object)[5];
+
+        $r8[0] = r9;
+
+        $r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        $r8[1] = $r10;
+
+        $r8[2] = r11;
+
+        $r8[3] = r12;
+
+        $r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+
+        $r8[4] = $r13;
+
+        interfaceinvoke $r3.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.String,java.lang.Object[])>($r4, $r7, $r8);
+
+        return;
+    }
+
+    public static void logSecurityPropertyEvent(java.lang.String, java.lang.String)
+    {
+        boolean $z0;
+        java.lang.Object[] $r0;
+        java.lang.String r1, r2;
+        java.lang.System$Logger$Level $r3;
+        java.lang.System$Logger $r4;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        $z0 = staticinvoke <jdk.internal.event.EventHelper: boolean isLoggingSecurity()>();
+
+        if $z0 == 0 goto label1;
+
+        $r4 = <jdk.internal.event.EventHelper: java.lang.System$Logger SECURITY_LOGGER>;
+
+        $r3 = <jdk.internal.event.EventHelper: java.lang.System$Logger$Level LOG_LEVEL>;
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $r0[0] = r1;
+
+        $r0[1] = r2;
+
+        interfaceinvoke $r4.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.String,java.lang.Object[])>($r3, "SecurityPropertyModification: key:{0}, value:{1}", $r0);
+
+     label1:
+        return;
+    }
+
+    public static void logX509ValidationEvent(int, int[])
+    {
+        int[] r0;
+        java.util.stream.IntStream $r1;
+        java.util.function.IntFunction $r2;
+        java.util.stream.Stream $r3;
+        java.util.stream.Collector $r4;
+        java.lang.Object $r5;
+        java.lang.String r6;
+        java.lang.Object[] $r7;
+        int i0;
+        java.lang.System$Logger $r8;
+        java.lang.System$Logger$Level $r9;
+        java.lang.Integer $r10;
+
+        i0 := @parameter0: int;
+
+        r0 := @parameter1: int[];
+
+        $r1 = staticinvoke <java.util.stream.IntStream: java.util.stream.IntStream of(int[])>(r0);
+
+        $r2 = staticinvoke <jdk.internal.event.EventHelper$toString__146: java.util.function.IntFunction bootstrap$()>();
+
+        $r3 = interfaceinvoke $r1.<java.util.stream.IntStream: java.util.stream.Stream mapToObj(java.util.function.IntFunction)>($r2);
+
+        $r4 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector joining(java.lang.CharSequence)>(", ");
+
+        $r5 = interfaceinvoke $r3.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r4);
+
+        r6 = (java.lang.String) $r5;
+
+        $r8 = <jdk.internal.event.EventHelper: java.lang.System$Logger SECURITY_LOGGER>;
+
+        $r9 = <jdk.internal.event.EventHelper: java.lang.System$Logger$Level LOG_LEVEL>;
+
+        $r7 = newarray (java.lang.Object)[2];
+
+        $r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        $r7[0] = $r10;
+
+        $r7[1] = r6;
+
+        interfaceinvoke $r8.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.String,java.lang.Object[])>($r9, "ValidationChain: {0,number,#}, {1}", $r7);
+
+        return;
+    }
+
+    public static void logX509CertificateEvent(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, long, long, long)
+    {
+        java.lang.Object[] $r0;
+        java.lang.String r1, r2, r3, r4, r5;
+        int i0;
+        java.lang.System$Logger $r6;
+        java.lang.System$Logger$Level $r7;
+        java.lang.Integer $r8;
+        long l1, l2, l3;
+        java.lang.Long $r9;
+        java.util.Date $r10, $r11;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+        r5 := @parameter4: java.lang.String;
+
+        i0 := @parameter5: int;
+
+        l1 := @parameter6: long;
+
+        l2 := @parameter7: long;
+
+        l3 := @parameter8: long;
+
+        $r6 = <jdk.internal.event.EventHelper: java.lang.System$Logger SECURITY_LOGGER>;
+
+        $r7 = <jdk.internal.event.EventHelper: java.lang.System$Logger$Level LOG_LEVEL>;
+
+        $r0 = newarray (java.lang.Object)[9];
+
+        $r0[0] = r1;
+
+        $r0[1] = r2;
+
+        $r0[2] = r3;
+
+        $r0[3] = r4;
+
+        $r0[4] = r5;
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        $r0[5] = $r8;
+
+        $r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+
+        $r0[6] = $r9;
+
+        $r10 = new java.util.Date;
+
+        specialinvoke $r10.<java.util.Date: void <init>(long)>(l2);
+
+        $r0[7] = $r10;
+
+        $r11 = new java.util.Date;
+
+        specialinvoke $r11.<java.util.Date: void <init>(long)>(l3);
+
+        $r0[8] = $r11;
+
+        interfaceinvoke $r6.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.lang.String,java.lang.Object[])>($r7, "X509Certificate: Alg:{0}, Serial:{1}, Subject:{2}, Issuer:{3}, Key type:{4}, Length:{5,number,#}, Cert Id:{6,number,#}, Valid from:{7}, Valid until:{8}", $r0);
+
+        return;
+    }
+
+    private static java.lang.String getDurationString(java.time.Instant)
+    {
+        java.time.Instant r0, $r1, $r2;
+        boolean $z0;
+        java.time.Duration r3;
+        long $l0, l1, $l3;
+        byte $b2;
+        java.lang.StringBuilder $r4, $r5, $r6, $r7, $r9, $r10, $r11, $r12;
+        double $d0, $d1, $d2, $d3;
+        java.lang.String $r8, $r13;
+
+        r0 := @parameter0: java.time.Instant;
+
+        if r0 == null goto label3;
+
+        $r1 = <java.time.Instant: java.time.Instant MIN>;
+
+        $z0 = virtualinvoke r0.<java.time.Instant: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label1;
+
+        return "N/A";
+
+     label1:
+        $r2 = staticinvoke <java.time.Instant: java.time.Instant now()>();
+
+        r3 = staticinvoke <java.time.Duration: java.time.Duration between(java.time.temporal.Temporal,java.time.temporal.Temporal)>(r0, $r2);
+
+        $l0 = virtualinvoke r3.<java.time.Duration: long toNanos()>();
+
+        l1 = $l0 / 1000L;
+
+        $b2 = l1 cmp 1000000L;
+
+        if $b2 >= 0 goto label2;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("duration = ");
+
+        $d2 = (double) l1;
+
+        $d3 = $d2 / 1000.0;
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d3);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms:");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r13;
+
+     label2:
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("duration = ");
+
+        $l3 = l1 / 1000L;
+
+        $d0 = (double) $l3;
+
+        $d1 = $d0 / 1000.0;
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" s:");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r8;
+
+     label3:
+        return "";
+    }
+
+    public static boolean isLoggingSecurity()
+    {
+        boolean $z0;
+
+        $z0 = <jdk.internal.event.EventHelper: boolean LOGGING_SECURITY>;
+
+        return $z0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.System$Logger$Level $r0, $r2;
+        java.lang.System$Logger $r1, $r3;
+        boolean $z0;
+
+        <jdk.internal.event.EventHelper: java.lang.String SECURITY_LOGGER_NAME> = "jdk.event.security";
+
+        $r0 = <java.lang.System$Logger$Level: java.lang.System$Logger$Level DEBUG>;
+
+        <jdk.internal.event.EventHelper: java.lang.System$Logger$Level LOG_LEVEL> = $r0;
+
+        $r1 = staticinvoke <java.lang.System: java.lang.System$Logger getLogger(java.lang.String)>("jdk.event.security");
+
+        <jdk.internal.event.EventHelper: java.lang.System$Logger SECURITY_LOGGER> = $r1;
+
+        $r3 = <jdk.internal.event.EventHelper: java.lang.System$Logger SECURITY_LOGGER>;
+
+        $r2 = <jdk.internal.event.EventHelper: java.lang.System$Logger$Level LOG_LEVEL>;
+
+        $z0 = interfaceinvoke $r3.<java.lang.System$Logger: boolean isLoggable(java.lang.System$Logger$Level)>($r2);
+
+        <jdk.internal.event.EventHelper: boolean LOGGING_SECURITY> = $z0;
+
+        return;
+    }
+}

@@ -1,0 +1,66 @@
+class jdk.internal.jimage.BasicImageReader$1 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    final java.lang.String val$value;
+    final java.lang.String val$key;
+    final java.lang.String val$def;
+
+    void <init>(java.lang.String, java.lang.String, java.lang.String)
+    {
+        jdk.internal.jimage.BasicImageReader$1 r0;
+        java.lang.String r1, r2, r3;
+
+        r0 := @this: jdk.internal.jimage.BasicImageReader$1;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r0.<jdk.internal.jimage.BasicImageReader$1: java.lang.String val$value> = r1;
+
+        r0.<jdk.internal.jimage.BasicImageReader$1: java.lang.String val$key> = r2;
+
+        r0.<jdk.internal.jimage.BasicImageReader$1: java.lang.String val$def> = r3;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Boolean run()
+    {
+        jdk.internal.jimage.BasicImageReader$1 r0;
+        java.lang.String $r1, $r2, $r3, $r4;
+        boolean $z0;
+        java.lang.Boolean $r5;
+
+        r0 := @this: jdk.internal.jimage.BasicImageReader$1;
+
+        $r3 = r0.<jdk.internal.jimage.BasicImageReader$1: java.lang.String val$value>;
+
+        $r2 = r0.<jdk.internal.jimage.BasicImageReader$1: java.lang.String val$key>;
+
+        $r1 = r0.<jdk.internal.jimage.BasicImageReader$1: java.lang.String val$def>;
+
+        $r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>($r2, $r1);
+
+        $z0 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>($r4);
+
+        $r5 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        return $r5;
+    }
+
+    public volatile java.lang.Object run()
+    {
+        jdk.internal.jimage.BasicImageReader$1 r0;
+        java.lang.Boolean $r1;
+
+        r0 := @this: jdk.internal.jimage.BasicImageReader$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.jimage.BasicImageReader$1: java.lang.Boolean run()>();
+
+        return $r1;
+    }
+}

@@ -1,0 +1,1646 @@
+public final class jdk.internal.module.ModuleInfo extends java.lang.Object
+{
+    private final int JAVA_MIN_SUPPORTED_VERSION;
+    private final int JAVA_MAX_SUPPORTED_VERSION;
+    private static final jdk.internal.access.JavaLangModuleAccess JLMA;
+    private final java.util.function.Supplier packageFinder;
+    private final boolean parseHashes;
+    private static volatile java.util.Set predefinedNotAllowed;
+    static final boolean $assertionsDisabled;
+
+    private void <init>(java.util.function.Supplier, boolean)
+    {
+        jdk.internal.module.ModuleInfo r0;
+        java.util.function.Supplier r1;
+        boolean z0;
+
+        r0 := @this: jdk.internal.module.ModuleInfo;
+
+        r1 := @parameter0: java.util.function.Supplier;
+
+        z0 := @parameter1: boolean;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.module.ModuleInfo: int JAVA_MAX_SUPPORTED_VERSION> = 58;
+
+        r0.<jdk.internal.module.ModuleInfo: int JAVA_MIN_SUPPORTED_VERSION> = 53;
+
+        r0.<jdk.internal.module.ModuleInfo: int JAVA_MIN_SUPPORTED_VERSION> = 53;
+
+        r0.<jdk.internal.module.ModuleInfo: int JAVA_MAX_SUPPORTED_VERSION> = 58;
+
+        r0.<jdk.internal.module.ModuleInfo: java.util.function.Supplier packageFinder> = r1;
+
+        r0.<jdk.internal.module.ModuleInfo: boolean parseHashes> = z0;
+
+        return;
+    }
+
+    private void <init>(java.util.function.Supplier)
+    {
+        jdk.internal.module.ModuleInfo r0;
+        java.util.function.Supplier r1;
+
+        r0 := @this: jdk.internal.module.ModuleInfo;
+
+        r1 := @parameter0: java.util.function.Supplier;
+
+        specialinvoke r0.<jdk.internal.module.ModuleInfo: void <init>(java.util.function.Supplier,boolean)>(r1, 1);
+
+        return;
+    }
+
+    public static jdk.internal.module.ModuleInfo$Attributes read(java.io.InputStream, java.util.function.Supplier) throws java.io.IOException
+    {
+        jdk.internal.module.ModuleInfo $r0;
+        java.util.function.Supplier r1;
+        java.io.DataInputStream $r2;
+        java.io.InputStream r3;
+        jdk.internal.module.ModuleInfo$Attributes $r4;
+        java.io.EOFException $r5;
+        java.lang.module.InvalidModuleDescriptorException $r6, $r9;
+        java.lang.RuntimeException $r7;
+        java.lang.String $r8;
+
+        r3 := @parameter0: java.io.InputStream;
+
+        r1 := @parameter1: java.util.function.Supplier;
+
+     label1:
+        $r0 = new jdk.internal.module.ModuleInfo;
+
+        specialinvoke $r0.<jdk.internal.module.ModuleInfo: void <init>(java.util.function.Supplier)>(r1);
+
+        $r2 = new java.io.DataInputStream;
+
+        specialinvoke $r2.<java.io.DataInputStream: void <init>(java.io.InputStream)>(r3);
+
+        $r4 = virtualinvoke $r0.<jdk.internal.module.ModuleInfo: jdk.internal.module.ModuleInfo$Attributes doRead(java.io.DataInput)>($r2);
+
+     label2:
+        return $r4;
+
+     label3:
+        $r7 := @caughtexception;
+
+        $r8 = virtualinvoke $r7.<java.lang.RuntimeException: java.lang.String getMessage()>();
+
+        $r9 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r8);
+
+        throw $r9;
+
+     label4:
+        $r5 := @caughtexception;
+
+        $r6 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException truncatedModuleDescriptor()>();
+
+        throw $r6;
+
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
+        catch java.lang.IllegalStateException from label1 to label2 with label3;
+        catch java.io.EOFException from label1 to label2 with label4;
+    }
+
+    public static jdk.internal.module.ModuleInfo$Attributes read(java.nio.ByteBuffer, java.util.function.Supplier)
+    {
+        jdk.internal.module.ModuleInfo $r0;
+        java.util.function.Supplier r1;
+        jdk.internal.module.ModuleInfo$DataInputWrapper $r2;
+        java.nio.ByteBuffer r3;
+        jdk.internal.module.ModuleInfo$Attributes $r4;
+        java.io.IOException $r5;
+        java.io.UncheckedIOException $r6;
+        java.io.EOFException $r7;
+        java.lang.module.InvalidModuleDescriptorException $r8, $r11;
+        java.lang.RuntimeException $r9;
+        java.lang.String $r10;
+
+        r3 := @parameter0: java.nio.ByteBuffer;
+
+        r1 := @parameter1: java.util.function.Supplier;
+
+     label1:
+        $r0 = new jdk.internal.module.ModuleInfo;
+
+        specialinvoke $r0.<jdk.internal.module.ModuleInfo: void <init>(java.util.function.Supplier)>(r1);
+
+        $r2 = new jdk.internal.module.ModuleInfo$DataInputWrapper;
+
+        specialinvoke $r2.<jdk.internal.module.ModuleInfo$DataInputWrapper: void <init>(java.nio.ByteBuffer)>(r3);
+
+        $r4 = virtualinvoke $r0.<jdk.internal.module.ModuleInfo: jdk.internal.module.ModuleInfo$Attributes doRead(java.io.DataInput)>($r2);
+
+     label2:
+        return $r4;
+
+     label3:
+        $r9 := @caughtexception;
+
+        $r10 = virtualinvoke $r9.<java.lang.RuntimeException: java.lang.String getMessage()>();
+
+        $r11 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r10);
+
+        throw $r11;
+
+     label4:
+        $r7 := @caughtexception;
+
+        $r8 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException truncatedModuleDescriptor()>();
+
+        throw $r8;
+
+     label5:
+        $r5 := @caughtexception;
+
+        $r6 = new java.io.UncheckedIOException;
+
+        specialinvoke $r6.<java.io.UncheckedIOException: void <init>(java.io.IOException)>($r5);
+
+        throw $r6;
+
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
+        catch java.lang.IllegalStateException from label1 to label2 with label3;
+        catch java.io.EOFException from label1 to label2 with label4;
+        catch java.io.IOException from label1 to label2 with label5;
+    }
+
+    public static jdk.internal.module.ModuleInfo$Attributes readIgnoringHashes(java.nio.ByteBuffer, java.util.function.Supplier)
+    {
+        jdk.internal.module.ModuleInfo $r0;
+        java.util.function.Supplier r1;
+        jdk.internal.module.ModuleInfo$DataInputWrapper $r2;
+        java.nio.ByteBuffer r3;
+        jdk.internal.module.ModuleInfo$Attributes $r4;
+        java.io.IOException $r5;
+        java.io.UncheckedIOException $r6;
+        java.io.EOFException $r7;
+        java.lang.module.InvalidModuleDescriptorException $r8, $r11;
+        java.lang.RuntimeException $r9;
+        java.lang.String $r10;
+
+        r3 := @parameter0: java.nio.ByteBuffer;
+
+        r1 := @parameter1: java.util.function.Supplier;
+
+     label1:
+        $r0 = new jdk.internal.module.ModuleInfo;
+
+        specialinvoke $r0.<jdk.internal.module.ModuleInfo: void <init>(java.util.function.Supplier,boolean)>(r1, 0);
+
+        $r2 = new jdk.internal.module.ModuleInfo$DataInputWrapper;
+
+        specialinvoke $r2.<jdk.internal.module.ModuleInfo$DataInputWrapper: void <init>(java.nio.ByteBuffer)>(r3);
+
+        $r4 = virtualinvoke $r0.<jdk.internal.module.ModuleInfo: jdk.internal.module.ModuleInfo$Attributes doRead(java.io.DataInput)>($r2);
+
+     label2:
+        return $r4;
+
+     label3:
+        $r9 := @caughtexception;
+
+        $r10 = virtualinvoke $r9.<java.lang.RuntimeException: java.lang.String getMessage()>();
+
+        $r11 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r10);
+
+        throw $r11;
+
+     label4:
+        $r7 := @caughtexception;
+
+        $r8 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException truncatedModuleDescriptor()>();
+
+        throw $r8;
+
+     label5:
+        $r5 := @caughtexception;
+
+        $r6 = new java.io.UncheckedIOException;
+
+        specialinvoke $r6.<java.io.UncheckedIOException: void <init>(java.io.IOException)>($r5);
+
+        throw $r6;
+
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
+        catch java.lang.IllegalStateException from label1 to label2 with label3;
+        catch java.io.EOFException from label1 to label2 with label4;
+        catch java.io.IOException from label1 to label2 with label5;
+    }
+
+    private jdk.internal.module.ModuleInfo$Attributes doRead(java.io.DataInput) throws java.io.IOException
+    {
+        java.io.DataInput r0;
+        int i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, $i10, i13, i14, i15;
+        java.lang.StringBuilder $r1, $r2, $r3, $r4, $r5, $r20, $r21, $r22, $r23, $r34, $r35, $r36, $r39, $r40, $r41, $r42;
+        java.lang.String $r6, r10, $r11, $r24, $r37, $r43, r56, r60, r64, r65;
+        java.lang.module.InvalidModuleDescriptorException $r7, $r25, $r32, $r38, $r44, $r45, $r46, $r47, $r48, $r49, $r50, $r51;
+        jdk.internal.module.ModuleInfo$ConstantPool $r8;
+        boolean $z0, $z1, $z3, $z4, $z5, $z6, $z7, $z8, $z9, $z10, $z11, $z12, $z13, z14, z15;
+        java.util.HashSet $r12, $r17;
+        jdk.internal.module.ModuleInfo$Attributes $r14;
+        jdk.internal.access.JavaLangModuleAccess $r15;
+        java.util.Iterator $r18;
+        java.lang.Object $r19, $r30;
+        java.lang.AssertionError $r26;
+        jdk.internal.module.ModuleInfo r27;
+        java.util.function.Supplier $r28, $r29;
+        java.io.UncheckedIOException $r52;
+        java.io.IOException $r53;
+        java.lang.module.ModuleDescriptor$Builder r54;
+        java.util.Set r55, r62;
+        jdk.internal.module.ModuleTarget r57;
+        jdk.internal.module.ModuleHashes r58;
+        jdk.internal.module.ModuleResolution r59;
+        byte b16;
+        java.lang.module.ModuleDescriptor r66;
+
+        r27 := @this: jdk.internal.module.ModuleInfo;
+
+        r0 := @parameter0: java.io.DataInput;
+
+        i0 = interfaceinvoke r0.<java.io.DataInput: int readInt()>();
+
+        if i0 == -889275714 goto label01;
+
+        $r51 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("Bad magic number");
+
+        throw $r51;
+
+     label01:
+        i1 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        i2 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i2 < 53 goto label02;
+
+        if i2 <= 58 goto label03;
+
+     label02:
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unsupported major.minor version ");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r7 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r6);
+
+        throw $r7;
+
+     label03:
+        $r8 = new jdk.internal.module.ModuleInfo$ConstantPool;
+
+        specialinvoke $r8.<jdk.internal.module.ModuleInfo$ConstantPool: void <init>(java.io.DataInput)>(r0);
+
+        i3 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i3 == 32768 goto label04;
+
+        $r50 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("access_flags should be ACC_MODULE");
+
+        throw $r50;
+
+     label04:
+        i4 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r10 = virtualinvoke $r8.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getClassName(int)>(i4);
+
+        $r11 = "module-info";
+
+        $z0 = virtualinvoke $r11.<java.lang.String: boolean equals(java.lang.Object)>(r10);
+
+        if $z0 != 0 goto label05;
+
+        $r49 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("this_class should be module-info");
+
+        throw $r49;
+
+     label05:
+        i5 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i5 <= 0 goto label06;
+
+        $r48 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("bad #super_class");
+
+        throw $r48;
+
+     label06:
+        i6 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i6 <= 0 goto label07;
+
+        $r47 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("Bad #interfaces");
+
+        throw $r47;
+
+     label07:
+        i7 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i7 <= 0 goto label08;
+
+        $r46 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("Bad #fields");
+
+        throw $r46;
+
+     label08:
+        i8 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i8 <= 0 goto label09;
+
+        $r45 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("Bad #methods");
+
+        throw $r45;
+
+     label09:
+        i9 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        $r12 = new java.util.HashSet;
+
+        specialinvoke $r12.<java.util.HashSet: void <init>()>();
+
+        r54 = null;
+
+        r55 = null;
+
+        r56 = null;
+
+        r57 = null;
+
+        r58 = null;
+
+        r59 = null;
+
+        i13 = 0;
+
+     label10:
+        if i13 >= i9 goto label29;
+
+        i14 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r60 = virtualinvoke $r8.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getUtf8(int)>(i14);
+
+        i15 = interfaceinvoke r0.<java.io.DataInput: int readInt()>();
+
+        z14 = interfaceinvoke $r12.<java.util.Set: boolean add(java.lang.Object)>(r60);
+
+        if z14 != 0 goto label11;
+
+        $z13 = staticinvoke <jdk.internal.module.ModuleInfo: boolean isAttributeAtMostOnce(java.lang.String)>(r60);
+
+        if $z13 == 0 goto label11;
+
+        $r39 = new java.lang.StringBuilder;
+
+        specialinvoke $r39.<java.lang.StringBuilder: void <init>()>();
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("More than one ");
+
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r60);
+
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" attribute");
+
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r44 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r43);
+
+        throw $r44;
+
+     label11:
+        b16 = -1;
+
+        $i10 = virtualinvoke r60.<java.lang.String: int hashCode()>();
+
+        lookupswitch($i10)
+        {
+            case -1984916852: goto label12;
+            case 539437144: goto label17;
+            case 654770073: goto label13;
+            case 1038813715: goto label14;
+            case 1103964136: goto label16;
+            case 1447483197: goto label15;
+            default: goto label18;
+        };
+
+     label12:
+        $z12 = virtualinvoke r60.<java.lang.String: boolean equals(java.lang.Object)>("Module");
+
+        if $z12 == 0 goto label18;
+
+        b16 = 0;
+
+        goto label18;
+
+     label13:
+        $z10 = virtualinvoke r60.<java.lang.String: boolean equals(java.lang.Object)>("ModulePackages");
+
+        if $z10 == 0 goto label18;
+
+        b16 = 1;
+
+        goto label18;
+
+     label14:
+        $z9 = virtualinvoke r60.<java.lang.String: boolean equals(java.lang.Object)>("ModuleMainClass");
+
+        if $z9 == 0 goto label18;
+
+        b16 = 2;
+
+        goto label18;
+
+     label15:
+        $z5 = virtualinvoke r60.<java.lang.String: boolean equals(java.lang.Object)>("ModuleTarget");
+
+        if $z5 == 0 goto label18;
+
+        b16 = 3;
+
+        goto label18;
+
+     label16:
+        $z8 = virtualinvoke r60.<java.lang.String: boolean equals(java.lang.Object)>("ModuleHashes");
+
+        if $z8 == 0 goto label18;
+
+        b16 = 4;
+
+        goto label18;
+
+     label17:
+        $z11 = virtualinvoke r60.<java.lang.String: boolean equals(java.lang.Object)>("ModuleResolution");
+
+        if $z11 == 0 goto label18;
+
+        b16 = 5;
+
+     label18:
+        tableswitch(b16)
+        {
+            case 0: goto label19;
+            case 1: goto label20;
+            case 2: goto label21;
+            case 3: goto label22;
+            case 4: goto label23;
+            case 5: goto label25;
+            default: goto label26;
+        };
+
+     label19:
+        r54 = virtualinvoke r27.<jdk.internal.module.ModuleInfo: java.lang.module.ModuleDescriptor$Builder readModuleAttribute(java.io.DataInput,jdk.internal.module.ModuleInfo$ConstantPool,int)>(r0, $r8, i2);
+
+        goto label28;
+
+     label20:
+        r55 = virtualinvoke r27.<jdk.internal.module.ModuleInfo: java.util.Set readModulePackagesAttribute(java.io.DataInput,jdk.internal.module.ModuleInfo$ConstantPool)>(r0, $r8);
+
+        goto label28;
+
+     label21:
+        r56 = virtualinvoke r27.<jdk.internal.module.ModuleInfo: java.lang.String readModuleMainClassAttribute(java.io.DataInput,jdk.internal.module.ModuleInfo$ConstantPool)>(r0, $r8);
+
+        goto label28;
+
+     label22:
+        r57 = virtualinvoke r27.<jdk.internal.module.ModuleInfo: jdk.internal.module.ModuleTarget readModuleTargetAttribute(java.io.DataInput,jdk.internal.module.ModuleInfo$ConstantPool)>(r0, $r8);
+
+        goto label28;
+
+     label23:
+        $z6 = r27.<jdk.internal.module.ModuleInfo: boolean parseHashes>;
+
+        if $z6 == 0 goto label24;
+
+        r58 = virtualinvoke r27.<jdk.internal.module.ModuleInfo: jdk.internal.module.ModuleHashes readModuleHashesAttribute(java.io.DataInput,jdk.internal.module.ModuleInfo$ConstantPool)>(r0, $r8);
+
+        goto label28;
+
+     label24:
+        interfaceinvoke r0.<java.io.DataInput: int skipBytes(int)>(i15);
+
+        goto label28;
+
+     label25:
+        r59 = virtualinvoke r27.<jdk.internal.module.ModuleInfo: jdk.internal.module.ModuleResolution readModuleResolution(java.io.DataInput,jdk.internal.module.ModuleInfo$ConstantPool)>(r0, $r8);
+
+        goto label28;
+
+     label26:
+        $z7 = staticinvoke <jdk.internal.module.ModuleInfo: boolean isAttributeDisallowed(java.lang.String)>(r60);
+
+        if $z7 == 0 goto label27;
+
+        $r34 = new java.lang.StringBuilder;
+
+        specialinvoke $r34.<java.lang.StringBuilder: void <init>()>();
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r60);
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" attribute not allowed");
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r38 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r37);
+
+        throw $r38;
+
+     label27:
+        interfaceinvoke r0.<java.io.DataInput: int skipBytes(int)>(i15);
+
+     label28:
+        i13 = i13 + 1;
+
+        goto label10;
+
+     label29:
+        if r54 != null goto label30;
+
+        $r32 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("Module attribute not found");
+
+        throw $r32;
+
+     label30:
+        if r56 == null goto label31;
+
+        virtualinvoke r54.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder mainClass(java.lang.String)>(r56);
+
+     label31:
+        z15 = 0;
+
+        if r55 != null goto label36;
+
+        $r28 = r27.<jdk.internal.module.ModuleInfo: java.util.function.Supplier packageFinder>;
+
+        if $r28 == null goto label36;
+
+     label32:
+        $r29 = r27.<jdk.internal.module.ModuleInfo: java.util.function.Supplier packageFinder>;
+
+        $r30 = interfaceinvoke $r29.<java.util.function.Supplier: java.lang.Object get()>();
+
+        r55 = (java.util.Set) $r30;
+
+     label33:
+        goto label35;
+
+     label34:
+        $r52 := @caughtexception;
+
+        $r53 = virtualinvoke $r52.<java.io.UncheckedIOException: java.io.IOException getCause()>();
+
+        throw $r53;
+
+     label35:
+        z15 = 1;
+
+     label36:
+        if r55 == null goto label41;
+
+        $r15 = <jdk.internal.module.ModuleInfo: jdk.internal.access.JavaLangModuleAccess JLMA>;
+
+        r62 = interfaceinvoke $r15.<jdk.internal.access.JavaLangModuleAccess: java.util.Set packages(java.lang.module.ModuleDescriptor$Builder)>(r54);
+
+        $z1 = interfaceinvoke r55.<java.util.Set: boolean containsAll(java.util.Collection)>(r62);
+
+        if $z1 != 0 goto label40;
+
+        $r17 = new java.util.HashSet;
+
+        specialinvoke $r17.<java.util.HashSet: void <init>(java.util.Collection)>(r62);
+
+        interfaceinvoke $r17.<java.util.Set: boolean removeAll(java.util.Collection)>(r55);
+
+        $z3 = <jdk.internal.module.ModuleInfo: boolean $assertionsDisabled>;
+
+        if $z3 != 0 goto label37;
+
+        $z4 = interfaceinvoke $r17.<java.util.Set: boolean isEmpty()>();
+
+        if $z4 == 0 goto label37;
+
+        $r26 = new java.lang.AssertionError;
+
+        specialinvoke $r26.<java.lang.AssertionError: void <init>()>();
+
+        throw $r26;
+
+     label37:
+        $r18 = interfaceinvoke $r17.<java.util.Set: java.util.Iterator iterator()>();
+
+        $r19 = interfaceinvoke $r18.<java.util.Iterator: java.lang.Object next()>();
+
+        r64 = (java.lang.String) $r19;
+
+        if z15 == 0 goto label38;
+
+        r65 = " not found in module";
+
+        goto label39;
+
+     label38:
+        r65 = " missing from ModulePackages class file attribute";
+
+     label39:
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Package ");
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r64);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r65);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r25 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r24);
+
+        throw $r25;
+
+     label40:
+        virtualinvoke r54.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder packages(java.util.Set)>(r55);
+
+     label41:
+        r66 = virtualinvoke r54.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor build()>();
+
+        $r14 = new jdk.internal.module.ModuleInfo$Attributes;
+
+        specialinvoke $r14.<jdk.internal.module.ModuleInfo$Attributes: void <init>(java.lang.module.ModuleDescriptor,jdk.internal.module.ModuleTarget,jdk.internal.module.ModuleHashes,jdk.internal.module.ModuleResolution)>(r66, r57, r58, r59);
+
+        return $r14;
+
+        catch java.io.UncheckedIOException from label32 to label33 with label34;
+    }
+
+    private java.lang.module.ModuleDescriptor$Builder readModuleAttribute(java.io.DataInput, jdk.internal.module.ModuleInfo$ConstantPool, int) throws java.io.IOException
+    {
+        java.io.DataInput r0;
+        int i0, i1, $i2, $i3, $i4, i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25, i26, i27, i28, i29, i30, i31, i32, i33, i34, i35, i36, i37, i38, i39, i40, i41, i42;
+        jdk.internal.module.ModuleInfo$ConstantPool r1;
+        java.lang.String r2, $r14, r21, $r27, $r41, $r55, r68, r69, r71, r72, r73, r76, r77, r80, r81, r83;
+        java.util.HashSet $r3, $r17, $r19, $r32, $r34, $r47;
+        boolean z0, $z1, $z2, $z3, $z6, $z9, $z10, $z11, $z12, $z20, z21;
+        jdk.internal.access.JavaLangModuleAccess $r5, $r48;
+        java.lang.module.ModuleDescriptor$Builder r6;
+        java.util.ArrayList $r7;
+        java.lang.StringBuilder $r9, $r10, $r11, $r12, $r13, $r22, $r23, $r24, $r25, $r26, $r36, $r37, $r38, $r39, $r40, $r51, $r52, $r53, $r54;
+        java.lang.module.InvalidModuleDescriptorException $r15, $r28, $r31, $r42, $r45, $r46, $r56;
+        java.lang.module.ModuleDescriptor$Opens$Modifier $r29, $r30;
+        java.lang.module.ModuleDescriptor$Exports$Modifier $r43, $r44;
+        java.lang.module.ModuleDescriptor$Requires$Modifier $r49, $r50, $r57, $r59, $r60, $r61, $r62;
+        java.lang.module.ModuleDescriptor$Modifier $r64, $r65, $r66;
+        jdk.internal.module.ModuleInfo r67;
+        java.util.Set r70, r74, r78;
+
+        r67 := @this: jdk.internal.module.ModuleInfo;
+
+        r0 := @parameter0: java.io.DataInput;
+
+        r1 := @parameter1: jdk.internal.module.ModuleInfo$ConstantPool;
+
+        i14 := @parameter2: int;
+
+        i0 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r2 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getModuleName(int)>(i0);
+
+        i1 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        $r3 = new java.util.HashSet;
+
+        specialinvoke $r3.<java.util.HashSet: void <init>()>();
+
+        $i2 = i1 & 32;
+
+        if $i2 == 0 goto label01;
+
+        $z20 = 1;
+
+        goto label02;
+
+     label01:
+        $z20 = 0;
+
+     label02:
+        z0 = $z20;
+
+        if $z20 == 0 goto label03;
+
+        $r66 = <java.lang.module.ModuleDescriptor$Modifier: java.lang.module.ModuleDescriptor$Modifier OPEN>;
+
+        interfaceinvoke $r3.<java.util.Set: boolean add(java.lang.Object)>($r66);
+
+     label03:
+        $i3 = i1 & 4096;
+
+        if $i3 == 0 goto label04;
+
+        $r65 = <java.lang.module.ModuleDescriptor$Modifier: java.lang.module.ModuleDescriptor$Modifier SYNTHETIC>;
+
+        interfaceinvoke $r3.<java.util.Set: boolean add(java.lang.Object)>($r65);
+
+     label04:
+        $i4 = i1 & 32768;
+
+        if $i4 == 0 goto label05;
+
+        $r64 = <java.lang.module.ModuleDescriptor$Modifier: java.lang.module.ModuleDescriptor$Modifier MANDATED>;
+
+        interfaceinvoke $r3.<java.util.Set: boolean add(java.lang.Object)>($r64);
+
+     label05:
+        $r5 = <jdk.internal.module.ModuleInfo: jdk.internal.access.JavaLangModuleAccess JLMA>;
+
+        r6 = interfaceinvoke $r5.<jdk.internal.access.JavaLangModuleAccess: java.lang.module.ModuleDescriptor$Builder newModuleBuilder(java.lang.String,boolean,java.util.Set)>(r2, 0, $r3);
+
+        i5 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i5 == 0 goto label06;
+
+        r68 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getUtf8(int)>(i5);
+
+        virtualinvoke r6.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder version(java.lang.String)>(r68);
+
+     label06:
+        i15 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        z21 = 0;
+
+        i16 = 0;
+
+     label07:
+        if i16 >= i15 goto label20;
+
+        i17 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r69 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getModuleName(int)>(i17);
+
+        i18 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i18 != 0 goto label08;
+
+        r70 = staticinvoke <java.util.Set: java.util.Set of()>();
+
+        goto label12;
+
+     label08:
+        $r47 = new java.util.HashSet;
+
+        specialinvoke $r47.<java.util.HashSet: void <init>()>();
+
+        r70 = $r47;
+
+        $i10 = i18 & 32;
+
+        if $i10 == 0 goto label09;
+
+        $r62 = <java.lang.module.ModuleDescriptor$Requires$Modifier: java.lang.module.ModuleDescriptor$Requires$Modifier TRANSITIVE>;
+
+        interfaceinvoke $r47.<java.util.Set: boolean add(java.lang.Object)>($r62);
+
+     label09:
+        $i11 = i18 & 64;
+
+        if $i11 == 0 goto label10;
+
+        $r61 = <java.lang.module.ModuleDescriptor$Requires$Modifier: java.lang.module.ModuleDescriptor$Requires$Modifier STATIC>;
+
+        interfaceinvoke $r47.<java.util.Set: boolean add(java.lang.Object)>($r61);
+
+     label10:
+        $i12 = i18 & 4096;
+
+        if $i12 == 0 goto label11;
+
+        $r60 = <java.lang.module.ModuleDescriptor$Requires$Modifier: java.lang.module.ModuleDescriptor$Requires$Modifier SYNTHETIC>;
+
+        interfaceinvoke $r47.<java.util.Set: boolean add(java.lang.Object)>($r60);
+
+     label11:
+        $i13 = i18 & 32768;
+
+        if $i13 == 0 goto label12;
+
+        $r59 = <java.lang.module.ModuleDescriptor$Requires$Modifier: java.lang.module.ModuleDescriptor$Requires$Modifier MANDATED>;
+
+        interfaceinvoke $r47.<java.util.Set: boolean add(java.lang.Object)>($r59);
+
+     label12:
+        i19 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i19 != 0 goto label13;
+
+        virtualinvoke r6.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder requires(java.util.Set,java.lang.String)>(r70, r69);
+
+        goto label14;
+
+     label13:
+        r71 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getUtf8(int)>(i19);
+
+        $r48 = <jdk.internal.module.ModuleInfo: jdk.internal.access.JavaLangModuleAccess JLMA>;
+
+        interfaceinvoke $r48.<jdk.internal.access.JavaLangModuleAccess: void requires(java.lang.module.ModuleDescriptor$Builder,java.util.Set,java.lang.String,java.lang.String)>(r6, r70, r69, r71);
+
+     label14:
+        $z9 = virtualinvoke r69.<java.lang.String: boolean equals(java.lang.Object)>("java.base");
+
+        if $z9 == 0 goto label19;
+
+        if i14 < 54 goto label18;
+
+        $r49 = <java.lang.module.ModuleDescriptor$Requires$Modifier: java.lang.module.ModuleDescriptor$Requires$Modifier TRANSITIVE>;
+
+        $z10 = interfaceinvoke r70.<java.util.Set: boolean contains(java.lang.Object)>($r49);
+
+        if $z10 != 0 goto label15;
+
+        $r57 = <java.lang.module.ModuleDescriptor$Requires$Modifier: java.lang.module.ModuleDescriptor$Requires$Modifier STATIC>;
+
+        $z12 = interfaceinvoke r70.<java.util.Set: boolean contains(java.lang.Object)>($r57);
+
+        if $z12 == 0 goto label18;
+
+     label15:
+        $r50 = <java.lang.module.ModuleDescriptor$Requires$Modifier: java.lang.module.ModuleDescriptor$Requires$Modifier TRANSITIVE>;
+
+        $z11 = interfaceinvoke r70.<java.util.Set: boolean contains(java.lang.Object)>($r50);
+
+        if $z11 == 0 goto label16;
+
+        r72 = "ACC_TRANSITIVE";
+
+        goto label17;
+
+     label16:
+        r72 = "ACC_STATIC_PHASE";
+
+     label17:
+        $r51 = new java.lang.StringBuilder;
+
+        specialinvoke $r51.<java.lang.StringBuilder: void <init>()>();
+
+        $r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("The requires entry for java.base has ");
+
+        $r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r72);
+
+        $r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" set");
+
+        $r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r56 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r55);
+
+        throw $r56;
+
+     label18:
+        z21 = 1;
+
+     label19:
+        i16 = i16 + 1;
+
+        goto label07;
+
+     label20:
+        $z1 = virtualinvoke r2.<java.lang.String: boolean equals(java.lang.Object)>("java.base");
+
+        if $z1 == 0 goto label21;
+
+        if i15 <= 0 goto label22;
+
+        $r46 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("The requires table for java.base must be 0 length");
+
+        throw $r46;
+
+     label21:
+        if z21 != 0 goto label22;
+
+        $r45 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("The requires table must have an entry for java.base");
+
+        throw $r45;
+
+     label22:
+        i20 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i20 <= 0 goto label32;
+
+        i21 = 0;
+
+     label23:
+        if i21 >= i20 goto label32;
+
+        i22 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r73 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getPackageName(int)>(i22);
+
+        i23 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i23 != 0 goto label24;
+
+        r74 = staticinvoke <java.util.Set: java.util.Set of()>();
+
+        goto label26;
+
+     label24:
+        $r32 = new java.util.HashSet;
+
+        specialinvoke $r32.<java.util.HashSet: void <init>()>();
+
+        r74 = $r32;
+
+        $i8 = i23 & 4096;
+
+        if $i8 == 0 goto label25;
+
+        $r44 = <java.lang.module.ModuleDescriptor$Exports$Modifier: java.lang.module.ModuleDescriptor$Exports$Modifier SYNTHETIC>;
+
+        interfaceinvoke $r32.<java.util.Set: boolean add(java.lang.Object)>($r44);
+
+     label25:
+        $i9 = i23 & 32768;
+
+        if $i9 == 0 goto label26;
+
+        $r43 = <java.lang.module.ModuleDescriptor$Exports$Modifier: java.lang.module.ModuleDescriptor$Exports$Modifier MANDATED>;
+
+        interfaceinvoke $r32.<java.util.Set: boolean add(java.lang.Object)>($r43);
+
+     label26:
+        i24 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i24 <= 0 goto label30;
+
+        $r34 = new java.util.HashSet;
+
+        specialinvoke $r34.<java.util.HashSet: void <init>(int)>(i24);
+
+        i25 = 0;
+
+     label27:
+        if i25 >= i24 goto label29;
+
+        i26 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r76 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getModuleName(int)>(i26);
+
+        $z6 = interfaceinvoke $r34.<java.util.Set: boolean add(java.lang.Object)>(r76);
+
+        if $z6 != 0 goto label28;
+
+        $r36 = new java.lang.StringBuilder;
+
+        specialinvoke $r36.<java.lang.StringBuilder: void <init>()>();
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r73);
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" exported to ");
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r76);
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" more than once");
+
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r42 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r41);
+
+        throw $r42;
+
+     label28:
+        i25 = i25 + 1;
+
+        goto label27;
+
+     label29:
+        virtualinvoke r6.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder exports(java.util.Set,java.lang.String,java.util.Set)>(r74, r73, $r34);
+
+        goto label31;
+
+     label30:
+        virtualinvoke r6.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder exports(java.util.Set,java.lang.String)>(r74, r73);
+
+     label31:
+        i21 = i21 + 1;
+
+        goto label23;
+
+     label32:
+        i27 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i27 <= 0 goto label43;
+
+        if z0 == 0 goto label33;
+
+        $r31 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("The opens table for an open module must be 0 length");
+
+        throw $r31;
+
+     label33:
+        i28 = 0;
+
+     label34:
+        if i28 >= i27 goto label43;
+
+        i29 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r77 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getPackageName(int)>(i29);
+
+        i30 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i30 != 0 goto label35;
+
+        r78 = staticinvoke <java.util.Set: java.util.Set of()>();
+
+        goto label37;
+
+     label35:
+        $r17 = new java.util.HashSet;
+
+        specialinvoke $r17.<java.util.HashSet: void <init>()>();
+
+        r78 = $r17;
+
+        $i6 = i30 & 4096;
+
+        if $i6 == 0 goto label36;
+
+        $r30 = <java.lang.module.ModuleDescriptor$Opens$Modifier: java.lang.module.ModuleDescriptor$Opens$Modifier SYNTHETIC>;
+
+        interfaceinvoke $r17.<java.util.Set: boolean add(java.lang.Object)>($r30);
+
+     label36:
+        $i7 = i30 & 32768;
+
+        if $i7 == 0 goto label37;
+
+        $r29 = <java.lang.module.ModuleDescriptor$Opens$Modifier: java.lang.module.ModuleDescriptor$Opens$Modifier MANDATED>;
+
+        interfaceinvoke $r17.<java.util.Set: boolean add(java.lang.Object)>($r29);
+
+     label37:
+        i31 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i31 <= 0 goto label41;
+
+        $r19 = new java.util.HashSet;
+
+        specialinvoke $r19.<java.util.HashSet: void <init>(int)>(i31);
+
+        i32 = 0;
+
+     label38:
+        if i32 >= i31 goto label40;
+
+        i33 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r21 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getModuleName(int)>(i33);
+
+        $z3 = interfaceinvoke $r19.<java.util.Set: boolean add(java.lang.Object)>(r21);
+
+        if $z3 != 0 goto label39;
+
+        $r22 = new java.lang.StringBuilder;
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>()>();
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r77);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" opened to ");
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r21);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" more than once");
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r28 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r27);
+
+        throw $r28;
+
+     label39:
+        i32 = i32 + 1;
+
+        goto label38;
+
+     label40:
+        virtualinvoke r6.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder opens(java.util.Set,java.lang.String,java.util.Set)>(r78, r77, $r19);
+
+        goto label42;
+
+     label41:
+        virtualinvoke r6.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder opens(java.util.Set,java.lang.String)>(r78, r77);
+
+     label42:
+        i28 = i28 + 1;
+
+        goto label34;
+
+     label43:
+        i34 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i34 <= 0 goto label45;
+
+        i35 = 0;
+
+     label44:
+        if i35 >= i34 goto label45;
+
+        i36 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r80 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getClassName(int)>(i36);
+
+        virtualinvoke r6.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder uses(java.lang.String)>(r80);
+
+        i35 = i35 + 1;
+
+        goto label44;
+
+     label45:
+        i37 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i37 <= 0 goto label50;
+
+        i38 = 0;
+
+     label46:
+        if i38 >= i37 goto label50;
+
+        i39 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r81 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getClassName(int)>(i39);
+
+        i40 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        $r7 = new java.util.ArrayList;
+
+        specialinvoke $r7.<java.util.ArrayList: void <init>(int)>(i40);
+
+        i41 = 0;
+
+     label47:
+        if i41 >= i40 goto label49;
+
+        i42 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r83 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getClassName(int)>(i42);
+
+        $z2 = interfaceinvoke $r7.<java.util.List: boolean add(java.lang.Object)>(r83);
+
+        if $z2 != 0 goto label48;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r81);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" provides ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r83);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" more than once");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r15 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r14);
+
+        throw $r15;
+
+     label48:
+        i41 = i41 + 1;
+
+        goto label47;
+
+     label49:
+        virtualinvoke r6.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder provides(java.lang.String,java.util.List)>(r81, $r7);
+
+        i38 = i38 + 1;
+
+        goto label46;
+
+     label50:
+        return r6;
+    }
+
+    private java.util.Set readModulePackagesAttribute(java.io.DataInput, jdk.internal.module.ModuleInfo$ConstantPool) throws java.io.IOException
+    {
+        java.io.DataInput r0;
+        int i0, i1, i2;
+        java.util.HashSet $r1;
+        jdk.internal.module.ModuleInfo$ConstantPool r3;
+        java.lang.String r4, $r9;
+        boolean z0;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8;
+        java.lang.module.InvalidModuleDescriptorException $r10;
+        jdk.internal.module.ModuleInfo r11;
+
+        r11 := @this: jdk.internal.module.ModuleInfo;
+
+        r0 := @parameter0: java.io.DataInput;
+
+        r3 := @parameter1: jdk.internal.module.ModuleInfo$ConstantPool;
+
+        i0 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        $r1 = new java.util.HashSet;
+
+        specialinvoke $r1.<java.util.HashSet: void <init>(int)>(i0);
+
+        i2 = 0;
+
+     label1:
+        if i2 >= i0 goto label3;
+
+        i1 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r4 = virtualinvoke r3.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getPackageName(int)>(i1);
+
+        z0 = interfaceinvoke $r1.<java.util.Set: boolean add(java.lang.Object)>(r4);
+
+        if z0 != 0 goto label2;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Package ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r4);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in ModulePackagesattribute more than once");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r10 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r9);
+
+        throw $r10;
+
+     label2:
+        i2 = i2 + 1;
+
+        goto label1;
+
+     label3:
+        return $r1;
+    }
+
+    private java.lang.String readModuleMainClassAttribute(java.io.DataInput, jdk.internal.module.ModuleInfo$ConstantPool) throws java.io.IOException
+    {
+        java.io.DataInput r0;
+        int i0;
+        jdk.internal.module.ModuleInfo$ConstantPool r1;
+        java.lang.String $r2;
+        jdk.internal.module.ModuleInfo r3;
+
+        r3 := @this: jdk.internal.module.ModuleInfo;
+
+        r0 := @parameter0: java.io.DataInput;
+
+        r1 := @parameter1: jdk.internal.module.ModuleInfo$ConstantPool;
+
+        i0 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        $r2 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getClassName(int)>(i0);
+
+        return $r2;
+    }
+
+    private jdk.internal.module.ModuleTarget readModuleTargetAttribute(java.io.DataInput, jdk.internal.module.ModuleInfo$ConstantPool) throws java.io.IOException
+    {
+        java.io.DataInput r0;
+        int i0;
+        jdk.internal.module.ModuleTarget $r1;
+        jdk.internal.module.ModuleInfo$ConstantPool r2;
+        jdk.internal.module.ModuleInfo r3;
+        java.lang.String r4;
+
+        r3 := @this: jdk.internal.module.ModuleInfo;
+
+        r0 := @parameter0: java.io.DataInput;
+
+        r2 := @parameter1: jdk.internal.module.ModuleInfo$ConstantPool;
+
+        r4 = null;
+
+        i0 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i0 == 0 goto label1;
+
+        r4 = virtualinvoke r2.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getUtf8(int)>(i0);
+
+     label1:
+        $r1 = new jdk.internal.module.ModuleTarget;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleTarget: void <init>(java.lang.String)>(r4);
+
+        return $r1;
+    }
+
+    private jdk.internal.module.ModuleHashes readModuleHashesAttribute(java.io.DataInput, jdk.internal.module.ModuleInfo$ConstantPool) throws java.io.IOException
+    {
+        java.io.DataInput r0;
+        int i0, i1, i2, i3, i4;
+        jdk.internal.module.ModuleInfo$ConstantPool r1;
+        java.lang.String r2, r6;
+        java.util.HashMap $r3;
+        jdk.internal.module.ModuleHashes $r5;
+        byte[] r7;
+        java.lang.module.InvalidModuleDescriptorException $r9;
+        jdk.internal.module.ModuleInfo r10;
+
+        r10 := @this: jdk.internal.module.ModuleInfo;
+
+        r0 := @parameter0: java.io.DataInput;
+
+        r1 := @parameter1: jdk.internal.module.ModuleInfo$ConstantPool;
+
+        i0 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r2 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getUtf8(int)>(i0);
+
+        i1 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        $r3 = new java.util.HashMap;
+
+        specialinvoke $r3.<java.util.HashMap: void <init>(int)>(i1);
+
+        i4 = 0;
+
+     label1:
+        if i4 >= i1 goto label3;
+
+        i2 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        r6 = virtualinvoke r1.<jdk.internal.module.ModuleInfo$ConstantPool: java.lang.String getModuleName(int)>(i2);
+
+        i3 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        if i3 != 0 goto label2;
+
+        $r9 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("hash_length == 0");
+
+        throw $r9;
+
+     label2:
+        r7 = newarray (byte)[i3];
+
+        interfaceinvoke r0.<java.io.DataInput: void readFully(byte[])>(r7);
+
+        interfaceinvoke $r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r6, r7);
+
+        i4 = i4 + 1;
+
+        goto label1;
+
+     label3:
+        $r5 = new jdk.internal.module.ModuleHashes;
+
+        specialinvoke $r5.<jdk.internal.module.ModuleHashes: void <init>(java.lang.String,java.util.Map)>(r2, $r3);
+
+        return $r5;
+    }
+
+    private jdk.internal.module.ModuleResolution readModuleResolution(java.io.DataInput, jdk.internal.module.ModuleInfo$ConstantPool) throws java.io.IOException
+    {
+        java.io.DataInput r0;
+        int i0, $i1, $i2, $i3;
+        jdk.internal.module.ModuleResolution $r1;
+        java.lang.StringBuilder $r2, $r3, $r4, $r7, $r8, $r9;
+        java.lang.String $r5, $r10;
+        java.lang.module.InvalidModuleDescriptorException $r6, $r11;
+        jdk.internal.module.ModuleInfo r12;
+        jdk.internal.module.ModuleInfo$ConstantPool r13;
+        byte b4;
+
+        r12 := @this: jdk.internal.module.ModuleInfo;
+
+        r0 := @parameter0: java.io.DataInput;
+
+        r13 := @parameter1: jdk.internal.module.ModuleInfo$ConstantPool;
+
+        i0 = interfaceinvoke r0.<java.io.DataInput: int readUnsignedShort()>();
+
+        b4 = 0;
+
+        $i1 = i0 & 2;
+
+        if $i1 == 0 goto label1;
+
+        b4 = 2;
+
+     label1:
+        $i2 = i0 & 4;
+
+        if $i2 == 0 goto label3;
+
+        if b4 == 0 goto label2;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Bad module resolution flags:");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r11 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r10);
+
+        throw $r11;
+
+     label2:
+        b4 = 4;
+
+     label3:
+        $i3 = i0 & 8;
+
+        if $i3 == 0 goto label4;
+
+        if b4 == 0 goto label4;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Bad module resolution flags:");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>($r5);
+
+        throw $r6;
+
+     label4:
+        $r1 = new jdk.internal.module.ModuleResolution;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleResolution: void <init>(int)>(i0);
+
+        return $r1;
+    }
+
+    private static boolean isAttributeAtMostOnce(java.lang.String)
+    {
+        java.lang.String r0;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("Module");
+
+        if $z0 != 0 goto label1;
+
+        $z1 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("SourceFile");
+
+        if $z1 != 0 goto label1;
+
+        $z2 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("SourceDebugExtension");
+
+        if $z2 != 0 goto label1;
+
+        $z3 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("ModulePackages");
+
+        if $z3 != 0 goto label1;
+
+        $z4 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("ModuleMainClass");
+
+        if $z4 != 0 goto label1;
+
+        $z5 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("ModuleTarget");
+
+        if $z5 != 0 goto label1;
+
+        $z6 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("ModuleHashes");
+
+        if $z6 != 0 goto label1;
+
+        $z7 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("ModuleResolution");
+
+        if $z7 == 0 goto label2;
+
+     label1:
+        return 1;
+
+     label2:
+        return 0;
+    }
+
+    private static boolean isAttributeDisallowed(java.lang.String)
+    {
+        java.lang.String r0;
+        boolean $z0;
+        java.lang.String[] $r1;
+        java.util.Set r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        r2 = <jdk.internal.module.ModuleInfo: java.util.Set predefinedNotAllowed>;
+
+        if r2 != null goto label1;
+
+        $r1 = newarray (java.lang.String)[18];
+
+        $r1[0] = "ConstantValue";
+
+        $r1[1] = "Code";
+
+        $r1[2] = "Deprecated";
+
+        $r1[3] = "StackMapTable";
+
+        $r1[4] = "Exceptions";
+
+        $r1[5] = "EnclosingMethod";
+
+        $r1[6] = "Signature";
+
+        $r1[7] = "LineNumberTable";
+
+        $r1[8] = "LocalVariableTable";
+
+        $r1[9] = "LocalVariableTypeTable";
+
+        $r1[10] = "RuntimeVisibleParameterAnnotations";
+
+        $r1[11] = "RuntimeInvisibleParameterAnnotations";
+
+        $r1[12] = "RuntimeVisibleTypeAnnotations";
+
+        $r1[13] = "RuntimeInvisibleTypeAnnotations";
+
+        $r1[14] = "Synthetic";
+
+        $r1[15] = "AnnotationDefault";
+
+        $r1[16] = "BootstrapMethods";
+
+        $r1[17] = "MethodParameters";
+
+        r2 = staticinvoke <java.util.Set: java.util.Set of(java.lang.Object[])>($r1);
+
+        <jdk.internal.module.ModuleInfo: java.util.Set predefinedNotAllowed> = r2;
+
+     label1:
+        $z0 = interfaceinvoke r2.<java.util.Set: boolean contains(java.lang.Object)>(r0);
+
+        return $z0;
+    }
+
+    private static java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)
+    {
+        java.lang.module.InvalidModuleDescriptorException $r0;
+        java.lang.String r1;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.module.InvalidModuleDescriptorException;
+
+        specialinvoke $r0.<java.lang.module.InvalidModuleDescriptorException: void <init>(java.lang.String)>(r1);
+
+        return $r0;
+    }
+
+    private static java.lang.module.InvalidModuleDescriptorException truncatedModuleDescriptor()
+    {
+        java.lang.module.InvalidModuleDescriptorException $r0;
+
+        $r0 = staticinvoke <jdk.internal.module.ModuleInfo: java.lang.module.InvalidModuleDescriptorException invalidModuleDescriptor(java.lang.String)>("Truncated module-info.class");
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+        jdk.internal.access.JavaLangModuleAccess $r1;
+
+        $r0 = class "Ljdk/internal/module/ModuleInfo;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <jdk.internal.module.ModuleInfo: boolean $assertionsDisabled> = $z1;
+
+        $r1 = staticinvoke <jdk.internal.access.SharedSecrets: jdk.internal.access.JavaLangModuleAccess getJavaLangModuleAccess()>();
+
+        <jdk.internal.module.ModuleInfo: jdk.internal.access.JavaLangModuleAccess JLMA> = $r1;
+
+        return;
+    }
+}

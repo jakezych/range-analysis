@@ -1,0 +1,123 @@
+public final class jdk.internal.util.StaticProperty extends java.lang.Object
+{
+    private static final java.lang.String JAVA_HOME;
+    private static final java.lang.String USER_HOME;
+    private static final java.lang.String USER_DIR;
+    private static final java.lang.String USER_NAME;
+    private static final java.lang.String JDK_SERIAL_FILTER;
+
+    private void <init>()
+    {
+        jdk.internal.util.StaticProperty r0;
+
+        r0 := @this: jdk.internal.util.StaticProperty;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static java.lang.String initProperty(java.lang.String)
+    {
+        java.lang.String r0, r1, $r6;
+        java.lang.InternalError $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(r0);
+
+        if r1 != null goto label1;
+
+        $r2 = new java.lang.InternalError;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("null property: ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.InternalError: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label1:
+        return r1;
+    }
+
+    public static java.lang.String javaHome()
+    {
+        java.lang.String $r0;
+
+        $r0 = <jdk.internal.util.StaticProperty: java.lang.String JAVA_HOME>;
+
+        return $r0;
+    }
+
+    public static java.lang.String userHome()
+    {
+        java.lang.String $r0;
+
+        $r0 = <jdk.internal.util.StaticProperty: java.lang.String USER_HOME>;
+
+        return $r0;
+    }
+
+    public static java.lang.String userDir()
+    {
+        java.lang.String $r0;
+
+        $r0 = <jdk.internal.util.StaticProperty: java.lang.String USER_DIR>;
+
+        return $r0;
+    }
+
+    public static java.lang.String userName()
+    {
+        java.lang.String $r0;
+
+        $r0 = <jdk.internal.util.StaticProperty: java.lang.String USER_NAME>;
+
+        return $r0;
+    }
+
+    public static java.lang.String jdkSerialFilter()
+    {
+        java.lang.String $r0;
+
+        $r0 = <jdk.internal.util.StaticProperty: java.lang.String JDK_SERIAL_FILTER>;
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.String $r0, $r1, $r2, $r3, $r4;
+
+        $r0 = staticinvoke <jdk.internal.util.StaticProperty: java.lang.String initProperty(java.lang.String)>("java.home");
+
+        <jdk.internal.util.StaticProperty: java.lang.String JAVA_HOME> = $r0;
+
+        $r1 = staticinvoke <jdk.internal.util.StaticProperty: java.lang.String initProperty(java.lang.String)>("user.home");
+
+        <jdk.internal.util.StaticProperty: java.lang.String USER_HOME> = $r1;
+
+        $r2 = staticinvoke <jdk.internal.util.StaticProperty: java.lang.String initProperty(java.lang.String)>("user.dir");
+
+        <jdk.internal.util.StaticProperty: java.lang.String USER_DIR> = $r2;
+
+        $r3 = staticinvoke <jdk.internal.util.StaticProperty: java.lang.String initProperty(java.lang.String)>("user.name");
+
+        <jdk.internal.util.StaticProperty: java.lang.String USER_NAME> = $r3;
+
+        $r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("jdk.serialFilter");
+
+        <jdk.internal.util.StaticProperty: java.lang.String JDK_SERIAL_FILTER> = $r4;
+
+        return;
+    }
+}

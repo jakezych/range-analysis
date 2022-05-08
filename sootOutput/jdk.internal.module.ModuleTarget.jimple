@@ -1,0 +1,32 @@
+public final class jdk.internal.module.ModuleTarget extends java.lang.Object
+{
+    private final java.lang.String targetPlatform;
+
+    public void <init>(java.lang.String)
+    {
+        jdk.internal.module.ModuleTarget r0;
+        java.lang.String r1;
+
+        r0 := @this: jdk.internal.module.ModuleTarget;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.module.ModuleTarget: java.lang.String targetPlatform> = r1;
+
+        return;
+    }
+
+    public java.lang.String targetPlatform()
+    {
+        jdk.internal.module.ModuleTarget r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.module.ModuleTarget;
+
+        $r1 = r0.<jdk.internal.module.ModuleTarget: java.lang.String targetPlatform>;
+
+        return $r1;
+    }
+}

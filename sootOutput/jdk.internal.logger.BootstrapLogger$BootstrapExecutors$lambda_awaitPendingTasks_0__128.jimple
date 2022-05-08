@@ -1,0 +1,36 @@
+public final class jdk.internal.logger.BootstrapLogger$BootstrapExecutors$lambda_awaitPendingTasks_0__128 extends java.lang.Object implements java.lang.Runnable
+{
+
+    public static java.lang.Runnable bootstrap$()
+    {
+        jdk.internal.logger.BootstrapLogger$BootstrapExecutors$lambda_awaitPendingTasks_0__128 $r0;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$BootstrapExecutors$lambda_awaitPendingTasks_0__128;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$BootstrapExecutors$lambda_awaitPendingTasks_0__128: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.logger.BootstrapLogger$BootstrapExecutors$lambda_awaitPendingTasks_0__128 $r0;
+
+        $r0 := @this: jdk.internal.logger.BootstrapLogger$BootstrapExecutors$lambda_awaitPendingTasks_0__128;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        jdk.internal.logger.BootstrapLogger$BootstrapExecutors$lambda_awaitPendingTasks_0__128 $r0;
+
+        $r0 := @this: jdk.internal.logger.BootstrapLogger$BootstrapExecutors$lambda_awaitPendingTasks_0__128;
+
+        staticinvoke <jdk.internal.logger.BootstrapLogger$BootstrapExecutors: void lambda$awaitPendingTasks$0()>();
+
+        return;
+    }
+}

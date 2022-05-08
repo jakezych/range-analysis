@@ -1,0 +1,231 @@
+public class jdk.internal.jmod.JmodFile$Entry extends java.lang.Object
+{
+    private final java.util.zip.ZipEntry zipEntry;
+    private final jdk.internal.jmod.JmodFile$Section section;
+    private final java.lang.String name;
+    static final java.util.Map NAME_TO_SECTION;
+
+    private void <init>(java.util.zip.ZipEntry)
+    {
+        jdk.internal.jmod.JmodFile$Entry r0;
+        java.util.zip.ZipEntry r1;
+        java.lang.String r2, $r3, $r5, $r10;
+        int i0, $i1;
+        jdk.internal.jmod.JmodFile$Section $r4;
+        java.lang.RuntimeException $r6;
+        java.lang.StringBuilder $r7, $r8, $r9;
+
+        r0 := @this: jdk.internal.jmod.JmodFile$Entry;
+
+        r1 := @parameter0: java.util.zip.ZipEntry;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r2 = virtualinvoke r1.<java.util.zip.ZipEntry: java.lang.String getName()>();
+
+        i0 = virtualinvoke r2.<java.lang.String: int indexOf(int)>(47);
+
+        if i0 > 1 goto label1;
+
+        $r6 = new java.lang.RuntimeException;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("invalid jmod entry: ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>($r10);
+
+        throw $r6;
+
+     label1:
+        r0.<jdk.internal.jmod.JmodFile$Entry: java.util.zip.ZipEntry zipEntry> = r1;
+
+        $r3 = virtualinvoke r2.<java.lang.String: java.lang.String substring(int,int)>(0, i0);
+
+        $r4 = staticinvoke <jdk.internal.jmod.JmodFile$Entry: jdk.internal.jmod.JmodFile$Section section(java.lang.String)>($r3);
+
+        r0.<jdk.internal.jmod.JmodFile$Entry: jdk.internal.jmod.JmodFile$Section section> = $r4;
+
+        $i1 = i0 + 1;
+
+        $r5 = virtualinvoke r2.<java.lang.String: java.lang.String substring(int)>($i1);
+
+        r0.<jdk.internal.jmod.JmodFile$Entry: java.lang.String name> = $r5;
+
+        return;
+    }
+
+    public jdk.internal.jmod.JmodFile$Section section()
+    {
+        jdk.internal.jmod.JmodFile$Entry r0;
+        jdk.internal.jmod.JmodFile$Section $r1;
+
+        r0 := @this: jdk.internal.jmod.JmodFile$Entry;
+
+        $r1 = r0.<jdk.internal.jmod.JmodFile$Entry: jdk.internal.jmod.JmodFile$Section section>;
+
+        return $r1;
+    }
+
+    public java.lang.String name()
+    {
+        jdk.internal.jmod.JmodFile$Entry r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.jmod.JmodFile$Entry;
+
+        $r1 = r0.<jdk.internal.jmod.JmodFile$Entry: java.lang.String name>;
+
+        return $r1;
+    }
+
+    public boolean isDirectory()
+    {
+        jdk.internal.jmod.JmodFile$Entry r0;
+        java.util.zip.ZipEntry $r1;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.jmod.JmodFile$Entry;
+
+        $r1 = r0.<jdk.internal.jmod.JmodFile$Entry: java.util.zip.ZipEntry zipEntry>;
+
+        $z0 = virtualinvoke $r1.<java.util.zip.ZipEntry: boolean isDirectory()>();
+
+        return $z0;
+    }
+
+    public long size()
+    {
+        jdk.internal.jmod.JmodFile$Entry r0;
+        java.util.zip.ZipEntry $r1;
+        long $l0;
+
+        r0 := @this: jdk.internal.jmod.JmodFile$Entry;
+
+        $r1 = r0.<jdk.internal.jmod.JmodFile$Entry: java.util.zip.ZipEntry zipEntry>;
+
+        $l0 = virtualinvoke $r1.<java.util.zip.ZipEntry: long getSize()>();
+
+        return $l0;
+    }
+
+    public java.util.zip.ZipEntry zipEntry()
+    {
+        jdk.internal.jmod.JmodFile$Entry r0;
+        java.util.zip.ZipEntry $r1;
+
+        r0 := @this: jdk.internal.jmod.JmodFile$Entry;
+
+        $r1 = r0.<jdk.internal.jmod.JmodFile$Entry: java.util.zip.ZipEntry zipEntry>;
+
+        return $r1;
+    }
+
+    public java.lang.String toString()
+    {
+        java.lang.StringBuilder $r0, $r4, $r5, $r7;
+        jdk.internal.jmod.JmodFile$Entry r1;
+        jdk.internal.jmod.JmodFile$Section $r2;
+        java.lang.String $r3, $r6, $r8;
+
+        r1 := @this: jdk.internal.jmod.JmodFile$Entry;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = r1.<jdk.internal.jmod.JmodFile$Entry: jdk.internal.jmod.JmodFile$Section section>;
+
+        $r3 = virtualinvoke $r2.<jdk.internal.jmod.JmodFile$Section: java.lang.String jmodDir()>();
+
+        $r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $r6 = r1.<jdk.internal.jmod.JmodFile$Entry: java.lang.String name>;
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r8;
+    }
+
+    static jdk.internal.jmod.JmodFile$Section section(java.lang.String)
+    {
+        java.lang.String r0, $r9;
+        java.util.Map $r1, $r2;
+        boolean $z0;
+        java.lang.Object $r3;
+        jdk.internal.jmod.JmodFile$Section $r4;
+        java.lang.IllegalArgumentException $r5;
+        java.lang.StringBuilder $r6, $r7, $r8;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = <jdk.internal.jmod.JmodFile$Entry: java.util.Map NAME_TO_SECTION>;
+
+        $z0 = interfaceinvoke $r1.<java.util.Map: boolean containsKey(java.lang.Object)>(r0);
+
+        if $z0 != 0 goto label1;
+
+        $r5 = new java.lang.IllegalArgumentException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("invalid section: ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r9);
+
+        throw $r5;
+
+     label1:
+        $r2 = <jdk.internal.jmod.JmodFile$Entry: java.util.Map NAME_TO_SECTION>;
+
+        $r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(r0);
+
+        $r4 = (jdk.internal.jmod.JmodFile$Section) $r3;
+
+        return $r4;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.jmod.JmodFile$Section[] $r0;
+        java.util.stream.Stream $r1;
+        java.util.function.Function $r2, $r3;
+        java.util.stream.Collector $r4;
+        java.lang.Object $r5;
+        java.util.Map $r6;
+
+        $r0 = staticinvoke <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section[] values()>();
+
+        $r1 = staticinvoke <java.util.Arrays: java.util.stream.Stream stream(java.lang.Object[])>($r0);
+
+        $r2 = staticinvoke <jdk.internal.jmod.JmodFile$Entry$jmodDir__131: java.util.function.Function bootstrap$()>();
+
+        $r3 = staticinvoke <java.util.function.Function: java.util.function.Function identity()>();
+
+        $r4 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toMap(java.util.function.Function,java.util.function.Function)>($r2, $r3);
+
+        $r5 = interfaceinvoke $r1.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r4);
+
+        $r6 = (java.util.Map) $r5;
+
+        <jdk.internal.jmod.JmodFile$Entry: java.util.Map NAME_TO_SECTION> = $r6;
+
+        return;
+    }
+}

@@ -1,0 +1,26 @@
+public interface  jdk.internal.misc.Signal$Handler extends java.lang.Object
+{
+    public static final jdk.internal.misc.Signal$Handler SIG_DFL;
+    public static final jdk.internal.misc.Signal$Handler SIG_IGN;
+
+    public abstract void handle(jdk.internal.misc.Signal);
+
+    static void <clinit>()
+    {
+        jdk.internal.misc.Signal$NativeHandler $r0, $r1;
+
+        $r0 = new jdk.internal.misc.Signal$NativeHandler;
+
+        specialinvoke $r0.<jdk.internal.misc.Signal$NativeHandler: void <init>(long)>(0L);
+
+        <jdk.internal.misc.Signal$Handler: jdk.internal.misc.Signal$Handler SIG_DFL> = $r0;
+
+        $r1 = new jdk.internal.misc.Signal$NativeHandler;
+
+        specialinvoke $r1.<jdk.internal.misc.Signal$NativeHandler: void <init>(long)>(1L);
+
+        <jdk.internal.misc.Signal$Handler: jdk.internal.misc.Signal$Handler SIG_IGN> = $r1;
+
+        return;
+    }
+}

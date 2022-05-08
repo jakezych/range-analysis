@@ -1,0 +1,286 @@
+public final class jdk.internal.module.ModuleHashes extends java.lang.Object
+{
+    private final java.lang.String algorithm;
+    private final java.util.Map nameToHash;
+    static final boolean $assertionsDisabled;
+
+    public void <init>(java.lang.String, java.util.Map)
+    {
+        jdk.internal.module.ModuleHashes r0;
+        java.lang.String r1;
+        java.util.Map r2, $r3;
+
+        r0 := @this: jdk.internal.module.ModuleHashes;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.util.Map;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.module.ModuleHashes: java.lang.String algorithm> = r1;
+
+        $r3 = staticinvoke <java.util.Collections: java.util.Map unmodifiableMap(java.util.Map)>(r2);
+
+        r0.<jdk.internal.module.ModuleHashes: java.util.Map nameToHash> = $r3;
+
+        return;
+    }
+
+    public java.lang.String algorithm()
+    {
+        jdk.internal.module.ModuleHashes r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.module.ModuleHashes;
+
+        $r1 = r0.<jdk.internal.module.ModuleHashes: java.lang.String algorithm>;
+
+        return $r1;
+    }
+
+    public java.util.Set names()
+    {
+        jdk.internal.module.ModuleHashes r0;
+        java.util.Map $r1;
+        java.util.Set $r2;
+
+        r0 := @this: jdk.internal.module.ModuleHashes;
+
+        $r1 = r0.<jdk.internal.module.ModuleHashes: java.util.Map nameToHash>;
+
+        $r2 = interfaceinvoke $r1.<java.util.Map: java.util.Set keySet()>();
+
+        return $r2;
+    }
+
+    public byte[] hashFor(java.lang.String)
+    {
+        jdk.internal.module.ModuleHashes r0;
+        java.lang.String r1;
+        java.util.Map $r2;
+        java.lang.Object $r3;
+        byte[] $r4;
+
+        r0 := @this: jdk.internal.module.ModuleHashes;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.module.ModuleHashes: java.util.Map nameToHash>;
+
+        $r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1);
+
+        $r4 = (byte[]) $r3;
+
+        return $r4;
+    }
+
+    public java.util.Map hashes()
+    {
+        jdk.internal.module.ModuleHashes r0;
+        java.util.Map $r1;
+
+        r0 := @this: jdk.internal.module.ModuleHashes;
+
+        $r1 = r0.<jdk.internal.module.ModuleHashes: java.util.Map nameToHash>;
+
+        return $r1;
+    }
+
+    public static byte[] computeHash(java.nio.file.Path, java.lang.String)
+    {
+        java.lang.String r0;
+        java.nio.file.Path r1;
+        java.nio.file.OpenOption[] $r2;
+        java.nio.channels.FileChannel r3;
+        int $i0, $i1;
+        byte[] $r4;
+        boolean $z0;
+        java.lang.AssertionError $r7;
+        java.io.IOException $r8;
+        java.io.UncheckedIOException $r9;
+        java.security.NoSuchAlgorithmException $r10;
+        java.lang.RuntimeException $r11;
+        java.lang.Throwable $r12, $r14;
+        java.security.MessageDigest r15;
+        java.nio.ByteBuffer r16;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+        r0 := @parameter1: java.lang.String;
+
+     label01:
+        r15 = staticinvoke <java.security.MessageDigest: java.security.MessageDigest getInstance(java.lang.String)>(r0);
+
+        $r2 = newarray (java.nio.file.OpenOption)[0];
+
+        r3 = staticinvoke <java.nio.channels.FileChannel: java.nio.channels.FileChannel open(java.nio.file.Path,java.nio.file.OpenOption[])>(r1, $r2);
+
+     label02:
+        r16 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(32768);
+
+     label03:
+        $i0 = virtualinvoke r3.<java.nio.channels.FileChannel: int read(java.nio.ByteBuffer)>(r16);
+
+        if $i0 <= 0 goto label05;
+
+        virtualinvoke r16.<java.nio.ByteBuffer: java.nio.ByteBuffer flip()>();
+
+        virtualinvoke r15.<java.security.MessageDigest: void update(java.nio.ByteBuffer)>(r16);
+
+        $z0 = <jdk.internal.module.ModuleHashes: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label04;
+
+        $i1 = virtualinvoke r16.<java.nio.ByteBuffer: int remaining()>();
+
+        if $i1 == 0 goto label04;
+
+        $r7 = new java.lang.AssertionError;
+
+        specialinvoke $r7.<java.lang.AssertionError: void <init>()>();
+
+        throw $r7;
+
+     label04:
+        virtualinvoke r16.<java.nio.ByteBuffer: java.nio.ByteBuffer clear()>();
+
+        goto label03;
+
+     label05:
+        if r3 == null goto label11;
+
+        virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+
+        goto label11;
+
+     label06:
+        $r14 := @caughtexception;
+
+        if r3 == null goto label10;
+
+     label07:
+        virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+
+     label08:
+        goto label10;
+
+     label09:
+        $r12 := @caughtexception;
+
+        virtualinvoke $r14.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r12);
+
+     label10:
+        throw $r14;
+
+     label11:
+        $r4 = virtualinvoke r15.<java.security.MessageDigest: byte[] digest()>();
+
+     label12:
+        return $r4;
+
+     label13:
+        $r10 := @caughtexception;
+
+        $r11 = new java.lang.RuntimeException;
+
+        specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r10);
+
+        throw $r11;
+
+     label14:
+        $r8 := @caughtexception;
+
+        $r9 = new java.io.UncheckedIOException;
+
+        specialinvoke $r9.<java.io.UncheckedIOException: void <init>(java.io.IOException)>($r8);
+
+        throw $r9;
+
+        catch java.lang.Throwable from label02 to label05 with label06;
+        catch java.lang.Throwable from label07 to label08 with label09;
+        catch java.security.NoSuchAlgorithmException from label01 to label12 with label13;
+        catch java.io.IOException from label01 to label12 with label14;
+    }
+
+    public static jdk.internal.module.ModuleHashes generate(java.util.Map, java.lang.String)
+    {
+        java.util.HashMap $r0;
+        java.util.Map r2;
+        java.util.Set $r3;
+        java.util.Iterator r4;
+        boolean $z0;
+        jdk.internal.module.ModuleHashes $r5;
+        java.lang.String r6, r10;
+        java.lang.Object $r7, $r9, $r11;
+        java.util.Map$Entry r8;
+        java.nio.file.Path r12;
+        byte[] $r13;
+
+        r2 := @parameter0: java.util.Map;
+
+        r6 := @parameter1: java.lang.String;
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        $r3 = interfaceinvoke r2.<java.util.Map: java.util.Set entrySet()>();
+
+        r4 = interfaceinvoke $r3.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke r4.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r7 = interfaceinvoke r4.<java.util.Iterator: java.lang.Object next()>();
+
+        r8 = (java.util.Map$Entry) $r7;
+
+        $r9 = interfaceinvoke r8.<java.util.Map$Entry: java.lang.Object getKey()>();
+
+        r10 = (java.lang.String) $r9;
+
+        $r11 = interfaceinvoke r8.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        r12 = (java.nio.file.Path) $r11;
+
+        $r13 = staticinvoke <jdk.internal.module.ModuleHashes: byte[] computeHash(java.nio.file.Path,java.lang.String)>(r12, r6);
+
+        interfaceinvoke $r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r10, $r13);
+
+        goto label1;
+
+     label2:
+        $r5 = new jdk.internal.module.ModuleHashes;
+
+        specialinvoke $r5.<jdk.internal.module.ModuleHashes: void <init>(java.lang.String,java.util.Map)>(r6, $r0);
+
+        return $r5;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+
+        $r0 = class "Ljdk/internal/module/ModuleHashes;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <jdk.internal.module.ModuleHashes: boolean $assertionsDisabled> = $z1;
+
+        return;
+    }
+}

@@ -1,0 +1,112 @@
+class jdk.internal.loader.URLClassPath$FileLoader$1 extends jdk.internal.loader.Resource
+{
+    final java.lang.String val$name;
+    final java.net.URL val$url;
+    final java.io.File val$file;
+    final jdk.internal.loader.URLClassPath$FileLoader this$0;
+
+    void <init>(jdk.internal.loader.URLClassPath$FileLoader, java.lang.String, java.net.URL, java.io.File)
+    {
+        jdk.internal.loader.URLClassPath$FileLoader$1 r0;
+        jdk.internal.loader.URLClassPath$FileLoader r1;
+        java.lang.String r2;
+        java.net.URL r3;
+        java.io.File r4;
+
+        r0 := @this: jdk.internal.loader.URLClassPath$FileLoader$1;
+
+        r1 := @parameter0: jdk.internal.loader.URLClassPath$FileLoader;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.net.URL;
+
+        r4 := @parameter3: java.io.File;
+
+        r0.<jdk.internal.loader.URLClassPath$FileLoader$1: jdk.internal.loader.URLClassPath$FileLoader this$0> = r1;
+
+        r0.<jdk.internal.loader.URLClassPath$FileLoader$1: java.lang.String val$name> = r2;
+
+        r0.<jdk.internal.loader.URLClassPath$FileLoader$1: java.net.URL val$url> = r3;
+
+        r0.<jdk.internal.loader.URLClassPath$FileLoader$1: java.io.File val$file> = r4;
+
+        specialinvoke r0.<jdk.internal.loader.Resource: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.String getName()
+    {
+        jdk.internal.loader.URLClassPath$FileLoader$1 r0;
+        java.lang.String $r1;
+
+        r0 := @this: jdk.internal.loader.URLClassPath$FileLoader$1;
+
+        $r1 = r0.<jdk.internal.loader.URLClassPath$FileLoader$1: java.lang.String val$name>;
+
+        return $r1;
+    }
+
+    public java.net.URL getURL()
+    {
+        jdk.internal.loader.URLClassPath$FileLoader$1 r0;
+        java.net.URL $r1;
+
+        r0 := @this: jdk.internal.loader.URLClassPath$FileLoader$1;
+
+        $r1 = r0.<jdk.internal.loader.URLClassPath$FileLoader$1: java.net.URL val$url>;
+
+        return $r1;
+    }
+
+    public java.net.URL getCodeSourceURL()
+    {
+        jdk.internal.loader.URLClassPath$FileLoader$1 r0;
+        jdk.internal.loader.URLClassPath$FileLoader $r1;
+        java.net.URL $r2;
+
+        r0 := @this: jdk.internal.loader.URLClassPath$FileLoader$1;
+
+        $r1 = r0.<jdk.internal.loader.URLClassPath$FileLoader$1: jdk.internal.loader.URLClassPath$FileLoader this$0>;
+
+        $r2 = virtualinvoke $r1.<jdk.internal.loader.URLClassPath$FileLoader: java.net.URL getBaseURL()>();
+
+        return $r2;
+    }
+
+    public java.io.InputStream getInputStream() throws java.io.IOException
+    {
+        java.io.FileInputStream $r0;
+        jdk.internal.loader.URLClassPath$FileLoader$1 r1;
+        java.io.File $r2;
+
+        r1 := @this: jdk.internal.loader.URLClassPath$FileLoader$1;
+
+        $r0 = new java.io.FileInputStream;
+
+        $r2 = r1.<jdk.internal.loader.URLClassPath$FileLoader$1: java.io.File val$file>;
+
+        specialinvoke $r0.<java.io.FileInputStream: void <init>(java.io.File)>($r2);
+
+        return $r0;
+    }
+
+    public int getContentLength() throws java.io.IOException
+    {
+        jdk.internal.loader.URLClassPath$FileLoader$1 r0;
+        java.io.File $r1;
+        long $l0;
+        int $i1;
+
+        r0 := @this: jdk.internal.loader.URLClassPath$FileLoader$1;
+
+        $r1 = r0.<jdk.internal.loader.URLClassPath$FileLoader$1: java.io.File val$file>;
+
+        $l0 = virtualinvoke $r1.<java.io.File: long length()>();
+
+        $i1 = (int) $l0;
+
+        return $i1;
+    }
+}

@@ -1,0 +1,48 @@
+final class jdk.internal.org.objectweb.asm.CurrentFrame extends jdk.internal.org.objectweb.asm.Frame
+{
+
+    void <init>(jdk.internal.org.objectweb.asm.Label)
+    {
+        jdk.internal.org.objectweb.asm.CurrentFrame r0;
+        jdk.internal.org.objectweb.asm.Label r1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.CurrentFrame;
+
+        r1 := @parameter0: jdk.internal.org.objectweb.asm.Label;
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.Frame: void <init>(jdk.internal.org.objectweb.asm.Label)>(r1);
+
+        return;
+    }
+
+    void execute(int, int, jdk.internal.org.objectweb.asm.Symbol, jdk.internal.org.objectweb.asm.SymbolTable)
+    {
+        jdk.internal.org.objectweb.asm.CurrentFrame r0;
+        int i0, i1;
+        jdk.internal.org.objectweb.asm.Symbol r1;
+        jdk.internal.org.objectweb.asm.SymbolTable r2;
+        jdk.internal.org.objectweb.asm.Frame $r3;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.CurrentFrame;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        r1 := @parameter2: jdk.internal.org.objectweb.asm.Symbol;
+
+        r2 := @parameter3: jdk.internal.org.objectweb.asm.SymbolTable;
+
+        specialinvoke r0.<jdk.internal.org.objectweb.asm.Frame: void execute(int,int,jdk.internal.org.objectweb.asm.Symbol,jdk.internal.org.objectweb.asm.SymbolTable)>(i0, i1, r1, r2);
+
+        $r3 = new jdk.internal.org.objectweb.asm.Frame;
+
+        specialinvoke $r3.<jdk.internal.org.objectweb.asm.Frame: void <init>(jdk.internal.org.objectweb.asm.Label)>(null);
+
+        virtualinvoke r0.<jdk.internal.org.objectweb.asm.CurrentFrame: boolean merge(jdk.internal.org.objectweb.asm.SymbolTable,jdk.internal.org.objectweb.asm.Frame,int)>(r2, $r3, 0);
+
+        virtualinvoke r0.<jdk.internal.org.objectweb.asm.CurrentFrame: void copyFrom(jdk.internal.org.objectweb.asm.Frame)>($r3);
+
+        return;
+    }
+}

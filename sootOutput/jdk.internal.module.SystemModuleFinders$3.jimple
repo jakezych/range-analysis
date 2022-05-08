@@ -1,0 +1,35 @@
+class jdk.internal.module.SystemModuleFinders$3 extends java.lang.Object implements jdk.internal.module.ModuleHashes$HashSupplier
+{
+    final byte[] val$hash;
+
+    void <init>(byte[])
+    {
+        jdk.internal.module.SystemModuleFinders$3 r0;
+        byte[] r1;
+
+        r0 := @this: jdk.internal.module.SystemModuleFinders$3;
+
+        r1 := @parameter0: byte[];
+
+        r0.<jdk.internal.module.SystemModuleFinders$3: byte[] val$hash> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public byte[] generate(java.lang.String)
+    {
+        jdk.internal.module.SystemModuleFinders$3 r0;
+        byte[] $r1;
+        java.lang.String r2;
+
+        r0 := @this: jdk.internal.module.SystemModuleFinders$3;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r1 = r0.<jdk.internal.module.SystemModuleFinders$3: byte[] val$hash>;
+
+        return $r1;
+    }
+}

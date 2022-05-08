@@ -1,0 +1,21 @@
+interface  jdk.internal.module.SystemModules extends java.lang.Object
+{
+
+    public abstract boolean hasSplitPackages();
+
+    public abstract boolean hasIncubatorModules();
+
+    public abstract java.lang.module.ModuleDescriptor[] moduleDescriptors();
+
+    public abstract jdk.internal.module.ModuleTarget[] moduleTargets();
+
+    public abstract jdk.internal.module.ModuleHashes[] moduleHashes();
+
+    public abstract jdk.internal.module.ModuleResolution[] moduleResolutions();
+
+    public abstract java.util.Map moduleReads();
+
+    public abstract java.util.Map concealedPackagesToOpen();
+
+    public abstract java.util.Map exportedPackagesToOpen();
+}

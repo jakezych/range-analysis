@@ -1,0 +1,55 @@
+public final class jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145 extends java.lang.Object implements java.util.function.Function
+{
+    jdk.internal.module.SystemModuleFinders$SystemModuleReader cap0;
+
+    public static java.util.function.Function bootstrap$(jdk.internal.module.SystemModuleFinders$SystemModuleReader)
+    {
+        jdk.internal.module.SystemModuleFinders$SystemModuleReader $r0;
+        jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145 $r1;
+
+        $r0 := @parameter0: jdk.internal.module.SystemModuleFinders$SystemModuleReader;
+
+        $r1 = new jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145;
+
+        specialinvoke $r1.<jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145: void <init>(jdk.internal.module.SystemModuleFinders$SystemModuleReader)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(jdk.internal.module.SystemModuleFinders$SystemModuleReader)
+    {
+        jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145 $r0;
+        jdk.internal.module.SystemModuleFinders$SystemModuleReader $r1;
+
+        $r0 := @this: jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145;
+
+        $r1 := @parameter0: jdk.internal.module.SystemModuleFinders$SystemModuleReader;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145: jdk.internal.module.SystemModuleFinders$SystemModuleReader cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145 $r0;
+        java.lang.Object $r1;
+        java.nio.ByteBuffer $r2;
+        jdk.internal.module.SystemModuleFinders$SystemModuleReader $r3;
+        java.io.InputStream $r4;
+
+        $r0 := @this: jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.nio.ByteBuffer) $r1;
+
+        $r3 = $r0.<jdk.internal.module.SystemModuleFinders$SystemModuleReader$toInputStream__145: jdk.internal.module.SystemModuleFinders$SystemModuleReader cap0>;
+
+        $r4 = virtualinvoke $r3.<jdk.internal.module.SystemModuleFinders$SystemModuleReader: java.io.InputStream toInputStream(java.nio.ByteBuffer)>($r2);
+
+        return $r4;
+    }
+}

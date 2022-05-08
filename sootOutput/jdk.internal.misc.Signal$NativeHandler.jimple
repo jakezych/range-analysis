@@ -1,0 +1,81 @@
+final class jdk.internal.misc.Signal$NativeHandler extends java.lang.Object implements jdk.internal.misc.Signal$Handler
+{
+    private final long handler;
+
+    long getHandler()
+    {
+        jdk.internal.misc.Signal$NativeHandler r0;
+        long $l0;
+
+        r0 := @this: jdk.internal.misc.Signal$NativeHandler;
+
+        $l0 = r0.<jdk.internal.misc.Signal$NativeHandler: long handler>;
+
+        return $l0;
+    }
+
+    void <init>(long)
+    {
+        jdk.internal.misc.Signal$NativeHandler r0;
+        long l0;
+
+        r0 := @this: jdk.internal.misc.Signal$NativeHandler;
+
+        l0 := @parameter0: long;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.misc.Signal$NativeHandler: long handler> = l0;
+
+        return;
+    }
+
+    public void handle(jdk.internal.misc.Signal)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.misc.Signal$NativeHandler r1;
+        jdk.internal.misc.Signal r2;
+
+        r1 := @this: jdk.internal.misc.Signal$NativeHandler;
+
+        r2 := @parameter0: jdk.internal.misc.Signal;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("invoking native signal handle not supported");
+
+        throw $r0;
+    }
+
+    public java.lang.String toString()
+    {
+        jdk.internal.misc.Signal$NativeHandler r0;
+        jdk.internal.misc.Signal$Handler $r1, $r2;
+        java.lang.String $r3;
+
+        r0 := @this: jdk.internal.misc.Signal$NativeHandler;
+
+        $r1 = <jdk.internal.misc.Signal$NativeHandler: jdk.internal.misc.Signal$Handler SIG_DFL>;
+
+        if r0 != $r1 goto label1;
+
+        $r3 = "SIG_DFL";
+
+        goto label3;
+
+     label1:
+        $r2 = <jdk.internal.misc.Signal$NativeHandler: jdk.internal.misc.Signal$Handler SIG_IGN>;
+
+        if r0 != $r2 goto label2;
+
+        $r3 = "SIG_IGN";
+
+        goto label3;
+
+     label2:
+        $r3 = specialinvoke r0.<java.lang.Object: java.lang.String toString()>();
+
+     label3:
+        return $r3;
+    }
+}

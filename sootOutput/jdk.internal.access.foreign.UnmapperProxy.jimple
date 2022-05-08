@@ -1,0 +1,7 @@
+public interface  jdk.internal.access.foreign.UnmapperProxy extends java.lang.Object
+{
+
+    public abstract long address();
+
+    public abstract void unmap();
+}

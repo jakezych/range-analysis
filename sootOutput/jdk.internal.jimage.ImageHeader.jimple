@@ -1,0 +1,443 @@
+public final class jdk.internal.jimage.ImageHeader extends java.lang.Object
+{
+    public static final int MAGIC;
+    public static final int MAJOR_VERSION;
+    public static final int MINOR_VERSION;
+    private static final int HEADER_SLOTS;
+    private final int magic;
+    private final int majorVersion;
+    private final int minorVersion;
+    private final int flags;
+    private final int resourceCount;
+    private final int tableLength;
+    private final int locationsSize;
+    private final int stringsSize;
+
+    public void <init>(int, int, int, int)
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int i0, i1, i2, i3;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        i3 := @parameter3: int;
+
+        specialinvoke r0.<jdk.internal.jimage.ImageHeader: void <init>(int,int,int,int,int,int,int,int)>(-889267494, 1, 0, 0, i0, i1, i2, i3);
+
+        return;
+    }
+
+    public void <init>(int, int, int, int, int, int, int, int)
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int i0, i1, i2, i3, i4, i5, i6, i7;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        i3 := @parameter3: int;
+
+        i4 := @parameter4: int;
+
+        i5 := @parameter5: int;
+
+        i6 := @parameter6: int;
+
+        i7 := @parameter7: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.jimage.ImageHeader: int magic> = i0;
+
+        r0.<jdk.internal.jimage.ImageHeader: int majorVersion> = i1;
+
+        r0.<jdk.internal.jimage.ImageHeader: int minorVersion> = i2;
+
+        r0.<jdk.internal.jimage.ImageHeader: int flags> = i3;
+
+        r0.<jdk.internal.jimage.ImageHeader: int resourceCount> = i4;
+
+        r0.<jdk.internal.jimage.ImageHeader: int tableLength> = i5;
+
+        r0.<jdk.internal.jimage.ImageHeader: int locationsSize> = i6;
+
+        r0.<jdk.internal.jimage.ImageHeader: int stringsSize> = i7;
+
+        return;
+    }
+
+    public static int getHeaderSize()
+    {
+        return 28;
+    }
+
+    static jdk.internal.jimage.ImageHeader readFrom(java.nio.IntBuffer)
+    {
+        java.nio.IntBuffer r0;
+        int $i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, $i10;
+        jdk.internal.jimage.ImageHeader $r2;
+        java.lang.InternalError $r3;
+        java.lang.StringBuilder $r4, $r5, $r6;
+        java.lang.String $r7;
+
+        r0 := @parameter0: java.nio.IntBuffer;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        $i0 = virtualinvoke r0.<java.nio.IntBuffer: int capacity()>();
+
+        if $i0 == 7 goto label1;
+
+        $r3 = new java.lang.InternalError;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("jimage header not the correct size: ");
+
+        $i10 = virtualinvoke r0.<java.nio.IntBuffer: int capacity()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<java.lang.InternalError: void <init>(java.lang.String)>($r7);
+
+        throw $r3;
+
+     label1:
+        i1 = virtualinvoke r0.<java.nio.IntBuffer: int get(int)>(0);
+
+        i2 = virtualinvoke r0.<java.nio.IntBuffer: int get(int)>(1);
+
+        i3 = i2 >>> 16;
+
+        i4 = i2 & 65535;
+
+        i5 = virtualinvoke r0.<java.nio.IntBuffer: int get(int)>(2);
+
+        i6 = virtualinvoke r0.<java.nio.IntBuffer: int get(int)>(3);
+
+        i7 = virtualinvoke r0.<java.nio.IntBuffer: int get(int)>(4);
+
+        i8 = virtualinvoke r0.<java.nio.IntBuffer: int get(int)>(5);
+
+        i9 = virtualinvoke r0.<java.nio.IntBuffer: int get(int)>(6);
+
+        $r2 = new jdk.internal.jimage.ImageHeader;
+
+        specialinvoke $r2.<jdk.internal.jimage.ImageHeader: void <init>(int,int,int,int,int,int,int,int)>(i1, i3, i4, i5, i6, i7, i8, i9);
+
+        return $r2;
+    }
+
+    public void writeTo(jdk.internal.jimage.ImageStream)
+    {
+        jdk.internal.jimage.ImageStream r0;
+        int $i0;
+        jdk.internal.jimage.ImageHeader r2;
+        java.nio.ByteBuffer $r3;
+
+        r2 := @this: jdk.internal.jimage.ImageHeader;
+
+        r0 := @parameter0: jdk.internal.jimage.ImageStream;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        $i0 = staticinvoke <jdk.internal.jimage.ImageHeader: int getHeaderSize()>();
+
+        virtualinvoke r0.<jdk.internal.jimage.ImageStream: void ensure(int)>($i0);
+
+        $r3 = virtualinvoke r0.<jdk.internal.jimage.ImageStream: java.nio.ByteBuffer getBuffer()>();
+
+        virtualinvoke r2.<jdk.internal.jimage.ImageHeader: void writeTo(java.nio.ByteBuffer)>($r3);
+
+        return;
+    }
+
+    public void writeTo(java.nio.ByteBuffer)
+    {
+        java.nio.ByteBuffer r0;
+        jdk.internal.jimage.ImageHeader r2;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+
+        r2 := @this: jdk.internal.jimage.ImageHeader;
+
+        r0 := @parameter0: java.nio.ByteBuffer;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        $i0 = r2.<jdk.internal.jimage.ImageHeader: int magic>;
+
+        virtualinvoke r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>($i0);
+
+        $i1 = r2.<jdk.internal.jimage.ImageHeader: int majorVersion>;
+
+        $i3 = $i1 << 16;
+
+        $i2 = r2.<jdk.internal.jimage.ImageHeader: int minorVersion>;
+
+        $i4 = $i3 | $i2;
+
+        virtualinvoke r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>($i4);
+
+        $i5 = r2.<jdk.internal.jimage.ImageHeader: int flags>;
+
+        virtualinvoke r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>($i5);
+
+        $i6 = r2.<jdk.internal.jimage.ImageHeader: int resourceCount>;
+
+        virtualinvoke r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>($i6);
+
+        $i7 = r2.<jdk.internal.jimage.ImageHeader: int tableLength>;
+
+        virtualinvoke r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>($i7);
+
+        $i8 = r2.<jdk.internal.jimage.ImageHeader: int locationsSize>;
+
+        virtualinvoke r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>($i8);
+
+        $i9 = r2.<jdk.internal.jimage.ImageHeader: int stringsSize>;
+
+        virtualinvoke r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>($i9);
+
+        return;
+    }
+
+    public int getMagic()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int magic>;
+
+        return $i0;
+    }
+
+    public int getMajorVersion()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int majorVersion>;
+
+        return $i0;
+    }
+
+    public int getMinorVersion()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int minorVersion>;
+
+        return $i0;
+    }
+
+    public int getFlags()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int flags>;
+
+        return $i0;
+    }
+
+    public int getResourceCount()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int resourceCount>;
+
+        return $i0;
+    }
+
+    public int getTableLength()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int tableLength>;
+
+        return $i0;
+    }
+
+    public int getRedirectSize()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0, $i1;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int tableLength>;
+
+        $i1 = $i0 * 4;
+
+        return $i1;
+    }
+
+    public int getOffsetsSize()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0, $i1;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int tableLength>;
+
+        $i1 = $i0 * 4;
+
+        return $i1;
+    }
+
+    public int getLocationsSize()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int locationsSize>;
+
+        return $i0;
+    }
+
+    public int getStringsSize()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = r0.<jdk.internal.jimage.ImageHeader: int stringsSize>;
+
+        return $i0;
+    }
+
+    public int getIndexSize()
+    {
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8;
+        jdk.internal.jimage.ImageHeader r0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = staticinvoke <jdk.internal.jimage.ImageHeader: int getHeaderSize()>();
+
+        $i1 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getRedirectSize()>();
+
+        $i2 = $i0 + $i1;
+
+        $i3 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getOffsetsSize()>();
+
+        $i4 = $i2 + $i3;
+
+        $i5 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getLocationsSize()>();
+
+        $i6 = $i4 + $i5;
+
+        $i7 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getStringsSize()>();
+
+        $i8 = $i6 + $i7;
+
+        return $i8;
+    }
+
+    int getRedirectOffset()
+    {
+        int $i0;
+        jdk.internal.jimage.ImageHeader r0;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = staticinvoke <jdk.internal.jimage.ImageHeader: int getHeaderSize()>();
+
+        return $i0;
+    }
+
+    int getOffsetsOffset()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0, $i1, $i2;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getRedirectOffset()>();
+
+        $i1 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getRedirectSize()>();
+
+        $i2 = $i0 + $i1;
+
+        return $i2;
+    }
+
+    int getLocationsOffset()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0, $i1, $i2;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getOffsetsOffset()>();
+
+        $i1 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getOffsetsSize()>();
+
+        $i2 = $i0 + $i1;
+
+        return $i2;
+    }
+
+    int getStringsOffset()
+    {
+        jdk.internal.jimage.ImageHeader r0;
+        int $i0, $i1, $i2;
+
+        r0 := @this: jdk.internal.jimage.ImageHeader;
+
+        $i0 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getLocationsOffset()>();
+
+        $i1 = virtualinvoke r0.<jdk.internal.jimage.ImageHeader: int getLocationsSize()>();
+
+        $i2 = $i0 + $i1;
+
+        return $i2;
+    }
+
+    public static void <clinit>()
+    {
+        <jdk.internal.jimage.ImageHeader: int HEADER_SLOTS> = 7;
+
+        <jdk.internal.jimage.ImageHeader: int MINOR_VERSION> = 0;
+
+        <jdk.internal.jimage.ImageHeader: int MAJOR_VERSION> = 1;
+
+        <jdk.internal.jimage.ImageHeader: int MAGIC> = -889267494;
+
+        return;
+    }
+}

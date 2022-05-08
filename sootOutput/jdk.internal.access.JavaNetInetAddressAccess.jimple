@@ -1,0 +1,11 @@
+public interface  jdk.internal.access.JavaNetInetAddressAccess extends java.lang.Object
+{
+
+    public abstract java.lang.String getOriginalHostName(java.net.InetAddress);
+
+    public abstract java.net.InetAddress getByName(java.lang.String, java.net.InetAddress) throws java.net.UnknownHostException;
+
+    public abstract int addressValue(java.net.Inet4Address);
+
+    public abstract byte[] addressBytes(java.net.Inet6Address);
+}

@@ -1,0 +1,72 @@
+public final class jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112 extends java.lang.Object implements java.util.function.Consumer
+{
+    java.util.Map cap0;
+    java.util.Map cap1;
+    java.util.Map cap2;
+
+    public static java.util.function.Consumer bootstrap$(java.util.Map, java.util.Map, java.util.Map)
+    {
+        java.util.Map $r0, $r1, $r2;
+        jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112 $r3;
+
+        $r0 := @parameter0: java.util.Map;
+
+        $r1 := @parameter1: java.util.Map;
+
+        $r2 := @parameter2: java.util.Map;
+
+        $r3 = new jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112;
+
+        specialinvoke $r3.<jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112: void <init>(java.util.Map,java.util.Map,java.util.Map)>($r0, $r1, $r2);
+
+        return $r3;
+    }
+
+    public void <init>(java.util.Map, java.util.Map, java.util.Map)
+    {
+        jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112 $r0;
+        java.util.Map $r1, $r2, $r3;
+
+        $r0 := @this: jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112;
+
+        $r1 := @parameter0: java.util.Map;
+
+        $r2 := @parameter1: java.util.Map;
+
+        $r3 := @parameter2: java.util.Map;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112: java.util.Map cap0> = $r1;
+
+        $r0.<jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112: java.util.Map cap1> = $r2;
+
+        $r0.<jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112: java.util.Map cap2> = $r3;
+
+        return;
+    }
+
+    public void accept(java.lang.Object)
+    {
+        jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112 $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2;
+        java.util.Map $r3, $r4, $r5;
+
+        $r0 := @this: jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) $r1;
+
+        $r3 = $r0.<jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112: java.util.Map cap0>;
+
+        $r4 = $r0.<jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112: java.util.Map cap1>;
+
+        $r5 = $r0.<jdk.internal.module.IllegalAccessMaps$lambda_generate_5__112: java.util.Map cap2>;
+
+        staticinvoke <jdk.internal.module.IllegalAccessMaps: void lambda$generate$5(java.util.Map,java.util.Map,java.util.Map,java.lang.String)>($r3, $r4, $r5, $r2);
+
+        return;
+    }
+}

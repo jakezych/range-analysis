@@ -1,0 +1,27 @@
+public interface  jdk.internal.access.JavaLangModuleAccess extends java.lang.Object
+{
+
+    public abstract java.lang.module.ModuleDescriptor$Builder newModuleBuilder(java.lang.String, boolean, java.util.Set);
+
+    public abstract java.util.Set packages(java.lang.module.ModuleDescriptor$Builder);
+
+    public abstract void requires(java.lang.module.ModuleDescriptor$Builder, java.util.Set, java.lang.String, java.lang.String);
+
+    public abstract java.lang.module.ModuleDescriptor$Requires newRequires(java.util.Set, java.lang.String, java.lang.module.ModuleDescriptor$Version);
+
+    public abstract java.lang.module.ModuleDescriptor$Exports newExports(java.util.Set, java.lang.String);
+
+    public abstract java.lang.module.ModuleDescriptor$Exports newExports(java.util.Set, java.lang.String, java.util.Set);
+
+    public abstract java.lang.module.ModuleDescriptor$Opens newOpens(java.util.Set, java.lang.String);
+
+    public abstract java.lang.module.ModuleDescriptor$Opens newOpens(java.util.Set, java.lang.String, java.util.Set);
+
+    public abstract java.lang.module.ModuleDescriptor$Provides newProvides(java.lang.String, java.util.List);
+
+    public abstract java.lang.module.ModuleDescriptor newModuleDescriptor(java.lang.String, java.lang.module.ModuleDescriptor$Version, java.util.Set, java.util.Set, java.util.Set, java.util.Set, java.util.Set, java.util.Set, java.util.Set, java.lang.String, int);
+
+    public abstract java.lang.module.Configuration resolveAndBind(java.lang.module.ModuleFinder, java.util.Collection, java.io.PrintStream);
+
+    public abstract java.lang.module.Configuration newConfiguration(java.lang.module.ModuleFinder, java.util.Map);
+}

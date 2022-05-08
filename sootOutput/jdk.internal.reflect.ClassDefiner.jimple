@@ -1,0 +1,62 @@
+class jdk.internal.reflect.ClassDefiner extends java.lang.Object
+{
+    static final jdk.internal.access.JavaLangAccess JLA;
+
+    void <init>()
+    {
+        jdk.internal.reflect.ClassDefiner r0;
+
+        r0 := @this: jdk.internal.reflect.ClassDefiner;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static java.lang.Class defineClass(java.lang.String, byte[], int, int, java.lang.ClassLoader)
+    {
+        jdk.internal.reflect.ClassDefiner$1 $r0;
+        java.lang.ClassLoader r1, r3;
+        java.lang.Object $r2;
+        java.lang.String r4;
+        byte[] r5;
+        jdk.internal.access.JavaLangAccess $r6;
+        java.lang.Class $r7;
+        int i0, i1;
+
+        r4 := @parameter0: java.lang.String;
+
+        r5 := @parameter1: byte[];
+
+        i0 := @parameter2: int;
+
+        i1 := @parameter3: int;
+
+        r1 := @parameter4: java.lang.ClassLoader;
+
+        $r0 = new jdk.internal.reflect.ClassDefiner$1;
+
+        specialinvoke $r0.<jdk.internal.reflect.ClassDefiner$1: void <init>(java.lang.ClassLoader)>(r1);
+
+        $r2 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r0);
+
+        r3 = (java.lang.ClassLoader) $r2;
+
+        $r6 = <jdk.internal.reflect.ClassDefiner: jdk.internal.access.JavaLangAccess JLA>;
+
+        $r7 = interfaceinvoke $r6.<jdk.internal.access.JavaLangAccess: java.lang.Class defineClass(java.lang.ClassLoader,java.lang.String,byte[],java.security.ProtectionDomain,java.lang.String)>(r3, r4, r5, null, "__ClassDefiner__");
+
+        return $r7;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.access.JavaLangAccess $r0;
+
+        $r0 = staticinvoke <jdk.internal.access.SharedSecrets: jdk.internal.access.JavaLangAccess getJavaLangAccess()>();
+
+        <jdk.internal.reflect.ClassDefiner: jdk.internal.access.JavaLangAccess JLA> = $r0;
+
+        return;
+    }
+}

@@ -1,0 +1,156 @@
+class jdk.internal.loader.ClassLoaders$AppClassLoader extends jdk.internal.loader.BuiltinClassLoader
+{
+    final jdk.internal.loader.URLClassPath ucp;
+
+    void <init>(jdk.internal.loader.ClassLoaders$PlatformClassLoader, jdk.internal.loader.URLClassPath)
+    {
+        jdk.internal.loader.ClassLoaders$AppClassLoader r0;
+        jdk.internal.loader.ClassLoaders$PlatformClassLoader r1;
+        jdk.internal.loader.URLClassPath r2;
+
+        r0 := @this: jdk.internal.loader.ClassLoaders$AppClassLoader;
+
+        r1 := @parameter0: jdk.internal.loader.ClassLoaders$PlatformClassLoader;
+
+        r2 := @parameter1: jdk.internal.loader.URLClassPath;
+
+        specialinvoke r0.<jdk.internal.loader.BuiltinClassLoader: void <init>(java.lang.String,jdk.internal.loader.BuiltinClassLoader,jdk.internal.loader.URLClassPath)>("app", r1, r2);
+
+        r0.<jdk.internal.loader.ClassLoaders$AppClassLoader: jdk.internal.loader.URLClassPath ucp> = r2;
+
+        return;
+    }
+
+    protected java.lang.Class loadClass(java.lang.String, boolean) throws java.lang.ClassNotFoundException
+    {
+        java.lang.SecurityManager r0;
+        jdk.internal.loader.ClassLoaders$AppClassLoader r1;
+        java.lang.String r2, $r3;
+        boolean z0;
+        int i0;
+        java.lang.Class $r4;
+
+        r1 := @this: jdk.internal.loader.ClassLoaders$AppClassLoader;
+
+        r2 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        r0 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>();
+
+        if r0 == null goto label1;
+
+        i0 = virtualinvoke r2.<java.lang.String: int lastIndexOf(int)>(46);
+
+        if i0 == -1 goto label1;
+
+        $r3 = virtualinvoke r2.<java.lang.String: java.lang.String substring(int,int)>(0, i0);
+
+        virtualinvoke r0.<java.lang.SecurityManager: void checkPackageAccess(java.lang.String)>($r3);
+
+     label1:
+        $r4 = specialinvoke r1.<jdk.internal.loader.BuiltinClassLoader: java.lang.Class loadClass(java.lang.String,boolean)>(r2, z0);
+
+        return $r4;
+    }
+
+    protected java.security.PermissionCollection getPermissions(java.security.CodeSource)
+    {
+        jdk.internal.loader.ClassLoaders$AppClassLoader r0;
+        java.security.CodeSource r1;
+        java.security.PermissionCollection r2;
+        java.lang.RuntimePermission $r3;
+
+        r0 := @this: jdk.internal.loader.ClassLoaders$AppClassLoader;
+
+        r1 := @parameter0: java.security.CodeSource;
+
+        r2 = specialinvoke r0.<jdk.internal.loader.BuiltinClassLoader: java.security.PermissionCollection getPermissions(java.security.CodeSource)>(r1);
+
+        $r3 = new java.lang.RuntimePermission;
+
+        specialinvoke $r3.<java.lang.RuntimePermission: void <init>(java.lang.String)>("exitVM");
+
+        virtualinvoke r2.<java.security.PermissionCollection: void add(java.security.Permission)>($r3);
+
+        return r2;
+    }
+
+    void appendToClassPathForInstrumentation(java.lang.String)
+    {
+        jdk.internal.loader.ClassLoaders$AppClassLoader r0;
+        java.lang.String r1;
+        jdk.internal.loader.URLClassPath $r2;
+
+        r0 := @this: jdk.internal.loader.ClassLoaders$AppClassLoader;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.loader.ClassLoaders$AppClassLoader: jdk.internal.loader.URLClassPath ucp>;
+
+        virtualinvoke $r2.<jdk.internal.loader.URLClassPath: void addFile(java.lang.String)>(r1);
+
+        return;
+    }
+
+    private java.lang.Package definePackage(java.lang.String, java.lang.Module)
+    {
+        jdk.internal.loader.ClassLoaders$AppClassLoader r0;
+        java.lang.String r1;
+        java.lang.Module r2;
+        jdk.internal.access.JavaLangAccess $r3;
+        java.lang.Package $r4;
+
+        r0 := @this: jdk.internal.loader.ClassLoaders$AppClassLoader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Module;
+
+        $r3 = <jdk.internal.loader.ClassLoaders: jdk.internal.access.JavaLangAccess JLA>;
+
+        $r4 = interfaceinvoke $r3.<jdk.internal.access.JavaLangAccess: java.lang.Package definePackage(java.lang.ClassLoader,java.lang.String,java.lang.Module)>(r0, r1, r2);
+
+        return $r4;
+    }
+
+    protected java.lang.Package defineOrCheckPackage(java.lang.String, java.util.jar.Manifest, java.net.URL)
+    {
+        jdk.internal.loader.ClassLoaders$AppClassLoader r0;
+        java.lang.String r1;
+        java.util.jar.Manifest r2;
+        java.net.URL r3;
+        java.lang.Package $r4;
+
+        r0 := @this: jdk.internal.loader.ClassLoaders$AppClassLoader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.util.jar.Manifest;
+
+        r3 := @parameter2: java.net.URL;
+
+        $r4 = specialinvoke r0.<jdk.internal.loader.BuiltinClassLoader: java.lang.Package defineOrCheckPackage(java.lang.String,java.util.jar.Manifest,java.net.URL)>(r1, r2, r3);
+
+        return $r4;
+    }
+
+    static void <clinit>()
+    {
+        boolean $z0;
+        java.lang.InternalError $r0;
+
+        $z0 = staticinvoke <java.lang.ClassLoader: boolean registerAsParallelCapable()>();
+
+        if $z0 != 0 goto label1;
+
+        $r0 = new java.lang.InternalError;
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>()>();
+
+        throw $r0;
+
+     label1:
+        return;
+    }
+}

@@ -1,0 +1,269 @@
+public final class jdk.internal.jimage.decompressor.CompressedResourceHeader extends java.lang.Object
+{
+    private static final int SIZE;
+    public static final int MAGIC;
+    private final long uncompressedSize;
+    private final long compressedSize;
+    private final int decompressorNameOffset;
+    private final int contentOffset;
+    private final boolean isTerminal;
+
+    public void <init>(long, long, int, int, boolean)
+    {
+        jdk.internal.jimage.decompressor.CompressedResourceHeader r0;
+        long l0, l1;
+        int i2, i3;
+        boolean z0;
+
+        r0 := @this: jdk.internal.jimage.decompressor.CompressedResourceHeader;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        i2 := @parameter2: int;
+
+        i3 := @parameter3: int;
+
+        z0 := @parameter4: boolean;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: long compressedSize> = l0;
+
+        r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: long uncompressedSize> = l1;
+
+        r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int decompressorNameOffset> = i2;
+
+        r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int contentOffset> = i3;
+
+        r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: boolean isTerminal> = z0;
+
+        return;
+    }
+
+    public boolean isTerminal()
+    {
+        jdk.internal.jimage.decompressor.CompressedResourceHeader r0;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.jimage.decompressor.CompressedResourceHeader;
+
+        $z0 = r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: boolean isTerminal>;
+
+        return $z0;
+    }
+
+    public int getDecompressorNameOffset()
+    {
+        jdk.internal.jimage.decompressor.CompressedResourceHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.decompressor.CompressedResourceHeader;
+
+        $i0 = r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int decompressorNameOffset>;
+
+        return $i0;
+    }
+
+    public int getContentOffset()
+    {
+        jdk.internal.jimage.decompressor.CompressedResourceHeader r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.decompressor.CompressedResourceHeader;
+
+        $i0 = r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int contentOffset>;
+
+        return $i0;
+    }
+
+    public java.lang.String getStoredContent(jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider)
+    {
+        jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider r0;
+        jdk.internal.jimage.decompressor.CompressedResourceHeader r2;
+        int $i0, $i1;
+        java.lang.String $r3;
+
+        r2 := @this: jdk.internal.jimage.decompressor.CompressedResourceHeader;
+
+        r0 := @parameter0: jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        $i0 = r2.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int contentOffset>;
+
+        if $i0 != -1 goto label1;
+
+        return null;
+
+     label1:
+        $i1 = r2.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int contentOffset>;
+
+        $r3 = interfaceinvoke r0.<jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider: java.lang.String getString(int)>($i1);
+
+        return $r3;
+    }
+
+    public long getUncompressedSize()
+    {
+        jdk.internal.jimage.decompressor.CompressedResourceHeader r0;
+        long $l0;
+
+        r0 := @this: jdk.internal.jimage.decompressor.CompressedResourceHeader;
+
+        $l0 = r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: long uncompressedSize>;
+
+        return $l0;
+    }
+
+    public long getResourceSize()
+    {
+        jdk.internal.jimage.decompressor.CompressedResourceHeader r0;
+        long $l0;
+
+        r0 := @this: jdk.internal.jimage.decompressor.CompressedResourceHeader;
+
+        $l0 = r0.<jdk.internal.jimage.decompressor.CompressedResourceHeader: long compressedSize>;
+
+        return $l0;
+    }
+
+    public byte[] getBytes(java.nio.ByteOrder)
+    {
+        java.nio.ByteOrder r0;
+        java.nio.ByteBuffer r2;
+        jdk.internal.jimage.decompressor.CompressedResourceHeader r5;
+        long $l0, $l1;
+        int $i2, $i3;
+        boolean $z0;
+        byte[] $r11;
+        byte $b4;
+
+        r5 := @this: jdk.internal.jimage.decompressor.CompressedResourceHeader;
+
+        r0 := @parameter0: java.nio.ByteOrder;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        r2 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(29);
+
+        virtualinvoke r2.<java.nio.ByteBuffer: java.nio.ByteBuffer order(java.nio.ByteOrder)>(r0);
+
+        virtualinvoke r2.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>(-889259270);
+
+        $l0 = r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: long compressedSize>;
+
+        virtualinvoke r2.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>($l0);
+
+        $l1 = r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: long uncompressedSize>;
+
+        virtualinvoke r2.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>($l1);
+
+        $i2 = r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int decompressorNameOffset>;
+
+        virtualinvoke r2.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>($i2);
+
+        $i3 = r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: int contentOffset>;
+
+        virtualinvoke r2.<java.nio.ByteBuffer: java.nio.ByteBuffer putInt(int)>($i3);
+
+        $z0 = r5.<jdk.internal.jimage.decompressor.CompressedResourceHeader: boolean isTerminal>;
+
+        if $z0 == 0 goto label1;
+
+        $b4 = 1;
+
+        goto label2;
+
+     label1:
+        $b4 = 0;
+
+     label2:
+        virtualinvoke r2.<java.nio.ByteBuffer: java.nio.ByteBuffer put(byte)>($b4);
+
+        $r11 = virtualinvoke r2.<java.nio.ByteBuffer: byte[] array()>();
+
+        return $r11;
+    }
+
+    public static int getSize()
+    {
+        return 29;
+    }
+
+    public static jdk.internal.jimage.decompressor.CompressedResourceHeader readFromResource(java.nio.ByteOrder, byte[])
+    {
+        java.nio.ByteOrder r0;
+        byte[] r2;
+        int $i0, $i1, i2, i5, i6;
+        java.nio.ByteBuffer r4;
+        long l3, l4;
+        byte b7;
+        jdk.internal.jimage.decompressor.CompressedResourceHeader $r6;
+        boolean $z0;
+
+        r0 := @parameter0: java.nio.ByteOrder;
+
+        r2 := @parameter1: byte[];
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r2);
+
+        $i0 = lengthof r2;
+
+        $i1 = staticinvoke <jdk.internal.jimage.decompressor.CompressedResourceHeader: int getSize()>();
+
+        if $i0 >= $i1 goto label1;
+
+        return null;
+
+     label1:
+        r4 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[],int,int)>(r2, 0, 29);
+
+        virtualinvoke r4.<java.nio.ByteBuffer: java.nio.ByteBuffer order(java.nio.ByteOrder)>(r0);
+
+        i2 = virtualinvoke r4.<java.nio.ByteBuffer: int getInt()>();
+
+        if i2 == -889259270 goto label2;
+
+        return null;
+
+     label2:
+        l3 = virtualinvoke r4.<java.nio.ByteBuffer: long getLong()>();
+
+        l4 = virtualinvoke r4.<java.nio.ByteBuffer: long getLong()>();
+
+        i5 = virtualinvoke r4.<java.nio.ByteBuffer: int getInt()>();
+
+        i6 = virtualinvoke r4.<java.nio.ByteBuffer: int getInt()>();
+
+        b7 = virtualinvoke r4.<java.nio.ByteBuffer: byte get()>();
+
+        $r6 = new jdk.internal.jimage.decompressor.CompressedResourceHeader;
+
+        if b7 != 1 goto label3;
+
+        $z0 = 1;
+
+        goto label4;
+
+     label3:
+        $z0 = 0;
+
+     label4:
+        specialinvoke $r6.<jdk.internal.jimage.decompressor.CompressedResourceHeader: void <init>(long,long,int,int,boolean)>(l3, l4, i5, i6, $z0);
+
+        return $r6;
+    }
+
+    public static void <clinit>()
+    {
+        <jdk.internal.jimage.decompressor.CompressedResourceHeader: int MAGIC> = -889259270;
+
+        <jdk.internal.jimage.decompressor.CompressedResourceHeader: int SIZE> = 29;
+
+        return;
+    }
+}

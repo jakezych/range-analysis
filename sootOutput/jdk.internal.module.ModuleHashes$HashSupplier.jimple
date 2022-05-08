@@ -1,0 +1,5 @@
+public interface  jdk.internal.module.ModuleHashes$HashSupplier extends java.lang.Object
+{
+
+    public abstract byte[] generate(java.lang.String);
+}

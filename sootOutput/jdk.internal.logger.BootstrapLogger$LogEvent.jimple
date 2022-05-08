@@ -1,0 +1,1133 @@
+final class jdk.internal.logger.BootstrapLogger$LogEvent extends java.lang.Object
+{
+    final java.lang.System$Logger$Level level;
+    final sun.util.logging.PlatformLogger$Level platformLevel;
+    final jdk.internal.logger.BootstrapLogger bootstrap;
+    final java.util.ResourceBundle bundle;
+    final java.lang.String msg;
+    final java.lang.Throwable thrown;
+    final java.lang.Object[] params;
+    final java.util.function.Supplier msgSupplier;
+    final java.lang.String sourceClass;
+    final java.lang.String sourceMethod;
+    final long timeMillis;
+    final long nanoAdjustment;
+    final java.security.AccessControlContext acc;
+    jdk.internal.logger.BootstrapLogger$LogEvent next;
+    static final boolean $assertionsDisabled;
+
+    private void <init>(jdk.internal.logger.BootstrapLogger, java.lang.System$Logger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Throwable, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        java.security.AccessControlContext $r1;
+        long $l0, $l1, $l2;
+        java.lang.System$Logger$Level r2;
+        java.util.ResourceBundle r3;
+        java.lang.String r4;
+        java.lang.Throwable r5;
+        java.lang.Object[] r6;
+        jdk.internal.logger.BootstrapLogger r7;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r7 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r2 := @parameter1: java.lang.System$Logger$Level;
+
+        r3 := @parameter2: java.util.ResourceBundle;
+
+        r4 := @parameter3: java.lang.String;
+
+        r5 := @parameter4: java.lang.Throwable;
+
+        r6 := @parameter5: java.lang.Object[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <java.security.AccessController: java.security.AccessControlContext getContext()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.security.AccessControlContext acc> = $r1;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long timeMillis> = $l0;
+
+        $l1 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long timeMillis>;
+
+        $l2 = staticinvoke <jdk.internal.misc.VM: long getNanoTimeAdjustment(long)>($l1);
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long nanoAdjustment> = $l2;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level> = r2;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle> = r3;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg> = r4;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown> = r5;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Object[] params> = r6;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceClass> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceMethod> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger bootstrap> = r7;
+
+        return;
+    }
+
+    private void <init>(jdk.internal.logger.BootstrapLogger, java.lang.System$Logger$Level, java.util.function.Supplier, java.lang.Throwable, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        java.security.AccessControlContext $r1;
+        long $l0, $l1, $l2;
+        java.lang.System$Logger$Level r2;
+        java.util.function.Supplier r3;
+        java.lang.Throwable r4;
+        java.lang.Object[] r5;
+        jdk.internal.logger.BootstrapLogger r6;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r6 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r2 := @parameter1: java.lang.System$Logger$Level;
+
+        r3 := @parameter2: java.util.function.Supplier;
+
+        r4 := @parameter3: java.lang.Throwable;
+
+        r5 := @parameter4: java.lang.Object[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <java.security.AccessController: java.security.AccessControlContext getContext()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.security.AccessControlContext acc> = $r1;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long timeMillis> = $l0;
+
+        $l1 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long timeMillis>;
+
+        $l2 = staticinvoke <jdk.internal.misc.VM: long getNanoTimeAdjustment(long)>($l1);
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long nanoAdjustment> = $l2;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level> = r2;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier> = r3;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown> = r4;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Object[] params> = r5;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceClass> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceMethod> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger bootstrap> = r6;
+
+        return;
+    }
+
+    private void <init>(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.ResourceBundle, java.lang.String, java.lang.Throwable, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        java.security.AccessControlContext $r1;
+        long $l0, $l1, $l2;
+        sun.util.logging.PlatformLogger$Level r2;
+        java.util.ResourceBundle r3;
+        java.lang.String r4, r7, r8;
+        java.lang.Throwable r5;
+        java.lang.Object[] r6;
+        jdk.internal.logger.BootstrapLogger r9;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r9 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r2 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r7 := @parameter2: java.lang.String;
+
+        r8 := @parameter3: java.lang.String;
+
+        r3 := @parameter4: java.util.ResourceBundle;
+
+        r4 := @parameter5: java.lang.String;
+
+        r5 := @parameter6: java.lang.Throwable;
+
+        r6 := @parameter7: java.lang.Object[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <java.security.AccessController: java.security.AccessControlContext getContext()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.security.AccessControlContext acc> = $r1;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long timeMillis> = $l0;
+
+        $l1 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long timeMillis>;
+
+        $l2 = staticinvoke <jdk.internal.misc.VM: long getNanoTimeAdjustment(long)>($l1);
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long nanoAdjustment> = $l2;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel> = r2;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle> = r3;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg> = r4;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown> = r5;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Object[] params> = r6;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceClass> = r7;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceMethod> = r8;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger bootstrap> = r9;
+
+        return;
+    }
+
+    private void <init>(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.function.Supplier, java.lang.Throwable, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        java.security.AccessControlContext $r1;
+        long $l0, $l1, $l2;
+        sun.util.logging.PlatformLogger$Level r2;
+        java.util.function.Supplier r3;
+        java.lang.Throwable r4;
+        java.lang.Object[] r5;
+        java.lang.String r6, r7;
+        jdk.internal.logger.BootstrapLogger r8;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r8 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r2 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter2: java.lang.String;
+
+        r7 := @parameter3: java.lang.String;
+
+        r3 := @parameter4: java.util.function.Supplier;
+
+        r4 := @parameter5: java.lang.Throwable;
+
+        r5 := @parameter6: java.lang.Object[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <java.security.AccessController: java.security.AccessControlContext getContext()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.security.AccessControlContext acc> = $r1;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long timeMillis> = $l0;
+
+        $l1 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long timeMillis>;
+
+        $l2 = staticinvoke <jdk.internal.misc.VM: long getNanoTimeAdjustment(long)>($l1);
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: long nanoAdjustment> = $l2;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel> = r2;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg> = null;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier> = r3;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown> = r4;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Object[] params> = r5;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceClass> = r6;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceMethod> = r7;
+
+        r0.<jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger bootstrap> = r8;
+
+        return;
+    }
+
+    private void log(java.lang.System$Logger)
+    {
+        boolean $z0;
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        java.util.function.Supplier $r1, $r13, $r16;
+        java.lang.Throwable $r2, $r8, $r12, $r15;
+        java.lang.System$Logger r3;
+        java.lang.Object[] $r4;
+        java.lang.String $r5, $r9;
+        java.util.ResourceBundle $r6, $r10;
+        java.lang.System$Logger$Level $r7, $r11, $r14, $r17, $r20;
+        sun.util.logging.PlatformLogger$Level $r18;
+        java.lang.AssertionError $r19;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r3 := @parameter0: java.lang.System$Logger;
+
+        $z0 = <jdk.internal.logger.BootstrapLogger$LogEvent: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label2;
+
+        $r18 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        if $r18 != null goto label1;
+
+        $r20 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level>;
+
+        if $r20 != null goto label2;
+
+     label1:
+        $r19 = new java.lang.AssertionError;
+
+        specialinvoke $r19.<java.lang.AssertionError: void <init>()>();
+
+        throw $r19;
+
+     label2:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier>;
+
+        if $r1 == null goto label4;
+
+        $r12 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        if $r12 == null goto label3;
+
+        $r17 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level>;
+
+        $r16 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier>;
+
+        $r15 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        interfaceinvoke r3.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.function.Supplier,java.lang.Throwable)>($r17, $r16, $r15);
+
+        goto label6;
+
+     label3:
+        $r14 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level>;
+
+        $r13 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier>;
+
+        interfaceinvoke r3.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.function.Supplier)>($r14, $r13);
+
+        goto label6;
+
+     label4:
+        $r2 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        if $r2 == null goto label5;
+
+        $r11 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level>;
+
+        $r10 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle>;
+
+        $r9 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg>;
+
+        $r8 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        interfaceinvoke r3.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>($r11, $r10, $r9, $r8);
+
+        goto label6;
+
+     label5:
+        $r7 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level>;
+
+        $r6 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle>;
+
+        $r5 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg>;
+
+        $r4 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Object[] params>;
+
+        interfaceinvoke r3.<java.lang.System$Logger: void log(java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>($r7, $r6, $r5, $r4);
+
+     label6:
+        return;
+    }
+
+    private void log(sun.util.logging.PlatformLogger$Bridge)
+    {
+        boolean $z0;
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        java.lang.String $r1, $r6, $r8, $r9, $r12, $r14, $r15, $r19, $r20, $r24, $r25, $r30, $r34;
+        java.util.function.Supplier $r2, $r18, $r22, $r27, $r38, $r40;
+        java.lang.Throwable $r3, $r11, $r17, $r23, $r28, $r33, $r37, $r41;
+        sun.util.logging.PlatformLogger$Bridge r4;
+        java.lang.Object[] $r5, $r29;
+        java.util.ResourceBundle $r7, $r13, $r31, $r35;
+        sun.util.logging.PlatformLogger$Level $r10, $r16, $r21, $r26, $r32, $r36, $r39, $r42, $r43;
+        java.lang.AssertionError $r44;
+        java.lang.System$Logger$Level $r45;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r4 := @parameter0: sun.util.logging.PlatformLogger$Bridge;
+
+        $z0 = <jdk.internal.logger.BootstrapLogger$LogEvent: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label02;
+
+        $r43 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        if $r43 == null goto label01;
+
+        $r45 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.System$Logger$Level level>;
+
+        if $r45 == null goto label02;
+
+     label01:
+        $r44 = new java.lang.AssertionError;
+
+        specialinvoke $r44.<java.lang.AssertionError: void <init>()>();
+
+        throw $r44;
+
+     label02:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceClass>;
+
+        if $r1 != null goto label06;
+
+        $r27 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier>;
+
+        if $r27 == null goto label04;
+
+        $r37 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        if $r37 == null goto label03;
+
+        $r42 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        $r41 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        $r40 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier>;
+
+        interfaceinvoke r4.<sun.util.logging.PlatformLogger$Bridge: void log(sun.util.logging.PlatformLogger$Level,java.lang.Throwable,java.util.function.Supplier)>($r42, $r41, $r40);
+
+        goto label10;
+
+     label03:
+        $r39 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        $r38 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier>;
+
+        interfaceinvoke r4.<sun.util.logging.PlatformLogger$Bridge: void log(sun.util.logging.PlatformLogger$Level,java.util.function.Supplier)>($r39, $r38);
+
+        goto label10;
+
+     label04:
+        $r28 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        if $r28 == null goto label05;
+
+        $r36 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        $r35 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle>;
+
+        $r34 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg>;
+
+        $r33 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        interfaceinvoke r4.<sun.util.logging.PlatformLogger$Bridge: void logrb(sun.util.logging.PlatformLogger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>($r36, $r35, $r34, $r33);
+
+        goto label10;
+
+     label05:
+        $r32 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        $r31 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle>;
+
+        $r30 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg>;
+
+        $r29 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Object[] params>;
+
+        interfaceinvoke r4.<sun.util.logging.PlatformLogger$Bridge: void logrb(sun.util.logging.PlatformLogger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>($r32, $r31, $r30, $r29);
+
+        goto label10;
+
+     label06:
+        $r2 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier>;
+
+        if $r2 == null goto label08;
+
+        $r17 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        if $r17 == null goto label07;
+
+        $r26 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        $r25 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceClass>;
+
+        $r24 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceMethod>;
+
+        $r23 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        $r22 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier>;
+
+        interfaceinvoke r4.<sun.util.logging.PlatformLogger$Bridge: void logp(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.lang.Throwable,java.util.function.Supplier)>($r26, $r25, $r24, $r23, $r22);
+
+        goto label10;
+
+     label07:
+        $r21 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        $r20 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceClass>;
+
+        $r19 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceMethod>;
+
+        $r18 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.function.Supplier msgSupplier>;
+
+        interfaceinvoke r4.<sun.util.logging.PlatformLogger$Bridge: void logp(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.function.Supplier)>($r21, $r20, $r19, $r18);
+
+        goto label10;
+
+     label08:
+        $r3 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        if $r3 == null goto label09;
+
+        $r16 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        $r15 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceClass>;
+
+        $r14 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceMethod>;
+
+        $r13 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle>;
+
+        $r12 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg>;
+
+        $r11 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Throwable thrown>;
+
+        interfaceinvoke r4.<sun.util.logging.PlatformLogger$Bridge: void logrb(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable)>($r16, $r15, $r14, $r13, $r12, $r11);
+
+        goto label10;
+
+     label09:
+        $r10 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: sun.util.logging.PlatformLogger$Level platformLevel>;
+
+        $r9 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceClass>;
+
+        $r8 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String sourceMethod>;
+
+        $r7 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.util.ResourceBundle bundle>;
+
+        $r6 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.String msg>;
+
+        $r5 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.lang.Object[] params>;
+
+        interfaceinvoke r4.<sun.util.logging.PlatformLogger$Bridge: void logrb(sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Object[])>($r10, $r9, $r8, $r7, $r6, $r5);
+
+     label10:
+        return;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, java.lang.System$Logger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        java.lang.System$Logger$Level r3, $r9;
+        java.util.ResourceBundle r6;
+        java.lang.String r7;
+        java.lang.Throwable r8;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: java.lang.System$Logger$Level;
+
+        r6 := @parameter2: java.util.ResourceBundle;
+
+        r7 := @parameter3: java.lang.String;
+
+        r8 := @parameter4: java.lang.Throwable;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r9 = (java.lang.System$Logger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable,java.lang.Object[])>($r4, $r9, r6, r7, r8, null);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, java.lang.System$Logger$Level, java.util.ResourceBundle, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        java.lang.System$Logger$Level r3, $r9;
+        java.util.ResourceBundle r6;
+        java.lang.String r7;
+        java.lang.Object[] r8;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: java.lang.System$Logger$Level;
+
+        r6 := @parameter2: java.util.ResourceBundle;
+
+        r7 := @parameter3: java.lang.String;
+
+        r8 := @parameter4: java.lang.Object[];
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r9 = (java.lang.System$Logger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.ResourceBundle,java.lang.String,java.lang.Throwable,java.lang.Object[])>($r4, $r9, r6, r7, null, r8);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, java.lang.System$Logger$Level, java.util.function.Supplier, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5, $r8;
+        java.lang.System$Logger$Level r3, $r7;
+        java.util.function.Supplier r6, $r10;
+        java.lang.Throwable r9;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: java.lang.System$Logger$Level;
+
+        r6 := @parameter2: java.util.function.Supplier;
+
+        r9 := @parameter3: java.lang.Throwable;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r7 = (java.lang.System$Logger$Level) $r5;
+
+        $r8 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r6);
+
+        $r10 = (java.util.function.Supplier) $r8;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.function.Supplier,java.lang.Throwable,java.lang.Object[])>($r4, $r7, $r10, r9, null);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, java.lang.System$Logger$Level, java.util.function.Supplier)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5, $r8;
+        java.lang.System$Logger$Level r3, $r7;
+        java.util.function.Supplier r6, $r9;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: java.lang.System$Logger$Level;
+
+        r6 := @parameter2: java.util.function.Supplier;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r7 = (java.lang.System$Logger$Level) $r5;
+
+        $r8 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r6);
+
+        $r9 = (java.util.function.Supplier) $r8;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,java.lang.System$Logger$Level,java.util.function.Supplier,java.lang.Throwable,java.lang.Object[])>($r4, $r7, $r9, null, null);
+
+        return $r0;
+    }
+
+    static void log(jdk.internal.logger.BootstrapLogger$LogEvent, java.lang.System$Logger)
+    {
+        java.lang.SecurityManager r0;
+        jdk.internal.logger.BootstrapLogger$LogEvent r1;
+        java.lang.System$Logger r2;
+        java.lang.Runnable $r3, $r5;
+        java.security.AccessControlContext $r4;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r2 := @parameter1: java.lang.System$Logger;
+
+        r0 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>();
+
+        if r0 == null goto label1;
+
+        $r4 = r1.<jdk.internal.logger.BootstrapLogger$LogEvent: java.security.AccessControlContext acc>;
+
+        if $r4 != null goto label2;
+
+     label1:
+        $r3 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_0__124: java.lang.Runnable bootstrap$(jdk.internal.logger.BootstrapLogger$LogEvent,java.lang.System$Logger)>(r1, r2);
+
+        staticinvoke <jdk.internal.logger.BootstrapLogger$BootstrapExecutors: void submit(java.lang.Runnable)>($r3);
+
+        goto label3;
+
+     label2:
+        $r5 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_2__125: java.lang.Runnable bootstrap$(jdk.internal.logger.BootstrapLogger$LogEvent,java.lang.System$Logger)>(r1, r2);
+
+        staticinvoke <jdk.internal.logger.BootstrapLogger$BootstrapExecutors: void submit(java.lang.Runnable)>($r5);
+
+     label3:
+        return;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.lang.String)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        sun.util.logging.PlatformLogger$Level r3, $r7;
+        java.lang.String r6;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter2: java.lang.String;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r7 = (sun.util.logging.PlatformLogger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable,java.lang.Object[])>($r4, $r7, null, null, null, r6, null, null);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        sun.util.logging.PlatformLogger$Level r3, $r8;
+        java.lang.String r6;
+        java.lang.Throwable r7;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter2: java.lang.String;
+
+        r7 := @parameter3: java.lang.Throwable;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r8 = (sun.util.logging.PlatformLogger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable,java.lang.Object[])>($r4, $r8, null, null, null, r6, r7, null);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        sun.util.logging.PlatformLogger$Level r3, $r8;
+        java.lang.String r6;
+        java.lang.Object[] r7;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter2: java.lang.String;
+
+        r7 := @parameter3: java.lang.Object[];
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r8 = (sun.util.logging.PlatformLogger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable,java.lang.Object[])>($r4, $r8, null, null, null, r6, null, r7);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.util.function.Supplier)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        sun.util.logging.PlatformLogger$Level r3, $r7;
+        java.util.function.Supplier r6;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter2: java.util.function.Supplier;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r7 = (sun.util.logging.PlatformLogger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.function.Supplier,java.lang.Throwable,java.lang.Object[])>($r4, $r7, null, null, r6, null, null);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent vaueOf(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.util.function.Supplier, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        sun.util.logging.PlatformLogger$Level r3, $r8;
+        java.util.function.Supplier r6;
+        java.lang.Throwable r7;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter2: java.util.function.Supplier;
+
+        r7 := @parameter3: java.lang.Throwable;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r8 = (sun.util.logging.PlatformLogger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.function.Supplier,java.lang.Throwable,java.lang.Object[])>($r4, $r8, null, null, r6, r7, null);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.ResourceBundle, java.lang.String, java.lang.Object[])
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        sun.util.logging.PlatformLogger$Level r3, $r11;
+        java.lang.String r6, r7, r9;
+        java.util.ResourceBundle r8;
+        java.lang.Object[] r10;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter2: java.lang.String;
+
+        r7 := @parameter3: java.lang.String;
+
+        r8 := @parameter4: java.util.ResourceBundle;
+
+        r9 := @parameter5: java.lang.String;
+
+        r10 := @parameter6: java.lang.Object[];
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r11 = (sun.util.logging.PlatformLogger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable,java.lang.Object[])>($r4, $r11, r6, r7, r8, r9, null, r10);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.ResourceBundle, java.lang.String, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        sun.util.logging.PlatformLogger$Level r3, $r11;
+        java.lang.String r6, r7, r9;
+        java.util.ResourceBundle r8;
+        java.lang.Throwable r10;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter2: java.lang.String;
+
+        r7 := @parameter3: java.lang.String;
+
+        r8 := @parameter4: java.util.ResourceBundle;
+
+        r9 := @parameter5: java.lang.String;
+
+        r10 := @parameter6: java.lang.Throwable;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r11 = (sun.util.logging.PlatformLogger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.ResourceBundle,java.lang.String,java.lang.Throwable,java.lang.Object[])>($r4, $r11, r6, r7, r8, r9, r10, null);
+
+        return $r0;
+    }
+
+    static jdk.internal.logger.BootstrapLogger$LogEvent valueOf(jdk.internal.logger.BootstrapLogger, sun.util.logging.PlatformLogger$Level, java.lang.String, java.lang.String, java.util.function.Supplier, java.lang.Throwable)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent $r0;
+        jdk.internal.logger.BootstrapLogger r1, $r4;
+        java.lang.Object $r2, $r5;
+        sun.util.logging.PlatformLogger$Level r3, $r10;
+        java.lang.String r6, r7;
+        java.util.function.Supplier r8;
+        java.lang.Throwable r9;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger;
+
+        r3 := @parameter1: sun.util.logging.PlatformLogger$Level;
+
+        r6 := @parameter2: java.lang.String;
+
+        r7 := @parameter3: java.lang.String;
+
+        r8 := @parameter4: java.util.function.Supplier;
+
+        r9 := @parameter5: java.lang.Throwable;
+
+        $r0 = new jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r2 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r1);
+
+        $r4 = (jdk.internal.logger.BootstrapLogger) $r2;
+
+        $r5 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r3);
+
+        $r10 = (sun.util.logging.PlatformLogger$Level) $r5;
+
+        specialinvoke $r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void <init>(jdk.internal.logger.BootstrapLogger,sun.util.logging.PlatformLogger$Level,java.lang.String,java.lang.String,java.util.function.Supplier,java.lang.Throwable,java.lang.Object[])>($r4, $r10, r6, r7, r8, r9, null);
+
+        return $r0;
+    }
+
+    static void log(jdk.internal.logger.BootstrapLogger$LogEvent, sun.util.logging.PlatformLogger$Bridge)
+    {
+        java.lang.SecurityManager r0;
+        jdk.internal.logger.BootstrapLogger$LogEvent r1;
+        sun.util.logging.PlatformLogger$Bridge r2;
+        java.security.AccessControlContext $r3, $r5;
+        java.security.PrivilegedAction $r4;
+
+        r1 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r2 := @parameter1: sun.util.logging.PlatformLogger$Bridge;
+
+        r0 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>();
+
+        if r0 == null goto label1;
+
+        $r3 = r1.<jdk.internal.logger.BootstrapLogger$LogEvent: java.security.AccessControlContext acc>;
+
+        if $r3 != null goto label2;
+
+     label1:
+        virtualinvoke r1.<jdk.internal.logger.BootstrapLogger$LogEvent: void log(sun.util.logging.PlatformLogger$Bridge)>(r2);
+
+        goto label3;
+
+     label2:
+        $r4 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_3__126: java.security.PrivilegedAction bootstrap$(jdk.internal.logger.BootstrapLogger$LogEvent,sun.util.logging.PlatformLogger$Bridge)>(r1, r2);
+
+        $r5 = r1.<jdk.internal.logger.BootstrapLogger$LogEvent: java.security.AccessControlContext acc>;
+
+        staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction,java.security.AccessControlContext)>($r4, $r5);
+
+     label3:
+        return;
+    }
+
+    static void log(jdk.internal.logger.BootstrapLogger$LogEvent)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        jdk.internal.logger.BootstrapLogger $r1;
+
+        r0 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: jdk.internal.logger.BootstrapLogger bootstrap>;
+
+        virtualinvoke $r1.<jdk.internal.logger.BootstrapLogger: void flush(jdk.internal.logger.BootstrapLogger$LogEvent)>(r0);
+
+        return;
+    }
+
+    public static java.lang.Void lambda$log$3(jdk.internal.logger.BootstrapLogger$LogEvent, sun.util.logging.PlatformLogger$Bridge)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        sun.util.logging.PlatformLogger$Bridge r1;
+
+        r0 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r1 := @parameter1: sun.util.logging.PlatformLogger$Bridge;
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void log(sun.util.logging.PlatformLogger$Bridge)>(r1);
+
+        return null;
+    }
+
+    public static void lambda$log$2(jdk.internal.logger.BootstrapLogger$LogEvent, java.lang.System$Logger)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        java.lang.System$Logger r1;
+        java.security.PrivilegedAction $r2;
+        java.security.AccessControlContext $r3;
+
+        r0 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r1 := @parameter1: java.lang.System$Logger;
+
+        $r2 = staticinvoke <jdk.internal.logger.BootstrapLogger$LogEvent$lambda_log_1__127: java.security.PrivilegedAction bootstrap$(jdk.internal.logger.BootstrapLogger$LogEvent,java.lang.System$Logger)>(r0, r1);
+
+        $r3 = r0.<jdk.internal.logger.BootstrapLogger$LogEvent: java.security.AccessControlContext acc>;
+
+        staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction,java.security.AccessControlContext)>($r2, $r3);
+
+        return;
+    }
+
+    public static java.lang.Void lambda$log$1(jdk.internal.logger.BootstrapLogger$LogEvent, java.lang.System$Logger)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        java.lang.System$Logger r1;
+
+        r0 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r1 := @parameter1: java.lang.System$Logger;
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void log(java.lang.System$Logger)>(r1);
+
+        return null;
+    }
+
+    public static void lambda$log$0(jdk.internal.logger.BootstrapLogger$LogEvent, java.lang.System$Logger)
+    {
+        jdk.internal.logger.BootstrapLogger$LogEvent r0;
+        java.lang.System$Logger r1;
+
+        r0 := @parameter0: jdk.internal.logger.BootstrapLogger$LogEvent;
+
+        r1 := @parameter1: java.lang.System$Logger;
+
+        virtualinvoke r0.<jdk.internal.logger.BootstrapLogger$LogEvent: void log(java.lang.System$Logger)>(r1);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+
+        $r0 = class "Ljdk/internal/logger/BootstrapLogger;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <jdk.internal.logger.BootstrapLogger$LogEvent: boolean $assertionsDisabled> = $z1;
+
+        return;
+    }
+}

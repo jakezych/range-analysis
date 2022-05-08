@@ -30,7 +30,6 @@ public class InterAnalysisSimpleTest extends AnalysisTest {
         addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 30);
         addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 40);
         addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 53);
-        addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 54);
         addExpected(ErrorMessage.OUT_OF_BOUNDS_INDEX_ERROR, 69);
         addExpected(ErrorMessage.POSSIBLE_OUT_OF_BOUNDS_INDEX_WARNING, 70);
 

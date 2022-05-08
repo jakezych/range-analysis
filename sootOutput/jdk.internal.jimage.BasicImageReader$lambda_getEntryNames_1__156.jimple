@@ -1,0 +1,52 @@
+public final class jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156 extends java.lang.Object implements java.util.function.IntFunction
+{
+    jdk.internal.jimage.BasicImageReader cap0;
+
+    public static java.util.function.IntFunction bootstrap$(jdk.internal.jimage.BasicImageReader)
+    {
+        jdk.internal.jimage.BasicImageReader $r0;
+        jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156 $r1;
+
+        $r0 := @parameter0: jdk.internal.jimage.BasicImageReader;
+
+        $r1 = new jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156;
+
+        specialinvoke $r1.<jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156: void <init>(jdk.internal.jimage.BasicImageReader)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(jdk.internal.jimage.BasicImageReader)
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156 $r0;
+        jdk.internal.jimage.BasicImageReader $r1;
+
+        $r0 := @this: jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156;
+
+        $r1 := @parameter0: jdk.internal.jimage.BasicImageReader;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156: jdk.internal.jimage.BasicImageReader cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object apply(int)
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156 $r0;
+        int $i0;
+        jdk.internal.jimage.BasicImageReader $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156;
+
+        $i0 := @parameter0: int;
+
+        $r1 = $r0.<jdk.internal.jimage.BasicImageReader$lambda_getEntryNames_1__156: jdk.internal.jimage.BasicImageReader cap0>;
+
+        $r2 = virtualinvoke $r1.<jdk.internal.jimage.BasicImageReader: java.lang.String lambda$getEntryNames$1(int)>($i0);
+
+        return $r2;
+    }
+}

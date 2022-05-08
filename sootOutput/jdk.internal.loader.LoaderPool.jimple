@@ -1,0 +1,166 @@
+public final class jdk.internal.loader.LoaderPool extends java.lang.Object
+{
+    private final java.util.Map loaders;
+    static final boolean $assertionsDisabled;
+
+    public void <init>(java.lang.module.Configuration, java.util.List, java.lang.ClassLoader)
+    {
+        jdk.internal.loader.LoaderPool r0;
+        java.util.HashMap $r1;
+        java.lang.module.Configuration r3;
+        java.util.Set $r4;
+        java.util.Iterator r5;
+        boolean $z0;
+        java.util.Collection $r6;
+        java.util.List r7;
+        java.util.function.Consumer $r8;
+        java.lang.Object $r9;
+        java.lang.module.ResolvedModule r10;
+        jdk.internal.loader.Loader $r11;
+        java.lang.ClassLoader r12;
+        java.lang.String r14;
+
+        r0 := @this: jdk.internal.loader.LoaderPool;
+
+        r3 := @parameter0: java.lang.module.Configuration;
+
+        r7 := @parameter1: java.util.List;
+
+        r12 := @parameter2: java.lang.ClassLoader;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        $r4 = virtualinvoke r3.<java.lang.module.Configuration: java.util.Set modules()>();
+
+        r5 = interfaceinvoke $r4.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r9 = interfaceinvoke r5.<java.util.Iterator: java.lang.Object next()>();
+
+        r10 = (java.lang.module.ResolvedModule) $r9;
+
+        $r11 = new jdk.internal.loader.Loader;
+
+        specialinvoke $r11.<jdk.internal.loader.Loader: void <init>(java.lang.module.ResolvedModule,jdk.internal.loader.LoaderPool,java.lang.ClassLoader)>(r10, r0, r12);
+
+        r14 = virtualinvoke r10.<java.lang.module.ResolvedModule: java.lang.String name()>();
+
+        interfaceinvoke $r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r14, $r11);
+
+        goto label1;
+
+     label2:
+        r0.<jdk.internal.loader.LoaderPool: java.util.Map loaders> = $r1;
+
+        $r6 = interfaceinvoke $r1.<java.util.Map: java.util.Collection values()>();
+
+        $r8 = staticinvoke <jdk.internal.loader.LoaderPool$lambda_new_0__41: java.util.function.Consumer bootstrap$(java.lang.module.Configuration,java.util.List)>(r3, r7);
+
+        interfaceinvoke $r6.<java.util.Collection: void forEach(java.util.function.Consumer)>($r8);
+
+        return;
+    }
+
+    public jdk.internal.loader.Loader loaderFor(java.lang.String)
+    {
+        jdk.internal.loader.LoaderPool r0;
+        java.lang.String r1;
+        java.util.Map $r2;
+        java.lang.Object $r3;
+        jdk.internal.loader.Loader r4;
+        boolean $z0;
+        java.lang.AssertionError $r5;
+
+        r0 := @this: jdk.internal.loader.LoaderPool;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.loader.LoaderPool: java.util.Map loaders>;
+
+        $r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1);
+
+        r4 = (jdk.internal.loader.Loader) $r3;
+
+        $z0 = <jdk.internal.loader.LoaderPool: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label1;
+
+        if r4 != null goto label1;
+
+        $r5 = new java.lang.AssertionError;
+
+        specialinvoke $r5.<java.lang.AssertionError: void <init>()>();
+
+        throw $r5;
+
+     label1:
+        return r4;
+    }
+
+    public java.util.stream.Stream loaders()
+    {
+        jdk.internal.loader.LoaderPool r0;
+        java.util.Map $r1;
+        java.util.Collection $r2;
+        java.util.stream.Stream $r3;
+
+        r0 := @this: jdk.internal.loader.LoaderPool;
+
+        $r1 = r0.<jdk.internal.loader.LoaderPool: java.util.Map loaders>;
+
+        $r2 = interfaceinvoke $r1.<java.util.Map: java.util.Collection values()>();
+
+        $r3 = interfaceinvoke $r2.<java.util.Collection: java.util.stream.Stream stream()>();
+
+        return $r3;
+    }
+
+    public static void lambda$new$0(java.lang.module.Configuration, java.util.List, jdk.internal.loader.Loader)
+    {
+        jdk.internal.loader.Loader r0;
+        java.lang.module.Configuration r1;
+        java.util.List r2;
+
+        r1 := @parameter0: java.lang.module.Configuration;
+
+        r2 := @parameter1: java.util.List;
+
+        r0 := @parameter2: jdk.internal.loader.Loader;
+
+        virtualinvoke r0.<jdk.internal.loader.Loader: jdk.internal.loader.Loader initRemotePackageMap(java.lang.module.Configuration,java.util.List)>(r1, r2);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+
+        $r0 = class "Ljdk/internal/loader/LoaderPool;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <jdk.internal.loader.LoaderPool: boolean $assertionsDisabled> = $z1;
+
+        return;
+    }
+}

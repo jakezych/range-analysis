@@ -1,0 +1,7 @@
+public interface  jdk.internal.access.JavaBeansAccess extends java.lang.Object
+{
+
+    public abstract java.lang.reflect.Method getReadMethod(java.lang.Class, java.lang.String) throws java.lang.Exception;
+
+    public abstract java.lang.String[] getConstructorPropertiesValue(java.lang.reflect.Constructor);
+}

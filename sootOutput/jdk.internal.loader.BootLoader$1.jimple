@@ -1,0 +1,49 @@
+class jdk.internal.loader.BootLoader$1 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    final java.lang.String val$library;
+
+    void <init>(java.lang.String)
+    {
+        jdk.internal.loader.BootLoader$1 r0;
+        java.lang.String r1;
+
+        r0 := @this: jdk.internal.loader.BootLoader$1;
+
+        r1 := @parameter0: java.lang.String;
+
+        r0.<jdk.internal.loader.BootLoader$1: java.lang.String val$library> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Void run()
+    {
+        jdk.internal.access.JavaLangAccess $r0;
+        jdk.internal.loader.BootLoader$1 r1;
+        java.lang.String $r2;
+
+        r1 := @this: jdk.internal.loader.BootLoader$1;
+
+        $r0 = staticinvoke <jdk.internal.access.SharedSecrets: jdk.internal.access.JavaLangAccess getJavaLangAccess()>();
+
+        $r2 = r1.<jdk.internal.loader.BootLoader$1: java.lang.String val$library>;
+
+        interfaceinvoke $r0.<jdk.internal.access.JavaLangAccess: void loadLibrary(java.lang.Class,java.lang.String)>(class "Ljdk/internal/loader/BootLoader;", $r2);
+
+        return null;
+    }
+
+    public volatile java.lang.Object run()
+    {
+        jdk.internal.loader.BootLoader$1 r0;
+        java.lang.Void $r1;
+
+        r0 := @this: jdk.internal.loader.BootLoader$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.loader.BootLoader$1: java.lang.Void run()>();
+
+        return $r1;
+    }
+}

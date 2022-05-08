@@ -1,0 +1,66 @@
+public final class jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89 extends java.lang.Object implements java.util.function.Function
+{
+    jdk.internal.module.ModuleHashes cap0;
+    java.lang.String cap1;
+
+    public static java.util.function.Function bootstrap$(jdk.internal.module.ModuleHashes, java.lang.String)
+    {
+        jdk.internal.module.ModuleHashes $r0;
+        java.lang.String $r1;
+        jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89 $r2;
+
+        $r0 := @parameter0: jdk.internal.module.ModuleHashes;
+
+        $r1 := @parameter1: java.lang.String;
+
+        $r2 = new jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89;
+
+        specialinvoke $r2.<jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89: void <init>(jdk.internal.module.ModuleHashes,java.lang.String)>($r0, $r1);
+
+        return $r2;
+    }
+
+    public void <init>(jdk.internal.module.ModuleHashes, java.lang.String)
+    {
+        jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89 $r0;
+        jdk.internal.module.ModuleHashes $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89;
+
+        $r1 := @parameter0: jdk.internal.module.ModuleHashes;
+
+        $r2 := @parameter1: java.lang.String;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89: jdk.internal.module.ModuleHashes cap0> = $r1;
+
+        $r0.<jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89: java.lang.String cap1> = $r2;
+
+        return;
+    }
+
+    public java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89 $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2, $r4;
+        jdk.internal.module.ModuleHashes $r3;
+        byte[] $r5;
+
+        $r0 := @this: jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) $r1;
+
+        $r3 = $r0.<jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89: jdk.internal.module.ModuleHashes cap0>;
+
+        $r4 = $r0.<jdk.internal.module.SystemModuleFinders$lambda_ofModuleInfos_0__89: java.lang.String cap1>;
+
+        $r5 = staticinvoke <jdk.internal.module.SystemModuleFinders: byte[] lambda$ofModuleInfos$0(jdk.internal.module.ModuleHashes,java.lang.String,java.lang.String)>($r3, $r4, $r2);
+
+        return $r5;
+    }
+}

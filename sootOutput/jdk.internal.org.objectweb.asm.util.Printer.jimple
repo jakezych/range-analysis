@@ -1,0 +1,1405 @@
+public abstract class jdk.internal.org.objectweb.asm.util.Printer extends java.lang.Object
+{
+    public static final java.lang.String[] OPCODES;
+    public static final java.lang.String[] TYPES;
+    public static final java.lang.String[] HANDLE_TAG;
+    private static final java.lang.String UNSUPPORTED_OPERATION;
+    protected final int api;
+    protected final java.lang.StringBuffer buf;
+    protected final java.lang.StringBuilder stringBuilder;
+    public final java.util.List text;
+
+    protected void <init>(int)
+    {
+        jdk.internal.org.objectweb.asm.util.Printer r0;
+        int i0;
+        java.lang.StringBuilder $r1;
+        java.util.ArrayList $r2;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.org.objectweb.asm.util.Printer: int api> = i0;
+
+        r0.<jdk.internal.org.objectweb.asm.util.Printer: java.lang.StringBuffer buf> = null;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        r0.<jdk.internal.org.objectweb.asm.util.Printer: java.lang.StringBuilder stringBuilder> = $r1;
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+
+        r0.<jdk.internal.org.objectweb.asm.util.Printer: java.util.List text> = $r2;
+
+        return;
+    }
+
+    public abstract void visit(int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String[]);
+
+    public abstract void visitSource(java.lang.String, java.lang.String);
+
+    public jdk.internal.org.objectweb.asm.util.Printer visitModule(java.lang.String, int, java.lang.String)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2, r3;
+        int i0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public void visitNestHost(java.lang.String)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract void visitOuterClass(java.lang.String, java.lang.String, java.lang.String);
+
+    public abstract jdk.internal.org.objectweb.asm.util.Printer visitClassAnnotation(java.lang.String, boolean);
+
+    public jdk.internal.org.objectweb.asm.util.Printer visitClassTypeAnnotation(int, jdk.internal.org.objectweb.asm.TypePath, java.lang.String, boolean)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        int i0;
+        jdk.internal.org.objectweb.asm.TypePath r2;
+        java.lang.String r3;
+        boolean z0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i0 := @parameter0: int;
+
+        r2 := @parameter1: jdk.internal.org.objectweb.asm.TypePath;
+
+        r3 := @parameter2: java.lang.String;
+
+        z0 := @parameter3: boolean;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract void visitClassAttribute(jdk.internal.org.objectweb.asm.Attribute);
+
+    public void visitNestMember(java.lang.String)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract void visitInnerClass(java.lang.String, java.lang.String, java.lang.String, int);
+
+    public abstract jdk.internal.org.objectweb.asm.util.Printer visitField(int, java.lang.String, java.lang.String, java.lang.String, java.lang.Object);
+
+    public abstract jdk.internal.org.objectweb.asm.util.Printer visitMethod(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String[]);
+
+    public abstract void visitClassEnd();
+
+    public void visitMainClass(java.lang.String)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public void visitPackage(java.lang.String)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public void visitRequire(java.lang.String, int, java.lang.String)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2, r3;
+        int i0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public transient void visitExport(java.lang.String, int, java.lang.String[])
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2;
+        int i0;
+        java.lang.String[] r3;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r3 := @parameter2: java.lang.String[];
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public transient void visitOpen(java.lang.String, int, java.lang.String[])
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2;
+        int i0;
+        java.lang.String[] r3;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r3 := @parameter2: java.lang.String[];
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public void visitUse(java.lang.String)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public transient void visitProvide(java.lang.String, java.lang.String[])
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2;
+        java.lang.String[] r3;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        r3 := @parameter1: java.lang.String[];
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public void visitModuleEnd()
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract void visit(java.lang.String, java.lang.Object);
+
+    public abstract void visitEnum(java.lang.String, java.lang.String, java.lang.String);
+
+    public abstract jdk.internal.org.objectweb.asm.util.Printer visitAnnotation(java.lang.String, java.lang.String);
+
+    public abstract jdk.internal.org.objectweb.asm.util.Printer visitArray(java.lang.String);
+
+    public abstract void visitAnnotationEnd();
+
+    public abstract jdk.internal.org.objectweb.asm.util.Printer visitFieldAnnotation(java.lang.String, boolean);
+
+    public jdk.internal.org.objectweb.asm.util.Printer visitFieldTypeAnnotation(int, jdk.internal.org.objectweb.asm.TypePath, java.lang.String, boolean)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        int i0;
+        jdk.internal.org.objectweb.asm.TypePath r2;
+        java.lang.String r3;
+        boolean z0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i0 := @parameter0: int;
+
+        r2 := @parameter1: jdk.internal.org.objectweb.asm.TypePath;
+
+        r3 := @parameter2: java.lang.String;
+
+        z0 := @parameter3: boolean;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract void visitFieldAttribute(jdk.internal.org.objectweb.asm.Attribute);
+
+    public abstract void visitFieldEnd();
+
+    public void visitParameter(java.lang.String, int)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.lang.String r2;
+        int i0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r2 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract jdk.internal.org.objectweb.asm.util.Printer visitAnnotationDefault();
+
+    public abstract jdk.internal.org.objectweb.asm.util.Printer visitMethodAnnotation(java.lang.String, boolean);
+
+    public jdk.internal.org.objectweb.asm.util.Printer visitMethodTypeAnnotation(int, jdk.internal.org.objectweb.asm.TypePath, java.lang.String, boolean)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        int i0;
+        jdk.internal.org.objectweb.asm.TypePath r2;
+        java.lang.String r3;
+        boolean z0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i0 := @parameter0: int;
+
+        r2 := @parameter1: jdk.internal.org.objectweb.asm.TypePath;
+
+        r3 := @parameter2: java.lang.String;
+
+        z0 := @parameter3: boolean;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public jdk.internal.org.objectweb.asm.util.Printer visitAnnotableParameterCount(int, boolean)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        int i0;
+        boolean z0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i0 := @parameter0: int;
+
+        z0 := @parameter1: boolean;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract jdk.internal.org.objectweb.asm.util.Printer visitParameterAnnotation(int, java.lang.String, boolean);
+
+    public abstract void visitMethodAttribute(jdk.internal.org.objectweb.asm.Attribute);
+
+    public abstract void visitCode();
+
+    public abstract void visitFrame(int, int, java.lang.Object[], int, java.lang.Object[]);
+
+    public abstract void visitInsn(int);
+
+    public abstract void visitIntInsn(int, int);
+
+    public abstract void visitVarInsn(int, int);
+
+    public abstract void visitTypeInsn(int, java.lang.String);
+
+    public abstract void visitFieldInsn(int, java.lang.String, java.lang.String, java.lang.String);
+
+    public void visitMethodInsn(int, java.lang.String, java.lang.String, java.lang.String)
+    {
+        jdk.internal.org.objectweb.asm.util.Printer r0;
+        int $i0, i1;
+        java.lang.UnsupportedOperationException $r1;
+        java.lang.String r2, r3, r4;
+        boolean $z1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i1 := @parameter0: int;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+        $i0 = r0.<jdk.internal.org.objectweb.asm.util.Printer: int api>;
+
+        if $i0 < 327680 goto label3;
+
+        if i1 != 185 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        virtualinvoke r0.<jdk.internal.org.objectweb.asm.util.Printer: void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String,boolean)>(i1, r2, r3, r4, $z1);
+
+        return;
+
+     label3:
+        $r1 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r1.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r1;
+    }
+
+    public void visitMethodInsn(int, java.lang.String, java.lang.String, java.lang.String, boolean)
+    {
+        jdk.internal.org.objectweb.asm.util.Printer r0;
+        int $i0, i1;
+        java.lang.UnsupportedOperationException $r1;
+        boolean z0, $z2;
+        java.lang.String r2, r3, r4;
+        java.lang.IllegalArgumentException $r5;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i1 := @parameter0: int;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+        z0 := @parameter4: boolean;
+
+        $i0 = r0.<jdk.internal.org.objectweb.asm.util.Printer: int api>;
+
+        if $i0 >= 327680 goto label4;
+
+        if i1 != 185 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        if z0 == $z2 goto label3;
+
+        $r5 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("INVOKESPECIAL/STATIC on interfaces require ASM 5");
+
+        throw $r5;
+
+     label3:
+        virtualinvoke r0.<jdk.internal.org.objectweb.asm.util.Printer: void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)>(i1, r2, r3, r4);
+
+        return;
+
+     label4:
+        $r1 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r1.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r1;
+    }
+
+    public abstract transient void visitInvokeDynamicInsn(java.lang.String, java.lang.String, jdk.internal.org.objectweb.asm.Handle, java.lang.Object[]);
+
+    public abstract void visitJumpInsn(int, jdk.internal.org.objectweb.asm.Label);
+
+    public abstract void visitLabel(jdk.internal.org.objectweb.asm.Label);
+
+    public abstract void visitLdcInsn(java.lang.Object);
+
+    public abstract void visitIincInsn(int, int);
+
+    public abstract transient void visitTableSwitchInsn(int, int, jdk.internal.org.objectweb.asm.Label, jdk.internal.org.objectweb.asm.Label[]);
+
+    public abstract void visitLookupSwitchInsn(jdk.internal.org.objectweb.asm.Label, int[], jdk.internal.org.objectweb.asm.Label[]);
+
+    public abstract void visitMultiANewArrayInsn(java.lang.String, int);
+
+    public jdk.internal.org.objectweb.asm.util.Printer visitInsnAnnotation(int, jdk.internal.org.objectweb.asm.TypePath, java.lang.String, boolean)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        int i0;
+        jdk.internal.org.objectweb.asm.TypePath r2;
+        java.lang.String r3;
+        boolean z0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i0 := @parameter0: int;
+
+        r2 := @parameter1: jdk.internal.org.objectweb.asm.TypePath;
+
+        r3 := @parameter2: java.lang.String;
+
+        z0 := @parameter3: boolean;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract void visitTryCatchBlock(jdk.internal.org.objectweb.asm.Label, jdk.internal.org.objectweb.asm.Label, jdk.internal.org.objectweb.asm.Label, java.lang.String);
+
+    public jdk.internal.org.objectweb.asm.util.Printer visitTryCatchAnnotation(int, jdk.internal.org.objectweb.asm.TypePath, java.lang.String, boolean)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        int i0;
+        jdk.internal.org.objectweb.asm.TypePath r2;
+        java.lang.String r3;
+        boolean z0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i0 := @parameter0: int;
+
+        r2 := @parameter1: jdk.internal.org.objectweb.asm.TypePath;
+
+        r3 := @parameter2: java.lang.String;
+
+        z0 := @parameter3: boolean;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract void visitLocalVariable(java.lang.String, java.lang.String, java.lang.String, jdk.internal.org.objectweb.asm.Label, jdk.internal.org.objectweb.asm.Label, int);
+
+    public jdk.internal.org.objectweb.asm.util.Printer visitLocalVariableAnnotation(int, jdk.internal.org.objectweb.asm.TypePath, jdk.internal.org.objectweb.asm.Label[], jdk.internal.org.objectweb.asm.Label[], int[], java.lang.String, boolean)
+    {
+        java.lang.UnsupportedOperationException $r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        int i0;
+        jdk.internal.org.objectweb.asm.TypePath r2;
+        jdk.internal.org.objectweb.asm.Label[] r3, r4;
+        int[] r5;
+        java.lang.String r6;
+        boolean z0;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        i0 := @parameter0: int;
+
+        r2 := @parameter1: jdk.internal.org.objectweb.asm.TypePath;
+
+        r3 := @parameter2: jdk.internal.org.objectweb.asm.Label[];
+
+        r4 := @parameter3: jdk.internal.org.objectweb.asm.Label[];
+
+        r5 := @parameter4: int[];
+
+        r6 := @parameter5: java.lang.String;
+
+        z0 := @parameter6: boolean;
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("Must be overridden");
+
+        throw $r0;
+    }
+
+    public abstract void visitLineNumber(int, jdk.internal.org.objectweb.asm.Label);
+
+    public abstract void visitMaxs(int, int);
+
+    public abstract void visitMethodEnd();
+
+    public java.util.List getText()
+    {
+        jdk.internal.org.objectweb.asm.util.Printer r0;
+        java.util.List $r1;
+
+        r0 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        $r1 = r0.<jdk.internal.org.objectweb.asm.util.Printer: java.util.List text>;
+
+        return $r1;
+    }
+
+    public void print(java.io.PrintWriter)
+    {
+        java.io.PrintWriter r0;
+        jdk.internal.org.objectweb.asm.util.Printer r1;
+        java.util.List $r2;
+
+        r1 := @this: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r0 := @parameter0: java.io.PrintWriter;
+
+        $r2 = r1.<jdk.internal.org.objectweb.asm.util.Printer: java.util.List text>;
+
+        staticinvoke <jdk.internal.org.objectweb.asm.util.Printer: void printList(java.io.PrintWriter,java.util.List)>(r0, $r2);
+
+        return;
+    }
+
+    static void printList(java.io.PrintWriter, java.util.List)
+    {
+        java.util.List r0, $r5;
+        java.util.Iterator r1;
+        boolean $z0, $z1;
+        java.lang.Object r2;
+        java.io.PrintWriter r3;
+        java.lang.String $r4;
+
+        r3 := @parameter0: java.io.PrintWriter;
+
+        r0 := @parameter1: java.util.List;
+
+        r1 = interfaceinvoke r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        r2 = interfaceinvoke r1.<java.util.Iterator: java.lang.Object next()>();
+
+        $z1 = r2 instanceof java.util.List;
+
+        if $z1 == 0 goto label2;
+
+        $r5 = (java.util.List) r2;
+
+        staticinvoke <jdk.internal.org.objectweb.asm.util.Printer: void printList(java.io.PrintWriter,java.util.List)>(r3, $r5);
+
+        goto label3;
+
+     label2:
+        $r4 = virtualinvoke r2.<java.lang.Object: java.lang.String toString()>();
+
+        virtualinvoke r3.<java.io.PrintWriter: void print(java.lang.String)>($r4);
+
+     label3:
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    public static void appendString(java.lang.StringBuffer, java.lang.String)
+    {
+        java.lang.StringBuilder $r0;
+        java.lang.String r2, $r4;
+        java.lang.StringBuffer r3;
+
+        r3 := @parameter0: java.lang.StringBuffer;
+
+        r2 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        staticinvoke <jdk.internal.org.objectweb.asm.util.Printer: void appendString(java.lang.StringBuilder,java.lang.String)>($r0, r2);
+
+        $r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r4);
+
+        return;
+    }
+
+    public static void appendString(java.lang.StringBuilder, java.lang.String)
+    {
+        java.lang.StringBuilder r0;
+        java.lang.String r2, $r14;
+        int $i0, i2;
+        char c1;
+
+        r0 := @parameter0: java.lang.StringBuilder;
+
+        r2 := @parameter1: java.lang.String;
+
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(34);
+
+        i2 = 0;
+
+     label01:
+        $i0 = virtualinvoke r2.<java.lang.String: int length()>();
+
+        if i2 >= $i0 goto label12;
+
+        c1 = virtualinvoke r2.<java.lang.String: char charAt(int)>(i2);
+
+        if c1 != 10 goto label02;
+
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\n");
+
+        goto label11;
+
+     label02:
+        if c1 != 13 goto label03;
+
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\r");
+
+        goto label11;
+
+     label03:
+        if c1 != 92 goto label04;
+
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\\\");
+
+        goto label11;
+
+     label04:
+        if c1 != 34 goto label05;
+
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\\"");
+
+        goto label11;
+
+     label05:
+        if c1 < 32 goto label06;
+
+        if c1 <= 127 goto label10;
+
+     label06:
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\u");
+
+        if c1 >= 16 goto label07;
+
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("000");
+
+        goto label09;
+
+     label07:
+        if c1 >= 256 goto label08;
+
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("00");
+
+        goto label09;
+
+     label08:
+        if c1 >= 4096 goto label09;
+
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(48);
+
+     label09:
+        $r14 = staticinvoke <java.lang.Integer: java.lang.String toString(int,int)>(c1, 16);
+
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        goto label11;
+
+     label10:
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(c1);
+
+     label11:
+        i2 = i2 + 1;
+
+        goto label01;
+
+     label12:
+        virtualinvoke r0.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(34);
+
+        return;
+    }
+
+    static void main(java.lang.String, jdk.internal.org.objectweb.asm.util.Printer, java.lang.String[]) throws java.io.IOException
+    {
+        java.lang.String[] r0;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.String r1, $r2, $r8, r12;
+        boolean $z0, $z1, $z2;
+        jdk.internal.org.objectweb.asm.util.TraceClassVisitor $r3;
+        jdk.internal.org.objectweb.asm.util.Printer r4;
+        java.io.PrintWriter $r5;
+        java.io.PrintStream $r6, $r11;
+        jdk.internal.org.objectweb.asm.ClassReader $r10, $r14;
+        byte b5;
+        java.io.FileInputStream $r13;
+
+        r1 := @parameter0: java.lang.String;
+
+        r4 := @parameter1: jdk.internal.org.objectweb.asm.util.Printer;
+
+        r0 := @parameter2: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 < 1 goto label1;
+
+        $i1 = lengthof r0;
+
+        if $i1 > 2 goto label1;
+
+        $r2 = r0[0];
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>("-debug");
+
+        if $z0 == 0 goto label2;
+
+        $i4 = lengthof r0;
+
+        if $i4 == 2 goto label2;
+
+     label1:
+        $r11 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>(r1);
+
+        return;
+
+     label2:
+        $r3 = new jdk.internal.org.objectweb.asm.util.TraceClassVisitor;
+
+        $r5 = new java.io.PrintWriter;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        specialinvoke $r5.<java.io.PrintWriter: void <init>(java.io.OutputStream)>($r6);
+
+        specialinvoke $r3.<jdk.internal.org.objectweb.asm.util.TraceClassVisitor: void <init>(jdk.internal.org.objectweb.asm.ClassVisitor,jdk.internal.org.objectweb.asm.util.Printer,java.io.PrintWriter)>(null, r4, $r5);
+
+        $r8 = r0[0];
+
+        $z1 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>("-debug");
+
+        if $z1 == 0 goto label3;
+
+        r12 = r0[1];
+
+        b5 = 2;
+
+        goto label4;
+
+     label3:
+        r12 = r0[0];
+
+        b5 = 0;
+
+     label4:
+        $z2 = virtualinvoke r12.<java.lang.String: boolean endsWith(java.lang.String)>(".class");
+
+        if $z2 != 0 goto label5;
+
+        $i2 = virtualinvoke r12.<java.lang.String: int indexOf(int)>(92);
+
+        if $i2 != -1 goto label5;
+
+        $i3 = virtualinvoke r12.<java.lang.String: int indexOf(int)>(47);
+
+        if $i3 == -1 goto label6;
+
+     label5:
+        $r13 = new java.io.FileInputStream;
+
+        specialinvoke $r13.<java.io.FileInputStream: void <init>(java.lang.String)>(r12);
+
+        $r14 = new jdk.internal.org.objectweb.asm.ClassReader;
+
+        specialinvoke $r14.<jdk.internal.org.objectweb.asm.ClassReader: void <init>(java.io.InputStream)>($r13);
+
+        virtualinvoke $r14.<jdk.internal.org.objectweb.asm.ClassReader: void accept(jdk.internal.org.objectweb.asm.ClassVisitor,int)>($r3, b5);
+
+        goto label7;
+
+     label6:
+        $r10 = new jdk.internal.org.objectweb.asm.ClassReader;
+
+        specialinvoke $r10.<jdk.internal.org.objectweb.asm.ClassReader: void <init>(java.lang.String)>(r12);
+
+        virtualinvoke $r10.<jdk.internal.org.objectweb.asm.ClassReader: void accept(jdk.internal.org.objectweb.asm.ClassVisitor,int)>($r3, b5);
+
+     label7:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0, $r1, $r2;
+
+        <jdk.internal.org.objectweb.asm.util.Printer: java.lang.String UNSUPPORTED_OPERATION> = "Must be overridden";
+
+        $r0 = newarray (java.lang.String)[200];
+
+        $r0[0] = "NOP";
+
+        $r0[1] = "ACONST_NULL";
+
+        $r0[2] = "ICONST_M1";
+
+        $r0[3] = "ICONST_0";
+
+        $r0[4] = "ICONST_1";
+
+        $r0[5] = "ICONST_2";
+
+        $r0[6] = "ICONST_3";
+
+        $r0[7] = "ICONST_4";
+
+        $r0[8] = "ICONST_5";
+
+        $r0[9] = "LCONST_0";
+
+        $r0[10] = "LCONST_1";
+
+        $r0[11] = "FCONST_0";
+
+        $r0[12] = "FCONST_1";
+
+        $r0[13] = "FCONST_2";
+
+        $r0[14] = "DCONST_0";
+
+        $r0[15] = "DCONST_1";
+
+        $r0[16] = "BIPUSH";
+
+        $r0[17] = "SIPUSH";
+
+        $r0[18] = "LDC";
+
+        $r0[19] = "LDC_W";
+
+        $r0[20] = "LDC2_W";
+
+        $r0[21] = "ILOAD";
+
+        $r0[22] = "LLOAD";
+
+        $r0[23] = "FLOAD";
+
+        $r0[24] = "DLOAD";
+
+        $r0[25] = "ALOAD";
+
+        $r0[26] = "ILOAD_0";
+
+        $r0[27] = "ILOAD_1";
+
+        $r0[28] = "ILOAD_2";
+
+        $r0[29] = "ILOAD_3";
+
+        $r0[30] = "LLOAD_0";
+
+        $r0[31] = "LLOAD_1";
+
+        $r0[32] = "LLOAD_2";
+
+        $r0[33] = "LLOAD_3";
+
+        $r0[34] = "FLOAD_0";
+
+        $r0[35] = "FLOAD_1";
+
+        $r0[36] = "FLOAD_2";
+
+        $r0[37] = "FLOAD_3";
+
+        $r0[38] = "DLOAD_0";
+
+        $r0[39] = "DLOAD_1";
+
+        $r0[40] = "DLOAD_2";
+
+        $r0[41] = "DLOAD_3";
+
+        $r0[42] = "ALOAD_0";
+
+        $r0[43] = "ALOAD_1";
+
+        $r0[44] = "ALOAD_2";
+
+        $r0[45] = "ALOAD_3";
+
+        $r0[46] = "IALOAD";
+
+        $r0[47] = "LALOAD";
+
+        $r0[48] = "FALOAD";
+
+        $r0[49] = "DALOAD";
+
+        $r0[50] = "AALOAD";
+
+        $r0[51] = "BALOAD";
+
+        $r0[52] = "CALOAD";
+
+        $r0[53] = "SALOAD";
+
+        $r0[54] = "ISTORE";
+
+        $r0[55] = "LSTORE";
+
+        $r0[56] = "FSTORE";
+
+        $r0[57] = "DSTORE";
+
+        $r0[58] = "ASTORE";
+
+        $r0[59] = "ISTORE_0";
+
+        $r0[60] = "ISTORE_1";
+
+        $r0[61] = "ISTORE_2";
+
+        $r0[62] = "ISTORE_3";
+
+        $r0[63] = "LSTORE_0";
+
+        $r0[64] = "LSTORE_1";
+
+        $r0[65] = "LSTORE_2";
+
+        $r0[66] = "LSTORE_3";
+
+        $r0[67] = "FSTORE_0";
+
+        $r0[68] = "FSTORE_1";
+
+        $r0[69] = "FSTORE_2";
+
+        $r0[70] = "FSTORE_3";
+
+        $r0[71] = "DSTORE_0";
+
+        $r0[72] = "DSTORE_1";
+
+        $r0[73] = "DSTORE_2";
+
+        $r0[74] = "DSTORE_3";
+
+        $r0[75] = "ASTORE_0";
+
+        $r0[76] = "ASTORE_1";
+
+        $r0[77] = "ASTORE_2";
+
+        $r0[78] = "ASTORE_3";
+
+        $r0[79] = "IASTORE";
+
+        $r0[80] = "LASTORE";
+
+        $r0[81] = "FASTORE";
+
+        $r0[82] = "DASTORE";
+
+        $r0[83] = "AASTORE";
+
+        $r0[84] = "BASTORE";
+
+        $r0[85] = "CASTORE";
+
+        $r0[86] = "SASTORE";
+
+        $r0[87] = "POP";
+
+        $r0[88] = "POP2";
+
+        $r0[89] = "DUP";
+
+        $r0[90] = "DUP_X1";
+
+        $r0[91] = "DUP_X2";
+
+        $r0[92] = "DUP2";
+
+        $r0[93] = "DUP2_X1";
+
+        $r0[94] = "DUP2_X2";
+
+        $r0[95] = "SWAP";
+
+        $r0[96] = "IADD";
+
+        $r0[97] = "LADD";
+
+        $r0[98] = "FADD";
+
+        $r0[99] = "DADD";
+
+        $r0[100] = "ISUB";
+
+        $r0[101] = "LSUB";
+
+        $r0[102] = "FSUB";
+
+        $r0[103] = "DSUB";
+
+        $r0[104] = "IMUL";
+
+        $r0[105] = "LMUL";
+
+        $r0[106] = "FMUL";
+
+        $r0[107] = "DMUL";
+
+        $r0[108] = "IDIV";
+
+        $r0[109] = "LDIV";
+
+        $r0[110] = "FDIV";
+
+        $r0[111] = "DDIV";
+
+        $r0[112] = "IREM";
+
+        $r0[113] = "LREM";
+
+        $r0[114] = "FREM";
+
+        $r0[115] = "DREM";
+
+        $r0[116] = "INEG";
+
+        $r0[117] = "LNEG";
+
+        $r0[118] = "FNEG";
+
+        $r0[119] = "DNEG";
+
+        $r0[120] = "ISHL";
+
+        $r0[121] = "LSHL";
+
+        $r0[122] = "ISHR";
+
+        $r0[123] = "LSHR";
+
+        $r0[124] = "IUSHR";
+
+        $r0[125] = "LUSHR";
+
+        $r0[126] = "IAND";
+
+        $r0[127] = "LAND";
+
+        $r0[128] = "IOR";
+
+        $r0[129] = "LOR";
+
+        $r0[130] = "IXOR";
+
+        $r0[131] = "LXOR";
+
+        $r0[132] = "IINC";
+
+        $r0[133] = "I2L";
+
+        $r0[134] = "I2F";
+
+        $r0[135] = "I2D";
+
+        $r0[136] = "L2I";
+
+        $r0[137] = "L2F";
+
+        $r0[138] = "L2D";
+
+        $r0[139] = "F2I";
+
+        $r0[140] = "F2L";
+
+        $r0[141] = "F2D";
+
+        $r0[142] = "D2I";
+
+        $r0[143] = "D2L";
+
+        $r0[144] = "D2F";
+
+        $r0[145] = "I2B";
+
+        $r0[146] = "I2C";
+
+        $r0[147] = "I2S";
+
+        $r0[148] = "LCMP";
+
+        $r0[149] = "FCMPL";
+
+        $r0[150] = "FCMPG";
+
+        $r0[151] = "DCMPL";
+
+        $r0[152] = "DCMPG";
+
+        $r0[153] = "IFEQ";
+
+        $r0[154] = "IFNE";
+
+        $r0[155] = "IFLT";
+
+        $r0[156] = "IFGE";
+
+        $r0[157] = "IFGT";
+
+        $r0[158] = "IFLE";
+
+        $r0[159] = "IF_ICMPEQ";
+
+        $r0[160] = "IF_ICMPNE";
+
+        $r0[161] = "IF_ICMPLT";
+
+        $r0[162] = "IF_ICMPGE";
+
+        $r0[163] = "IF_ICMPGT";
+
+        $r0[164] = "IF_ICMPLE";
+
+        $r0[165] = "IF_ACMPEQ";
+
+        $r0[166] = "IF_ACMPNE";
+
+        $r0[167] = "GOTO";
+
+        $r0[168] = "JSR";
+
+        $r0[169] = "RET";
+
+        $r0[170] = "TABLESWITCH";
+
+        $r0[171] = "LOOKUPSWITCH";
+
+        $r0[172] = "IRETURN";
+
+        $r0[173] = "LRETURN";
+
+        $r0[174] = "FRETURN";
+
+        $r0[175] = "DRETURN";
+
+        $r0[176] = "ARETURN";
+
+        $r0[177] = "RETURN";
+
+        $r0[178] = "GETSTATIC";
+
+        $r0[179] = "PUTSTATIC";
+
+        $r0[180] = "GETFIELD";
+
+        $r0[181] = "PUTFIELD";
+
+        $r0[182] = "INVOKEVIRTUAL";
+
+        $r0[183] = "INVOKESPECIAL";
+
+        $r0[184] = "INVOKESTATIC";
+
+        $r0[185] = "INVOKEINTERFACE";
+
+        $r0[186] = "INVOKEDYNAMIC";
+
+        $r0[187] = "NEW";
+
+        $r0[188] = "NEWARRAY";
+
+        $r0[189] = "ANEWARRAY";
+
+        $r0[190] = "ARRAYLENGTH";
+
+        $r0[191] = "ATHROW";
+
+        $r0[192] = "CHECKCAST";
+
+        $r0[193] = "INSTANCEOF";
+
+        $r0[194] = "MONITORENTER";
+
+        $r0[195] = "MONITOREXIT";
+
+        $r0[196] = "WIDE";
+
+        $r0[197] = "MULTIANEWARRAY";
+
+        $r0[198] = "IFNULL";
+
+        $r0[199] = "IFNONNULL";
+
+        <jdk.internal.org.objectweb.asm.util.Printer: java.lang.String[] OPCODES> = $r0;
+
+        $r1 = newarray (java.lang.String)[12];
+
+        $r1[0] = "";
+
+        $r1[1] = "";
+
+        $r1[2] = "";
+
+        $r1[3] = "";
+
+        $r1[4] = "T_BOOLEAN";
+
+        $r1[5] = "T_CHAR";
+
+        $r1[6] = "T_FLOAT";
+
+        $r1[7] = "T_DOUBLE";
+
+        $r1[8] = "T_BYTE";
+
+        $r1[9] = "T_SHORT";
+
+        $r1[10] = "T_INT";
+
+        $r1[11] = "T_LONG";
+
+        <jdk.internal.org.objectweb.asm.util.Printer: java.lang.String[] TYPES> = $r1;
+
+        $r2 = newarray (java.lang.String)[10];
+
+        $r2[0] = "";
+
+        $r2[1] = "H_GETFIELD";
+
+        $r2[2] = "H_GETSTATIC";
+
+        $r2[3] = "H_PUTFIELD";
+
+        $r2[4] = "H_PUTSTATIC";
+
+        $r2[5] = "H_INVOKEVIRTUAL";
+
+        $r2[6] = "H_INVOKESTATIC";
+
+        $r2[7] = "H_INVOKESPECIAL";
+
+        $r2[8] = "H_NEWINVOKESPECIAL";
+
+        $r2[9] = "H_INVOKEINTERFACE";
+
+        <jdk.internal.org.objectweb.asm.util.Printer: java.lang.String[] HANDLE_TAG> = $r2;
+
+        return;
+    }
+}

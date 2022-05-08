@@ -1,0 +1,37 @@
+public interface  jdk.internal.access.JavaLangReflectAccess extends java.lang.Object
+{
+
+    public abstract java.lang.reflect.Constructor newConstructor(java.lang.Class, java.lang.Class[], java.lang.Class[], int, int, java.lang.String, byte[], byte[]);
+
+    public abstract jdk.internal.reflect.MethodAccessor getMethodAccessor(java.lang.reflect.Method);
+
+    public abstract void setMethodAccessor(java.lang.reflect.Method, jdk.internal.reflect.MethodAccessor);
+
+    public abstract jdk.internal.reflect.ConstructorAccessor getConstructorAccessor(java.lang.reflect.Constructor);
+
+    public abstract void setConstructorAccessor(java.lang.reflect.Constructor, jdk.internal.reflect.ConstructorAccessor);
+
+    public abstract byte[] getExecutableTypeAnnotationBytes(java.lang.reflect.Executable);
+
+    public abstract int getConstructorSlot(java.lang.reflect.Constructor);
+
+    public abstract java.lang.String getConstructorSignature(java.lang.reflect.Constructor);
+
+    public abstract byte[] getConstructorAnnotations(java.lang.reflect.Constructor);
+
+    public abstract byte[] getConstructorParameterAnnotations(java.lang.reflect.Constructor);
+
+    public abstract java.lang.Class[] getExecutableSharedParameterTypes(java.lang.reflect.Executable);
+
+    public abstract java.lang.reflect.Method copyMethod(java.lang.reflect.Method);
+
+    public abstract java.lang.reflect.Method leafCopyMethod(java.lang.reflect.Method);
+
+    public abstract java.lang.reflect.Field copyField(java.lang.reflect.Field);
+
+    public abstract java.lang.reflect.Constructor copyConstructor(java.lang.reflect.Constructor);
+
+    public abstract java.lang.reflect.AccessibleObject getRoot(java.lang.reflect.AccessibleObject);
+
+    public abstract java.lang.Object newInstance(java.lang.reflect.Constructor, java.lang.Object[], java.lang.Class) throws java.lang.IllegalAccessException, java.lang.InstantiationException, java.lang.reflect.InvocationTargetException;
+}

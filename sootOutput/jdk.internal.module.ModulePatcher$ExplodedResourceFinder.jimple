@@ -1,0 +1,145 @@
+class jdk.internal.module.ModulePatcher$ExplodedResourceFinder extends java.lang.Object implements jdk.internal.module.ModulePatcher$ResourceFinder
+{
+    private final java.nio.file.Path dir;
+
+    void <init>(java.nio.file.Path)
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder r0;
+        java.nio.file.Path r1;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder: java.nio.file.Path dir> = r1;
+
+        return;
+    }
+
+    public void close()
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder r0;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder;
+
+        return;
+    }
+
+    public jdk.internal.loader.Resource find(java.lang.String) throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder r0;
+        java.lang.String r1;
+        java.nio.file.Path $r2, r3, $r4;
+        jdk.internal.loader.Resource $r5;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder: java.nio.file.Path dir>;
+
+        r3 = staticinvoke <jdk.internal.module.Resources: java.nio.file.Path toFilePath(java.nio.file.Path,java.lang.String)>($r2, r1);
+
+        if r3 == null goto label1;
+
+        $r4 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder: java.nio.file.Path dir>;
+
+        $r5 = virtualinvoke r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder: jdk.internal.loader.Resource newResource(java.lang.String,java.nio.file.Path,java.nio.file.Path)>(r1, $r4, r3);
+
+        return $r5;
+
+     label1:
+        return null;
+    }
+
+    private jdk.internal.loader.Resource newResource(java.lang.String, java.nio.file.Path, java.nio.file.Path)
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1 $r0;
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder r1;
+        java.lang.String r2;
+        java.nio.file.Path r3, r4;
+
+        r1 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder;
+
+        r2 := @parameter0: java.lang.String;
+
+        r4 := @parameter1: java.nio.file.Path;
+
+        r3 := @parameter2: java.nio.file.Path;
+
+        $r0 = new jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1;
+
+        specialinvoke $r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder$1: void <init>(jdk.internal.module.ModulePatcher$ExplodedResourceFinder,java.lang.String,java.nio.file.Path,java.nio.file.Path)>(r1, r2, r3, r4);
+
+        return $r0;
+    }
+
+    public java.util.stream.Stream list() throws java.io.IOException
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder r0;
+        java.nio.file.FileVisitOption[] $r1;
+        java.nio.file.Path $r2;
+        java.util.stream.Stream $r3, $r5, $r7;
+        java.util.function.Function $r4;
+        java.util.function.Predicate $r6;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder;
+
+        $r2 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder: java.nio.file.Path dir>;
+
+        $r1 = newarray (java.nio.file.FileVisitOption)[0];
+
+        $r3 = staticinvoke <java.nio.file.Files: java.util.stream.Stream walk(java.nio.file.Path,int,java.nio.file.FileVisitOption[])>($r2, 2147483647, $r1);
+
+        $r4 = staticinvoke <jdk.internal.module.ModulePatcher$ExplodedResourceFinder$lambda_list_0__138: java.util.function.Function bootstrap$(jdk.internal.module.ModulePatcher$ExplodedResourceFinder)>(r0);
+
+        $r5 = interfaceinvoke $r3.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r4);
+
+        $r6 = staticinvoke <jdk.internal.module.ModulePatcher$ExplodedResourceFinder$lambda_list_1__139: java.util.function.Predicate bootstrap$()>();
+
+        $r7 = interfaceinvoke $r5.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r6);
+
+        return $r7;
+    }
+
+    public static boolean lambda$list$1(java.lang.String)
+    {
+        java.lang.String r0;
+        boolean $z0, $z1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    public java.lang.String lambda$list$0(java.nio.file.Path)
+    {
+        jdk.internal.module.ModulePatcher$ExplodedResourceFinder r0;
+        java.nio.file.Path r1, $r2;
+        java.lang.String $r3;
+
+        r0 := @this: jdk.internal.module.ModulePatcher$ExplodedResourceFinder;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+        $r2 = r0.<jdk.internal.module.ModulePatcher$ExplodedResourceFinder: java.nio.file.Path dir>;
+
+        $r3 = staticinvoke <jdk.internal.module.Resources: java.lang.String toResourceName(java.nio.file.Path,java.nio.file.Path)>($r2, r1);
+
+        return $r3;
+    }
+}

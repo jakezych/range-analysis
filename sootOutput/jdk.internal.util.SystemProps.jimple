@@ -1,0 +1,338 @@
+public final class jdk.internal.util.SystemProps extends java.lang.Object
+{
+    static final boolean $assertionsDisabled;
+
+    private void <init>()
+    {
+        jdk.internal.util.SystemProps r0;
+
+        r0 := @this: jdk.internal.util.SystemProps;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.util.Map initProperties()
+    {
+        jdk.internal.util.SystemProps$Raw $r0;
+        java.util.HashMap r2;
+        java.lang.Object $r3;
+        java.lang.String r4, $r5, $r6, $r7, $r8, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30, $r31, $r32, $r33, $r34, $r35, $r36, $r37, $r38, $r39, $r40, $r41, $r42, $r43, $r44, $r47;
+        boolean $z0;
+        java.lang.AssertionError $r46;
+
+        $r0 = new jdk.internal.util.SystemProps$Raw;
+
+        specialinvoke $r0.<jdk.internal.util.SystemProps$Raw: void <init>()>();
+
+        r2 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.util.HashMap cmdProperties()>();
+
+        $r3 = virtualinvoke r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("java.home");
+
+        r4 = (java.lang.String) $r3;
+
+        $z0 = <jdk.internal.util.SystemProps: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label1;
+
+        if r4 != null goto label1;
+
+        $r46 = new java.lang.AssertionError;
+
+        specialinvoke $r46.<java.lang.AssertionError: void <init>(java.lang.Object)>("java.home not set");
+
+        throw $r46;
+
+     label1:
+        $r5 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(37);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "user.home", $r5);
+
+        $r6 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(36);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "user.dir", $r6);
+
+        $r7 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(38);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "user.name", $r7);
+
+        $r8 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(32);
+
+        staticinvoke <jdk.internal.util.SystemProps: void put(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "sun.jnu.encoding", $r8);
+
+        $r10 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(4);
+
+        if $r10 != null goto label2;
+
+        $r47 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(32);
+
+        goto label3;
+
+     label2:
+        $r47 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(4);
+
+     label3:
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "file.encoding", $r47);
+
+        $r11 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(21);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "os.name", $r11);
+
+        $r12 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(20);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "os.arch", $r12);
+
+        $r13 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(22);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "os.version", $r13);
+
+        $r14 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(19);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "line.separator", $r14);
+
+        $r15 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(5);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "file.separator", $r15);
+
+        $r16 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(23);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "path.separator", $r16);
+
+        $r17 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(18);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "java.io.tmpdir", $r17);
+
+        $r18 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(14);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "http.proxyHost", $r18);
+
+        $r19 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(15);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "http.proxyPort", $r19);
+
+        $r20 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(16);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "https.proxyHost", $r20);
+
+        $r21 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(17);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "https.proxyPort", $r21);
+
+        $r22 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(11);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "ftp.proxyHost", $r22);
+
+        $r23 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(12);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "ftp.proxyPort", $r23);
+
+        $r24 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(25);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "socksProxyHost", $r24);
+
+        $r25 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(26);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "socksProxyPort", $r25);
+
+        $r26 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(13);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "http.nonProxyHosts", $r26);
+
+        $r27 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(10);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "ftp.nonProxyHosts", $r27);
+
+        $r28 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(24);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "socksNonProxyHosts", $r28);
+
+        $r29 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(27);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "sun.arch.abi", $r29);
+
+        $r30 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(28);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "sun.arch.data.model", $r30);
+
+        $r31 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(33);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "sun.os.patch.level", $r31);
+
+        $r32 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(35);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "sun.stdout.encoding", $r32);
+
+        $r33 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(34);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "sun.stderr.encoding", $r33);
+
+        $r34 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(31);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "sun.io.unicode.encoding", $r34);
+
+        $r35 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(30);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "sun.cpu.isalist", $r35);
+
+        $r36 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(29);
+
+        staticinvoke <jdk.internal.util.SystemProps: void putIfAbsent(java.util.HashMap,java.lang.String,java.lang.String)>(r2, "sun.cpu.endian", $r36);
+
+        $r37 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(1);
+
+        $r38 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(7);
+
+        staticinvoke <jdk.internal.util.SystemProps: void fillI18nProps(java.util.HashMap,java.lang.String,java.lang.String,java.lang.String)>(r2, "user.language", $r37, $r38);
+
+        $r39 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(2);
+
+        $r40 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(8);
+
+        staticinvoke <jdk.internal.util.SystemProps: void fillI18nProps(java.util.HashMap,java.lang.String,java.lang.String,java.lang.String)>(r2, "user.script", $r39, $r40);
+
+        $r41 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(0);
+
+        $r42 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(6);
+
+        staticinvoke <jdk.internal.util.SystemProps: void fillI18nProps(java.util.HashMap,java.lang.String,java.lang.String,java.lang.String)>(r2, "user.country", $r41, $r42);
+
+        $r43 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(3);
+
+        $r44 = virtualinvoke $r0.<jdk.internal.util.SystemProps$Raw: java.lang.String propDefault(int)>(9);
+
+        staticinvoke <jdk.internal.util.SystemProps: void fillI18nProps(java.util.HashMap,java.lang.String,java.lang.String,java.lang.String)>(r2, "user.variant", $r43, $r44);
+
+        return r2;
+    }
+
+    private static void put(java.util.HashMap, java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r2;
+        java.util.HashMap r1;
+
+        r1 := @parameter0: java.util.HashMap;
+
+        r2 := @parameter1: java.lang.String;
+
+        r0 := @parameter2: java.lang.String;
+
+        if r0 == null goto label1;
+
+        virtualinvoke r1.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r2, r0);
+
+     label1:
+        return;
+    }
+
+    private static void putIfAbsent(java.util.HashMap, java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r2;
+        java.util.HashMap r1;
+
+        r1 := @parameter0: java.util.HashMap;
+
+        r2 := @parameter1: java.lang.String;
+
+        r0 := @parameter2: java.lang.String;
+
+        if r0 == null goto label1;
+
+        virtualinvoke r1.<java.util.HashMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>(r2, r0);
+
+     label1:
+        return;
+    }
+
+    private static void fillI18nProps(java.util.HashMap, java.lang.String, java.lang.String, java.lang.String)
+    {
+        java.util.HashMap r0;
+        java.lang.String r1, r3, r4, r6, r7, r8, r9, r13;
+        java.lang.Object $r2, $r5, $r14;
+        boolean $z0, $z1;
+
+        r0 := @parameter0: java.util.HashMap;
+
+        r1 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r9 := @parameter3: java.lang.String;
+
+        $r2 = virtualinvoke r0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r1);
+
+        r13 = (java.lang.String) $r2;
+
+        if r13 == null goto label1;
+
+        return;
+
+     label1:
+        if r3 == null goto label2;
+
+        virtualinvoke r0.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r1, r3);
+
+        r13 = r3;
+
+     label2:
+        r4 = virtualinvoke r1.<java.lang.String: java.lang.String concat(java.lang.String)>(".display");
+
+        $r5 = virtualinvoke r0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r4);
+
+        r6 = (java.lang.String) $r5;
+
+        if r6 != null goto label3;
+
+        if r3 == null goto label3;
+
+        $z1 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(r13);
+
+        if $z1 != 0 goto label3;
+
+        virtualinvoke r0.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r4, r3);
+
+     label3:
+        r7 = virtualinvoke r1.<java.lang.String: java.lang.String concat(java.lang.String)>(".format");
+
+        $r14 = virtualinvoke r0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r7);
+
+        r8 = (java.lang.String) $r14;
+
+        if r8 != null goto label4;
+
+        if r9 == null goto label4;
+
+        $z0 = virtualinvoke r9.<java.lang.String: boolean equals(java.lang.Object)>(r13);
+
+        if $z0 != 0 goto label4;
+
+        virtualinvoke r0.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r7, r9);
+
+     label4:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+
+        $r0 = class "Ljdk/internal/util/SystemProps;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <jdk.internal.util.SystemProps: boolean $assertionsDisabled> = $z1;
+
+        return;
+    }
+}

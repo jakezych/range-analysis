@@ -1,0 +1,131 @@
+final class jdk.internal.logger.DefaultLoggerFinder$SharedLoggers extends java.lang.Object
+{
+    private final java.util.Map loggers;
+    private final java.lang.ref.ReferenceQueue queue;
+    static final jdk.internal.logger.DefaultLoggerFinder$SharedLoggers system;
+    static final jdk.internal.logger.DefaultLoggerFinder$SharedLoggers application;
+
+    void <init>()
+    {
+        jdk.internal.logger.DefaultLoggerFinder$SharedLoggers r0;
+        java.util.HashMap $r1;
+        java.lang.ref.ReferenceQueue $r2;
+
+        r0 := @this: jdk.internal.logger.DefaultLoggerFinder$SharedLoggers;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        r0.<jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: java.util.Map loggers> = $r1;
+
+        $r2 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r2.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        r0.<jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: java.lang.ref.ReferenceQueue queue> = $r2;
+
+        return;
+    }
+
+    synchronized java.lang.System$Logger get(java.util.function.Function, java.lang.String)
+    {
+        jdk.internal.logger.DefaultLoggerFinder$SharedLoggers r0;
+        java.lang.String r1;
+        java.util.Map $r2, $r5, $r10;
+        java.lang.Object $r3, $r4, $r7;
+        java.util.function.Function r6;
+        java.lang.ref.WeakReference $r8;
+        java.lang.ref.ReferenceQueue $r9, $r16;
+        java.lang.ref.Reference r12, $r17;
+        java.lang.System$Logger $r13, r14;
+        java.util.Collection r15;
+
+        r0 := @this: jdk.internal.logger.DefaultLoggerFinder$SharedLoggers;
+
+        r6 := @parameter0: java.util.function.Function;
+
+        r1 := @parameter1: java.lang.String;
+
+        $r2 = r0.<jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: java.util.Map loggers>;
+
+        $r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1);
+
+        r12 = (java.lang.ref.Reference) $r3;
+
+        if r12 != null goto label1;
+
+        $r13 = null;
+
+        goto label2;
+
+     label1:
+        $r4 = virtualinvoke r12.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        $r13 = (java.lang.System$Logger) $r4;
+
+     label2:
+        r14 = $r13;
+
+        if $r13 != null goto label3;
+
+        $r7 = interfaceinvoke r6.<java.util.function.Function: java.lang.Object apply(java.lang.Object)>(r1);
+
+        r14 = (java.lang.System$Logger) $r7;
+
+        $r10 = r0.<jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: java.util.Map loggers>;
+
+        $r8 = new java.lang.ref.WeakReference;
+
+        $r9 = r0.<jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: java.lang.ref.ReferenceQueue queue>;
+
+        specialinvoke $r8.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>(r14, $r9);
+
+        interfaceinvoke $r10.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r1, $r8);
+
+     label3:
+        r15 = null;
+
+     label4:
+        $r16 = r0.<jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: java.lang.ref.ReferenceQueue queue>;
+
+        $r17 = virtualinvoke $r16.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference poll()>();
+
+        if $r17 == null goto label6;
+
+        if r15 != null goto label5;
+
+        $r5 = r0.<jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: java.util.Map loggers>;
+
+        r15 = interfaceinvoke $r5.<java.util.Map: java.util.Collection values()>();
+
+     label5:
+        interfaceinvoke r15.<java.util.Collection: boolean remove(java.lang.Object)>($r17);
+
+        goto label4;
+
+     label6:
+        return r14;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.logger.DefaultLoggerFinder$SharedLoggers $r0, $r1;
+
+        $r0 = new jdk.internal.logger.DefaultLoggerFinder$SharedLoggers;
+
+        specialinvoke $r0.<jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: void <init>()>();
+
+        <jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: jdk.internal.logger.DefaultLoggerFinder$SharedLoggers system> = $r0;
+
+        $r1 = new jdk.internal.logger.DefaultLoggerFinder$SharedLoggers;
+
+        specialinvoke $r1.<jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: void <init>()>();
+
+        <jdk.internal.logger.DefaultLoggerFinder$SharedLoggers: jdk.internal.logger.DefaultLoggerFinder$SharedLoggers application> = $r1;
+
+        return;
+    }
+}

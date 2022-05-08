@@ -1,0 +1,63 @@
+public final class jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154 extends java.lang.Object implements jdk.internal.jimage.ImageReader$SharedImageReader$LocationVisitor
+{
+    jdk.internal.jimage.ImageReader$SharedImageReader cap0;
+    jdk.internal.jimage.ImageReader$Directory cap1;
+
+    public static jdk.internal.jimage.ImageReader$SharedImageReader$LocationVisitor bootstrap$(jdk.internal.jimage.ImageReader$SharedImageReader, jdk.internal.jimage.ImageReader$Directory)
+    {
+        jdk.internal.jimage.ImageReader$SharedImageReader $r0;
+        jdk.internal.jimage.ImageReader$Directory $r1;
+        jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154 $r2;
+
+        $r0 := @parameter0: jdk.internal.jimage.ImageReader$SharedImageReader;
+
+        $r1 := @parameter1: jdk.internal.jimage.ImageReader$Directory;
+
+        $r2 = new jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154;
+
+        specialinvoke $r2.<jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154: void <init>(jdk.internal.jimage.ImageReader$SharedImageReader,jdk.internal.jimage.ImageReader$Directory)>($r0, $r1);
+
+        return $r2;
+    }
+
+    public void <init>(jdk.internal.jimage.ImageReader$SharedImageReader, jdk.internal.jimage.ImageReader$Directory)
+    {
+        jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154 $r0;
+        jdk.internal.jimage.ImageReader$SharedImageReader $r1;
+        jdk.internal.jimage.ImageReader$Directory $r2;
+
+        $r0 := @this: jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154;
+
+        $r1 := @parameter0: jdk.internal.jimage.ImageReader$SharedImageReader;
+
+        $r2 := @parameter1: jdk.internal.jimage.ImageReader$Directory;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154: jdk.internal.jimage.ImageReader$SharedImageReader cap0> = $r1;
+
+        $r0.<jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154: jdk.internal.jimage.ImageReader$Directory cap1> = $r2;
+
+        return;
+    }
+
+    public void visit(jdk.internal.jimage.ImageLocation)
+    {
+        jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154 $r0;
+        jdk.internal.jimage.ImageLocation $r1;
+        jdk.internal.jimage.ImageReader$SharedImageReader $r2;
+        jdk.internal.jimage.ImageReader$Directory $r3;
+
+        $r0 := @this: jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154;
+
+        $r1 := @parameter0: jdk.internal.jimage.ImageLocation;
+
+        $r2 = $r0.<jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154: jdk.internal.jimage.ImageReader$SharedImageReader cap0>;
+
+        $r3 = $r0.<jdk.internal.jimage.ImageReader$SharedImageReader$lambda_handleModulesSubTree_1__154: jdk.internal.jimage.ImageReader$Directory cap1>;
+
+        virtualinvoke $r2.<jdk.internal.jimage.ImageReader$SharedImageReader: void lambda$handleModulesSubTree$1(jdk.internal.jimage.ImageReader$Directory,jdk.internal.jimage.ImageLocation)>($r3, $r1);
+
+        return;
+    }
+}

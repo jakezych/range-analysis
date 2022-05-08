@@ -1,0 +1,19 @@
+public class jdk.internal.misc.OSEnvironment extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        jdk.internal.misc.OSEnvironment r0;
+
+        r0 := @this: jdk.internal.misc.OSEnvironment;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void initialize()
+    {
+        return;
+    }
+}

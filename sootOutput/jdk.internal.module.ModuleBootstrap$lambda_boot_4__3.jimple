@@ -1,0 +1,55 @@
+public final class jdk.internal.module.ModuleBootstrap$lambda_boot_4__3 extends java.lang.Object implements java.util.function.Predicate
+{
+    java.lang.module.Configuration cap0;
+
+    public static java.util.function.Predicate bootstrap$(java.lang.module.Configuration)
+    {
+        java.lang.module.Configuration $r0;
+        jdk.internal.module.ModuleBootstrap$lambda_boot_4__3 $r1;
+
+        $r0 := @parameter0: java.lang.module.Configuration;
+
+        $r1 = new jdk.internal.module.ModuleBootstrap$lambda_boot_4__3;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleBootstrap$lambda_boot_4__3: void <init>(java.lang.module.Configuration)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(java.lang.module.Configuration)
+    {
+        jdk.internal.module.ModuleBootstrap$lambda_boot_4__3 $r0;
+        java.lang.module.Configuration $r1;
+
+        $r0 := @this: jdk.internal.module.ModuleBootstrap$lambda_boot_4__3;
+
+        $r1 := @parameter0: java.lang.module.Configuration;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModuleBootstrap$lambda_boot_4__3: java.lang.module.Configuration cap0> = $r1;
+
+        return;
+    }
+
+    public boolean test(java.lang.Object)
+    {
+        jdk.internal.module.ModuleBootstrap$lambda_boot_4__3 $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2;
+        java.lang.module.Configuration $r3;
+        boolean $z0;
+
+        $r0 := @this: jdk.internal.module.ModuleBootstrap$lambda_boot_4__3;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.String) $r1;
+
+        $r3 = $r0.<jdk.internal.module.ModuleBootstrap$lambda_boot_4__3: java.lang.module.Configuration cap0>;
+
+        $z0 = staticinvoke <jdk.internal.module.ModuleBootstrap: boolean lambda$boot$4(java.lang.module.Configuration,java.lang.String)>($r3, $r2);
+
+        return $z0;
+    }
+}

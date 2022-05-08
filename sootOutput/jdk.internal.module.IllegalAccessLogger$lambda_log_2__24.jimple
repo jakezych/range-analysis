@@ -1,0 +1,55 @@
+public final class jdk.internal.module.IllegalAccessLogger$lambda_log_2__24 extends java.lang.Object implements java.util.function.Function
+{
+    jdk.internal.module.IllegalAccessLogger cap0;
+
+    public static java.util.function.Function bootstrap$(jdk.internal.module.IllegalAccessLogger)
+    {
+        jdk.internal.module.IllegalAccessLogger $r0;
+        jdk.internal.module.IllegalAccessLogger$lambda_log_2__24 $r1;
+
+        $r0 := @parameter0: jdk.internal.module.IllegalAccessLogger;
+
+        $r1 = new jdk.internal.module.IllegalAccessLogger$lambda_log_2__24;
+
+        specialinvoke $r1.<jdk.internal.module.IllegalAccessLogger$lambda_log_2__24: void <init>(jdk.internal.module.IllegalAccessLogger)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(jdk.internal.module.IllegalAccessLogger)
+    {
+        jdk.internal.module.IllegalAccessLogger$lambda_log_2__24 $r0;
+        jdk.internal.module.IllegalAccessLogger $r1;
+
+        $r0 := @this: jdk.internal.module.IllegalAccessLogger$lambda_log_2__24;
+
+        $r1 := @parameter0: jdk.internal.module.IllegalAccessLogger;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.IllegalAccessLogger$lambda_log_2__24: jdk.internal.module.IllegalAccessLogger cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object apply(java.lang.Object)
+    {
+        jdk.internal.module.IllegalAccessLogger$lambda_log_2__24 $r0;
+        java.lang.Object $r1;
+        java.util.stream.Stream $r2;
+        jdk.internal.module.IllegalAccessLogger $r3;
+        java.util.List $r4;
+
+        $r0 := @this: jdk.internal.module.IllegalAccessLogger$lambda_log_2__24;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.util.stream.Stream) $r1;
+
+        $r3 = $r0.<jdk.internal.module.IllegalAccessLogger$lambda_log_2__24: jdk.internal.module.IllegalAccessLogger cap0>;
+
+        $r4 = virtualinvoke $r3.<jdk.internal.module.IllegalAccessLogger: java.util.List lambda$log$2(java.util.stream.Stream)>($r2);
+
+        return $r4;
+    }
+}

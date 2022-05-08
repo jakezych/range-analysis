@@ -1,0 +1,43 @@
+class jdk.internal.misc.Signal$1 extends java.lang.Object implements java.lang.Runnable
+{
+    final jdk.internal.misc.Signal$Handler val$handler;
+    final jdk.internal.misc.Signal val$sig;
+
+    void <init>(jdk.internal.misc.Signal$Handler, jdk.internal.misc.Signal)
+    {
+        jdk.internal.misc.Signal$1 r0;
+        jdk.internal.misc.Signal$Handler r1;
+        jdk.internal.misc.Signal r2;
+
+        r0 := @this: jdk.internal.misc.Signal$1;
+
+        r1 := @parameter0: jdk.internal.misc.Signal$Handler;
+
+        r2 := @parameter1: jdk.internal.misc.Signal;
+
+        r0.<jdk.internal.misc.Signal$1: jdk.internal.misc.Signal$Handler val$handler> = r1;
+
+        r0.<jdk.internal.misc.Signal$1: jdk.internal.misc.Signal val$sig> = r2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        jdk.internal.misc.Signal$1 r0;
+        jdk.internal.misc.Signal $r1;
+        jdk.internal.misc.Signal$Handler $r2;
+
+        r0 := @this: jdk.internal.misc.Signal$1;
+
+        $r2 = r0.<jdk.internal.misc.Signal$1: jdk.internal.misc.Signal$Handler val$handler>;
+
+        $r1 = r0.<jdk.internal.misc.Signal$1: jdk.internal.misc.Signal val$sig>;
+
+        interfaceinvoke $r2.<jdk.internal.misc.Signal$Handler: void handle(jdk.internal.misc.Signal)>($r1);
+
+        return;
+    }
+}

@@ -1,0 +1,14 @@
+class jdk.internal.reflect.MagicAccessorImpl extends java.lang.Object
+{
+
+    void <init>()
+    {
+        jdk.internal.reflect.MagicAccessorImpl r0;
+
+        r0 := @this: jdk.internal.reflect.MagicAccessorImpl;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

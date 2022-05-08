@@ -1,0 +1,354 @@
+final class jdk.internal.logger.SimpleConsoleLogger$Formatting extends java.lang.Object
+{
+    static final java.lang.String DEFAULT_FORMAT;
+    static final java.lang.String DEFAULT_FORMAT_PROP_KEY;
+    static final java.lang.String JUL_FORMAT_PROP_KEY;
+    static final java.lang.String SIMPLE_CONSOLE_LOGGER_FORMAT;
+    private static final java.lang.String[] skips;
+
+    void <init>()
+    {
+        jdk.internal.logger.SimpleConsoleLogger$Formatting r0;
+
+        r0 := @this: jdk.internal.logger.SimpleConsoleLogger$Formatting;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static boolean isFilteredFrame(java.lang.StackWalker$StackFrame)
+    {
+        java.lang.StackWalker$StackFrame r0;
+        java.lang.Class $r1, $r2;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9;
+        java.lang.String r3, $r6, $r8;
+        int $i0, $i2, $i4, i5;
+        java.lang.String[] $r4, $r5, $r7, $r9;
+        char $c3;
+
+        r0 := @parameter0: java.lang.StackWalker$StackFrame;
+
+        $r1 = class "Ljava/lang/System$Logger;";
+
+        $r2 = interfaceinvoke r0.<java.lang.StackWalker$StackFrame: java.lang.Class getDeclaringClass()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.Class: boolean isAssignableFrom(java.lang.Class)>($r2);
+
+        if $z0 == 0 goto label01;
+
+        return 1;
+
+     label01:
+        r3 = interfaceinvoke r0.<java.lang.StackWalker$StackFrame: java.lang.String getClassName()>();
+
+        $i0 = virtualinvoke r3.<java.lang.String: int length()>();
+
+        if $i0 >= 12 goto label02;
+
+        $c3 = 0;
+
+        goto label03;
+
+     label02:
+        $c3 = virtualinvoke r3.<java.lang.String: char charAt(int)>(0);
+
+     label03:
+        if $c3 != 115 goto label05;
+
+        $z8 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>("sun.util.logging.");
+
+        if $z8 == 0 goto label04;
+
+        return 1;
+
+     label04:
+        $z9 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>("sun.rmi.runtime.Log");
+
+        if $z9 == 0 goto label10;
+
+        return 1;
+
+     label05:
+        if $c3 != 106 goto label10;
+
+        $z3 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>("jdk.internal.logger.BootstrapLogger$LogEvent");
+
+        if $z3 == 0 goto label06;
+
+        return 0;
+
+     label06:
+        $z4 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>("jdk.internal.logger.");
+
+        if $z4 == 0 goto label07;
+
+        return 1;
+
+     label07:
+        $z5 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>("java.util.logging.");
+
+        if $z5 == 0 goto label08;
+
+        return 1;
+
+     label08:
+        $z6 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>("java.lang.invoke.MethodHandle");
+
+        if $z6 == 0 goto label09;
+
+        return 1;
+
+     label09:
+        $z7 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>("java.security.AccessController");
+
+        if $z7 == 0 goto label10;
+
+        return 1;
+
+     label10:
+        $r9 = <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String[] skips>;
+
+        $i4 = lengthof $r9;
+
+        if $i4 <= 0 goto label13;
+
+        i5 = 0;
+
+     label11:
+        $r4 = <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String[] skips>;
+
+        $i2 = lengthof $r4;
+
+        if i5 >= $i2 goto label13;
+
+        $r5 = <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String[] skips>;
+
+        $r6 = $r5[i5];
+
+        $z1 = virtualinvoke $r6.<java.lang.String: boolean isEmpty()>();
+
+        if $z1 != 0 goto label12;
+
+        $r7 = <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String[] skips>;
+
+        $r8 = $r7[i5];
+
+        $z2 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>($r8);
+
+        if $z2 == 0 goto label12;
+
+        return 1;
+
+     label12:
+        i5 = i5 + 1;
+
+        goto label11;
+
+     label13:
+        return 0;
+    }
+
+    static java.lang.String getSimpleFormat(java.lang.String, java.util.function.Function)
+    {
+        java.lang.String r0, $r1, $r7, $r12, r15;
+        boolean $z0, $z1;
+        java.lang.Object[] $r2;
+        java.time.ZonedDateTime $r3;
+        java.util.function.Function r5;
+        java.lang.Object $r6;
+        java.lang.IllegalArgumentException $r8, $r13;
+        java.lang.StringBuilder $r9, $r10, $r11;
+
+        r0 := @parameter0: java.lang.String;
+
+        r5 := @parameter1: java.util.function.Function;
+
+        $r1 = "jdk.system.logger.format";
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(r0);
+
+        if $z0 != 0 goto label1;
+
+        $r7 = "java.util.logging.SimpleFormatter.format";
+
+        $z1 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>(r0);
+
+        if $z1 != 0 goto label1;
+
+        $r8 = new java.lang.IllegalArgumentException;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Invalid property name: ");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r12);
+
+        throw $r8;
+
+     label1:
+        r15 = staticinvoke <sun.security.action.GetPropertyAction: java.lang.String privilegedGetProperty(java.lang.String)>(r0);
+
+        if r15 != null goto label2;
+
+        if r5 == null goto label2;
+
+        $r6 = interfaceinvoke r5.<java.util.function.Function: java.lang.Object apply(java.lang.Object)>(r0);
+
+        r15 = (java.lang.String) $r6;
+
+     label2:
+        if r15 == null goto label6;
+
+     label3:
+        $r2 = newarray (java.lang.Object)[6];
+
+        $r3 = staticinvoke <java.time.ZonedDateTime: java.time.ZonedDateTime now()>();
+
+        $r2[0] = $r3;
+
+        $r2[1] = "";
+
+        $r2[2] = "";
+
+        $r2[3] = "";
+
+        $r2[4] = "";
+
+        $r2[5] = "";
+
+        staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(r15, $r2);
+
+     label4:
+        goto label7;
+
+     label5:
+        $r13 := @caughtexception;
+
+        r15 = "%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n";
+
+        goto label7;
+
+     label6:
+        r15 = "%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n";
+
+     label7:
+        return r15;
+
+        catch java.lang.IllegalArgumentException from label3 to label4 with label5;
+    }
+
+    static transient java.lang.String formatMessage(java.lang.String, java.lang.Object[])
+    {
+        java.lang.Object[] r0;
+        java.lang.String r1, $r2;
+        int $i0, i1, $i2, $i4, i6;
+        char c3, c5;
+        java.lang.Exception $r4;
+        boolean z0;
+
+        r1 := @parameter0: java.lang.String;
+
+        r0 := @parameter1: java.lang.Object[];
+
+     label1:
+        if r0 == null goto label2;
+
+        $i0 = lengthof r0;
+
+        if $i0 != 0 goto label3;
+
+     label2:
+        return r1;
+
+     label3:
+        z0 = 0;
+
+        i1 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        i6 = 0;
+
+     label4:
+        $i2 = i1 - 2;
+
+        if i6 >= $i2 goto label6;
+
+        c3 = virtualinvoke r1.<java.lang.String: char charAt(int)>(i6);
+
+        if c3 != 123 goto label5;
+
+        $i4 = i6 + 1;
+
+        c5 = virtualinvoke r1.<java.lang.String: char charAt(int)>($i4);
+
+        if c5 < 48 goto label5;
+
+        if c5 > 57 goto label5;
+
+        z0 = 1;
+
+        goto label6;
+
+     label5:
+        i6 = i6 + 1;
+
+        goto label4;
+
+     label6:
+        if z0 == 0 goto label8;
+
+        $r2 = staticinvoke <java.text.MessageFormat: java.lang.String format(java.lang.String,java.lang.Object[])>(r1, r0);
+
+     label7:
+        return $r2;
+
+     label8:
+        return r1;
+
+     label9:
+        $r4 := @caughtexception;
+
+        return r1;
+
+        catch java.lang.Exception from label1 to label2 with label9;
+        catch java.lang.Exception from label3 to label7 with label9;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.String $r0, r1;
+        java.lang.String[] $r2;
+
+        <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String JUL_FORMAT_PROP_KEY> = "java.util.logging.SimpleFormatter.format";
+
+        <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String DEFAULT_FORMAT_PROP_KEY> = "jdk.system.logger.format";
+
+        <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String DEFAULT_FORMAT> = "%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n";
+
+        $r0 = staticinvoke <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String getSimpleFormat(java.lang.String,java.util.function.Function)>("jdk.system.logger.format", null);
+
+        <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String SIMPLE_CONSOLE_LOGGER_FORMAT> = $r0;
+
+        r1 = staticinvoke <sun.security.action.GetPropertyAction: java.lang.String privilegedGetProperty(java.lang.String)>("jdk.logger.packages");
+
+        if r1 != null goto label1;
+
+        $r2 = newarray (java.lang.String)[0];
+
+        goto label2;
+
+     label1:
+        $r2 = virtualinvoke r1.<java.lang.String: java.lang.String[] split(java.lang.String)>(",");
+
+     label2:
+        <jdk.internal.logger.SimpleConsoleLogger$Formatting: java.lang.String[] skips> = $r2;
+
+        return;
+    }
+}

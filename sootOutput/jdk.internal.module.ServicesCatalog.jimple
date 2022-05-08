@@ -1,0 +1,287 @@
+public final class jdk.internal.module.ServicesCatalog extends java.lang.Object
+{
+    private final java.util.Map map;
+    private static final jdk.internal.loader.ClassLoaderValue CLV;
+
+    private void <init>()
+    {
+        jdk.internal.module.ServicesCatalog r0;
+        java.util.concurrent.ConcurrentHashMap $r1;
+
+        r0 := @this: jdk.internal.module.ServicesCatalog;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.concurrent.ConcurrentHashMap;
+
+        specialinvoke $r1.<java.util.concurrent.ConcurrentHashMap: void <init>(int)>(32);
+
+        r0.<jdk.internal.module.ServicesCatalog: java.util.Map map> = $r1;
+
+        return;
+    }
+
+    public static jdk.internal.module.ServicesCatalog create()
+    {
+        jdk.internal.module.ServicesCatalog $r0;
+
+        $r0 = new jdk.internal.module.ServicesCatalog;
+
+        specialinvoke $r0.<jdk.internal.module.ServicesCatalog: void <init>()>();
+
+        return $r0;
+    }
+
+    private java.util.List providers(java.lang.String)
+    {
+        jdk.internal.module.ServicesCatalog r0;
+        java.lang.String r1;
+        java.util.Map $r2, $r5;
+        java.lang.Object $r3, $r6;
+        java.util.concurrent.CopyOnWriteArrayList $r4;
+        java.util.List r7, r8;
+
+        r0 := @this: jdk.internal.module.ServicesCatalog;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.module.ServicesCatalog: java.util.Map map>;
+
+        $r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1);
+
+        r8 = (java.util.List) $r3;
+
+        if r8 != null goto label1;
+
+        $r4 = new java.util.concurrent.CopyOnWriteArrayList;
+
+        specialinvoke $r4.<java.util.concurrent.CopyOnWriteArrayList: void <init>()>();
+
+        r8 = $r4;
+
+        $r5 = r0.<jdk.internal.module.ServicesCatalog: java.util.Map map>;
+
+        $r6 = interfaceinvoke $r5.<java.util.Map: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>(r1, $r4);
+
+        r7 = (java.util.List) $r6;
+
+        if r7 == null goto label1;
+
+        r8 = r7;
+
+     label1:
+        return r8;
+    }
+
+    public void register(java.lang.Module)
+    {
+        java.lang.Module r0;
+        java.lang.module.ModuleDescriptor r1;
+        java.util.Set $r2;
+        java.util.Iterator r3, r9;
+        boolean $z0, $z1;
+        java.lang.Object $r4, $r12, $r15;
+        java.lang.module.ModuleDescriptor$Provides r5;
+        java.lang.String r6, r13, r18;
+        java.util.List r7, $r11, $r16;
+        int i0;
+        java.util.ArrayList $r8;
+        jdk.internal.module.ServicesCatalog r10;
+        jdk.internal.module.ServicesCatalog$ServiceProvider $r14, $r17;
+
+        r10 := @this: jdk.internal.module.ServicesCatalog;
+
+        r0 := @parameter0: java.lang.Module;
+
+        r1 = virtualinvoke r0.<java.lang.Module: java.lang.module.ModuleDescriptor getDescriptor()>();
+
+        $r2 = virtualinvoke r1.<java.lang.module.ModuleDescriptor: java.util.Set provides()>();
+
+        r3 = interfaceinvoke $r2.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label6;
+
+        $r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+
+        r5 = (java.lang.module.ModuleDescriptor$Provides) $r4;
+
+        r6 = virtualinvoke r5.<java.lang.module.ModuleDescriptor$Provides: java.lang.String service()>();
+
+        r7 = virtualinvoke r5.<java.lang.module.ModuleDescriptor$Provides: java.util.List providers()>();
+
+        i0 = interfaceinvoke r7.<java.util.List: int size()>();
+
+        if i0 != 1 goto label2;
+
+        $r15 = interfaceinvoke r7.<java.util.List: java.lang.Object get(int)>(0);
+
+        r18 = (java.lang.String) $r15;
+
+        $r16 = virtualinvoke r10.<jdk.internal.module.ServicesCatalog: java.util.List providers(java.lang.String)>(r6);
+
+        $r17 = new jdk.internal.module.ServicesCatalog$ServiceProvider;
+
+        specialinvoke $r17.<jdk.internal.module.ServicesCatalog$ServiceProvider: void <init>(jdk.internal.module.ServicesCatalog,java.lang.Module,java.lang.String)>(r10, r0, r18);
+
+        interfaceinvoke $r16.<java.util.List: boolean add(java.lang.Object)>($r17);
+
+        goto label5;
+
+     label2:
+        $r8 = new java.util.ArrayList;
+
+        specialinvoke $r8.<java.util.ArrayList: void <init>(int)>(i0);
+
+        r9 = interfaceinvoke r7.<java.util.List: java.util.Iterator iterator()>();
+
+     label3:
+        $z1 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label4;
+
+        $r12 = interfaceinvoke r9.<java.util.Iterator: java.lang.Object next()>();
+
+        r13 = (java.lang.String) $r12;
+
+        $r14 = new jdk.internal.module.ServicesCatalog$ServiceProvider;
+
+        specialinvoke $r14.<jdk.internal.module.ServicesCatalog$ServiceProvider: void <init>(jdk.internal.module.ServicesCatalog,java.lang.Module,java.lang.String)>(r10, r0, r13);
+
+        interfaceinvoke $r8.<java.util.List: boolean add(java.lang.Object)>($r14);
+
+        goto label3;
+
+     label4:
+        $r11 = virtualinvoke r10.<jdk.internal.module.ServicesCatalog: java.util.List providers(java.lang.String)>(r6);
+
+        interfaceinvoke $r11.<java.util.List: boolean addAll(java.util.Collection)>($r8);
+
+     label5:
+        goto label1;
+
+     label6:
+        return;
+    }
+
+    public void addProvider(java.lang.Module, java.lang.Class, java.lang.Class)
+    {
+        jdk.internal.module.ServicesCatalog r0;
+        java.lang.Class r1, r6;
+        java.lang.String $r2, $r7;
+        java.util.List r3;
+        jdk.internal.module.ServicesCatalog$ServiceProvider $r4;
+        java.lang.Module r5;
+
+        r0 := @this: jdk.internal.module.ServicesCatalog;
+
+        r5 := @parameter0: java.lang.Module;
+
+        r1 := @parameter1: java.lang.Class;
+
+        r6 := @parameter2: java.lang.Class;
+
+        $r2 = virtualinvoke r1.<java.lang.Class: java.lang.String getName()>();
+
+        r3 = virtualinvoke r0.<jdk.internal.module.ServicesCatalog: java.util.List providers(java.lang.String)>($r2);
+
+        $r4 = new jdk.internal.module.ServicesCatalog$ServiceProvider;
+
+        $r7 = virtualinvoke r6.<java.lang.Class: java.lang.String getName()>();
+
+        specialinvoke $r4.<jdk.internal.module.ServicesCatalog$ServiceProvider: void <init>(jdk.internal.module.ServicesCatalog,java.lang.Module,java.lang.String)>(r0, r5, $r7);
+
+        interfaceinvoke r3.<java.util.List: boolean add(java.lang.Object)>($r4);
+
+        return;
+    }
+
+    public java.util.List findServices(java.lang.String)
+    {
+        jdk.internal.module.ServicesCatalog r0;
+        java.lang.String r1;
+        java.util.Map $r2;
+        java.util.List $r3, $r5;
+        java.lang.Object $r4;
+
+        r0 := @this: jdk.internal.module.ServicesCatalog;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<jdk.internal.module.ServicesCatalog: java.util.Map map>;
+
+        $r3 = staticinvoke <java.util.List: java.util.List of()>();
+
+        $r4 = interfaceinvoke $r2.<java.util.Map: java.lang.Object getOrDefault(java.lang.Object,java.lang.Object)>(r1, $r3);
+
+        $r5 = (java.util.List) $r4;
+
+        return $r5;
+    }
+
+    public static jdk.internal.module.ServicesCatalog getServicesCatalogOrNull(java.lang.ClassLoader)
+    {
+        java.lang.ClassLoader r0;
+        jdk.internal.loader.ClassLoaderValue $r1;
+        java.lang.Object $r2;
+        jdk.internal.module.ServicesCatalog $r3;
+
+        r0 := @parameter0: java.lang.ClassLoader;
+
+        $r1 = <jdk.internal.module.ServicesCatalog: jdk.internal.loader.ClassLoaderValue CLV>;
+
+        $r2 = virtualinvoke $r1.<jdk.internal.loader.ClassLoaderValue: java.lang.Object get(java.lang.ClassLoader)>(r0);
+
+        $r3 = (jdk.internal.module.ServicesCatalog) $r2;
+
+        return $r3;
+    }
+
+    public static jdk.internal.module.ServicesCatalog getServicesCatalog(java.lang.ClassLoader)
+    {
+        java.lang.ClassLoader r0;
+        jdk.internal.loader.ClassLoaderValue $r1, $r3;
+        java.lang.Object $r2, $r4;
+        jdk.internal.module.ServicesCatalog r5, r6;
+
+        r0 := @parameter0: java.lang.ClassLoader;
+
+        $r1 = <jdk.internal.module.ServicesCatalog: jdk.internal.loader.ClassLoaderValue CLV>;
+
+        $r2 = virtualinvoke $r1.<jdk.internal.loader.ClassLoaderValue: java.lang.Object get(java.lang.ClassLoader)>(r0);
+
+        r6 = (jdk.internal.module.ServicesCatalog) $r2;
+
+        if r6 != null goto label1;
+
+        r6 = staticinvoke <jdk.internal.module.ServicesCatalog: jdk.internal.module.ServicesCatalog create()>();
+
+        $r3 = <jdk.internal.module.ServicesCatalog: jdk.internal.loader.ClassLoaderValue CLV>;
+
+        $r4 = virtualinvoke $r3.<jdk.internal.loader.ClassLoaderValue: java.lang.Object putIfAbsent(java.lang.ClassLoader,java.lang.Object)>(r0, r6);
+
+        r5 = (jdk.internal.module.ServicesCatalog) $r4;
+
+        if r5 == null goto label1;
+
+        r6 = r5;
+
+     label1:
+        return r6;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.loader.ClassLoaderValue $r0;
+
+        $r0 = new jdk.internal.loader.ClassLoaderValue;
+
+        specialinvoke $r0.<jdk.internal.loader.ClassLoaderValue: void <init>()>();
+
+        <jdk.internal.module.ServicesCatalog: jdk.internal.loader.ClassLoaderValue CLV> = $r0;
+
+        return;
+    }
+}

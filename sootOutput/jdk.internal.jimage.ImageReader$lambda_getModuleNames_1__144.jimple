@@ -1,0 +1,40 @@
+public final class jdk.internal.jimage.ImageReader$lambda_getModuleNames_1__144 extends java.lang.Object implements java.util.function.IntFunction
+{
+
+    public static java.util.function.IntFunction bootstrap$()
+    {
+        jdk.internal.jimage.ImageReader$lambda_getModuleNames_1__144 $r0;
+
+        $r0 = new jdk.internal.jimage.ImageReader$lambda_getModuleNames_1__144;
+
+        specialinvoke $r0.<jdk.internal.jimage.ImageReader$lambda_getModuleNames_1__144: void <init>()>();
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        jdk.internal.jimage.ImageReader$lambda_getModuleNames_1__144 $r0;
+
+        $r0 := @this: jdk.internal.jimage.ImageReader$lambda_getModuleNames_1__144;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object apply(int)
+    {
+        jdk.internal.jimage.ImageReader$lambda_getModuleNames_1__144 $r0;
+        int $i0;
+        java.lang.String[] $r1;
+
+        $r0 := @this: jdk.internal.jimage.ImageReader$lambda_getModuleNames_1__144;
+
+        $i0 := @parameter0: int;
+
+        $r1 = staticinvoke <jdk.internal.jimage.ImageReader: java.lang.String[] lambda$getModuleNames$1(int)>($i0);
+
+        return $r1;
+    }
+}

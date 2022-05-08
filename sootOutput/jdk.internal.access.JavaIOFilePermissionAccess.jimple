@@ -1,0 +1,7 @@
+public interface  jdk.internal.access.JavaIOFilePermissionAccess extends java.lang.Object
+{
+
+    public abstract java.io.FilePermission newPermPlusAltPath(java.io.FilePermission);
+
+    public abstract java.io.FilePermission newPermUsingAltPath(java.io.FilePermission);
+}

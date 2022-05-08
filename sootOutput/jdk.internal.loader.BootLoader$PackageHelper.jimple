@@ -1,0 +1,230 @@
+class jdk.internal.loader.BootLoader$PackageHelper extends java.lang.Object
+{
+    private static final jdk.internal.access.JavaLangAccess JLA;
+
+    void <init>()
+    {
+        jdk.internal.loader.BootLoader$PackageHelper r0;
+
+        r0 := @this: jdk.internal.loader.BootLoader$PackageHelper;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static java.lang.Package definePackage(java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r5, $r14;
+        java.lang.Module r1;
+        java.net.URL r2;
+        jdk.internal.loader.BuiltinClassLoader $r4, $r8;
+        java.lang.Package $r6, $r9;
+        boolean $z0;
+        jdk.internal.access.JavaLangAccess $r7;
+        java.lang.InternalError $r10;
+        java.lang.StringBuilder $r11, $r12, $r13;
+        java.util.jar.Manifest $r15;
+
+        r5 := @parameter0: java.lang.String;
+
+        r0 := @parameter1: java.lang.String;
+
+        r1 = staticinvoke <jdk.internal.loader.BootLoader$PackageHelper: java.lang.Module findModule(java.lang.String)>(r0);
+
+        if r1 == null goto label2;
+
+        $z0 = virtualinvoke r5.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 == 0 goto label1;
+
+        $r10 = new java.lang.InternalError;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("empty package in ");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.InternalError: void <init>(java.lang.String)>($r14);
+
+        throw $r10;
+
+     label1:
+        $r7 = <jdk.internal.loader.BootLoader$PackageHelper: jdk.internal.access.JavaLangAccess JLA>;
+
+        $r8 = staticinvoke <jdk.internal.loader.ClassLoaders: jdk.internal.loader.BuiltinClassLoader bootLoader()>();
+
+        $r9 = interfaceinvoke $r7.<jdk.internal.access.JavaLangAccess: java.lang.Package definePackage(java.lang.ClassLoader,java.lang.String,java.lang.Module)>($r8, r5, r1);
+
+        return $r9;
+
+     label2:
+        r2 = staticinvoke <jdk.internal.loader.BootLoader$PackageHelper: java.net.URL toFileURL(java.lang.String)>(r0);
+
+        if r2 == null goto label3;
+
+        $r15 = staticinvoke <jdk.internal.loader.BootLoader$PackageHelper: java.util.jar.Manifest getManifest(java.lang.String)>(r0);
+
+        goto label4;
+
+     label3:
+        $r15 = null;
+
+     label4:
+        $r4 = staticinvoke <jdk.internal.loader.ClassLoaders: jdk.internal.loader.BuiltinClassLoader bootLoader()>();
+
+        $r6 = virtualinvoke $r4.<jdk.internal.loader.BuiltinClassLoader: java.lang.Package defineOrCheckPackage(java.lang.String,java.util.jar.Manifest,java.net.URL)>(r5, $r15, r2);
+
+        return $r6;
+    }
+
+    private static java.lang.Module findModule(java.lang.String)
+    {
+        java.lang.String r0, $r7, r10;
+        boolean $z0, $z1, $z2;
+        java.util.Optional $r1;
+        java.util.function.Supplier $r2;
+        java.lang.Object $r3;
+        java.lang.Module $r4;
+        java.net.URI $r5;
+        java.lang.String[] $r6;
+        java.nio.file.Path r8, $r9, r11;
+        int $i0;
+
+        r0 := @parameter0: java.lang.String;
+
+        r10 = null;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>("jrt:/");
+
+        if $z0 == 0 goto label1;
+
+        $i0 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        r10 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(5, $i0);
+
+        goto label2;
+
+     label1:
+        $z1 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>("file:/");
+
+        if $z1 == 0 goto label2;
+
+        $r5 = staticinvoke <java.net.URI: java.net.URI create(java.lang.String)>(r0);
+
+        r11 = staticinvoke <java.nio.file.Path: java.nio.file.Path of(java.net.URI)>($r5);
+
+        $r7 = <jdk.internal.loader.BootLoader: java.lang.String JAVA_HOME>;
+
+        $r6 = newarray (java.lang.String)[1];
+
+        $r6[0] = "modules";
+
+        r8 = staticinvoke <java.nio.file.Path: java.nio.file.Path of(java.lang.String,java.lang.String[])>($r7, $r6);
+
+        $z2 = interfaceinvoke r11.<java.nio.file.Path: boolean startsWith(java.nio.file.Path)>(r8);
+
+        if $z2 == 0 goto label2;
+
+        $r9 = interfaceinvoke r11.<java.nio.file.Path: java.nio.file.Path getFileName()>();
+
+        r10 = interfaceinvoke $r9.<java.nio.file.Path: java.lang.String toString()>();
+
+     label2:
+        if r10 == null goto label3;
+
+        $r1 = staticinvoke <jdk.internal.module.Modules: java.util.Optional findLoadedModule(java.lang.String)>(r10);
+
+        $r2 = staticinvoke <jdk.internal.loader.BootLoader$PackageHelper$lambda_findModule_0__121: java.util.function.Supplier bootstrap$(java.lang.String)>(r10);
+
+        $r3 = virtualinvoke $r1.<java.util.Optional: java.lang.Object orElseThrow(java.util.function.Supplier)>($r2);
+
+        $r4 = (java.lang.Module) $r3;
+
+        return $r4;
+
+     label3:
+        return null;
+    }
+
+    private static java.net.URL toFileURL(java.lang.String)
+    {
+        jdk.internal.loader.BootLoader$PackageHelper$1 $r0;
+        java.lang.String r1;
+        java.lang.Object $r2;
+        java.net.URL $r3;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new jdk.internal.loader.BootLoader$PackageHelper$1;
+
+        specialinvoke $r0.<jdk.internal.loader.BootLoader$PackageHelper$1: void <init>(java.lang.String)>(r1);
+
+        $r2 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r0);
+
+        $r3 = (java.net.URL) $r2;
+
+        return $r3;
+    }
+
+    private static java.util.jar.Manifest getManifest(java.lang.String)
+    {
+        jdk.internal.loader.BootLoader$PackageHelper$2 $r0;
+        java.lang.String r1;
+        java.lang.Object $r2;
+        java.util.jar.Manifest $r3;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new jdk.internal.loader.BootLoader$PackageHelper$2;
+
+        specialinvoke $r0.<jdk.internal.loader.BootLoader$PackageHelper$2: void <init>(java.lang.String)>(r1);
+
+        $r2 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r0);
+
+        $r3 = (java.util.jar.Manifest) $r2;
+
+        return $r3;
+    }
+
+    public static java.lang.InternalError lambda$findModule$0(java.lang.String)
+    {
+        java.lang.InternalError $r0;
+        java.lang.StringBuilder $r1, $r3, $r4;
+        java.lang.String r2, $r5;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.InternalError;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" not loaded");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>(java.lang.String)>($r5);
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.access.JavaLangAccess $r0;
+
+        $r0 = staticinvoke <jdk.internal.access.SharedSecrets: jdk.internal.access.JavaLangAccess getJavaLangAccess()>();
+
+        <jdk.internal.loader.BootLoader$PackageHelper: jdk.internal.access.JavaLangAccess JLA> = $r0;
+
+        return;
+    }
+}

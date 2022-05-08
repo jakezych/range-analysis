@@ -1,0 +1,46 @@
+final class jdk.internal.logger.LazyLoggers$JdkLazyLogger extends jdk.internal.logger.LazyLoggers$LazyLoggerWrapper
+{
+
+    void <init>(java.lang.String, java.lang.Module)
+    {
+        jdk.internal.logger.LazyLoggers$JdkLazyLogger r0;
+        java.lang.String r1;
+        java.lang.Module r2;
+        jdk.internal.logger.LazyLoggers$LazyLoggerFactories $r3;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor $r4;
+        java.lang.Void $r5;
+
+        r0 := @this: jdk.internal.logger.LazyLoggers$JdkLazyLogger;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Module;
+
+        $r3 = <jdk.internal.logger.LazyLoggers: jdk.internal.logger.LazyLoggers$LazyLoggerFactories factories>;
+
+        $r4 = staticinvoke <jdk.internal.logger.LazyLoggers$LazyLoggerAccessor: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor makeAccessor(java.lang.String,jdk.internal.logger.LazyLoggers$LazyLoggerFactories,java.lang.Module)>(r1, $r3, r2);
+
+        $r5 = (java.lang.Void) null;
+
+        specialinvoke r0.<jdk.internal.logger.LazyLoggers$JdkLazyLogger: void <init>(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor,java.lang.Void)>($r4, $r5);
+
+        return;
+    }
+
+    private void <init>(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor, java.lang.Void)
+    {
+        jdk.internal.logger.LazyLoggers$JdkLazyLogger r0;
+        jdk.internal.logger.LazyLoggers$LazyLoggerAccessor r1;
+        java.lang.Void r2;
+
+        r0 := @this: jdk.internal.logger.LazyLoggers$JdkLazyLogger;
+
+        r1 := @parameter0: jdk.internal.logger.LazyLoggers$LazyLoggerAccessor;
+
+        r2 := @parameter1: java.lang.Void;
+
+        specialinvoke r0.<jdk.internal.logger.LazyLoggers$LazyLoggerWrapper: void <init>(jdk.internal.logger.LazyLoggers$LazyLoggerAccessor)>(r1);
+
+        return;
+    }
+}

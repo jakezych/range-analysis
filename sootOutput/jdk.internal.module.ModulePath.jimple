@@ -1,0 +1,2197 @@
+public class jdk.internal.module.ModulePath extends java.lang.Object implements java.lang.module.ModuleFinder
+{
+    private static final java.lang.String MODULE_INFO;
+    private final java.lang.Runtime$Version releaseVersion;
+    private final boolean isLinkPhase;
+    private final jdk.internal.module.ModulePatcher patcher;
+    private final java.nio.file.Path[] entries;
+    private int next;
+    private final java.util.Map cachedModules;
+    private static final java.lang.String SERVICES_PREFIX;
+    private static final java.util.jar.Attributes$Name AUTOMATIC_MODULE_NAME;
+    private static final jdk.internal.perf.PerfCounter scanTime;
+    private static final jdk.internal.perf.PerfCounter moduleCount;
+    static final boolean $assertionsDisabled;
+
+    private transient void <init>(java.lang.Runtime$Version, boolean, jdk.internal.module.ModulePatcher, java.nio.file.Path[])
+    {
+        jdk.internal.module.ModulePath r0;
+        java.util.HashMap $r1;
+        java.lang.Runtime$Version r2;
+        boolean z0;
+        jdk.internal.module.ModulePatcher r3;
+        java.nio.file.Path[] r4, $r6, r7;
+        java.lang.Object $r5;
+        int i0, i1;
+        java.nio.file.Path r8;
+
+        r0 := @this: jdk.internal.module.ModulePath;
+
+        r2 := @parameter0: java.lang.Runtime$Version;
+
+        z0 := @parameter1: boolean;
+
+        r3 := @parameter2: jdk.internal.module.ModulePatcher;
+
+        r4 := @parameter3: java.nio.file.Path[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        r0.<jdk.internal.module.ModulePath: java.util.Map cachedModules> = $r1;
+
+        r0.<jdk.internal.module.ModulePath: java.lang.Runtime$Version releaseVersion> = r2;
+
+        r0.<jdk.internal.module.ModulePath: boolean isLinkPhase> = z0;
+
+        r0.<jdk.internal.module.ModulePath: jdk.internal.module.ModulePatcher patcher> = r3;
+
+        $r5 = virtualinvoke r4.<java.lang.Object: java.lang.Object clone()>();
+
+        $r6 = (java.nio.file.Path[]) $r5;
+
+        r0.<jdk.internal.module.ModulePath: java.nio.file.Path[] entries> = $r6;
+
+        r7 = r0.<jdk.internal.module.ModulePath: java.nio.file.Path[] entries>;
+
+        i0 = lengthof r7;
+
+        i1 = 0;
+
+     label1:
+        if i1 >= i0 goto label2;
+
+        r8 = r7[i1];
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r8);
+
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public static transient java.lang.module.ModuleFinder of(jdk.internal.module.ModulePatcher, java.nio.file.Path[])
+    {
+        jdk.internal.module.ModulePath $r0;
+        java.lang.Runtime$Version $r1;
+        jdk.internal.module.ModulePatcher r2;
+        java.nio.file.Path[] r3;
+
+        r2 := @parameter0: jdk.internal.module.ModulePatcher;
+
+        r3 := @parameter1: java.nio.file.Path[];
+
+        $r0 = new jdk.internal.module.ModulePath;
+
+        $r1 = staticinvoke <java.util.jar.JarFile: java.lang.Runtime$Version runtimeVersion()>();
+
+        specialinvoke $r0.<jdk.internal.module.ModulePath: void <init>(java.lang.Runtime$Version,boolean,jdk.internal.module.ModulePatcher,java.nio.file.Path[])>($r1, 0, r2, r3);
+
+        return $r0;
+    }
+
+    public static transient java.lang.module.ModuleFinder of(java.nio.file.Path[])
+    {
+        java.nio.file.Path[] r0;
+        jdk.internal.module.ModulePatcher $r1;
+        java.lang.module.ModuleFinder $r2;
+
+        r0 := @parameter0: java.nio.file.Path[];
+
+        $r1 = (jdk.internal.module.ModulePatcher) null;
+
+        $r2 = staticinvoke <jdk.internal.module.ModulePath: java.lang.module.ModuleFinder of(jdk.internal.module.ModulePatcher,java.nio.file.Path[])>($r1, r0);
+
+        return $r2;
+    }
+
+    public static transient java.lang.module.ModuleFinder of(java.lang.Runtime$Version, boolean, java.nio.file.Path[])
+    {
+        jdk.internal.module.ModulePath $r0;
+        java.lang.Runtime$Version r1;
+        boolean z0;
+        java.nio.file.Path[] r2;
+
+        r1 := @parameter0: java.lang.Runtime$Version;
+
+        z0 := @parameter1: boolean;
+
+        r2 := @parameter2: java.nio.file.Path[];
+
+        $r0 = new jdk.internal.module.ModulePath;
+
+        specialinvoke $r0.<jdk.internal.module.ModulePath: void <init>(java.lang.Runtime$Version,boolean,jdk.internal.module.ModulePatcher,java.nio.file.Path[])>(r1, z0, null, r2);
+
+        return $r0;
+    }
+
+    public java.util.Optional find(java.lang.String)
+    {
+        java.lang.String r0;
+        jdk.internal.module.ModulePath r2;
+        java.util.Map $r3, $r6;
+        java.lang.Object $r4, $r7;
+        boolean $z0;
+        java.util.Optional $r5, $r8, $r9;
+        java.lang.module.ModuleReference r10, r11;
+
+        r2 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        $r3 = r2.<jdk.internal.module.ModulePath: java.util.Map cachedModules>;
+
+        $r4 = interfaceinvoke $r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r0);
+
+        r10 = (java.lang.module.ModuleReference) $r4;
+
+        if r10 == null goto label1;
+
+        $r9 = staticinvoke <java.util.Optional: java.util.Optional of(java.lang.Object)>(r10);
+
+        return $r9;
+
+     label1:
+        $z0 = virtualinvoke r2.<jdk.internal.module.ModulePath: boolean hasNextEntry()>();
+
+        if $z0 == 0 goto label2;
+
+        virtualinvoke r2.<jdk.internal.module.ModulePath: void scanNextEntry()>();
+
+        $r6 = r2.<jdk.internal.module.ModulePath: java.util.Map cachedModules>;
+
+        $r7 = interfaceinvoke $r6.<java.util.Map: java.lang.Object get(java.lang.Object)>(r0);
+
+        r11 = (java.lang.module.ModuleReference) $r7;
+
+        if r11 == null goto label1;
+
+        $r8 = staticinvoke <java.util.Optional: java.util.Optional of(java.lang.Object)>(r11);
+
+        return $r8;
+
+     label2:
+        $r5 = staticinvoke <java.util.Optional: java.util.Optional empty()>();
+
+        return $r5;
+    }
+
+    public java.util.Set findAll()
+    {
+        jdk.internal.module.ModulePath r0;
+        boolean $z0;
+        java.util.Map $r1;
+        java.util.Collection $r2;
+        java.util.stream.Stream $r3;
+        java.util.stream.Collector $r4;
+        java.lang.Object $r5;
+        java.util.Set $r6;
+
+        r0 := @this: jdk.internal.module.ModulePath;
+
+     label1:
+        $z0 = virtualinvoke r0.<jdk.internal.module.ModulePath: boolean hasNextEntry()>();
+
+        if $z0 == 0 goto label2;
+
+        virtualinvoke r0.<jdk.internal.module.ModulePath: void scanNextEntry()>();
+
+        goto label1;
+
+     label2:
+        $r1 = r0.<jdk.internal.module.ModulePath: java.util.Map cachedModules>;
+
+        $r2 = interfaceinvoke $r1.<java.util.Map: java.util.Collection values()>();
+
+        $r3 = interfaceinvoke $r2.<java.util.Collection: java.util.stream.Stream stream()>();
+
+        $r4 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toSet()>();
+
+        $r5 = interfaceinvoke $r3.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r4);
+
+        $r6 = (java.util.Set) $r5;
+
+        return $r6;
+    }
+
+    private boolean hasNextEntry()
+    {
+        jdk.internal.module.ModulePath r0;
+        java.nio.file.Path[] $r1;
+        int $i0, $i1;
+        boolean $z0;
+
+        r0 := @this: jdk.internal.module.ModulePath;
+
+        $i1 = r0.<jdk.internal.module.ModulePath: int next>;
+
+        $r1 = r0.<jdk.internal.module.ModulePath: java.nio.file.Path[] entries>;
+
+        $i0 = lengthof $r1;
+
+        if $i1 >= $i0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private void scanNextEntry()
+    {
+        jdk.internal.module.ModulePath r0;
+        boolean $z0, $z1;
+        long l0, $l6;
+        int $i1, $i2, $i3, i4, $i5, i7;
+        java.nio.file.Path[] $r1;
+        java.nio.file.Path r2;
+        java.util.Map r3, $r4, $r6, $r11;
+        java.util.Set $r5;
+        jdk.internal.perf.PerfCounter $r7, $r8;
+        java.lang.Object $r9, $r12, $r14;
+        java.util.Map$Entry r10;
+        java.lang.String $r13;
+        java.lang.module.ModuleReference $r15;
+        java.util.Iterator r17;
+
+        r0 := @this: jdk.internal.module.ModulePath;
+
+        $z0 = virtualinvoke r0.<jdk.internal.module.ModulePath: boolean hasNextEntry()>();
+
+        if $z0 == 0 goto label3;
+
+        l0 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $r1 = r0.<jdk.internal.module.ModulePath: java.nio.file.Path[] entries>;
+
+        $i1 = r0.<jdk.internal.module.ModulePath: int next>;
+
+        r2 = $r1[$i1];
+
+        r3 = virtualinvoke r0.<jdk.internal.module.ModulePath: java.util.Map scan(java.nio.file.Path)>(r2);
+
+        $i2 = r0.<jdk.internal.module.ModulePath: int next>;
+
+        $i3 = $i2 + 1;
+
+        r0.<jdk.internal.module.ModulePath: int next> = $i3;
+
+        $r4 = r0.<jdk.internal.module.ModulePath: java.util.Map cachedModules>;
+
+        i4 = interfaceinvoke $r4.<java.util.Map: int size()>();
+
+        $r5 = interfaceinvoke r3.<java.util.Map: java.util.Set entrySet()>();
+
+        r17 = interfaceinvoke $r5.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z1 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label2;
+
+        $r9 = interfaceinvoke r17.<java.util.Iterator: java.lang.Object next()>();
+
+        r10 = (java.util.Map$Entry) $r9;
+
+        $r11 = r0.<jdk.internal.module.ModulePath: java.util.Map cachedModules>;
+
+        $r12 = interfaceinvoke r10.<java.util.Map$Entry: java.lang.Object getKey()>();
+
+        $r13 = (java.lang.String) $r12;
+
+        $r14 = interfaceinvoke r10.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        $r15 = (java.lang.module.ModuleReference) $r14;
+
+        interfaceinvoke $r11.<java.util.Map: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>($r13, $r15);
+
+        goto label1;
+
+     label2:
+        $r6 = r0.<jdk.internal.module.ModulePath: java.util.Map cachedModules>;
+
+        $i5 = interfaceinvoke $r6.<java.util.Map: int size()>();
+
+        i7 = $i5 - i4;
+
+        $r7 = <jdk.internal.module.ModulePath: jdk.internal.perf.PerfCounter moduleCount>;
+
+        $l6 = (long) i7;
+
+        virtualinvoke $r7.<jdk.internal.perf.PerfCounter: void add(long)>($l6);
+
+        $r8 = <jdk.internal.module.ModulePath: jdk.internal.perf.PerfCounter scanTime>;
+
+        virtualinvoke $r8.<jdk.internal.perf.PerfCounter: void addElapsedTimeFrom(long)>(l0);
+
+     label3:
+        return;
+    }
+
+    private java.util.Map scan(java.nio.file.Path)
+    {
+        java.nio.file.Path r0, r17;
+        java.nio.file.LinkOption[] $r1, $r7;
+        java.nio.file.attribute.BasicFileAttributes r2;
+        boolean $z0, $z1, $z2, $z3;
+        jdk.internal.module.ModulePath r3;
+        java.lang.String $r4, r19, r20, $r26;
+        java.lang.module.ModuleDescriptor $r5;
+        java.util.Map $r6, $r8, $r14;
+        java.io.IOException $r9, $r11;
+        java.lang.module.FindException $r10, $r12, $r21;
+        java.nio.file.NoSuchFileException $r13;
+        java.lang.module.ModuleReference r18;
+        java.lang.StringBuilder $r22, $r23, $r24, $r25;
+
+        r3 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.nio.file.Path;
+
+     label01:
+        $r1 = newarray (java.nio.file.LinkOption)[0];
+
+        r2 = staticinvoke <java.nio.file.Files: java.nio.file.attribute.BasicFileAttributes readAttributes(java.nio.file.Path,java.lang.Class,java.nio.file.LinkOption[])>(r0, class "Ljava/nio/file/attribute/BasicFileAttributes;", $r1);
+
+     label02:
+        goto label05;
+
+     label03:
+        $r13 := @caughtexception;
+
+        $r14 = staticinvoke <java.util.Map: java.util.Map of()>();
+
+        return $r14;
+
+     label04:
+        $r11 := @caughtexception;
+
+        $r12 = new java.lang.module.FindException;
+
+        specialinvoke $r12.<java.lang.module.FindException: void <init>(java.lang.Throwable)>($r11);
+
+        throw $r12;
+
+     label05:
+        $z0 = interfaceinvoke r2.<java.nio.file.attribute.BasicFileAttributes: boolean isDirectory()>();
+
+        if $z0 == 0 goto label07;
+
+        r17 = interfaceinvoke r0.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>("module-info.class");
+
+        $r7 = newarray (java.nio.file.LinkOption)[0];
+
+        $z3 = staticinvoke <java.nio.file.Files: boolean exists(java.nio.file.Path,java.nio.file.LinkOption[])>(r17, $r7);
+
+        if $z3 != 0 goto label07;
+
+        $r8 = virtualinvoke r3.<jdk.internal.module.ModulePath: java.util.Map scanDirectory(java.nio.file.Path)>(r0);
+
+     label06:
+        return $r8;
+
+     label07:
+        r18 = virtualinvoke r3.<jdk.internal.module.ModulePath: java.lang.module.ModuleReference readModule(java.nio.file.Path,java.nio.file.attribute.BasicFileAttributes)>(r0, r2);
+
+        if r18 == null goto label09;
+
+        $r5 = virtualinvoke r18.<java.lang.module.ModuleReference: java.lang.module.ModuleDescriptor descriptor()>();
+
+        r19 = virtualinvoke $r5.<java.lang.module.ModuleDescriptor: java.lang.String name()>();
+
+        $r6 = staticinvoke <java.util.Map: java.util.Map of(java.lang.Object,java.lang.Object)>(r19, r18);
+
+     label08:
+        return $r6;
+
+     label09:
+        $z1 = r3.<jdk.internal.module.ModulePath: boolean isLinkPhase>;
+
+        if $z1 != 0 goto label10;
+
+        $r4 = interfaceinvoke r0.<java.nio.file.Path: java.lang.String toString()>();
+
+        $z2 = virtualinvoke $r4.<java.lang.String: boolean endsWith(java.lang.String)>(".jmod");
+
+        if $z2 == 0 goto label10;
+
+        r20 = "JMOD format not supported at execution time";
+
+        goto label11;
+
+     label10:
+        r20 = "Module format not recognized";
+
+     label11:
+        $r21 = new java.lang.module.FindException;
+
+        $r22 = new java.lang.StringBuilder;
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>()>();
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r20);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r0);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r21.<java.lang.module.FindException: void <init>(java.lang.String)>($r26);
+
+        throw $r21;
+
+     label12:
+        $r9 := @caughtexception;
+
+        $r10 = new java.lang.module.FindException;
+
+        specialinvoke $r10.<java.lang.module.FindException: void <init>(java.lang.Throwable)>($r9);
+
+        throw $r10;
+
+        catch java.nio.file.NoSuchFileException from label01 to label02 with label03;
+        catch java.io.IOException from label01 to label02 with label04;
+        catch java.io.IOException from label05 to label06 with label12;
+        catch java.io.IOException from label07 to label08 with label12;
+        catch java.io.IOException from label09 to label12 with label12;
+    }
+
+    private java.util.Map scanDirectory(java.nio.file.Path) throws java.io.IOException
+    {
+        java.util.HashMap $r0;
+        java.nio.file.Path r2, r30;
+        java.nio.file.DirectoryStream r3;
+        java.lang.Object $r4, $r10;
+        java.nio.file.LinkOption[] $r5;
+        java.nio.file.attribute.BasicFileAttributes r6;
+        jdk.internal.module.ModulePath r7;
+        java.lang.module.ModuleDescriptor $r8;
+        java.lang.String r9, r12, r13, $r25;
+        java.lang.module.ModuleReference r11, r32;
+        java.lang.module.FindException $r14;
+        java.lang.StringBuilder $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24;
+        java.lang.Throwable $r26, $r27;
+        java.nio.file.NoSuchFileException $r28;
+        java.util.Iterator r29;
+        boolean $z0;
+
+        r7 := @this: jdk.internal.module.ModulePath;
+
+        r2 := @parameter0: java.nio.file.Path;
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        r3 = staticinvoke <java.nio.file.Files: java.nio.file.DirectoryStream newDirectoryStream(java.nio.file.Path)>(r2);
+
+     label01:
+        r29 = interfaceinvoke r3.<java.nio.file.DirectoryStream: java.util.Iterator iterator()>();
+
+     label02:
+        $z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label08;
+
+        $r4 = interfaceinvoke r29.<java.util.Iterator: java.lang.Object next()>();
+
+        r30 = (java.nio.file.Path) $r4;
+
+     label03:
+        $r5 = newarray (java.nio.file.LinkOption)[0];
+
+        r6 = staticinvoke <java.nio.file.Files: java.nio.file.attribute.BasicFileAttributes readAttributes(java.nio.file.Path,java.lang.Class,java.nio.file.LinkOption[])>(r30, class "Ljava/nio/file/attribute/BasicFileAttributes;", $r5);
+
+     label04:
+        goto label06;
+
+     label05:
+        $r28 := @caughtexception;
+
+        goto label02;
+
+     label06:
+        r32 = virtualinvoke r7.<jdk.internal.module.ModulePath: java.lang.module.ModuleReference readModule(java.nio.file.Path,java.nio.file.attribute.BasicFileAttributes)>(r30, r6);
+
+        if r32 == null goto label07;
+
+        $r8 = virtualinvoke r32.<java.lang.module.ModuleReference: java.lang.module.ModuleDescriptor descriptor()>();
+
+        r9 = virtualinvoke $r8.<java.lang.module.ModuleDescriptor: java.lang.String name()>();
+
+        $r10 = interfaceinvoke $r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r9, r32);
+
+        r11 = (java.lang.module.ModuleReference) $r10;
+
+        if r11 == null goto label07;
+
+        r12 = virtualinvoke r7.<jdk.internal.module.ModulePath: java.lang.String fileName(java.lang.module.ModuleReference)>(r32);
+
+        r13 = virtualinvoke r7.<jdk.internal.module.ModulePath: java.lang.String fileName(java.lang.module.ModuleReference)>(r11);
+
+        $r14 = new java.lang.module.FindException;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Two versions of module ");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" found in ");
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" (");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r12);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" and ");
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r13);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")");
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r14.<java.lang.module.FindException: void <init>(java.lang.String)>($r25);
+
+        throw $r14;
+
+     label07:
+        goto label02;
+
+     label08:
+        if r3 == null goto label14;
+
+        interfaceinvoke r3.<java.nio.file.DirectoryStream: void close()>();
+
+        goto label14;
+
+     label09:
+        $r27 := @caughtexception;
+
+        if r3 == null goto label13;
+
+     label10:
+        interfaceinvoke r3.<java.nio.file.DirectoryStream: void close()>();
+
+     label11:
+        goto label13;
+
+     label12:
+        $r26 := @caughtexception;
+
+        virtualinvoke $r27.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r26);
+
+     label13:
+        throw $r27;
+
+     label14:
+        return $r0;
+
+        catch java.nio.file.NoSuchFileException from label03 to label04 with label05;
+        catch java.lang.Throwable from label01 to label08 with label09;
+        catch java.lang.Throwable from label10 to label11 with label12;
+    }
+
+    private java.lang.module.ModuleReference readModule(java.nio.file.Path, java.nio.file.attribute.BasicFileAttributes) throws java.io.IOException
+    {
+        java.nio.file.attribute.BasicFileAttributes r0;
+        boolean $z0, $z1, z2, $z3, $z4, $z5;
+        java.nio.file.Path r1, $r2, r6, $r7, r9;
+        jdk.internal.module.ModulePath r3;
+        java.lang.module.ModuleReference $r4, $r10, $r11, $r12;
+        java.nio.file.attribute.FileAttribute[] $r5;
+        java.nio.file.CopyOption[] $r8;
+        java.lang.module.InvalidModuleDescriptorException $r13;
+        java.lang.module.FindException $r14;
+        java.lang.StringBuilder $r15, $r16, $r17;
+        java.lang.String $r18, r19;
+
+        r3 := @this: jdk.internal.module.ModulePath;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+        r0 := @parameter1: java.nio.file.attribute.BasicFileAttributes;
+
+     label01:
+        $z0 = interfaceinvoke r0.<java.nio.file.attribute.BasicFileAttributes: boolean isDirectory()>();
+
+        if $z0 == 0 goto label03;
+
+        $r12 = virtualinvoke r3.<jdk.internal.module.ModulePath: java.lang.module.ModuleReference readExplodedModule(java.nio.file.Path)>(r1);
+
+     label02:
+        return $r12;
+
+     label03:
+        $z1 = interfaceinvoke r0.<java.nio.file.attribute.BasicFileAttributes: boolean isRegularFile()>();
+
+        if $z1 == 0 goto label09;
+
+        $r2 = interfaceinvoke r1.<java.nio.file.Path: java.nio.file.Path getFileName()>();
+
+        r19 = interfaceinvoke $r2.<java.nio.file.Path: java.lang.String toString()>();
+
+        z2 = virtualinvoke r3.<jdk.internal.module.ModulePath: boolean isDefaultFileSystem(java.nio.file.Path)>(r1);
+
+        $z3 = virtualinvoke r19.<java.lang.String: boolean endsWith(java.lang.String)>(".jar");
+
+        if $z3 == 0 goto label07;
+
+        if z2 == 0 goto label05;
+
+        $r11 = virtualinvoke r3.<jdk.internal.module.ModulePath: java.lang.module.ModuleReference readJar(java.nio.file.Path)>(r1);
+
+     label04:
+        return $r11;
+
+     label05:
+        $r5 = newarray (java.nio.file.attribute.FileAttribute)[0];
+
+        r6 = staticinvoke <java.nio.file.Files: java.nio.file.Path createTempDirectory(java.lang.String,java.nio.file.attribute.FileAttribute[])>("mlib", $r5);
+
+        $r7 = interfaceinvoke r6.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>(r19);
+
+        $r8 = newarray (java.nio.file.CopyOption)[0];
+
+        r9 = staticinvoke <java.nio.file.Files: java.nio.file.Path copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption[])>(r1, $r7, $r8);
+
+        $r10 = virtualinvoke r3.<jdk.internal.module.ModulePath: java.lang.module.ModuleReference readJar(java.nio.file.Path)>(r9);
+
+     label06:
+        return $r10;
+
+     label07:
+        if z2 == 0 goto label09;
+
+        $z4 = r3.<jdk.internal.module.ModulePath: boolean isLinkPhase>;
+
+        if $z4 == 0 goto label09;
+
+        $z5 = virtualinvoke r19.<java.lang.String: boolean endsWith(java.lang.String)>(".jmod");
+
+        if $z5 == 0 goto label09;
+
+        $r4 = virtualinvoke r3.<jdk.internal.module.ModulePath: java.lang.module.ModuleReference readJMod(java.nio.file.Path)>(r1);
+
+     label08:
+        return $r4;
+
+     label09:
+        return null;
+
+     label10:
+        $r13 := @caughtexception;
+
+        $r14 = new java.lang.module.FindException;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Error reading module: ");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r14.<java.lang.module.FindException: void <init>(java.lang.String,java.lang.Throwable)>($r18, $r13);
+
+        throw $r14;
+
+        catch java.lang.module.InvalidModuleDescriptorException from label01 to label02 with label10;
+        catch java.lang.module.InvalidModuleDescriptorException from label03 to label04 with label10;
+        catch java.lang.module.InvalidModuleDescriptorException from label05 to label06 with label10;
+        catch java.lang.module.InvalidModuleDescriptorException from label07 to label08 with label10;
+    }
+
+    private java.lang.String fileName(java.lang.module.ModuleReference)
+    {
+        java.lang.module.ModuleReference r0;
+        java.util.Optional $r1;
+        java.lang.Object $r2;
+        java.net.URI r3;
+        java.lang.String $r4, $r5, $r8;
+        boolean $z0;
+        java.nio.file.Path r6, $r7;
+        jdk.internal.module.ModulePath r9;
+
+        r9 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.lang.module.ModuleReference;
+
+        $r1 = virtualinvoke r0.<java.lang.module.ModuleReference: java.util.Optional location()>();
+
+        $r2 = virtualinvoke $r1.<java.util.Optional: java.lang.Object orElse(java.lang.Object)>(null);
+
+        r3 = (java.net.URI) $r2;
+
+        if r3 == null goto label2;
+
+        $r4 = virtualinvoke r3.<java.net.URI: java.lang.String getScheme()>();
+
+        $z0 = virtualinvoke $r4.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>("file");
+
+        if $z0 == 0 goto label1;
+
+        r6 = staticinvoke <java.nio.file.Path: java.nio.file.Path of(java.net.URI)>(r3);
+
+        $r7 = interfaceinvoke r6.<java.nio.file.Path: java.nio.file.Path getFileName()>();
+
+        $r8 = interfaceinvoke $r7.<java.nio.file.Path: java.lang.String toString()>();
+
+        return $r8;
+
+     label1:
+        $r5 = virtualinvoke r3.<java.net.URI: java.lang.String toString()>();
+
+        return $r5;
+
+     label2:
+        return "<unknown>";
+    }
+
+    private java.util.Set jmodPackages(jdk.internal.jmod.JmodFile)
+    {
+        jdk.internal.jmod.JmodFile r0;
+        java.util.stream.Stream $r1, $r3, $r5, $r8, $r10;
+        java.util.function.Predicate $r2;
+        java.util.function.Function $r4, $r7, $r9;
+        jdk.internal.module.ModulePath r6;
+        java.util.stream.Collector $r11;
+        java.lang.Object $r12;
+        java.util.Set $r13;
+
+        r6 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: jdk.internal.jmod.JmodFile;
+
+        $r1 = virtualinvoke r0.<jdk.internal.jmod.JmodFile: java.util.stream.Stream stream()>();
+
+        $r2 = staticinvoke <jdk.internal.module.ModulePath$lambda_jmodPackages_0__65: java.util.function.Predicate bootstrap$()>();
+
+        $r3 = interfaceinvoke $r1.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r2);
+
+        $r4 = staticinvoke <jdk.internal.module.ModulePath$name__66: java.util.function.Function bootstrap$()>();
+
+        $r5 = interfaceinvoke $r3.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r4);
+
+        $r7 = staticinvoke <jdk.internal.module.ModulePath$toPackageName__67: java.util.function.Function bootstrap$(jdk.internal.module.ModulePath)>(r6);
+
+        $r8 = interfaceinvoke $r5.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r7);
+
+        $r9 = staticinvoke <jdk.internal.module.ModulePath$stream__68: java.util.function.Function bootstrap$()>();
+
+        $r10 = interfaceinvoke $r8.<java.util.stream.Stream: java.util.stream.Stream flatMap(java.util.function.Function)>($r9);
+
+        $r11 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toSet()>();
+
+        $r12 = interfaceinvoke $r10.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r11);
+
+        $r13 = (java.util.Set) $r12;
+
+        return $r13;
+    }
+
+    private java.lang.module.ModuleReference readJMod(java.nio.file.Path) throws java.io.IOException
+    {
+        jdk.internal.jmod.JmodFile $r0;
+        java.nio.file.Path r1;
+        jdk.internal.jmod.JmodFile$Section $r3;
+        jdk.internal.module.ModulePath r4;
+        java.util.function.Supplier $r5;
+        java.lang.Throwable $r6, $r7, $r8, $r11;
+        java.io.InputStream r12;
+        jdk.internal.module.ModuleInfo$Attributes r13;
+        java.lang.module.ModuleReference r14;
+
+        r4 := @this: jdk.internal.module.ModulePath;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+        $r0 = new jdk.internal.jmod.JmodFile;
+
+        specialinvoke $r0.<jdk.internal.jmod.JmodFile: void <init>(java.nio.file.Path)>(r1);
+
+     label01:
+        $r3 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section CLASSES>;
+
+        r12 = virtualinvoke $r0.<jdk.internal.jmod.JmodFile: java.io.InputStream getInputStream(jdk.internal.jmod.JmodFile$Section,java.lang.String)>($r3, "module-info.class");
+
+     label02:
+        $r5 = staticinvoke <jdk.internal.module.ModulePath$lambda_readJMod_1__69: java.util.function.Supplier bootstrap$(jdk.internal.module.ModulePath,jdk.internal.jmod.JmodFile)>(r4, $r0);
+
+        r13 = staticinvoke <jdk.internal.module.ModuleInfo: jdk.internal.module.ModuleInfo$Attributes read(java.io.InputStream,java.util.function.Supplier)>(r12, $r5);
+
+     label03:
+        if r12 == null goto label09;
+
+        virtualinvoke r12.<java.io.InputStream: void close()>();
+
+        goto label09;
+
+     label04:
+        $r11 := @caughtexception;
+
+        if r12 == null goto label08;
+
+     label05:
+        virtualinvoke r12.<java.io.InputStream: void close()>();
+
+     label06:
+        goto label08;
+
+     label07:
+        $r8 := @caughtexception;
+
+        virtualinvoke $r11.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r8);
+
+     label08:
+        throw $r11;
+
+     label09:
+        r14 = staticinvoke <jdk.internal.module.ModuleReferences: java.lang.module.ModuleReference newJModModule(jdk.internal.module.ModuleInfo$Attributes,java.nio.file.Path)>(r13, r1);
+
+     label10:
+        virtualinvoke $r0.<jdk.internal.jmod.JmodFile: void close()>();
+
+        return r14;
+
+     label11:
+        $r7 := @caughtexception;
+
+     label12:
+        virtualinvoke $r0.<jdk.internal.jmod.JmodFile: void close()>();
+
+     label13:
+        goto label15;
+
+     label14:
+        $r6 := @caughtexception;
+
+        virtualinvoke $r7.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r6);
+
+     label15:
+        throw $r7;
+
+        catch java.lang.Throwable from label02 to label03 with label04;
+        catch java.lang.Throwable from label05 to label06 with label07;
+        catch java.lang.Throwable from label01 to label10 with label11;
+        catch java.lang.Throwable from label12 to label13 with label14;
+    }
+
+    public java.util.Optional toServiceName(java.lang.String)
+    {
+        boolean $z0, $z1, $z2, $z3;
+        java.lang.String r0, r1, r2;
+        int $i0, i1, $i2;
+        java.util.Optional $r3, $r6;
+        java.lang.AssertionError $r4;
+        jdk.internal.module.ModulePath r5;
+
+        r5 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = <jdk.internal.module.ModulePath: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label1;
+
+        $z3 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>("META-INF/services/");
+
+        if $z3 != 0 goto label1;
+
+        $r4 = new java.lang.AssertionError;
+
+        specialinvoke $r4.<java.lang.AssertionError: void <init>()>();
+
+        throw $r4;
+
+     label1:
+        $i0 = virtualinvoke r0.<java.lang.String: int lastIndexOf(java.lang.String)>("/");
+
+        i1 = $i0 + 1;
+
+        $i2 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        if i1 >= $i2 goto label2;
+
+        r1 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(0, i1);
+
+        $z1 = virtualinvoke r1.<java.lang.String: boolean equals(java.lang.Object)>("META-INF/services/");
+
+        if $z1 == 0 goto label2;
+
+        r2 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int)>(i1);
+
+        $z2 = staticinvoke <jdk.internal.module.Checks: boolean isClassName(java.lang.String)>(r2);
+
+        if $z2 == 0 goto label2;
+
+        $r3 = staticinvoke <java.util.Optional: java.util.Optional of(java.lang.Object)>(r2);
+
+        return $r3;
+
+     label2:
+        $r6 = staticinvoke <java.util.Optional: java.util.Optional empty()>();
+
+        return $r6;
+    }
+
+    private java.lang.String nextLine(java.io.BufferedReader) throws java.io.IOException
+    {
+        java.io.BufferedReader r0;
+        int i0;
+        jdk.internal.module.ModulePath r1;
+        java.lang.String r2;
+
+        r1 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.io.BufferedReader;
+
+        r2 = virtualinvoke r0.<java.io.BufferedReader: java.lang.String readLine()>();
+
+        if r2 == null goto label2;
+
+        i0 = virtualinvoke r2.<java.lang.String: int indexOf(int)>(35);
+
+        if i0 < 0 goto label1;
+
+        r2 = virtualinvoke r2.<java.lang.String: java.lang.String substring(int,int)>(0, i0);
+
+     label1:
+        r2 = virtualinvoke r2.<java.lang.String: java.lang.String trim()>();
+
+     label2:
+        return r2;
+    }
+
+    private java.lang.module.ModuleDescriptor deriveModuleDescriptor(java.util.jar.JarFile) throws java.io.IOException
+    {
+        java.util.jar.JarFile r0;
+        java.util.jar.Manifest r1;
+        int i0, $i1, $i2, $i3, $i4, i5;
+        java.util.regex.Pattern $r2;
+        java.util.regex.Matcher r3;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z7;
+        java.lang.String $r4, $r47, r56, r61, $r74, $r76, r79, r80, $r81, r82, r83, r84, r90, $r92, r96, r97, r98;
+        java.util.stream.Stream $r5, $r7, $r9, $r11, $r22, $r25, $r27, $r28, $r33, $r35, $r37;
+        java.util.function.Predicate $r6, $r10, $r12;
+        java.util.function.Function $r8, $r24, $r26, $r34, $r36;
+        java.util.stream.Collector $r13, $r14, $r29, $r38;
+        java.lang.Object $r15, $r17, $r20, $r30, $r39, $r43;
+        java.lang.Boolean $r16, $r19;
+        java.util.Set r18, r21, r31, r40;
+        jdk.internal.module.ModulePath r23;
+        java.util.jar.Attributes$Name $r41, $r65, $r71;
+        java.lang.StringBuilder $r44, $r45, $r46, $r57, $r58, $r59, $r60, $r70, $r72, $r73, $r75;
+        java.util.jar.JarEntry r48;
+        java.util.ArrayList $r49;
+        java.io.InputStream r51;
+        java.io.BufferedReader $r52;
+        java.io.InputStreamReader $r53;
+        sun.nio.cs.UTF_8 $r54;
+        java.lang.module.InvalidModuleDescriptorException $r62;
+        java.lang.Throwable $r66, $r67;
+        java.lang.IllegalArgumentException $r68, $r77;
+        java.lang.module.FindException $r69;
+        java.util.jar.Attributes r78;
+        java.lang.module.ModuleDescriptor$Builder r86;
+        java.util.Map r88;
+        java.util.Iterator r89;
+        java.lang.module.ModuleDescriptor $r99;
+
+        r23 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.util.jar.JarFile;
+
+        r1 = virtualinvoke r0.<java.util.jar.JarFile: java.util.jar.Manifest getManifest()>();
+
+        r78 = null;
+
+        r79 = null;
+
+        if r1 == null goto label01;
+
+        r78 = virtualinvoke r1.<java.util.jar.Manifest: java.util.jar.Attributes getMainAttributes()>();
+
+        if r78 == null goto label01;
+
+        $r65 = <jdk.internal.module.ModulePath: java.util.jar.Attributes$Name AUTOMATIC_MODULE_NAME>;
+
+        r79 = virtualinvoke r78.<java.util.jar.Attributes: java.lang.String getValue(java.util.jar.Attributes$Name)>($r65);
+
+     label01:
+        r80 = virtualinvoke r0.<java.util.jar.JarFile: java.lang.String getName()>();
+
+        $r81 = <java.io.File: java.lang.String separator>;
+
+        i0 = virtualinvoke r80.<java.lang.String: int lastIndexOf(java.lang.String)>($r81);
+
+        if i0 == -1 goto label02;
+
+        $i4 = i0 + 1;
+
+        r80 = virtualinvoke r80.<java.lang.String: java.lang.String substring(int)>($i4);
+
+     label02:
+        $i1 = virtualinvoke r80.<java.lang.String: int length()>();
+
+        $i2 = $i1 - 4;
+
+        r82 = virtualinvoke r80.<java.lang.String: java.lang.String substring(int,int)>(0, $i2);
+
+        r83 = null;
+
+        $r2 = <jdk.internal.module.ModulePath$Patterns: java.util.regex.Pattern DASH_VERSION>;
+
+        r3 = virtualinvoke $r2.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r82);
+
+        $z0 = virtualinvoke r3.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label07;
+
+        i5 = virtualinvoke r3.<java.util.regex.Matcher: int start()>();
+
+     label03:
+        $i3 = i5 + 1;
+
+        r84 = virtualinvoke r82.<java.lang.String: java.lang.String substring(int)>($i3);
+
+        staticinvoke <java.lang.module.ModuleDescriptor$Version: java.lang.module.ModuleDescriptor$Version parse(java.lang.String)>(r84);
+
+        r83 = r84;
+
+     label04:
+        goto label06;
+
+     label05:
+        $r77 := @caughtexception;
+
+     label06:
+        r82 = virtualinvoke r82.<java.lang.String: java.lang.String substring(int,int)>(0, i5);
+
+     label07:
+        if r79 == null goto label11;
+
+     label08:
+        r86 = staticinvoke <java.lang.module.ModuleDescriptor: java.lang.module.ModuleDescriptor$Builder newAutomaticModule(java.lang.String)>(r79);
+
+     label09:
+        goto label12;
+
+     label10:
+        $r68 := @caughtexception;
+
+        $r69 = new java.lang.module.FindException;
+
+        $r70 = new java.lang.StringBuilder;
+
+        specialinvoke $r70.<java.lang.StringBuilder: void <init>()>();
+
+        $r71 = <jdk.internal.module.ModulePath: java.util.jar.Attributes$Name AUTOMATIC_MODULE_NAME>;
+
+        $r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r71);
+
+        $r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r74 = virtualinvoke $r68.<java.lang.IllegalArgumentException: java.lang.String getMessage()>();
+
+        $r75 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r74);
+
+        $r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r69.<java.lang.module.FindException: void <init>(java.lang.String)>($r76);
+
+        throw $r69;
+
+     label11:
+        $r4 = staticinvoke <jdk.internal.module.ModulePath: java.lang.String cleanModuleName(java.lang.String)>(r82);
+
+        r86 = staticinvoke <java.lang.module.ModuleDescriptor: java.lang.module.ModuleDescriptor$Builder newAutomaticModule(java.lang.String)>($r4);
+
+     label12:
+        if r83 == null goto label13;
+
+        virtualinvoke r86.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder version(java.lang.String)>(r83);
+
+     label13:
+        $r5 = virtualinvoke r0.<java.util.jar.JarFile: java.util.stream.Stream versionedStream()>();
+
+        $r6 = staticinvoke <jdk.internal.module.ModulePath$lambda_deriveModuleDescriptor_2__70: java.util.function.Predicate bootstrap$()>();
+
+        $r7 = interfaceinvoke $r5.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r6);
+
+        $r8 = staticinvoke <jdk.internal.module.ModulePath$getName__71: java.util.function.Function bootstrap$()>();
+
+        $r9 = interfaceinvoke $r7.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r8);
+
+        $r10 = staticinvoke <jdk.internal.module.ModulePath$lambda_deriveModuleDescriptor_3__72: java.util.function.Predicate bootstrap$()>();
+
+        $r11 = interfaceinvoke $r9.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r10);
+
+        $r12 = staticinvoke <jdk.internal.module.ModulePath$lambda_deriveModuleDescriptor_4__73: java.util.function.Predicate bootstrap$()>();
+
+        $r13 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toSet()>();
+
+        $r14 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector partitioningBy(java.util.function.Predicate,java.util.stream.Collector)>($r12, $r13);
+
+        $r15 = interfaceinvoke $r11.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r14);
+
+        r88 = (java.util.Map) $r15;
+
+        $r16 = <java.lang.Boolean: java.lang.Boolean FALSE>;
+
+        $r17 = interfaceinvoke r88.<java.util.Map: java.lang.Object get(java.lang.Object)>($r16);
+
+        r18 = (java.util.Set) $r17;
+
+        $r19 = <java.lang.Boolean: java.lang.Boolean TRUE>;
+
+        $r20 = interfaceinvoke r88.<java.util.Map: java.lang.Object get(java.lang.Object)>($r19);
+
+        r21 = (java.util.Set) $r20;
+
+        $r22 = interfaceinvoke r18.<java.util.Set: java.util.stream.Stream stream()>();
+
+        $r24 = staticinvoke <jdk.internal.module.ModulePath$toPackageName__74: java.util.function.Function bootstrap$(jdk.internal.module.ModulePath)>(r23);
+
+        $r25 = interfaceinvoke $r22.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r24);
+
+        $r26 = staticinvoke <jdk.internal.module.ModulePath$stream__75: java.util.function.Function bootstrap$()>();
+
+        $r27 = interfaceinvoke $r25.<java.util.stream.Stream: java.util.stream.Stream flatMap(java.util.function.Function)>($r26);
+
+        $r28 = interfaceinvoke $r27.<java.util.stream.Stream: java.util.stream.Stream distinct()>();
+
+        $r29 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toSet()>();
+
+        $r30 = interfaceinvoke $r28.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r29);
+
+        r31 = (java.util.Set) $r30;
+
+        virtualinvoke r86.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder packages(java.util.Set)>(r31);
+
+        $r33 = interfaceinvoke r21.<java.util.Set: java.util.stream.Stream stream()>();
+
+        $r34 = staticinvoke <jdk.internal.module.ModulePath$toServiceName__76: java.util.function.Function bootstrap$(jdk.internal.module.ModulePath)>(r23);
+
+        $r35 = interfaceinvoke $r33.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r34);
+
+        $r36 = staticinvoke <jdk.internal.module.ModulePath$stream__77: java.util.function.Function bootstrap$()>();
+
+        $r37 = interfaceinvoke $r35.<java.util.stream.Stream: java.util.stream.Stream flatMap(java.util.function.Function)>($r36);
+
+        $r38 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toSet()>();
+
+        $r39 = interfaceinvoke $r37.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r38);
+
+        r40 = (java.util.Set) $r39;
+
+        r89 = interfaceinvoke r40.<java.util.Set: java.util.Iterator iterator()>();
+
+     label14:
+        $z7 = interfaceinvoke r89.<java.util.Iterator: boolean hasNext()>();
+
+        if $z7 == 0 goto label26;
+
+        $r43 = interfaceinvoke r89.<java.util.Iterator: java.lang.Object next()>();
+
+        r90 = (java.lang.String) $r43;
+
+        $r44 = new java.lang.StringBuilder;
+
+        specialinvoke $r44.<java.lang.StringBuilder: void <init>()>();
+
+        $r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("META-INF/services/");
+
+        $r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r90);
+
+        $r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        r48 = virtualinvoke r0.<java.util.jar.JarFile: java.util.jar.JarEntry getJarEntry(java.lang.String)>($r47);
+
+        $r49 = new java.util.ArrayList;
+
+        specialinvoke $r49.<java.util.ArrayList: void <init>()>();
+
+        r51 = virtualinvoke r0.<java.util.jar.JarFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r48);
+
+     label15:
+        $r52 = new java.io.BufferedReader;
+
+        $r53 = new java.io.InputStreamReader;
+
+        $r54 = <sun.nio.cs.UTF_8: sun.nio.cs.UTF_8 INSTANCE>;
+
+        specialinvoke $r53.<java.io.InputStreamReader: void <init>(java.io.InputStream,java.nio.charset.Charset)>(r51, $r54);
+
+        specialinvoke $r52.<java.io.BufferedReader: void <init>(java.io.Reader)>($r53);
+
+     label16:
+        $r92 = virtualinvoke r23.<jdk.internal.module.ModulePath: java.lang.String nextLine(java.io.BufferedReader)>($r52);
+
+        if $r92 == null goto label18;
+
+        $z4 = virtualinvoke $r92.<java.lang.String: boolean isEmpty()>();
+
+        if $z4 != 0 goto label16;
+
+        r56 = staticinvoke <jdk.internal.module.ModulePath: java.lang.String packageName(java.lang.String)>($r92);
+
+        $z5 = interfaceinvoke r31.<java.util.Set: boolean contains(java.lang.Object)>(r56);
+
+        if $z5 != 0 goto label17;
+
+        $r57 = new java.lang.StringBuilder;
+
+        specialinvoke $r57.<java.lang.StringBuilder: void <init>()>();
+
+        $r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Provider class ");
+
+        $r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r92);
+
+        $r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" not in module");
+
+        r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r62 = new java.lang.module.InvalidModuleDescriptorException;
+
+        specialinvoke $r62.<java.lang.module.InvalidModuleDescriptorException: void <init>(java.lang.String)>(r61);
+
+        throw $r62;
+
+     label17:
+        interfaceinvoke $r49.<java.util.List: boolean add(java.lang.Object)>($r92);
+
+        goto label16;
+
+     label18:
+        if r51 == null goto label24;
+
+        virtualinvoke r51.<java.io.InputStream: void close()>();
+
+        goto label24;
+
+     label19:
+        $r67 := @caughtexception;
+
+        if r51 == null goto label23;
+
+     label20:
+        virtualinvoke r51.<java.io.InputStream: void close()>();
+
+     label21:
+        goto label23;
+
+     label22:
+        $r66 := @caughtexception;
+
+        virtualinvoke $r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r66);
+
+     label23:
+        throw $r67;
+
+     label24:
+        $z3 = interfaceinvoke $r49.<java.util.List: boolean isEmpty()>();
+
+        if $z3 != 0 goto label25;
+
+        virtualinvoke r86.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder provides(java.lang.String,java.util.List)>(r90, $r49);
+
+     label25:
+        goto label14;
+
+     label26:
+        if r78 == null goto label27;
+
+        $r41 = <java.util.jar.Attributes$Name: java.util.jar.Attributes$Name MAIN_CLASS>;
+
+        r96 = virtualinvoke r78.<java.util.jar.Attributes: java.lang.String getValue(java.util.jar.Attributes$Name)>($r41);
+
+        if r96 == null goto label27;
+
+        r97 = virtualinvoke r96.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("/", ".");
+
+        $z1 = staticinvoke <jdk.internal.module.Checks: boolean isClassName(java.lang.String)>(r97);
+
+        if $z1 == 0 goto label27;
+
+        r98 = staticinvoke <jdk.internal.module.ModulePath: java.lang.String packageName(java.lang.String)>(r97);
+
+        $z2 = interfaceinvoke r31.<java.util.Set: boolean contains(java.lang.Object)>(r98);
+
+        if $z2 == 0 goto label27;
+
+        virtualinvoke r86.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor$Builder mainClass(java.lang.String)>(r97);
+
+     label27:
+        $r99 = virtualinvoke r86.<java.lang.module.ModuleDescriptor$Builder: java.lang.module.ModuleDescriptor build()>();
+
+        return $r99;
+
+        catch java.lang.IllegalArgumentException from label03 to label04 with label05;
+        catch java.lang.IllegalArgumentException from label08 to label09 with label10;
+        catch java.lang.Throwable from label15 to label18 with label19;
+        catch java.lang.Throwable from label20 to label21 with label22;
+    }
+
+    private static java.lang.String cleanModuleName(java.lang.String)
+    {
+        java.util.regex.Pattern $r0, $r2, $r4, $r6;
+        java.util.regex.Matcher $r1, $r3, $r5, $r7;
+        boolean $z0;
+        int i0, $i1;
+        char $c2, $c3;
+        java.lang.String r8, r9, r10;
+
+        r8 := @parameter0: java.lang.String;
+
+        $r0 = <jdk.internal.module.ModulePath$Patterns: java.util.regex.Pattern NON_ALPHANUM>;
+
+        $r1 = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r8);
+
+        r9 = virtualinvoke $r1.<java.util.regex.Matcher: java.lang.String replaceAll(java.lang.String)>(".");
+
+        $r2 = <jdk.internal.module.ModulePath$Patterns: java.util.regex.Pattern REPEATING_DOTS>;
+
+        $r3 = virtualinvoke $r2.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r9);
+
+        r10 = virtualinvoke $r3.<java.util.regex.Matcher: java.lang.String replaceAll(java.lang.String)>(".");
+
+        $z0 = virtualinvoke r10.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 != 0 goto label1;
+
+        $c3 = virtualinvoke r10.<java.lang.String: char charAt(int)>(0);
+
+        if $c3 != 46 goto label1;
+
+        $r6 = <jdk.internal.module.ModulePath$Patterns: java.util.regex.Pattern LEADING_DOTS>;
+
+        $r7 = virtualinvoke $r6.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r10);
+
+        r10 = virtualinvoke $r7.<java.util.regex.Matcher: java.lang.String replaceAll(java.lang.String)>("");
+
+     label1:
+        i0 = virtualinvoke r10.<java.lang.String: int length()>();
+
+        if i0 <= 0 goto label2;
+
+        $i1 = i0 - 1;
+
+        $c2 = virtualinvoke r10.<java.lang.String: char charAt(int)>($i1);
+
+        if $c2 != 46 goto label2;
+
+        $r4 = <jdk.internal.module.ModulePath$Patterns: java.util.regex.Pattern TRAILING_DOTS>;
+
+        $r5 = virtualinvoke $r4.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r10);
+
+        r10 = virtualinvoke $r5.<java.util.regex.Matcher: java.lang.String replaceAll(java.lang.String)>("");
+
+     label2:
+        return r10;
+    }
+
+    private java.util.Set jarPackages(java.util.jar.JarFile)
+    {
+        java.util.jar.JarFile r0;
+        java.util.stream.Stream $r1, $r3, $r5, $r8, $r10;
+        java.util.function.Predicate $r2;
+        java.util.function.Function $r4, $r7, $r9;
+        jdk.internal.module.ModulePath r6;
+        java.util.stream.Collector $r11;
+        java.lang.Object $r12;
+        java.util.Set $r13;
+
+        r6 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.util.jar.JarFile;
+
+        $r1 = virtualinvoke r0.<java.util.jar.JarFile: java.util.stream.Stream versionedStream()>();
+
+        $r2 = staticinvoke <jdk.internal.module.ModulePath$lambda_jarPackages_5__78: java.util.function.Predicate bootstrap$()>();
+
+        $r3 = interfaceinvoke $r1.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r2);
+
+        $r4 = staticinvoke <jdk.internal.module.ModulePath$getName__79: java.util.function.Function bootstrap$()>();
+
+        $r5 = interfaceinvoke $r3.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r4);
+
+        $r7 = staticinvoke <jdk.internal.module.ModulePath$toPackageName__80: java.util.function.Function bootstrap$(jdk.internal.module.ModulePath)>(r6);
+
+        $r8 = interfaceinvoke $r5.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r7);
+
+        $r9 = staticinvoke <jdk.internal.module.ModulePath$stream__81: java.util.function.Function bootstrap$()>();
+
+        $r10 = interfaceinvoke $r8.<java.util.stream.Stream: java.util.stream.Stream flatMap(java.util.function.Function)>($r9);
+
+        $r11 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toSet()>();
+
+        $r12 = interfaceinvoke $r10.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r11);
+
+        $r13 = (java.util.Set) $r12;
+
+        return $r13;
+    }
+
+    private java.lang.module.ModuleReference readJar(java.nio.file.Path) throws java.io.IOException
+    {
+        java.util.jar.JarFile $r0;
+        java.nio.file.Path r1;
+        java.io.File $r2;
+        jdk.internal.module.ModulePath r3;
+        java.lang.Runtime$Version $r4;
+        java.io.InputStream $r5;
+        java.util.function.Supplier $r6;
+        jdk.internal.module.ModulePatcher $r7;
+        jdk.internal.module.ModuleInfo$Attributes $r8, r27;
+        java.util.zip.ZipException $r9;
+        java.lang.module.FindException $r10, $r18;
+        java.lang.StringBuilder $r11, $r12, $r13, $r19, $r20, $r22;
+        java.lang.String $r14, $r21, $r23;
+        java.lang.Throwable $r15, $r16;
+        java.lang.RuntimeException $r17;
+        java.util.jar.JarEntry r25;
+        java.lang.module.ModuleDescriptor r26;
+        java.lang.module.ModuleReference r29;
+
+        r3 := @this: jdk.internal.module.ModulePath;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+     label01:
+        $r0 = new java.util.jar.JarFile;
+
+        $r2 = interfaceinvoke r1.<java.nio.file.Path: java.io.File toFile()>();
+
+        $r4 = r3.<jdk.internal.module.ModulePath: java.lang.Runtime$Version releaseVersion>;
+
+        specialinvoke $r0.<java.util.jar.JarFile: void <init>(java.io.File,boolean,int,java.lang.Runtime$Version)>($r2, 1, 1, $r4);
+
+     label02:
+        r25 = virtualinvoke $r0.<java.util.jar.JarFile: java.util.jar.JarEntry getJarEntry(java.lang.String)>("module-info.class");
+
+        if r25 != null goto label06;
+
+     label03:
+        r26 = virtualinvoke r3.<jdk.internal.module.ModulePath: java.lang.module.ModuleDescriptor deriveModuleDescriptor(java.util.jar.JarFile)>($r0);
+
+        $r8 = new jdk.internal.module.ModuleInfo$Attributes;
+
+        specialinvoke $r8.<jdk.internal.module.ModuleInfo$Attributes: void <init>(java.lang.module.ModuleDescriptor,jdk.internal.module.ModuleTarget,jdk.internal.module.ModuleHashes,jdk.internal.module.ModuleResolution)>(r26, null, null, null);
+
+        r27 = $r8;
+
+     label04:
+        goto label07;
+
+     label05:
+        $r17 := @caughtexception;
+
+        $r18 = new java.lang.module.FindException;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to derive module descriptor for ");
+
+        $r21 = virtualinvoke $r0.<java.util.jar.JarFile: java.lang.String getName()>();
+
+        $r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r18.<java.lang.module.FindException: void <init>(java.lang.String,java.lang.Throwable)>($r23, $r17);
+
+        throw $r18;
+
+     label06:
+        $r5 = virtualinvoke $r0.<java.util.jar.JarFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r25);
+
+        $r6 = staticinvoke <jdk.internal.module.ModulePath$lambda_readJar_6__82: java.util.function.Supplier bootstrap$(jdk.internal.module.ModulePath,java.util.jar.JarFile)>(r3, $r0);
+
+        r27 = staticinvoke <jdk.internal.module.ModuleInfo: jdk.internal.module.ModuleInfo$Attributes read(java.io.InputStream,java.util.function.Supplier)>($r5, $r6);
+
+     label07:
+        $r7 = r3.<jdk.internal.module.ModulePath: jdk.internal.module.ModulePatcher patcher>;
+
+        r29 = staticinvoke <jdk.internal.module.ModuleReferences: java.lang.module.ModuleReference newJarModule(jdk.internal.module.ModuleInfo$Attributes,jdk.internal.module.ModulePatcher,java.nio.file.Path)>(r27, $r7, r1);
+
+     label08:
+        virtualinvoke $r0.<java.util.jar.JarFile: void close()>();
+
+     label09:
+        return r29;
+
+     label10:
+        $r16 := @caughtexception;
+
+     label11:
+        virtualinvoke $r0.<java.util.jar.JarFile: void close()>();
+
+     label12:
+        goto label14;
+
+     label13:
+        $r15 := @caughtexception;
+
+        virtualinvoke $r16.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r15);
+
+     label14:
+        throw $r16;
+
+     label15:
+        $r9 := @caughtexception;
+
+        $r10 = new java.lang.module.FindException;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Error reading ");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.module.FindException: void <init>(java.lang.String,java.lang.Throwable)>($r14, $r9);
+
+        throw $r10;
+
+        catch java.lang.RuntimeException from label03 to label04 with label05;
+        catch java.lang.Throwable from label02 to label08 with label10;
+        catch java.lang.Throwable from label11 to label12 with label13;
+        catch java.util.zip.ZipException from label01 to label09 with label15;
+        catch java.util.zip.ZipException from label10 to label15 with label15;
+    }
+
+    private java.util.Set explodedPackages(java.nio.file.Path)
+    {
+        java.nio.file.Path r0;
+        jdk.internal.module.ModulePath r1;
+        java.util.function.BiPredicate $r2;
+        java.nio.file.FileVisitOption[] $r3;
+        java.util.stream.Stream $r4, $r6, $r8, $r10;
+        java.util.function.Function $r5, $r7, $r9;
+        java.util.stream.Collector $r11;
+        java.lang.Object $r12;
+        java.util.Set $r13;
+        java.io.IOException $r14;
+        java.io.UncheckedIOException $r16;
+
+        r1 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.nio.file.Path;
+
+     label1:
+        $r2 = staticinvoke <jdk.internal.module.ModulePath$lambda_explodedPackages_7__83: java.util.function.BiPredicate bootstrap$(jdk.internal.module.ModulePath)>(r1);
+
+        $r3 = newarray (java.nio.file.FileVisitOption)[0];
+
+        $r4 = staticinvoke <java.nio.file.Files: java.util.stream.Stream find(java.nio.file.Path,int,java.util.function.BiPredicate,java.nio.file.FileVisitOption[])>(r0, 2147483647, $r2, $r3);
+
+        $r5 = staticinvoke <jdk.internal.module.ModulePath$lambda_explodedPackages_8__84: java.util.function.Function bootstrap$(java.nio.file.Path)>(r0);
+
+        $r6 = interfaceinvoke $r4.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r5);
+
+        $r7 = staticinvoke <jdk.internal.module.ModulePath$toPackageName__85: java.util.function.Function bootstrap$(jdk.internal.module.ModulePath)>(r1);
+
+        $r8 = interfaceinvoke $r6.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r7);
+
+        $r9 = staticinvoke <jdk.internal.module.ModulePath$stream__86: java.util.function.Function bootstrap$()>();
+
+        $r10 = interfaceinvoke $r8.<java.util.stream.Stream: java.util.stream.Stream flatMap(java.util.function.Function)>($r9);
+
+        $r11 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toSet()>();
+
+        $r12 = interfaceinvoke $r10.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r11);
+
+        $r13 = (java.util.Set) $r12;
+
+     label2:
+        return $r13;
+
+     label3:
+        $r14 := @caughtexception;
+
+        $r16 = new java.io.UncheckedIOException;
+
+        specialinvoke $r16.<java.io.UncheckedIOException: void <init>(java.io.IOException)>($r14);
+
+        throw $r16;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    private java.lang.module.ModuleReference readExplodedModule(java.nio.file.Path) throws java.io.IOException
+    {
+        java.nio.file.Path r0, r1;
+        java.nio.file.OpenOption[] $r2;
+        java.io.BufferedInputStream $r3;
+        jdk.internal.module.ModulePath r4;
+        java.util.function.Supplier $r5;
+        jdk.internal.module.ModuleInfo$Attributes r6;
+        jdk.internal.module.ModulePatcher $r7;
+        java.lang.module.ModuleReference $r8;
+        java.nio.file.NoSuchFileException $r9;
+        java.lang.Throwable $r10, $r13;
+        java.io.InputStream r14;
+
+        r4 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.nio.file.Path;
+
+        r1 = interfaceinvoke r0.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>("module-info.class");
+
+     label01:
+        $r2 = newarray (java.nio.file.OpenOption)[0];
+
+        r14 = staticinvoke <java.nio.file.Files: java.io.InputStream newInputStream(java.nio.file.Path,java.nio.file.OpenOption[])>(r1, $r2);
+
+     label02:
+        $r3 = new java.io.BufferedInputStream;
+
+        specialinvoke $r3.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>(r14);
+
+        $r5 = staticinvoke <jdk.internal.module.ModulePath$lambda_readExplodedModule_9__87: java.util.function.Supplier bootstrap$(jdk.internal.module.ModulePath,java.nio.file.Path)>(r4, r0);
+
+        r6 = staticinvoke <jdk.internal.module.ModuleInfo: jdk.internal.module.ModuleInfo$Attributes read(java.io.InputStream,java.util.function.Supplier)>($r3, $r5);
+
+     label03:
+        if r14 == null goto label09;
+
+        virtualinvoke r14.<java.io.InputStream: void close()>();
+
+        goto label09;
+
+     label04:
+        $r13 := @caughtexception;
+
+        if r14 == null goto label08;
+
+     label05:
+        virtualinvoke r14.<java.io.InputStream: void close()>();
+
+     label06:
+        goto label08;
+
+     label07:
+        $r10 := @caughtexception;
+
+        virtualinvoke $r13.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r10);
+
+     label08:
+        throw $r13;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r9 := @caughtexception;
+
+        return null;
+
+     label11:
+        $r7 = r4.<jdk.internal.module.ModulePath: jdk.internal.module.ModulePatcher patcher>;
+
+        $r8 = staticinvoke <jdk.internal.module.ModuleReferences: java.lang.module.ModuleReference newExplodedModule(jdk.internal.module.ModuleInfo$Attributes,jdk.internal.module.ModulePatcher,java.nio.file.Path)>(r6, $r7, r0);
+
+        return $r8;
+
+        catch java.lang.Throwable from label02 to label03 with label04;
+        catch java.lang.Throwable from label05 to label06 with label07;
+        catch java.nio.file.NoSuchFileException from label01 to label09 with label10;
+    }
+
+    private static java.lang.String packageName(java.lang.String)
+    {
+        java.lang.String r0, $r1;
+        int i0;
+
+        r0 := @parameter0: java.lang.String;
+
+        i0 = virtualinvoke r0.<java.lang.String: int lastIndexOf(int)>(46);
+
+        if i0 != -1 goto label1;
+
+        $r1 = "";
+
+        goto label2;
+
+     label1:
+        $r1 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(0, i0);
+
+     label2:
+        return $r1;
+    }
+
+    public java.util.Optional toPackageName(java.lang.String)
+    {
+        boolean $z0, $z1, $z2, $z3, $z4;
+        java.lang.String r0, $r1, r11, r12;
+        int i0;
+        java.util.Optional $r2, $r3, $r4;
+        java.lang.StringBuilder $r5, $r6, $r7;
+        java.lang.module.InvalidModuleDescriptorException $r8;
+        java.lang.AssertionError $r9;
+        jdk.internal.module.ModulePath r10;
+
+        r10 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = <jdk.internal.module.ModulePath: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label1;
+
+        $z4 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>("/");
+
+        if $z4 == 0 goto label1;
+
+        $r9 = new java.lang.AssertionError;
+
+        specialinvoke $r9.<java.lang.AssertionError: void <init>()>();
+
+        throw $r9;
+
+     label1:
+        i0 = virtualinvoke r0.<java.lang.String: int lastIndexOf(java.lang.String)>("/");
+
+        if i0 != -1 goto label3;
+
+        $z2 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>(".class");
+
+        if $z2 == 0 goto label2;
+
+        $z3 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("module-info.class");
+
+        if $z3 != 0 goto label2;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" found in top-level directory (unnamed package not allowed in module)");
+
+        r11 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r8 = new java.lang.module.InvalidModuleDescriptorException;
+
+        specialinvoke $r8.<java.lang.module.InvalidModuleDescriptorException: void <init>(java.lang.String)>(r11);
+
+        throw $r8;
+
+     label2:
+        $r4 = staticinvoke <java.util.Optional: java.util.Optional empty()>();
+
+        return $r4;
+
+     label3:
+        $r1 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(0, i0);
+
+        r12 = virtualinvoke $r1.<java.lang.String: java.lang.String replace(char,char)>(47, 46);
+
+        $z1 = staticinvoke <jdk.internal.module.Checks: boolean isPackageName(java.lang.String)>(r12);
+
+        if $z1 == 0 goto label4;
+
+        $r3 = staticinvoke <java.util.Optional: java.util.Optional of(java.lang.Object)>(r12);
+
+        return $r3;
+
+     label4:
+        $r2 = staticinvoke <java.util.Optional: java.util.Optional empty()>();
+
+        return $r2;
+    }
+
+    public java.util.Optional toPackageName(java.nio.file.Path)
+    {
+        boolean $z0, $z1, $z2, $z3;
+        java.nio.file.Path r0, r1, $r11;
+        java.lang.String $r2, r9, r14, r15;
+        char $c0;
+        java.util.Optional $r3, $r4, $r5;
+        java.lang.StringBuilder $r6, $r7, $r8;
+        java.lang.module.InvalidModuleDescriptorException $r10;
+        java.lang.AssertionError $r12;
+        jdk.internal.module.ModulePath r13;
+
+        r13 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.nio.file.Path;
+
+        $z0 = <jdk.internal.module.ModulePath: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label1;
+
+        $r11 = interfaceinvoke r0.<java.nio.file.Path: java.nio.file.Path getRoot()>();
+
+        if $r11 == null goto label1;
+
+        $r12 = new java.lang.AssertionError;
+
+        specialinvoke $r12.<java.lang.AssertionError: void <init>()>();
+
+        throw $r12;
+
+     label1:
+        r1 = interfaceinvoke r0.<java.nio.file.Path: java.nio.file.Path getParent()>();
+
+        if r1 != null goto label3;
+
+        r14 = interfaceinvoke r0.<java.nio.file.Path: java.lang.String toString()>();
+
+        $z2 = virtualinvoke r14.<java.lang.String: boolean endsWith(java.lang.String)>(".class");
+
+        if $z2 == 0 goto label2;
+
+        $z3 = virtualinvoke r14.<java.lang.String: boolean equals(java.lang.Object)>("module-info.class");
+
+        if $z3 != 0 goto label2;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" found in top-level directory (unnamed package not allowed in module)");
+
+        r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r10 = new java.lang.module.InvalidModuleDescriptorException;
+
+        specialinvoke $r10.<java.lang.module.InvalidModuleDescriptorException: void <init>(java.lang.String)>(r9);
+
+        throw $r10;
+
+     label2:
+        $r5 = staticinvoke <java.util.Optional: java.util.Optional empty()>();
+
+        return $r5;
+
+     label3:
+        $r2 = interfaceinvoke r1.<java.nio.file.Path: java.lang.String toString()>();
+
+        $c0 = <java.io.File: char separatorChar>;
+
+        r15 = virtualinvoke $r2.<java.lang.String: java.lang.String replace(char,char)>($c0, 46);
+
+        $z1 = staticinvoke <jdk.internal.module.Checks: boolean isPackageName(java.lang.String)>(r15);
+
+        if $z1 == 0 goto label4;
+
+        $r4 = staticinvoke <java.util.Optional: java.util.Optional of(java.lang.Object)>(r15);
+
+        return $r4;
+
+     label4:
+        $r3 = staticinvoke <java.util.Optional: java.util.Optional empty()>();
+
+        return $r3;
+    }
+
+    private boolean isHidden(java.nio.file.Path)
+    {
+        java.nio.file.Path r0;
+        boolean $z0;
+        java.io.IOException $r1;
+        jdk.internal.module.ModulePath r3;
+
+        r3 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.nio.file.Path;
+
+     label1:
+        $z0 = staticinvoke <java.nio.file.Files: boolean isHidden(java.nio.file.Path)>(r0);
+
+     label2:
+        return $z0;
+
+     label3:
+        $r1 := @caughtexception;
+
+        return 0;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    private boolean isDefaultFileSystem(java.nio.file.Path)
+    {
+        java.nio.file.Path r0;
+        java.nio.file.FileSystem $r1;
+        java.nio.file.spi.FileSystemProvider $r2;
+        java.lang.String $r3;
+        boolean $z0;
+        jdk.internal.module.ModulePath r4;
+
+        r4 := @this: jdk.internal.module.ModulePath;
+
+        r0 := @parameter0: java.nio.file.Path;
+
+        $r1 = interfaceinvoke r0.<java.nio.file.Path: java.nio.file.FileSystem getFileSystem()>();
+
+        $r2 = virtualinvoke $r1.<java.nio.file.FileSystem: java.nio.file.spi.FileSystemProvider provider()>();
+
+        $r3 = virtualinvoke $r2.<java.nio.file.spi.FileSystemProvider: java.lang.String getScheme()>();
+
+        $z0 = virtualinvoke $r3.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>("file");
+
+        return $z0;
+    }
+
+    public java.util.Set lambda$readExplodedModule$9(java.nio.file.Path)
+    {
+        jdk.internal.module.ModulePath r0;
+        java.nio.file.Path r1;
+        java.util.Set $r2;
+
+        r0 := @this: jdk.internal.module.ModulePath;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+        $r2 = virtualinvoke r0.<jdk.internal.module.ModulePath: java.util.Set explodedPackages(java.nio.file.Path)>(r1);
+
+        return $r2;
+    }
+
+    public static java.nio.file.Path lambda$explodedPackages$8(java.nio.file.Path, java.nio.file.Path)
+    {
+        java.nio.file.Path r0, r1, $r2;
+
+        r0 := @parameter0: java.nio.file.Path;
+
+        r1 := @parameter1: java.nio.file.Path;
+
+        $r2 = interfaceinvoke r0.<java.nio.file.Path: java.nio.file.Path relativize(java.nio.file.Path)>(r1);
+
+        return $r2;
+    }
+
+    public boolean lambda$explodedPackages$7(java.nio.file.Path, java.nio.file.attribute.BasicFileAttributes)
+    {
+        java.nio.file.attribute.BasicFileAttributes r0;
+        boolean $z0, $z1, $z2;
+        jdk.internal.module.ModulePath r1;
+        java.nio.file.Path r2;
+
+        r1 := @this: jdk.internal.module.ModulePath;
+
+        r2 := @parameter0: java.nio.file.Path;
+
+        r0 := @parameter1: java.nio.file.attribute.BasicFileAttributes;
+
+        $z0 = interfaceinvoke r0.<java.nio.file.attribute.BasicFileAttributes: boolean isRegularFile()>();
+
+        if $z0 == 0 goto label1;
+
+        $z1 = virtualinvoke r1.<jdk.internal.module.ModulePath: boolean isHidden(java.nio.file.Path)>(r2);
+
+        if $z1 != 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    public java.util.Set lambda$readJar$6(java.util.jar.JarFile)
+    {
+        jdk.internal.module.ModulePath r0;
+        java.util.jar.JarFile r1;
+        java.util.Set $r2;
+
+        r0 := @this: jdk.internal.module.ModulePath;
+
+        r1 := @parameter0: java.util.jar.JarFile;
+
+        $r2 = virtualinvoke r0.<jdk.internal.module.ModulePath: java.util.Set jarPackages(java.util.jar.JarFile)>(r1);
+
+        return $r2;
+    }
+
+    public static boolean lambda$jarPackages$5(java.util.jar.JarEntry)
+    {
+        java.util.jar.JarEntry r0;
+        boolean $z0, $z1;
+
+        r0 := @parameter0: java.util.jar.JarEntry;
+
+        $z0 = virtualinvoke r0.<java.util.jar.JarEntry: boolean isDirectory()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    public static boolean lambda$deriveModuleDescriptor$4(java.lang.String)
+    {
+        java.lang.String r0;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>("META-INF/services/");
+
+        return $z0;
+    }
+
+    public static boolean lambda$deriveModuleDescriptor$3(java.lang.String)
+    {
+        java.lang.String r0;
+        boolean $z0, $z1, $z2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>(".class");
+
+        $z1 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>("META-INF/services/");
+
+        $z2 = $z0 ^ $z1;
+
+        return $z2;
+    }
+
+    public static boolean lambda$deriveModuleDescriptor$2(java.util.jar.JarEntry)
+    {
+        java.util.jar.JarEntry r0;
+        boolean $z0, $z1;
+
+        r0 := @parameter0: java.util.jar.JarEntry;
+
+        $z0 = virtualinvoke r0.<java.util.jar.JarEntry: boolean isDirectory()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    public java.util.Set lambda$readJMod$1(jdk.internal.jmod.JmodFile)
+    {
+        jdk.internal.module.ModulePath r0;
+        jdk.internal.jmod.JmodFile r1;
+        java.util.Set $r2;
+
+        r0 := @this: jdk.internal.module.ModulePath;
+
+        r1 := @parameter0: jdk.internal.jmod.JmodFile;
+
+        $r2 = virtualinvoke r0.<jdk.internal.module.ModulePath: java.util.Set jmodPackages(jdk.internal.jmod.JmodFile)>(r1);
+
+        return $r2;
+    }
+
+    public static boolean lambda$jmodPackages$0(jdk.internal.jmod.JmodFile$Entry)
+    {
+        jdk.internal.jmod.JmodFile$Entry r0;
+        jdk.internal.jmod.JmodFile$Section $r1, $r2;
+        boolean $z0;
+
+        r0 := @parameter0: jdk.internal.jmod.JmodFile$Entry;
+
+        $r1 = virtualinvoke r0.<jdk.internal.jmod.JmodFile$Entry: jdk.internal.jmod.JmodFile$Section section()>();
+
+        $r2 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section CLASSES>;
+
+        if $r1 != $r2 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+        java.util.jar.Attributes$Name $r1;
+        jdk.internal.perf.PerfCounter $r2, $r3;
+
+        <jdk.internal.module.ModulePath: java.lang.String SERVICES_PREFIX> = "META-INF/services/";
+
+        <jdk.internal.module.ModulePath: java.lang.String MODULE_INFO> = "module-info.class";
+
+        $r0 = class "Ljdk/internal/module/ModulePath;";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <jdk.internal.module.ModulePath: boolean $assertionsDisabled> = $z1;
+
+        $r1 = new java.util.jar.Attributes$Name;
+
+        specialinvoke $r1.<java.util.jar.Attributes$Name: void <init>(java.lang.String)>("Automatic-Module-Name");
+
+        <jdk.internal.module.ModulePath: java.util.jar.Attributes$Name AUTOMATIC_MODULE_NAME> = $r1;
+
+        $r2 = staticinvoke <jdk.internal.perf.PerfCounter: jdk.internal.perf.PerfCounter newPerfCounter(java.lang.String)>("jdk.module.finder.modulepath.scanTime");
+
+        <jdk.internal.module.ModulePath: jdk.internal.perf.PerfCounter scanTime> = $r2;
+
+        $r3 = staticinvoke <jdk.internal.perf.PerfCounter: jdk.internal.perf.PerfCounter newPerfCounter(java.lang.String)>("jdk.module.finder.modulepath.modules");
+
+        <jdk.internal.module.ModulePath: jdk.internal.perf.PerfCounter moduleCount> = $r3;
+
+        return;
+    }
+}

@@ -1,0 +1,181 @@
+final class jdk.internal.loader.AbstractClassLoaderValue$Memoizer extends java.lang.Object implements java.util.function.Supplier
+{
+    private final java.lang.ClassLoader cl;
+    private final jdk.internal.loader.AbstractClassLoaderValue clv;
+    private final java.util.function.BiFunction mappingFunction;
+    private volatile java.lang.Object v;
+    private volatile java.lang.Throwable t;
+    private boolean inCall;
+
+    void <init>(java.lang.ClassLoader, jdk.internal.loader.AbstractClassLoaderValue, java.util.function.BiFunction)
+    {
+        jdk.internal.loader.AbstractClassLoaderValue$Memoizer r0;
+        java.lang.ClassLoader r1;
+        jdk.internal.loader.AbstractClassLoaderValue r2;
+        java.util.function.BiFunction r3;
+
+        r0 := @this: jdk.internal.loader.AbstractClassLoaderValue$Memoizer;
+
+        r1 := @parameter0: java.lang.ClassLoader;
+
+        r2 := @parameter1: jdk.internal.loader.AbstractClassLoaderValue;
+
+        r3 := @parameter2: java.util.function.BiFunction;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.lang.ClassLoader cl> = r1;
+
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: jdk.internal.loader.AbstractClassLoaderValue clv> = r2;
+
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.util.function.BiFunction mappingFunction> = r3;
+
+        return;
+    }
+
+    public java.lang.Object get() throws jdk.internal.loader.AbstractClassLoaderValue$Memoizer$RecursiveInvocationException
+    {
+        jdk.internal.loader.AbstractClassLoaderValue$Memoizer r0;
+        boolean $z0, $z1, $z2;
+        java.lang.reflect.UndeclaredThrowableException $r1;
+        java.lang.RuntimeException $r2;
+        java.lang.Error $r3;
+        java.lang.Object $r6, $r11, $r12, r20;
+        java.lang.Throwable $r7, $r14, $r16, $r18, r21;
+        jdk.internal.loader.AbstractClassLoaderValue $r8;
+        java.lang.ClassLoader $r9;
+        java.util.function.BiFunction $r10;
+        jdk.internal.loader.AbstractClassLoaderValue$Memoizer$RecursiveInvocationException $r13;
+
+        r0 := @this: jdk.internal.loader.AbstractClassLoaderValue$Memoizer;
+
+        r20 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.lang.Object v>;
+
+        if r20 == null goto label01;
+
+        return r20;
+
+     label01:
+        r21 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.lang.Throwable t>;
+
+        if r21 != null goto label14;
+
+        entermonitor r0;
+
+     label02:
+        $r6 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.lang.Object v>;
+
+        r20 = $r6;
+
+        if $r6 != null goto label10;
+
+        $r7 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.lang.Throwable t>;
+
+        r21 = $r7;
+
+        if $r7 != null goto label10;
+
+        $z2 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: boolean inCall>;
+
+        if $z2 == 0 goto label03;
+
+        $r13 = new jdk.internal.loader.AbstractClassLoaderValue$Memoizer$RecursiveInvocationException;
+
+        specialinvoke $r13.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer$RecursiveInvocationException: void <init>()>();
+
+        throw $r13;
+
+     label03:
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: boolean inCall> = 1;
+
+     label04:
+        $r10 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.util.function.BiFunction mappingFunction>;
+
+        $r9 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.lang.ClassLoader cl>;
+
+        $r8 = r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: jdk.internal.loader.AbstractClassLoaderValue clv>;
+
+        $r11 = interfaceinvoke $r10.<java.util.function.BiFunction: java.lang.Object apply(java.lang.Object,java.lang.Object)>($r9, $r8);
+
+        $r12 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>($r11);
+
+        r20 = $r12;
+
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.lang.Object v> = $r12;
+
+     label05:
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: boolean inCall> = 0;
+
+        goto label10;
+
+     label06:
+        $r18 := @caughtexception;
+
+        r21 = $r18;
+
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: java.lang.Throwable t> = $r18;
+
+     label07:
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: boolean inCall> = 0;
+
+        goto label10;
+
+     label08:
+        $r16 := @caughtexception;
+
+     label09:
+        r0.<jdk.internal.loader.AbstractClassLoaderValue$Memoizer: boolean inCall> = 0;
+
+        throw $r16;
+
+     label10:
+        exitmonitor r0;
+
+     label11:
+        goto label14;
+
+     label12:
+        $r14 := @caughtexception;
+
+        exitmonitor r0;
+
+     label13:
+        throw $r14;
+
+     label14:
+        if r20 == null goto label15;
+
+        return r20;
+
+     label15:
+        $z0 = r21 instanceof java.lang.Error;
+
+        if $z0 == 0 goto label16;
+
+        $r3 = (java.lang.Error) r21;
+
+        throw $r3;
+
+     label16:
+        $z1 = r21 instanceof java.lang.RuntimeException;
+
+        if $z1 == 0 goto label17;
+
+        $r2 = (java.lang.RuntimeException) r21;
+
+        throw $r2;
+
+     label17:
+        $r1 = new java.lang.reflect.UndeclaredThrowableException;
+
+        specialinvoke $r1.<java.lang.reflect.UndeclaredThrowableException: void <init>(java.lang.Throwable)>(r21);
+
+        throw $r1;
+
+        catch java.lang.Throwable from label04 to label05 with label06;
+        catch java.lang.Throwable from label06 to label07 with label08;
+        catch java.lang.Throwable from label08 to label09 with label08;
+        catch java.lang.Throwable from label02 to label11 with label12;
+        catch java.lang.Throwable from label12 to label13 with label12;
+    }
+}

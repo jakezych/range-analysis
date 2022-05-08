@@ -1,0 +1,23 @@
+class jdk.internal.jimage.ImageBufferCache$BufferReference extends java.lang.ref.WeakReference
+{
+    final int capacity;
+
+    void <init>(java.nio.ByteBuffer)
+    {
+        jdk.internal.jimage.ImageBufferCache$BufferReference r0;
+        java.nio.ByteBuffer r1;
+        int $i0;
+
+        r0 := @this: jdk.internal.jimage.ImageBufferCache$BufferReference;
+
+        r1 := @parameter0: java.nio.ByteBuffer;
+
+        specialinvoke r0.<java.lang.ref.WeakReference: void <init>(java.lang.Object)>(r1);
+
+        $i0 = virtualinvoke r1.<java.nio.ByteBuffer: int capacity()>();
+
+        r0.<jdk.internal.jimage.ImageBufferCache$BufferReference: int capacity> = $i0;
+
+        return;
+    }
+}

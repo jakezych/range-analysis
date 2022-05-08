@@ -1,0 +1,254 @@
+class jdk.internal.module.ModuleReferences$JModModuleReader extends jdk.internal.module.ModuleReferences$SafeCloseModuleReader
+{
+    private final jdk.internal.jmod.JmodFile jf;
+    private final java.net.URI uri;
+
+    static jdk.internal.jmod.JmodFile newJmodFile(java.nio.file.Path)
+    {
+        jdk.internal.jmod.JmodFile $r0;
+        java.nio.file.Path r1;
+        java.io.IOException $r2;
+        java.io.UncheckedIOException $r4;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+     label1:
+        $r0 = new jdk.internal.jmod.JmodFile;
+
+        specialinvoke $r0.<jdk.internal.jmod.JmodFile: void <init>(java.nio.file.Path)>(r1);
+
+     label2:
+        return $r0;
+
+     label3:
+        $r2 := @caughtexception;
+
+        $r4 = new java.io.UncheckedIOException;
+
+        specialinvoke $r4.<java.io.UncheckedIOException: void <init>(java.io.IOException)>($r2);
+
+        throw $r4;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    void <init>(java.nio.file.Path, java.net.URI)
+    {
+        jdk.internal.module.ModuleReferences$JModModuleReader r0;
+        java.nio.file.Path r1;
+        jdk.internal.jmod.JmodFile $r2;
+        java.net.URI r3;
+
+        r0 := @this: jdk.internal.module.ModuleReferences$JModModuleReader;
+
+        r1 := @parameter0: java.nio.file.Path;
+
+        r3 := @parameter1: java.net.URI;
+
+        specialinvoke r0.<jdk.internal.module.ModuleReferences$SafeCloseModuleReader: void <init>()>();
+
+        $r2 = staticinvoke <jdk.internal.module.ModuleReferences$JModModuleReader: jdk.internal.jmod.JmodFile newJmodFile(java.nio.file.Path)>(r1);
+
+        r0.<jdk.internal.module.ModuleReferences$JModModuleReader: jdk.internal.jmod.JmodFile jf> = $r2;
+
+        r0.<jdk.internal.module.ModuleReferences$JModModuleReader: java.net.URI uri> = r3;
+
+        return;
+    }
+
+    private jdk.internal.jmod.JmodFile$Entry getEntry(java.lang.String)
+    {
+        java.lang.String r0;
+        jdk.internal.module.ModuleReferences$JModModuleReader r2;
+        jdk.internal.jmod.JmodFile$Section $r3;
+        jdk.internal.jmod.JmodFile $r4;
+        jdk.internal.jmod.JmodFile$Entry $r5;
+
+        r2 := @this: jdk.internal.module.ModuleReferences$JModModuleReader;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object)>(r0);
+
+        $r4 = r2.<jdk.internal.module.ModuleReferences$JModModuleReader: jdk.internal.jmod.JmodFile jf>;
+
+        $r3 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section CLASSES>;
+
+        $r5 = virtualinvoke $r4.<jdk.internal.jmod.JmodFile: jdk.internal.jmod.JmodFile$Entry getEntry(jdk.internal.jmod.JmodFile$Section,java.lang.String)>($r3, r0);
+
+        return $r5;
+    }
+
+    java.util.Optional implFind(java.lang.String)
+    {
+        jdk.internal.module.ModuleReferences$JModModuleReader r0;
+        jdk.internal.jmod.JmodFile$Entry r1;
+        java.util.Optional $r2, $r16;
+        boolean $z0, $z1;
+        java.lang.String r3, r4, r8;
+        java.lang.StringBuilder $r5, $r6, $r7, $r9, $r10, $r12, $r13, $r14;
+        java.net.URI $r11, $r15;
+
+        r0 := @this: jdk.internal.module.ModuleReferences$JModModuleReader;
+
+        r8 := @parameter0: java.lang.String;
+
+        r1 = virtualinvoke r0.<jdk.internal.module.ModuleReferences$JModModuleReader: jdk.internal.jmod.JmodFile$Entry getEntry(java.lang.String)>(r8);
+
+        if r1 == null goto label2;
+
+        $z0 = virtualinvoke r1.<jdk.internal.jmod.JmodFile$Entry: boolean isDirectory()>();
+
+        if $z0 == 0 goto label1;
+
+        $z1 = virtualinvoke r8.<java.lang.String: boolean endsWith(java.lang.String)>("/");
+
+        if $z1 != 0 goto label1;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label1:
+        r3 = staticinvoke <sun.net.www.ParseUtil: java.lang.String encodePath(java.lang.String,boolean)>(r8, 0);
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("jmod:");
+
+        $r11 = r0.<jdk.internal.module.ModuleReferences$JModModuleReader: java.net.URI uri>;
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r11);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("!/");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        r4 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r15 = staticinvoke <java.net.URI: java.net.URI create(java.lang.String)>(r4);
+
+        $r16 = staticinvoke <java.util.Optional: java.util.Optional of(java.lang.Object)>($r15);
+
+        return $r16;
+
+     label2:
+        $r2 = staticinvoke <java.util.Optional: java.util.Optional empty()>();
+
+        return $r2;
+    }
+
+    java.util.Optional implOpen(java.lang.String) throws java.io.IOException
+    {
+        jdk.internal.module.ModuleReferences$JModModuleReader r0;
+        java.lang.String r1;
+        jdk.internal.jmod.JmodFile$Entry r2;
+        java.util.Optional $r3, $r6;
+        jdk.internal.jmod.JmodFile $r4;
+        java.io.InputStream $r5;
+
+        r0 := @this: jdk.internal.module.ModuleReferences$JModModuleReader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 = virtualinvoke r0.<jdk.internal.module.ModuleReferences$JModModuleReader: jdk.internal.jmod.JmodFile$Entry getEntry(java.lang.String)>(r1);
+
+        if r2 == null goto label1;
+
+        $r4 = r0.<jdk.internal.module.ModuleReferences$JModModuleReader: jdk.internal.jmod.JmodFile jf>;
+
+        $r5 = virtualinvoke $r4.<jdk.internal.jmod.JmodFile: java.io.InputStream getInputStream(jdk.internal.jmod.JmodFile$Entry)>(r2);
+
+        $r6 = staticinvoke <java.util.Optional: java.util.Optional of(java.lang.Object)>($r5);
+
+        return $r6;
+
+     label1:
+        $r3 = staticinvoke <java.util.Optional: java.util.Optional empty()>();
+
+        return $r3;
+    }
+
+    java.util.stream.Stream implList() throws java.io.IOException
+    {
+        jdk.internal.module.ModuleReferences$JModModuleReader r0;
+        jdk.internal.jmod.JmodFile $r1;
+        java.util.stream.Stream $r2, $r4, $r6, $r10;
+        java.util.function.Predicate $r3;
+        java.util.function.Function $r5;
+        java.util.stream.Collector $r7;
+        java.lang.Object $r8;
+        java.util.List r9;
+
+        r0 := @this: jdk.internal.module.ModuleReferences$JModModuleReader;
+
+        $r1 = r0.<jdk.internal.module.ModuleReferences$JModModuleReader: jdk.internal.jmod.JmodFile jf>;
+
+        $r2 = virtualinvoke $r1.<jdk.internal.jmod.JmodFile: java.util.stream.Stream stream()>();
+
+        $r3 = staticinvoke <jdk.internal.module.ModuleReferences$JModModuleReader$lambda_implList_0__148: java.util.function.Predicate bootstrap$()>();
+
+        $r4 = interfaceinvoke $r2.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r3);
+
+        $r5 = staticinvoke <jdk.internal.module.ModuleReferences$JModModuleReader$name__149: java.util.function.Function bootstrap$()>();
+
+        $r6 = interfaceinvoke $r4.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r5);
+
+        $r7 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>();
+
+        $r8 = interfaceinvoke $r6.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r7);
+
+        r9 = (java.util.List) $r8;
+
+        $r10 = interfaceinvoke r9.<java.util.List: java.util.stream.Stream stream()>();
+
+        return $r10;
+    }
+
+    void implClose() throws java.io.IOException
+    {
+        jdk.internal.module.ModuleReferences$JModModuleReader r0;
+        jdk.internal.jmod.JmodFile $r1;
+
+        r0 := @this: jdk.internal.module.ModuleReferences$JModModuleReader;
+
+        $r1 = r0.<jdk.internal.module.ModuleReferences$JModModuleReader: jdk.internal.jmod.JmodFile jf>;
+
+        virtualinvoke $r1.<jdk.internal.jmod.JmodFile: void close()>();
+
+        return;
+    }
+
+    public static boolean lambda$implList$0(jdk.internal.jmod.JmodFile$Entry)
+    {
+        jdk.internal.jmod.JmodFile$Entry r0;
+        jdk.internal.jmod.JmodFile$Section $r1, $r2;
+        boolean $z0;
+
+        r0 := @parameter0: jdk.internal.jmod.JmodFile$Entry;
+
+        $r1 = virtualinvoke r0.<jdk.internal.jmod.JmodFile$Entry: jdk.internal.jmod.JmodFile$Section section()>();
+
+        $r2 = <jdk.internal.jmod.JmodFile$Section: jdk.internal.jmod.JmodFile$Section CLASSES>;
+
+        if $r1 != $r2 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+}

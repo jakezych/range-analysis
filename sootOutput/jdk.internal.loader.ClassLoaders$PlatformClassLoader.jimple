@@ -1,0 +1,57 @@
+class jdk.internal.loader.ClassLoaders$PlatformClassLoader extends jdk.internal.loader.BuiltinClassLoader
+{
+
+    void <init>(jdk.internal.loader.ClassLoaders$BootClassLoader)
+    {
+        jdk.internal.loader.ClassLoaders$PlatformClassLoader r0;
+        jdk.internal.loader.ClassLoaders$BootClassLoader r1;
+
+        r0 := @this: jdk.internal.loader.ClassLoaders$PlatformClassLoader;
+
+        r1 := @parameter0: jdk.internal.loader.ClassLoaders$BootClassLoader;
+
+        specialinvoke r0.<jdk.internal.loader.BuiltinClassLoader: void <init>(java.lang.String,jdk.internal.loader.BuiltinClassLoader,jdk.internal.loader.URLClassPath)>("platform", r1, null);
+
+        return;
+    }
+
+    private java.lang.Package definePackage(java.lang.String, java.lang.Module)
+    {
+        jdk.internal.loader.ClassLoaders$PlatformClassLoader r0;
+        java.lang.String r1;
+        java.lang.Module r2;
+        jdk.internal.access.JavaLangAccess $r3;
+        java.lang.Package $r4;
+
+        r0 := @this: jdk.internal.loader.ClassLoaders$PlatformClassLoader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Module;
+
+        $r3 = <jdk.internal.loader.ClassLoaders: jdk.internal.access.JavaLangAccess JLA>;
+
+        $r4 = interfaceinvoke $r3.<jdk.internal.access.JavaLangAccess: java.lang.Package definePackage(java.lang.ClassLoader,java.lang.String,java.lang.Module)>(r0, r1, r2);
+
+        return $r4;
+    }
+
+    static void <clinit>()
+    {
+        boolean $z0;
+        java.lang.InternalError $r0;
+
+        $z0 = staticinvoke <java.lang.ClassLoader: boolean registerAsParallelCapable()>();
+
+        if $z0 != 0 goto label1;
+
+        $r0 = new java.lang.InternalError;
+
+        specialinvoke $r0.<java.lang.InternalError: void <init>()>();
+
+        throw $r0;
+
+     label1:
+        return;
+    }
+}

@@ -1,0 +1,54 @@
+public final class jdk.internal.module.ModulePathValidator$lambda_printModule_3__97 extends java.lang.Object implements java.util.function.Consumer
+{
+    jdk.internal.module.ModulePathValidator cap0;
+
+    public static java.util.function.Consumer bootstrap$(jdk.internal.module.ModulePathValidator)
+    {
+        jdk.internal.module.ModulePathValidator $r0;
+        jdk.internal.module.ModulePathValidator$lambda_printModule_3__97 $r1;
+
+        $r0 := @parameter0: jdk.internal.module.ModulePathValidator;
+
+        $r1 = new jdk.internal.module.ModulePathValidator$lambda_printModule_3__97;
+
+        specialinvoke $r1.<jdk.internal.module.ModulePathValidator$lambda_printModule_3__97: void <init>(jdk.internal.module.ModulePathValidator)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(jdk.internal.module.ModulePathValidator)
+    {
+        jdk.internal.module.ModulePathValidator$lambda_printModule_3__97 $r0;
+        jdk.internal.module.ModulePathValidator $r1;
+
+        $r0 := @this: jdk.internal.module.ModulePathValidator$lambda_printModule_3__97;
+
+        $r1 := @parameter0: jdk.internal.module.ModulePathValidator;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModulePathValidator$lambda_printModule_3__97: jdk.internal.module.ModulePathValidator cap0> = $r1;
+
+        return;
+    }
+
+    public void accept(java.lang.Object)
+    {
+        jdk.internal.module.ModulePathValidator$lambda_printModule_3__97 $r0;
+        java.lang.Object $r1;
+        java.net.URI $r2;
+        jdk.internal.module.ModulePathValidator $r3;
+
+        $r0 := @this: jdk.internal.module.ModulePathValidator$lambda_printModule_3__97;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.net.URI) $r1;
+
+        $r3 = $r0.<jdk.internal.module.ModulePathValidator$lambda_printModule_3__97: jdk.internal.module.ModulePathValidator cap0>;
+
+        virtualinvoke $r3.<jdk.internal.module.ModulePathValidator: void lambda$printModule$3(java.net.URI)>($r2);
+
+        return;
+    }
+}

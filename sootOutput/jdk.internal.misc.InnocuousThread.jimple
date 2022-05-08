@@ -1,0 +1,365 @@
+public final class jdk.internal.misc.InnocuousThread extends java.lang.Thread
+{
+    private static final jdk.internal.misc.Unsafe UNSAFE;
+    private static final long THREAD_LOCALS;
+    private static final long INHERITABLE_THREAD_LOCALS;
+    private static final java.lang.ThreadGroup INNOCUOUSTHREADGROUP;
+    private static final java.security.AccessControlContext ACC;
+    private static final long INHERITEDACCESSCONTROLCONTEXT;
+    private static final long CONTEXTCLASSLOADER;
+    private static final java.util.concurrent.atomic.AtomicInteger threadNumber;
+    private volatile boolean hasRun;
+
+    private static java.lang.String newName()
+    {
+        java.lang.StringBuilder $r0, $r1, $r3;
+        java.util.concurrent.atomic.AtomicInteger $r2;
+        int $i0;
+        java.lang.String $r4;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("InnocuousThread-");
+
+        $r2 = <jdk.internal.misc.InnocuousThread: java.util.concurrent.atomic.AtomicInteger threadNumber>;
+
+        $i0 = virtualinvoke $r2.<java.util.concurrent.atomic.AtomicInteger: int getAndIncrement()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r4;
+    }
+
+    public static java.lang.Thread newThread(java.lang.Runnable)
+    {
+        java.lang.String $r0;
+        java.lang.Runnable r1;
+        java.lang.Thread $r2;
+
+        r1 := @parameter0: java.lang.Runnable;
+
+        $r0 = staticinvoke <jdk.internal.misc.InnocuousThread: java.lang.String newName()>();
+
+        $r2 = staticinvoke <jdk.internal.misc.InnocuousThread: java.lang.Thread newThread(java.lang.String,java.lang.Runnable)>($r0, r1);
+
+        return $r2;
+    }
+
+    public static java.lang.Thread newThread(java.lang.String, java.lang.Runnable)
+    {
+        jdk.internal.misc.InnocuousThread$1 $r0;
+        java.lang.Runnable r1;
+        java.lang.String r2;
+        java.lang.Object $r3;
+        java.lang.Thread $r4;
+
+        r2 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.Runnable;
+
+        $r0 = new jdk.internal.misc.InnocuousThread$1;
+
+        specialinvoke $r0.<jdk.internal.misc.InnocuousThread$1: void <init>(java.lang.Runnable,java.lang.String)>(r1, r2);
+
+        $r3 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r0);
+
+        $r4 = (java.lang.Thread) $r3;
+
+        return $r4;
+    }
+
+    public static java.lang.Thread newSystemThread(java.lang.Runnable)
+    {
+        java.lang.String $r0;
+        java.lang.Runnable r1;
+        java.lang.Thread $r2;
+
+        r1 := @parameter0: java.lang.Runnable;
+
+        $r0 = staticinvoke <jdk.internal.misc.InnocuousThread: java.lang.String newName()>();
+
+        $r2 = staticinvoke <jdk.internal.misc.InnocuousThread: java.lang.Thread newSystemThread(java.lang.String,java.lang.Runnable)>($r0, r1);
+
+        return $r2;
+    }
+
+    public static java.lang.Thread newSystemThread(java.lang.String, java.lang.Runnable)
+    {
+        jdk.internal.misc.InnocuousThread$2 $r0;
+        java.lang.Runnable r1;
+        java.lang.String r2;
+        java.lang.Object $r3;
+        java.lang.Thread $r4;
+
+        r2 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.Runnable;
+
+        $r0 = new jdk.internal.misc.InnocuousThread$2;
+
+        specialinvoke $r0.<jdk.internal.misc.InnocuousThread$2: void <init>(java.lang.Runnable,java.lang.String)>(r1, r2);
+
+        $r3 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r0);
+
+        $r4 = (java.lang.Thread) $r3;
+
+        return $r4;
+    }
+
+    private void <init>(java.lang.ThreadGroup, java.lang.Runnable, java.lang.String, java.lang.ClassLoader)
+    {
+        jdk.internal.misc.InnocuousThread r0;
+        java.lang.ThreadGroup r1;
+        java.lang.Runnable r2;
+        java.lang.String r3;
+        java.security.AccessControlContext $r4;
+        long $l0, $l1;
+        jdk.internal.misc.Unsafe $r5, $r7;
+        java.lang.ClassLoader r6;
+
+        r0 := @this: jdk.internal.misc.InnocuousThread;
+
+        r1 := @parameter0: java.lang.ThreadGroup;
+
+        r2 := @parameter1: java.lang.Runnable;
+
+        r3 := @parameter2: java.lang.String;
+
+        r6 := @parameter3: java.lang.ClassLoader;
+
+        specialinvoke r0.<java.lang.Thread: void <init>(java.lang.ThreadGroup,java.lang.Runnable,java.lang.String,long,boolean)>(r1, r2, r3, 0L, 0);
+
+        $r5 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $l0 = <jdk.internal.misc.InnocuousThread: long INHERITEDACCESSCONTROLCONTEXT>;
+
+        $r4 = <jdk.internal.misc.InnocuousThread: java.security.AccessControlContext ACC>;
+
+        virtualinvoke $r5.<jdk.internal.misc.Unsafe: void putReferenceRelease(java.lang.Object,long,java.lang.Object)>(r0, $l0, $r4);
+
+        $r7 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $l1 = <jdk.internal.misc.InnocuousThread: long CONTEXTCLASSLOADER>;
+
+        virtualinvoke $r7.<jdk.internal.misc.Unsafe: void putReferenceRelease(java.lang.Object,long,java.lang.Object)>(r0, $l1, r6);
+
+        return;
+    }
+
+    public void setUncaughtExceptionHandler(java.lang.Thread$UncaughtExceptionHandler)
+    {
+        jdk.internal.misc.InnocuousThread r0;
+        java.lang.Thread$UncaughtExceptionHandler r1;
+
+        r0 := @this: jdk.internal.misc.InnocuousThread;
+
+        r1 := @parameter0: java.lang.Thread$UncaughtExceptionHandler;
+
+        return;
+    }
+
+    public void setContextClassLoader(java.lang.ClassLoader)
+    {
+        java.lang.ClassLoader r0;
+        java.lang.SecurityException $r1;
+        jdk.internal.misc.InnocuousThread r2;
+
+        r2 := @this: jdk.internal.misc.InnocuousThread;
+
+        r0 := @parameter0: java.lang.ClassLoader;
+
+        if r0 != null goto label1;
+
+        specialinvoke r2.<java.lang.Thread: void setContextClassLoader(java.lang.ClassLoader)>(null);
+
+        goto label2;
+
+     label1:
+        $r1 = new java.lang.SecurityException;
+
+        specialinvoke $r1.<java.lang.SecurityException: void <init>(java.lang.String)>("setContextClassLoader");
+
+        throw $r1;
+
+     label2:
+        return;
+    }
+
+    public final void eraseThreadLocals()
+    {
+        jdk.internal.misc.InnocuousThread r0;
+        long $l0, $l1;
+        jdk.internal.misc.Unsafe $r1, $r2;
+
+        r0 := @this: jdk.internal.misc.InnocuousThread;
+
+        $r1 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $l0 = <jdk.internal.misc.InnocuousThread: long THREAD_LOCALS>;
+
+        virtualinvoke $r1.<jdk.internal.misc.Unsafe: void putReference(java.lang.Object,long,java.lang.Object)>(r0, $l0, null);
+
+        $r2 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $l1 = <jdk.internal.misc.InnocuousThread: long INHERITABLE_THREAD_LOCALS>;
+
+        virtualinvoke $r2.<jdk.internal.misc.Unsafe: void putReference(java.lang.Object,long,java.lang.Object)>(r0, $l1, null);
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Thread $r0;
+        jdk.internal.misc.InnocuousThread r1;
+        boolean $z0;
+
+        r1 := @this: jdk.internal.misc.InnocuousThread;
+
+        $r0 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        if $r0 != r1 goto label1;
+
+        $z0 = r1.<jdk.internal.misc.InnocuousThread: boolean hasRun>;
+
+        if $z0 != 0 goto label1;
+
+        r1.<jdk.internal.misc.InnocuousThread: boolean hasRun> = 1;
+
+        specialinvoke r1.<java.lang.Thread: void run()>();
+
+     label1:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.util.concurrent.atomic.AtomicInteger $r0;
+        java.security.AccessControlContext $r1;
+        java.security.ProtectionDomain[] $r2;
+        java.security.ProtectionDomain $r3;
+        jdk.internal.misc.Unsafe $r4, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r18;
+        long $l0, $l1, $l2, $l3, l4, l5;
+        java.lang.Thread $r13;
+        java.lang.Object $r14, $r16, $r19;
+        jdk.internal.misc.InnocuousThread$3 $r15;
+        java.lang.ThreadGroup $r17, r23, r24;
+        java.lang.Exception $r20;
+        java.lang.Error $r21;
+
+        $r0 = new java.util.concurrent.atomic.AtomicInteger;
+
+        specialinvoke $r0.<java.util.concurrent.atomic.AtomicInteger: void <init>(int)>(1);
+
+        <jdk.internal.misc.InnocuousThread: java.util.concurrent.atomic.AtomicInteger threadNumber> = $r0;
+
+     label1:
+        $r1 = new java.security.AccessControlContext;
+
+        $r2 = newarray (java.security.ProtectionDomain)[1];
+
+        $r3 = new java.security.ProtectionDomain;
+
+        specialinvoke $r3.<java.security.ProtectionDomain: void <init>(java.security.CodeSource,java.security.PermissionCollection)>(null, null);
+
+        $r2[0] = $r3;
+
+        specialinvoke $r1.<java.security.AccessControlContext: void <init>(java.security.ProtectionDomain[])>($r2);
+
+        <jdk.internal.misc.InnocuousThread: java.security.AccessControlContext ACC> = $r1;
+
+        $r4 = staticinvoke <jdk.internal.misc.Unsafe: jdk.internal.misc.Unsafe getUnsafe()>();
+
+        <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE> = $r4;
+
+        $r6 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $l0 = virtualinvoke $r6.<jdk.internal.misc.Unsafe: long objectFieldOffset(java.lang.Class,java.lang.String)>(class "Ljava/lang/Thread;", "threadLocals");
+
+        <jdk.internal.misc.InnocuousThread: long THREAD_LOCALS> = $l0;
+
+        $r7 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $l1 = virtualinvoke $r7.<jdk.internal.misc.Unsafe: long objectFieldOffset(java.lang.Class,java.lang.String)>(class "Ljava/lang/Thread;", "inheritableThreadLocals");
+
+        <jdk.internal.misc.InnocuousThread: long INHERITABLE_THREAD_LOCALS> = $l1;
+
+        $r8 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $l2 = virtualinvoke $r8.<jdk.internal.misc.Unsafe: long objectFieldOffset(java.lang.Class,java.lang.String)>(class "Ljava/lang/Thread;", "inheritedAccessControlContext");
+
+        <jdk.internal.misc.InnocuousThread: long INHERITEDACCESSCONTROLCONTEXT> = $l2;
+
+        $r9 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $l3 = virtualinvoke $r9.<jdk.internal.misc.Unsafe: long objectFieldOffset(java.lang.Class,java.lang.String)>(class "Ljava/lang/Thread;", "contextClassLoader");
+
+        <jdk.internal.misc.InnocuousThread: long CONTEXTCLASSLOADER> = $l3;
+
+        $r10 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        l4 = virtualinvoke $r10.<jdk.internal.misc.Unsafe: long objectFieldOffset(java.lang.Class,java.lang.String)>(class "Ljava/lang/Thread;", "group");
+
+        $r11 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        l5 = virtualinvoke $r11.<jdk.internal.misc.Unsafe: long objectFieldOffset(java.lang.Class,java.lang.String)>(class "Ljava/lang/ThreadGroup;", "parent");
+
+        $r12 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $r13 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        $r14 = virtualinvoke $r12.<jdk.internal.misc.Unsafe: java.lang.Object getReference(java.lang.Object,long)>($r13, l4);
+
+        r23 = (java.lang.ThreadGroup) $r14;
+
+     label2:
+        if r23 == null goto label4;
+
+        $r18 = <jdk.internal.misc.InnocuousThread: jdk.internal.misc.Unsafe UNSAFE>;
+
+        $r19 = virtualinvoke $r18.<jdk.internal.misc.Unsafe: java.lang.Object getReference(java.lang.Object,long)>(r23, l5);
+
+        r24 = (java.lang.ThreadGroup) $r19;
+
+        if r24 != null goto label3;
+
+        goto label4;
+
+     label3:
+        r23 = r24;
+
+        goto label2;
+
+     label4:
+        $r15 = new jdk.internal.misc.InnocuousThread$3;
+
+        specialinvoke $r15.<jdk.internal.misc.InnocuousThread$3: void <init>(java.lang.ThreadGroup)>(r23);
+
+        $r16 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r15);
+
+        $r17 = (java.lang.ThreadGroup) $r16;
+
+        <jdk.internal.misc.InnocuousThread: java.lang.ThreadGroup INNOCUOUSTHREADGROUP> = $r17;
+
+     label5:
+        goto label7;
+
+     label6:
+        $r20 := @caughtexception;
+
+        $r21 = new java.lang.Error;
+
+        specialinvoke $r21.<java.lang.Error: void <init>(java.lang.Throwable)>($r20);
+
+        throw $r21;
+
+     label7:
+        return;
+
+        catch java.lang.Exception from label1 to label5 with label6;
+    }
+}

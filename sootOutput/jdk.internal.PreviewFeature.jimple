@@ -1,0 +1,7 @@
+public annotation interface  jdk.internal.PreviewFeature extends java.lang.Object implements java.lang.'annotation'.Annotation
+{
+
+    public abstract jdk.internal.PreviewFeature$Feature feature();
+
+    public abstract boolean essentialAPI();
+}

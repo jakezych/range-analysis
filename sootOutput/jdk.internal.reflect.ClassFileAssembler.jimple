@@ -1,0 +1,1931 @@
+class jdk.internal.reflect.ClassFileAssembler extends java.lang.Object implements jdk.internal.reflect.ClassFileConstants
+{
+    private jdk.internal.reflect.ByteVector vec;
+    private short cpIdx;
+    private int stack;
+    private int maxStack;
+    private int maxLocals;
+
+    public void <init>()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        jdk.internal.reflect.ByteVector $r1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        $r1 = staticinvoke <jdk.internal.reflect.ByteVectorFactory: jdk.internal.reflect.ByteVector create()>();
+
+        specialinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void <init>(jdk.internal.reflect.ByteVector)>($r1);
+
+        return;
+    }
+
+    public void <init>(jdk.internal.reflect.ByteVector)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        jdk.internal.reflect.ByteVector r1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        r1 := @parameter0: jdk.internal.reflect.ByteVector;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx> = 0;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int stack> = 0;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxStack> = 0;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 0;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: jdk.internal.reflect.ByteVector vec> = r1;
+
+        return;
+    }
+
+    public jdk.internal.reflect.ByteVector getData()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        jdk.internal.reflect.ByteVector $r1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        $r1 = r0.<jdk.internal.reflect.ClassFileAssembler: jdk.internal.reflect.ByteVector vec>;
+
+        return $r1;
+    }
+
+    public short getLength()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        jdk.internal.reflect.ByteVector $r1;
+        int $i0;
+        short $s1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        $r1 = r0.<jdk.internal.reflect.ClassFileAssembler: jdk.internal.reflect.ByteVector vec>;
+
+        $i0 = interfaceinvoke $r1.<jdk.internal.reflect.ByteVector: int getLength()>();
+
+        $s1 = (short) $i0;
+
+        return $s1;
+    }
+
+    public void emitMagicAndVersion()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitInt(int)>(-889275714);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(49);
+
+        return;
+    }
+
+    public void emitInt(int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int i0, $i1, $i3, $i4, $i6, $i7, $i9;
+        byte $b2, $b5, $b8, $b10;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        i0 := @parameter0: int;
+
+        $i1 = i0 >> 24;
+
+        $b2 = (byte) $i1;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>($b2);
+
+        $i3 = i0 >> 16;
+
+        $i4 = $i3 & 255;
+
+        $b5 = (byte) $i4;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>($b5);
+
+        $i6 = i0 >> 8;
+
+        $i7 = $i6 & 255;
+
+        $b8 = (byte) $i7;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>($b8);
+
+        $i9 = i0 & 255;
+
+        $b10 = (byte) $i9;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>($b10);
+
+        return;
+    }
+
+    public void emitShort(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        int $i1, $i2, $i4;
+        byte $b3, $b5;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        $i1 = s0 >> 8;
+
+        $i2 = $i1 & 255;
+
+        $b3 = (byte) $i2;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>($b3);
+
+        $i4 = s0 & 255;
+
+        $b5 = (byte) $i4;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>($b5);
+
+        return;
+    }
+
+    void emitShort(short, short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, s1;
+        int $i2, $i3, $i5, $i7;
+        byte $b4, $b6;
+        jdk.internal.reflect.ByteVector $r1, $r2;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        s1 := @parameter1: short;
+
+        $r1 = r0.<jdk.internal.reflect.ClassFileAssembler: jdk.internal.reflect.ByteVector vec>;
+
+        $i2 = s1 >> 8;
+
+        $i3 = $i2 & 255;
+
+        $b4 = (byte) $i3;
+
+        interfaceinvoke $r1.<jdk.internal.reflect.ByteVector: void put(int,byte)>(s0, $b4);
+
+        $r2 = r0.<jdk.internal.reflect.ClassFileAssembler: jdk.internal.reflect.ByteVector vec>;
+
+        $i7 = s0 + 1;
+
+        $i5 = s1 & 255;
+
+        $b6 = (byte) $i5;
+
+        interfaceinvoke $r2.<jdk.internal.reflect.ByteVector: void put(int,byte)>($i7, $b6);
+
+        return;
+    }
+
+    public void emitByte(byte)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        byte b0;
+        jdk.internal.reflect.ByteVector $r1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        b0 := @parameter0: byte;
+
+        $r1 = r0.<jdk.internal.reflect.ClassFileAssembler: jdk.internal.reflect.ByteVector vec>;
+
+        interfaceinvoke $r1.<jdk.internal.reflect.ByteVector: void add(byte)>(b0);
+
+        return;
+    }
+
+    public void append(jdk.internal.reflect.ClassFileAssembler)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0, r1;
+        jdk.internal.reflect.ByteVector $r2;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        r1 := @parameter0: jdk.internal.reflect.ClassFileAssembler;
+
+        $r2 = r1.<jdk.internal.reflect.ClassFileAssembler: jdk.internal.reflect.ByteVector vec>;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void append(jdk.internal.reflect.ByteVector)>($r2);
+
+        return;
+    }
+
+    public void append(jdk.internal.reflect.ByteVector)
+    {
+        jdk.internal.reflect.ByteVector r0;
+        int $i0, i2;
+        jdk.internal.reflect.ClassFileAssembler r1;
+        byte $b1;
+
+        r1 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        r0 := @parameter0: jdk.internal.reflect.ByteVector;
+
+        i2 = 0;
+
+     label1:
+        $i0 = interfaceinvoke r0.<jdk.internal.reflect.ByteVector: int getLength()>();
+
+        if i2 >= $i0 goto label2;
+
+        $b1 = interfaceinvoke r0.<jdk.internal.reflect.ByteVector: byte get(int)>(i2);
+
+        virtualinvoke r1.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>($b1);
+
+        i2 = i2 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public short cpi()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short $s0, $s1;
+        java.lang.RuntimeException $r1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        $s0 = r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx>;
+
+        if $s0 != 0 goto label1;
+
+        $r1 = new java.lang.RuntimeException;
+
+        specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>("Illegal use of ClassFileAssembler");
+
+        throw $r1;
+
+     label1:
+        $s1 = r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx>;
+
+        return $s1;
+    }
+
+    public void emitConstantPoolUTF8(java.lang.String)
+    {
+        java.lang.String r0;
+        byte[] r1;
+        jdk.internal.reflect.ClassFileAssembler r2;
+        int $i0, $i2, $i4, i7;
+        short $s1, $s3, $s5;
+        byte $b6;
+
+        r2 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 = staticinvoke <jdk.internal.reflect.UTF8: byte[] encode(java.lang.String)>(r0);
+
+        virtualinvoke r2.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(1);
+
+        $i0 = lengthof r1;
+
+        $s1 = (short) $i0;
+
+        virtualinvoke r2.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>($s1);
+
+        i7 = 0;
+
+     label1:
+        $i2 = lengthof r1;
+
+        if i7 >= $i2 goto label2;
+
+        $b6 = r1[i7];
+
+        virtualinvoke r2.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>($b6);
+
+        i7 = i7 + 1;
+
+        goto label1;
+
+     label2:
+        $s3 = r2.<jdk.internal.reflect.ClassFileAssembler: short cpIdx>;
+
+        $i4 = $s3 + 1;
+
+        $s5 = (short) $i4;
+
+        r2.<jdk.internal.reflect.ClassFileAssembler: short cpIdx> = $s5;
+
+        return;
+    }
+
+    public void emitConstantPoolClass(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, $s1, $s3;
+        int $i2;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(7);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $s1 = r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx>;
+
+        $i2 = $s1 + 1;
+
+        $s3 = (short) $i2;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx> = $s3;
+
+        return;
+    }
+
+    public void emitConstantPoolNameAndType(short, short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, s1, $s2, $s4;
+        int $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        s1 := @parameter1: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(12);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s1);
+
+        $s2 = r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx>;
+
+        $i3 = $s2 + 1;
+
+        $s4 = (short) $i3;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx> = $s4;
+
+        return;
+    }
+
+    public void emitConstantPoolFieldref(short, short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, s1, $s2, $s4;
+        int $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        s1 := @parameter1: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(9);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s1);
+
+        $s2 = r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx>;
+
+        $i3 = $s2 + 1;
+
+        $s4 = (short) $i3;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx> = $s4;
+
+        return;
+    }
+
+    public void emitConstantPoolMethodref(short, short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, s1, $s2, $s4;
+        int $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        s1 := @parameter1: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(10);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s1);
+
+        $s2 = r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx>;
+
+        $i3 = $s2 + 1;
+
+        $s4 = (short) $i3;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx> = $s4;
+
+        return;
+    }
+
+    public void emitConstantPoolInterfaceMethodref(short, short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, s1, $s2, $s4;
+        int $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        s1 := @parameter1: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(11);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s1);
+
+        $s2 = r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx>;
+
+        $i3 = $s2 + 1;
+
+        $s4 = (short) $i3;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx> = $s4;
+
+        return;
+    }
+
+    public void emitConstantPoolString(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, $s1, $s3;
+        int $i2;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(8);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $s1 = r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx>;
+
+        $i2 = $s1 + 1;
+
+        $s3 = (short) $i2;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: short cpIdx> = $s3;
+
+        return;
+    }
+
+    private void incStack()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0, $i1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int stack>;
+
+        $i1 = $i0 + 1;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i1);
+
+        return;
+    }
+
+    private void decStack()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0, $i1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int stack>;
+
+        $i1 = $i0 - 1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int stack> = $i1;
+
+        return;
+    }
+
+    public short getMaxStack()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+        short $s1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxStack>;
+
+        $s1 = (short) $i0;
+
+        return $s1;
+    }
+
+    public short getMaxLocals()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+        short $s1;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        $s1 = (short) $i0;
+
+        return $s1;
+    }
+
+    public void setMaxLocals(int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        i0 := @parameter0: int;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = i0;
+
+        return;
+    }
+
+    public int getStack()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int stack>;
+
+        return $i0;
+    }
+
+    public void setStack(int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int i0, $i1, $i2, $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        i0 := @parameter0: int;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int stack> = i0;
+
+        $i2 = r0.<jdk.internal.reflect.ClassFileAssembler: int stack>;
+
+        $i1 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxStack>;
+
+        if $i2 <= $i1 goto label1;
+
+        $i3 = r0.<jdk.internal.reflect.ClassFileAssembler: int stack>;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxStack> = $i3;
+
+     label1:
+        return;
+    }
+
+    public void opc_aconst_null()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(1);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_sipush(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(17);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_ldc(byte)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        byte b0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        b0 := @parameter0: byte;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(18);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(b0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_iload_0()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(26);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 1 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 1;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_iload_1()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(27);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 2 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 2;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_iload_2()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(28);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 3 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 3;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_iload_3()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(29);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 4 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 4;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_lload_0()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(30);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 2 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 2;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_lload_1()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(31);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 3 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 3;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_lload_2()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(32);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 4 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 4;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_lload_3()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(33);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 5 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 5;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_fload_0()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(34);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 1 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 1;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_fload_1()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(35);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 2 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 2;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_fload_2()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(36);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 3 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 3;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_fload_3()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(37);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 4 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 4;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_dload_0()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(38);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 2 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 2;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_dload_1()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(39);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 3 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 3;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_dload_2()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(40);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 4 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 4;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_dload_3()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(41);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 5 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 5;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_aload_0()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(42);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 1 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 1;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_aload_1()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(43);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 2 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 2;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_aload_2()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(44);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 3 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 3;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_aload_3()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(45);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 4 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 4;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_aaload()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(50);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_astore_0()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(75);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 1 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 1;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_astore_1()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(76);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 2 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 2;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_astore_2()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(77);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 3 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 3;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_astore_3()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        int $i0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(78);
+
+        $i0 = r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals>;
+
+        if $i0 >= 4 goto label1;
+
+        r0.<jdk.internal.reflect.ClassFileAssembler: int maxLocals> = 4;
+
+     label1:
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_pop()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(87);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_dup()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(89);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_dup_x1()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(90);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_swap()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(95);
+
+        return;
+    }
+
+    public void opc_i2l()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-123);
+
+        return;
+    }
+
+    public void opc_i2f()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-122);
+
+        return;
+    }
+
+    public void opc_i2d()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-121);
+
+        return;
+    }
+
+    public void opc_l2f()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-119);
+
+        return;
+    }
+
+    public void opc_l2d()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-118);
+
+        return;
+    }
+
+    public void opc_f2d()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-115);
+
+        return;
+    }
+
+    public void opc_ifeq(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-103);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_ifeq(jdk.internal.reflect.Label)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, $s1;
+        jdk.internal.reflect.Label r1;
+        int $i2, $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        r1 := @parameter0: jdk.internal.reflect.Label;
+
+        s0 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-103);
+
+        $s1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        $i2 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i2 - 1;
+
+        virtualinvoke r1.<jdk.internal.reflect.Label: void add(jdk.internal.reflect.ClassFileAssembler,short,short,int)>(r0, s0, $s1, $i3);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(-1);
+
+        return;
+    }
+
+    public void opc_if_icmpeq(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        int $i1, $i2;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-97);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $i1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i2 = $i1 - 2;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i2);
+
+        return;
+    }
+
+    public void opc_if_icmpeq(jdk.internal.reflect.Label)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, $s1;
+        jdk.internal.reflect.Label r1;
+        int $i2, $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        r1 := @parameter0: jdk.internal.reflect.Label;
+
+        s0 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-97);
+
+        $s1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        $i2 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i2 - 2;
+
+        virtualinvoke r1.<jdk.internal.reflect.Label: void add(jdk.internal.reflect.ClassFileAssembler,short,short,int)>(r0, s0, $s1, $i3);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(-1);
+
+        return;
+    }
+
+    public void opc_goto(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-89);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        return;
+    }
+
+    public void opc_goto(jdk.internal.reflect.Label)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, $s1;
+        jdk.internal.reflect.Label r1;
+        int $i2;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        r1 := @parameter0: jdk.internal.reflect.Label;
+
+        s0 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-89);
+
+        $s1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        $i2 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        virtualinvoke r1.<jdk.internal.reflect.Label: void add(jdk.internal.reflect.ClassFileAssembler,short,short,int)>(r0, s0, $s1, $i2);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(-1);
+
+        return;
+    }
+
+    public void opc_ifnull(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-58);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_ifnull(jdk.internal.reflect.Label)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, $s1;
+        jdk.internal.reflect.Label r1;
+        int $i2, $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        r1 := @parameter0: jdk.internal.reflect.Label;
+
+        s0 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-58);
+
+        $s1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        $i2 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i2 - 1;
+
+        virtualinvoke r1.<jdk.internal.reflect.Label: void add(jdk.internal.reflect.ClassFileAssembler,short,short,int)>(r0, s0, $s1, $i3);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(-1);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_ifnonnull(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-57);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_ifnonnull(jdk.internal.reflect.Label)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0, $s1;
+        jdk.internal.reflect.Label r1;
+        int $i2, $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        r1 := @parameter0: jdk.internal.reflect.Label;
+
+        s0 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-57);
+
+        $s1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: short getLength()>();
+
+        $i2 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i2 - 1;
+
+        virtualinvoke r1.<jdk.internal.reflect.Label: void add(jdk.internal.reflect.ClassFileAssembler,short,short,int)>(r0, s0, $s1, $i3);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(-1);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void decStack()>();
+
+        return;
+    }
+
+    public void opc_ireturn()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-84);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>(0);
+
+        return;
+    }
+
+    public void opc_lreturn()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-83);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>(0);
+
+        return;
+    }
+
+    public void opc_freturn()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-82);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>(0);
+
+        return;
+    }
+
+    public void opc_dreturn()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-81);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>(0);
+
+        return;
+    }
+
+    public void opc_areturn()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-80);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>(0);
+
+        return;
+    }
+
+    public void opc_return()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-79);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>(0);
+
+        return;
+    }
+
+    public void opc_getstatic(short, int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        int $i1, i2, $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        i2 := @parameter1: int;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-78);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $i1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i1 + i2;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i3);
+
+        return;
+    }
+
+    public void opc_putstatic(short, int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        int $i1, i2, $i3;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        i2 := @parameter1: int;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-77);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $i1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i1 - i2;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i3);
+
+        return;
+    }
+
+    public void opc_getfield(short, int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        int $i1, i2, $i3, $i4;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        i2 := @parameter1: int;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-76);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $i1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i1 + i2;
+
+        $i4 = $i3 - 1;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i4);
+
+        return;
+    }
+
+    public void opc_putfield(short, int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        int $i1, i2, $i3, $i4;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        i2 := @parameter1: int;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-75);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $i1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i1 - i2;
+
+        $i4 = $i3 - 1;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i4);
+
+        return;
+    }
+
+    public void opc_invokevirtual(short, int, int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        int $i1, i2, $i3, i4, $i5, $i6;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        i2 := @parameter1: int;
+
+        i4 := @parameter2: int;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-74);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $i1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i1 - i2;
+
+        $i5 = $i3 - 1;
+
+        $i6 = $i5 + i4;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i6);
+
+        return;
+    }
+
+    public void opc_invokespecial(short, int, int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        int $i1, i2, $i3, i4, $i5, $i6;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        i2 := @parameter1: int;
+
+        i4 := @parameter2: int;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-73);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $i1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i3 = $i1 - i2;
+
+        $i5 = $i3 - 1;
+
+        $i6 = $i5 + i4;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i6);
+
+        return;
+    }
+
+    public void opc_invokestatic(short, int, int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        int $i1, i2, i3, $i4, $i5;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        i2 := @parameter1: int;
+
+        i3 := @parameter2: int;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-72);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        $i1 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i4 = $i1 - i2;
+
+        $i5 = $i4 + i3;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i5);
+
+        return;
+    }
+
+    public void opc_invokeinterface(short, int, byte, int)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+        byte b1;
+        int $i2, i3, $i4, i5, $i6, $i7;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        i3 := @parameter1: int;
+
+        b1 := @parameter2: byte;
+
+        i5 := @parameter3: int;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-71);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(b1);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(0);
+
+        $i2 = virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: int getStack()>();
+
+        $i4 = $i2 - i3;
+
+        $i6 = $i4 - 1;
+
+        $i7 = $i6 + i5;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>($i7);
+
+        return;
+    }
+
+    public void opc_arraylength()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-66);
+
+        return;
+    }
+
+    public void opc_new(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-69);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void incStack()>();
+
+        return;
+    }
+
+    public void opc_athrow()
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-65);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void setStack(int)>(1);
+
+        return;
+    }
+
+    public void opc_checkcast(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-64);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        return;
+    }
+
+    public void opc_instanceof(short)
+    {
+        jdk.internal.reflect.ClassFileAssembler r0;
+        short s0;
+
+        r0 := @this: jdk.internal.reflect.ClassFileAssembler;
+
+        s0 := @parameter0: short;
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitByte(byte)>(-63);
+
+        virtualinvoke r0.<jdk.internal.reflect.ClassFileAssembler: void emitShort(short)>(s0);
+
+        return;
+    }
+}

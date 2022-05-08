@@ -1,0 +1,94 @@
+class jdk.internal.loader.Loader$1 extends java.lang.Object implements java.security.PrivilegedExceptionAction
+{
+    final java.lang.module.ModuleReference val$mref;
+    final java.lang.String val$name;
+    final jdk.internal.loader.Loader this$0;
+
+    void <init>(jdk.internal.loader.Loader, java.lang.module.ModuleReference, java.lang.String)
+    {
+        jdk.internal.loader.Loader$1 r0;
+        jdk.internal.loader.Loader r1;
+        java.lang.module.ModuleReference r2;
+        java.lang.String r3;
+
+        r0 := @this: jdk.internal.loader.Loader$1;
+
+        r1 := @parameter0: jdk.internal.loader.Loader;
+
+        r2 := @parameter1: java.lang.module.ModuleReference;
+
+        r3 := @parameter2: java.lang.String;
+
+        r0.<jdk.internal.loader.Loader$1: jdk.internal.loader.Loader this$0> = r1;
+
+        r0.<jdk.internal.loader.Loader$1: java.lang.module.ModuleReference val$mref> = r2;
+
+        r0.<jdk.internal.loader.Loader$1: java.lang.String val$name> = r3;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.net.URL run() throws java.io.IOException
+    {
+        jdk.internal.loader.Loader$1 r0;
+        java.lang.module.ModuleReference $r1;
+        jdk.internal.loader.Loader $r2;
+        java.lang.module.ModuleReader $r3;
+        java.lang.String $r4;
+        java.util.Optional r5;
+        boolean $z0;
+        java.lang.Object $r6;
+        java.net.URI $r7;
+        java.net.URL $r8;
+        java.lang.Exception $r9;
+
+        r0 := @this: jdk.internal.loader.Loader$1;
+
+        $r2 = r0.<jdk.internal.loader.Loader$1: jdk.internal.loader.Loader this$0>;
+
+        $r1 = r0.<jdk.internal.loader.Loader$1: java.lang.module.ModuleReference val$mref>;
+
+        $r3 = virtualinvoke $r2.<jdk.internal.loader.Loader: java.lang.module.ModuleReader moduleReaderFor(java.lang.module.ModuleReference)>($r1);
+
+        $r4 = r0.<jdk.internal.loader.Loader$1: java.lang.String val$name>;
+
+        r5 = interfaceinvoke $r3.<java.lang.module.ModuleReader: java.util.Optional find(java.lang.String)>($r4);
+
+        $z0 = virtualinvoke r5.<java.util.Optional: boolean isPresent()>();
+
+        if $z0 == 0 goto label4;
+
+     label1:
+        $r6 = virtualinvoke r5.<java.util.Optional: java.lang.Object get()>();
+
+        $r7 = (java.net.URI) $r6;
+
+        $r8 = virtualinvoke $r7.<java.net.URI: java.net.URL toURL()>();
+
+     label2:
+        return $r8;
+
+     label3:
+        $r9 := @caughtexception;
+
+     label4:
+        return null;
+
+        catch java.net.MalformedURLException from label1 to label2 with label3;
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
+    }
+
+    public volatile java.lang.Object run() throws java.lang.Exception
+    {
+        jdk.internal.loader.Loader$1 r0;
+        java.net.URL $r1;
+
+        r0 := @this: jdk.internal.loader.Loader$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.loader.Loader$1: java.net.URL run()>();
+
+        return $r1;
+    }
+}

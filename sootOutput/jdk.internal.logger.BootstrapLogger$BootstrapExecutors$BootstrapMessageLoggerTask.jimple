@@ -1,0 +1,57 @@
+class jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask extends java.lang.Object implements java.lang.Runnable
+{
+    java.util.concurrent.ExecutorService owner;
+    java.lang.Runnable run;
+
+    public void <init>(java.util.concurrent.ExecutorService, java.lang.Runnable)
+    {
+        jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask r0;
+        java.util.concurrent.ExecutorService r1;
+        java.lang.Runnable r2;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask;
+
+        r1 := @parameter0: java.util.concurrent.ExecutorService;
+
+        r2 := @parameter1: java.lang.Runnable;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask: java.util.concurrent.ExecutorService owner> = r1;
+
+        r0.<jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask: java.lang.Runnable run> = r2;
+
+        return;
+    }
+
+    public void run()
+    {
+        jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask r0;
+        java.lang.Runnable $r1;
+        java.lang.Throwable $r2;
+
+        r0 := @this: jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask;
+
+     label1:
+        $r1 = r0.<jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask: java.lang.Runnable run>;
+
+        interfaceinvoke $r1.<java.lang.Runnable: void run()>();
+
+     label2:
+        r0.<jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask: java.util.concurrent.ExecutorService owner> = null;
+
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+        r0.<jdk.internal.logger.BootstrapLogger$BootstrapExecutors$BootstrapMessageLoggerTask: java.util.concurrent.ExecutorService owner> = null;
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+    }
+}

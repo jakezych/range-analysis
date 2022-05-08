@@ -1,0 +1,39 @@
+public class jdk.internal.jimage.decompressor.StringSharingDecompressorFactory extends jdk.internal.jimage.decompressor.ResourceDecompressorFactory
+{
+    public static final java.lang.String NAME;
+
+    public void <init>()
+    {
+        jdk.internal.jimage.decompressor.StringSharingDecompressorFactory r0;
+
+        r0 := @this: jdk.internal.jimage.decompressor.StringSharingDecompressorFactory;
+
+        specialinvoke r0.<jdk.internal.jimage.decompressor.ResourceDecompressorFactory: void <init>(java.lang.String)>("compact-cp");
+
+        return;
+    }
+
+    public jdk.internal.jimage.decompressor.ResourceDecompressor newDecompressor(java.util.Properties) throws java.io.IOException
+    {
+        jdk.internal.jimage.decompressor.StringSharingDecompressor $r0;
+        java.util.Properties r1;
+        jdk.internal.jimage.decompressor.StringSharingDecompressorFactory r2;
+
+        r2 := @this: jdk.internal.jimage.decompressor.StringSharingDecompressorFactory;
+
+        r1 := @parameter0: java.util.Properties;
+
+        $r0 = new jdk.internal.jimage.decompressor.StringSharingDecompressor;
+
+        specialinvoke $r0.<jdk.internal.jimage.decompressor.StringSharingDecompressor: void <init>(java.util.Properties)>(r1);
+
+        return $r0;
+    }
+
+    public static void <clinit>()
+    {
+        <jdk.internal.jimage.decompressor.StringSharingDecompressorFactory: java.lang.String NAME> = "compact-cp";
+
+        return;
+    }
+}

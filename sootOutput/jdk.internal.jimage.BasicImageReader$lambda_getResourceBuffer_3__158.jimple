@@ -1,0 +1,52 @@
+public final class jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158 extends java.lang.Object implements jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider
+{
+    jdk.internal.jimage.BasicImageReader cap0;
+
+    public static jdk.internal.jimage.decompressor.ResourceDecompressor$StringsProvider bootstrap$(jdk.internal.jimage.BasicImageReader)
+    {
+        jdk.internal.jimage.BasicImageReader $r0;
+        jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158 $r1;
+
+        $r0 := @parameter0: jdk.internal.jimage.BasicImageReader;
+
+        $r1 = new jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158;
+
+        specialinvoke $r1.<jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158: void <init>(jdk.internal.jimage.BasicImageReader)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(jdk.internal.jimage.BasicImageReader)
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158 $r0;
+        jdk.internal.jimage.BasicImageReader $r1;
+
+        $r0 := @this: jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158;
+
+        $r1 := @parameter0: jdk.internal.jimage.BasicImageReader;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158: jdk.internal.jimage.BasicImageReader cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.String getString(int)
+    {
+        jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158 $r0;
+        int $i0;
+        jdk.internal.jimage.BasicImageReader $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158;
+
+        $i0 := @parameter0: int;
+
+        $r1 = $r0.<jdk.internal.jimage.BasicImageReader$lambda_getResourceBuffer_3__158: jdk.internal.jimage.BasicImageReader cap0>;
+
+        $r2 = virtualinvoke $r1.<jdk.internal.jimage.BasicImageReader: java.lang.String lambda$getResourceBuffer$3(int)>($i0);
+
+        return $r2;
+    }
+}

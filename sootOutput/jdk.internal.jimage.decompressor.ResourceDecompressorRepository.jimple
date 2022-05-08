@@ -1,0 +1,88 @@
+public final class jdk.internal.jimage.decompressor.ResourceDecompressorRepository extends java.lang.Object
+{
+    private static final java.util.Map factories;
+
+    private void <init>()
+    {
+        jdk.internal.jimage.decompressor.ResourceDecompressorRepository r0;
+
+        r0 := @this: jdk.internal.jimage.decompressor.ResourceDecompressorRepository;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static jdk.internal.jimage.decompressor.ResourceDecompressor newResourceDecompressor(java.util.Properties, java.lang.String) throws java.io.IOException
+    {
+        java.lang.String r0;
+        java.util.Map $r1;
+        java.lang.Object $r2;
+        jdk.internal.jimage.decompressor.ResourceDecompressorFactory r3;
+        java.util.Properties r4;
+        jdk.internal.jimage.decompressor.ResourceDecompressor $r5;
+
+        r4 := @parameter0: java.util.Properties;
+
+        r0 := @parameter1: java.lang.String;
+
+        $r1 = <jdk.internal.jimage.decompressor.ResourceDecompressorRepository: java.util.Map factories>;
+
+        $r2 = interfaceinvoke $r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(r0);
+
+        r3 = (jdk.internal.jimage.decompressor.ResourceDecompressorFactory) $r2;
+
+        if r3 == null goto label1;
+
+        $r5 = virtualinvoke r3.<jdk.internal.jimage.decompressor.ResourceDecompressorFactory: jdk.internal.jimage.decompressor.ResourceDecompressor newDecompressor(java.util.Properties)>(r4);
+
+        return $r5;
+
+     label1:
+        return null;
+    }
+
+    private static void registerReaderProvider(jdk.internal.jimage.decompressor.ResourceDecompressorFactory)
+    {
+        jdk.internal.jimage.decompressor.ResourceDecompressorFactory r0;
+        java.util.Map $r1;
+        java.lang.String $r2;
+
+        r0 := @parameter0: jdk.internal.jimage.decompressor.ResourceDecompressorFactory;
+
+        $r1 = <jdk.internal.jimage.decompressor.ResourceDecompressorRepository: java.util.Map factories>;
+
+        $r2 = virtualinvoke r0.<jdk.internal.jimage.decompressor.ResourceDecompressorFactory: java.lang.String getName()>();
+
+        interfaceinvoke $r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r2, r0);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.util.HashMap $r0;
+        jdk.internal.jimage.decompressor.ZipDecompressorFactory $r1;
+        jdk.internal.jimage.decompressor.StringSharingDecompressorFactory $r2;
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        <jdk.internal.jimage.decompressor.ResourceDecompressorRepository: java.util.Map factories> = $r0;
+
+        $r1 = new jdk.internal.jimage.decompressor.ZipDecompressorFactory;
+
+        specialinvoke $r1.<jdk.internal.jimage.decompressor.ZipDecompressorFactory: void <init>()>();
+
+        staticinvoke <jdk.internal.jimage.decompressor.ResourceDecompressorRepository: void registerReaderProvider(jdk.internal.jimage.decompressor.ResourceDecompressorFactory)>($r1);
+
+        $r2 = new jdk.internal.jimage.decompressor.StringSharingDecompressorFactory;
+
+        specialinvoke $r2.<jdk.internal.jimage.decompressor.StringSharingDecompressorFactory: void <init>()>();
+
+        staticinvoke <jdk.internal.jimage.decompressor.ResourceDecompressorRepository: void registerReaderProvider(jdk.internal.jimage.decompressor.ResourceDecompressorFactory)>($r2);
+
+        return;
+    }
+}

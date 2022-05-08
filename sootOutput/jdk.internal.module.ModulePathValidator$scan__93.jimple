@@ -1,0 +1,54 @@
+public final class jdk.internal.module.ModulePathValidator$scan__93 extends java.lang.Object implements java.util.function.Consumer
+{
+    jdk.internal.module.ModulePathValidator cap0;
+
+    public static java.util.function.Consumer bootstrap$(jdk.internal.module.ModulePathValidator)
+    {
+        jdk.internal.module.ModulePathValidator $r0;
+        jdk.internal.module.ModulePathValidator$scan__93 $r1;
+
+        $r0 := @parameter0: jdk.internal.module.ModulePathValidator;
+
+        $r1 = new jdk.internal.module.ModulePathValidator$scan__93;
+
+        specialinvoke $r1.<jdk.internal.module.ModulePathValidator$scan__93: void <init>(jdk.internal.module.ModulePathValidator)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(jdk.internal.module.ModulePathValidator)
+    {
+        jdk.internal.module.ModulePathValidator$scan__93 $r0;
+        jdk.internal.module.ModulePathValidator $r1;
+
+        $r0 := @this: jdk.internal.module.ModulePathValidator$scan__93;
+
+        $r1 := @parameter0: jdk.internal.module.ModulePathValidator;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModulePathValidator$scan__93: jdk.internal.module.ModulePathValidator cap0> = $r1;
+
+        return;
+    }
+
+    public void accept(java.lang.Object)
+    {
+        jdk.internal.module.ModulePathValidator$scan__93 $r0;
+        java.lang.Object $r1;
+        java.nio.file.Path $r2;
+        jdk.internal.module.ModulePathValidator $r3;
+
+        $r0 := @this: jdk.internal.module.ModulePathValidator$scan__93;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.nio.file.Path) $r1;
+
+        $r3 = $r0.<jdk.internal.module.ModulePathValidator$scan__93: jdk.internal.module.ModulePathValidator cap0>;
+
+        virtualinvoke $r3.<jdk.internal.module.ModulePathValidator: void scan(java.nio.file.Path)>($r2);
+
+        return;
+    }
+}

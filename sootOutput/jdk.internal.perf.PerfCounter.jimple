@@ -1,0 +1,278 @@
+public class jdk.internal.perf.PerfCounter extends java.lang.Object
+{
+    private static final jdk.internal.perf.Perf perf;
+    private static final int V_Constant;
+    private static final int V_Monotonic;
+    private static final int V_Variable;
+    private static final int U_None;
+    private final java.lang.String name;
+    private final java.nio.LongBuffer lb;
+
+    private void <init>(java.lang.String, int)
+    {
+        jdk.internal.perf.PerfCounter r0;
+        java.lang.String r1;
+        int i0;
+        jdk.internal.perf.Perf $r2;
+        java.nio.ByteBuffer r3;
+        java.nio.ByteOrder $r4;
+        java.nio.LongBuffer $r6;
+
+        r0 := @this: jdk.internal.perf.PerfCounter;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<jdk.internal.perf.PerfCounter: java.lang.String name> = r1;
+
+        $r2 = <jdk.internal.perf.PerfCounter: jdk.internal.perf.Perf perf>;
+
+        r3 = virtualinvoke $r2.<jdk.internal.perf.Perf: java.nio.ByteBuffer createLong(java.lang.String,int,int,long)>(r1, i0, 1, 0L);
+
+        $r4 = staticinvoke <java.nio.ByteOrder: java.nio.ByteOrder nativeOrder()>();
+
+        virtualinvoke r3.<java.nio.ByteBuffer: java.nio.ByteBuffer order(java.nio.ByteOrder)>($r4);
+
+        $r6 = virtualinvoke r3.<java.nio.ByteBuffer: java.nio.LongBuffer asLongBuffer()>();
+
+        r0.<jdk.internal.perf.PerfCounter: java.nio.LongBuffer lb> = $r6;
+
+        return;
+    }
+
+    public static jdk.internal.perf.PerfCounter newPerfCounter(java.lang.String)
+    {
+        jdk.internal.perf.PerfCounter $r0;
+        java.lang.String r1;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new jdk.internal.perf.PerfCounter;
+
+        specialinvoke $r0.<jdk.internal.perf.PerfCounter: void <init>(java.lang.String,int)>(r1, 3);
+
+        return $r0;
+    }
+
+    public static jdk.internal.perf.PerfCounter newConstantPerfCounter(java.lang.String)
+    {
+        jdk.internal.perf.PerfCounter $r0;
+        java.lang.String r1;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new jdk.internal.perf.PerfCounter;
+
+        specialinvoke $r0.<jdk.internal.perf.PerfCounter: void <init>(java.lang.String,int)>(r1, 1);
+
+        return $r0;
+    }
+
+    public synchronized long get()
+    {
+        jdk.internal.perf.PerfCounter r0;
+        java.nio.LongBuffer $r1;
+        long $l0;
+
+        r0 := @this: jdk.internal.perf.PerfCounter;
+
+        $r1 = r0.<jdk.internal.perf.PerfCounter: java.nio.LongBuffer lb>;
+
+        $l0 = virtualinvoke $r1.<java.nio.LongBuffer: long get(int)>(0);
+
+        return $l0;
+    }
+
+    public synchronized void set(long)
+    {
+        jdk.internal.perf.PerfCounter r0;
+        long l0;
+        java.nio.LongBuffer $r1;
+
+        r0 := @this: jdk.internal.perf.PerfCounter;
+
+        l0 := @parameter0: long;
+
+        $r1 = r0.<jdk.internal.perf.PerfCounter: java.nio.LongBuffer lb>;
+
+        virtualinvoke $r1.<java.nio.LongBuffer: java.nio.LongBuffer put(int,long)>(0, l0);
+
+        return;
+    }
+
+    public synchronized void add(long)
+    {
+        jdk.internal.perf.PerfCounter r0;
+        long $l0, l1, l2;
+        java.nio.LongBuffer $r1;
+
+        r0 := @this: jdk.internal.perf.PerfCounter;
+
+        l1 := @parameter0: long;
+
+        $l0 = virtualinvoke r0.<jdk.internal.perf.PerfCounter: long get()>();
+
+        l2 = $l0 + l1;
+
+        $r1 = r0.<jdk.internal.perf.PerfCounter: java.nio.LongBuffer lb>;
+
+        virtualinvoke $r1.<java.nio.LongBuffer: java.nio.LongBuffer put(int,long)>(0, l2);
+
+        return;
+    }
+
+    public void increment()
+    {
+        jdk.internal.perf.PerfCounter r0;
+
+        r0 := @this: jdk.internal.perf.PerfCounter;
+
+        virtualinvoke r0.<jdk.internal.perf.PerfCounter: void add(long)>(1L);
+
+        return;
+    }
+
+    public void addTime(long)
+    {
+        jdk.internal.perf.PerfCounter r0;
+        long l0;
+
+        r0 := @this: jdk.internal.perf.PerfCounter;
+
+        l0 := @parameter0: long;
+
+        virtualinvoke r0.<jdk.internal.perf.PerfCounter: void add(long)>(l0);
+
+        return;
+    }
+
+    public void addElapsedTimeFrom(long)
+    {
+        jdk.internal.perf.PerfCounter r0;
+        long $l0, l1, $l2;
+
+        r0 := @this: jdk.internal.perf.PerfCounter;
+
+        l1 := @parameter0: long;
+
+        $l0 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $l2 = $l0 - l1;
+
+        virtualinvoke r0.<jdk.internal.perf.PerfCounter: void add(long)>($l2);
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        java.lang.StringBuilder $r0, $r3, $r4, $r5;
+        jdk.internal.perf.PerfCounter r1;
+        java.lang.String $r2, $r6;
+        long $l0;
+
+        r1 := @this: jdk.internal.perf.PerfCounter;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = r1.<jdk.internal.perf.PerfCounter: java.lang.String name>;
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = ");
+
+        $l0 = virtualinvoke r1.<jdk.internal.perf.PerfCounter: long get()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r6;
+    }
+
+    public static jdk.internal.perf.PerfCounter getFindClasses()
+    {
+        jdk.internal.perf.PerfCounter $r0;
+
+        $r0 = <jdk.internal.perf.PerfCounter$CoreCounters: jdk.internal.perf.PerfCounter lc>;
+
+        return $r0;
+    }
+
+    public static jdk.internal.perf.PerfCounter getFindClassTime()
+    {
+        jdk.internal.perf.PerfCounter $r0;
+
+        $r0 = <jdk.internal.perf.PerfCounter$CoreCounters: jdk.internal.perf.PerfCounter lct>;
+
+        return $r0;
+    }
+
+    public static jdk.internal.perf.PerfCounter getReadClassBytesTime()
+    {
+        jdk.internal.perf.PerfCounter $r0;
+
+        $r0 = <jdk.internal.perf.PerfCounter$CoreCounters: jdk.internal.perf.PerfCounter rcbt>;
+
+        return $r0;
+    }
+
+    public static jdk.internal.perf.PerfCounter getParentDelegationTime()
+    {
+        jdk.internal.perf.PerfCounter $r0;
+
+        $r0 = <jdk.internal.perf.PerfCounter$CoreCounters: jdk.internal.perf.PerfCounter pdt>;
+
+        return $r0;
+    }
+
+    public static jdk.internal.perf.PerfCounter getZipFileCount()
+    {
+        jdk.internal.perf.PerfCounter $r0;
+
+        $r0 = <jdk.internal.perf.PerfCounter$CoreCounters: jdk.internal.perf.PerfCounter zfc>;
+
+        return $r0;
+    }
+
+    public static jdk.internal.perf.PerfCounter getZipFileOpenTime()
+    {
+        jdk.internal.perf.PerfCounter $r0;
+
+        $r0 = <jdk.internal.perf.PerfCounter$CoreCounters: jdk.internal.perf.PerfCounter zfot>;
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.perf.Perf$GetPerfAction $r0;
+        java.lang.Object $r1;
+        jdk.internal.perf.Perf $r2;
+
+        <jdk.internal.perf.PerfCounter: int U_None> = 1;
+
+        <jdk.internal.perf.PerfCounter: int V_Variable> = 3;
+
+        <jdk.internal.perf.PerfCounter: int V_Monotonic> = 2;
+
+        <jdk.internal.perf.PerfCounter: int V_Constant> = 1;
+
+        $r0 = new jdk.internal.perf.Perf$GetPerfAction;
+
+        specialinvoke $r0.<jdk.internal.perf.Perf$GetPerfAction: void <init>()>();
+
+        $r1 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r0);
+
+        $r2 = (jdk.internal.perf.Perf) $r1;
+
+        <jdk.internal.perf.PerfCounter: jdk.internal.perf.Perf perf> = $r2;
+
+        return;
+    }
+}

@@ -1,0 +1,5 @@
+interface  jdk.internal.jimage.ImageReader$SharedImageReader$LocationVisitor extends java.lang.Object
+{
+
+    public abstract void visit(jdk.internal.jimage.ImageLocation);
+}

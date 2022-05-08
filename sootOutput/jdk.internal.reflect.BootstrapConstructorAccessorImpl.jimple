@@ -1,0 +1,59 @@
+class jdk.internal.reflect.BootstrapConstructorAccessorImpl extends jdk.internal.reflect.ConstructorAccessorImpl
+{
+    private final java.lang.reflect.Constructor constructor;
+
+    void <init>(java.lang.reflect.Constructor)
+    {
+        jdk.internal.reflect.BootstrapConstructorAccessorImpl r0;
+        java.lang.reflect.Constructor r1;
+
+        r0 := @this: jdk.internal.reflect.BootstrapConstructorAccessorImpl;
+
+        r1 := @parameter0: java.lang.reflect.Constructor;
+
+        specialinvoke r0.<jdk.internal.reflect.ConstructorAccessorImpl: void <init>()>();
+
+        r0.<jdk.internal.reflect.BootstrapConstructorAccessorImpl: java.lang.reflect.Constructor constructor> = r1;
+
+        return;
+    }
+
+    public java.lang.Object newInstance(java.lang.Object[]) throws java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException
+    {
+        jdk.internal.reflect.BootstrapConstructorAccessorImpl r0;
+        java.lang.reflect.Constructor $r1;
+        jdk.internal.misc.Unsafe $r2;
+        java.lang.Class $r3;
+        java.lang.Object $r4;
+        java.lang.InstantiationException $r5;
+        java.lang.reflect.InvocationTargetException $r7;
+        java.lang.Object[] r8;
+
+        r0 := @this: jdk.internal.reflect.BootstrapConstructorAccessorImpl;
+
+        r8 := @parameter0: java.lang.Object[];
+
+     label1:
+        $r2 = <jdk.internal.reflect.UnsafeFieldAccessorImpl: jdk.internal.misc.Unsafe unsafe>;
+
+        $r1 = r0.<jdk.internal.reflect.BootstrapConstructorAccessorImpl: java.lang.reflect.Constructor constructor>;
+
+        $r3 = virtualinvoke $r1.<java.lang.reflect.Constructor: java.lang.Class getDeclaringClass()>();
+
+        $r4 = virtualinvoke $r2.<jdk.internal.misc.Unsafe: java.lang.Object allocateInstance(java.lang.Class)>($r3);
+
+     label2:
+        return $r4;
+
+     label3:
+        $r5 := @caughtexception;
+
+        $r7 = new java.lang.reflect.InvocationTargetException;
+
+        specialinvoke $r7.<java.lang.reflect.InvocationTargetException: void <init>(java.lang.Throwable)>($r5);
+
+        throw $r7;
+
+        catch java.lang.InstantiationException from label1 to label2 with label3;
+    }
+}

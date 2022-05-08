@@ -1,0 +1,224 @@
+public class jdk.internal.util.SystemProps$Raw extends java.lang.Object
+{
+    private static final int _display_country_NDX;
+    private static final int _display_language_NDX;
+    private static final int _display_script_NDX;
+    private static final int _display_variant_NDX;
+    private static final int _file_encoding_NDX;
+    private static final int _file_separator_NDX;
+    private static final int _format_country_NDX;
+    private static final int _format_language_NDX;
+    private static final int _format_script_NDX;
+    private static final int _format_variant_NDX;
+    private static final int _ftp_nonProxyHosts_NDX;
+    private static final int _ftp_proxyHost_NDX;
+    private static final int _ftp_proxyPort_NDX;
+    private static final int _http_nonProxyHosts_NDX;
+    private static final int _http_proxyHost_NDX;
+    private static final int _http_proxyPort_NDX;
+    private static final int _https_proxyHost_NDX;
+    private static final int _https_proxyPort_NDX;
+    private static final int _java_io_tmpdir_NDX;
+    private static final int _line_separator_NDX;
+    private static final int _os_arch_NDX;
+    private static final int _os_name_NDX;
+    private static final int _os_version_NDX;
+    private static final int _path_separator_NDX;
+    private static final int _socksNonProxyHosts_NDX;
+    private static final int _socksProxyHost_NDX;
+    private static final int _socksProxyPort_NDX;
+    private static final int _sun_arch_abi_NDX;
+    private static final int _sun_arch_data_model_NDX;
+    private static final int _sun_cpu_endian_NDX;
+    private static final int _sun_cpu_isalist_NDX;
+    private static final int _sun_io_unicode_encoding_NDX;
+    private static final int _sun_jnu_encoding_NDX;
+    private static final int _sun_os_patch_level_NDX;
+    private static final int _sun_stderr_encoding_NDX;
+    private static final int _sun_stdout_encoding_NDX;
+    private static final int _user_dir_NDX;
+    private static final int _user_home_NDX;
+    private static final int _user_name_NDX;
+    private static final int FIXED_LENGTH;
+    private final java.lang.String[] platformProps;
+
+    private void <init>()
+    {
+        jdk.internal.util.SystemProps$Raw r0;
+        java.lang.String[] $r1;
+
+        r0 := @this: jdk.internal.util.SystemProps$Raw;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <jdk.internal.util.SystemProps$Raw: java.lang.String[] platformProperties()>();
+
+        r0.<jdk.internal.util.SystemProps$Raw: java.lang.String[] platformProps> = $r1;
+
+        return;
+    }
+
+    java.lang.String propDefault(int)
+    {
+        jdk.internal.util.SystemProps$Raw r0;
+        int i0;
+        java.lang.String[] $r1;
+        java.lang.String $r2;
+
+        r0 := @this: jdk.internal.util.SystemProps$Raw;
+
+        i0 := @parameter0: int;
+
+        $r1 = r0.<jdk.internal.util.SystemProps$Raw: java.lang.String[] platformProps>;
+
+        $r2 = $r1[i0];
+
+        return $r2;
+    }
+
+    private java.util.HashMap cmdProperties()
+    {
+        java.lang.String[] r0;
+        java.util.HashMap $r1;
+        int $i0, $i1, $i2, $i3, i4, i5;
+        java.lang.String r3, r4, $r9;
+        jdk.internal.util.SystemProps$Raw r8;
+
+        r8 := @this: jdk.internal.util.SystemProps$Raw;
+
+        r0 = staticinvoke <jdk.internal.util.SystemProps$Raw: java.lang.String[] vmProperties()>();
+
+        $r1 = new java.util.HashMap;
+
+        $i0 = lengthof r0;
+
+        $i1 = $i0 / 2;
+
+        $i2 = $i1 + 39;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>(int)>($i2);
+
+        i4 = 0;
+
+     label1:
+        $i3 = lengthof r0;
+
+        if i4 >= $i3 goto label4;
+
+        i5 = i4 + 1;
+
+        r3 = r0[i4];
+
+        if r3 == null goto label4;
+
+        i4 = i5 + 1;
+
+        r4 = r0[i5];
+
+        if r4 == null goto label2;
+
+        $r9 = r4;
+
+        goto label3;
+
+     label2:
+        $r9 = "";
+
+     label3:
+        virtualinvoke $r1.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r3, $r9);
+
+        goto label1;
+
+     label4:
+        return $r1;
+    }
+
+    private static native java.lang.String[] vmProperties();
+
+    private static native java.lang.String[] platformProperties();
+
+    public static void <clinit>()
+    {
+        <jdk.internal.util.SystemProps$Raw: int FIXED_LENGTH> = 39;
+
+        <jdk.internal.util.SystemProps$Raw: int _user_name_NDX> = 38;
+
+        <jdk.internal.util.SystemProps$Raw: int _user_home_NDX> = 37;
+
+        <jdk.internal.util.SystemProps$Raw: int _user_dir_NDX> = 36;
+
+        <jdk.internal.util.SystemProps$Raw: int _sun_stdout_encoding_NDX> = 35;
+
+        <jdk.internal.util.SystemProps$Raw: int _sun_stderr_encoding_NDX> = 34;
+
+        <jdk.internal.util.SystemProps$Raw: int _sun_os_patch_level_NDX> = 33;
+
+        <jdk.internal.util.SystemProps$Raw: int _sun_jnu_encoding_NDX> = 32;
+
+        <jdk.internal.util.SystemProps$Raw: int _sun_io_unicode_encoding_NDX> = 31;
+
+        <jdk.internal.util.SystemProps$Raw: int _sun_cpu_isalist_NDX> = 30;
+
+        <jdk.internal.util.SystemProps$Raw: int _sun_cpu_endian_NDX> = 29;
+
+        <jdk.internal.util.SystemProps$Raw: int _sun_arch_data_model_NDX> = 28;
+
+        <jdk.internal.util.SystemProps$Raw: int _sun_arch_abi_NDX> = 27;
+
+        <jdk.internal.util.SystemProps$Raw: int _socksProxyPort_NDX> = 26;
+
+        <jdk.internal.util.SystemProps$Raw: int _socksProxyHost_NDX> = 25;
+
+        <jdk.internal.util.SystemProps$Raw: int _socksNonProxyHosts_NDX> = 24;
+
+        <jdk.internal.util.SystemProps$Raw: int _path_separator_NDX> = 23;
+
+        <jdk.internal.util.SystemProps$Raw: int _os_version_NDX> = 22;
+
+        <jdk.internal.util.SystemProps$Raw: int _os_name_NDX> = 21;
+
+        <jdk.internal.util.SystemProps$Raw: int _os_arch_NDX> = 20;
+
+        <jdk.internal.util.SystemProps$Raw: int _line_separator_NDX> = 19;
+
+        <jdk.internal.util.SystemProps$Raw: int _java_io_tmpdir_NDX> = 18;
+
+        <jdk.internal.util.SystemProps$Raw: int _https_proxyPort_NDX> = 17;
+
+        <jdk.internal.util.SystemProps$Raw: int _https_proxyHost_NDX> = 16;
+
+        <jdk.internal.util.SystemProps$Raw: int _http_proxyPort_NDX> = 15;
+
+        <jdk.internal.util.SystemProps$Raw: int _http_proxyHost_NDX> = 14;
+
+        <jdk.internal.util.SystemProps$Raw: int _http_nonProxyHosts_NDX> = 13;
+
+        <jdk.internal.util.SystemProps$Raw: int _ftp_proxyPort_NDX> = 12;
+
+        <jdk.internal.util.SystemProps$Raw: int _ftp_proxyHost_NDX> = 11;
+
+        <jdk.internal.util.SystemProps$Raw: int _ftp_nonProxyHosts_NDX> = 10;
+
+        <jdk.internal.util.SystemProps$Raw: int _format_variant_NDX> = 9;
+
+        <jdk.internal.util.SystemProps$Raw: int _format_script_NDX> = 8;
+
+        <jdk.internal.util.SystemProps$Raw: int _format_language_NDX> = 7;
+
+        <jdk.internal.util.SystemProps$Raw: int _format_country_NDX> = 6;
+
+        <jdk.internal.util.SystemProps$Raw: int _file_separator_NDX> = 5;
+
+        <jdk.internal.util.SystemProps$Raw: int _file_encoding_NDX> = 4;
+
+        <jdk.internal.util.SystemProps$Raw: int _display_variant_NDX> = 3;
+
+        <jdk.internal.util.SystemProps$Raw: int _display_script_NDX> = 2;
+
+        <jdk.internal.util.SystemProps$Raw: int _display_language_NDX> = 1;
+
+        <jdk.internal.util.SystemProps$Raw: int _display_country_NDX> = 0;
+
+        return;
+    }
+}

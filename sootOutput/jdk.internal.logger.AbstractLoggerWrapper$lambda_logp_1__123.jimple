@@ -1,0 +1,69 @@
+public final class jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123 extends java.lang.Object implements java.util.function.Supplier
+{
+    java.lang.String cap0;
+    java.lang.String cap1;
+    java.util.function.Supplier cap2;
+
+    public static java.util.function.Supplier bootstrap$(java.lang.String, java.lang.String, java.util.function.Supplier)
+    {
+        java.lang.String $r0, $r1;
+        java.util.function.Supplier $r2;
+        jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123 $r3;
+
+        $r0 := @parameter0: java.lang.String;
+
+        $r1 := @parameter1: java.lang.String;
+
+        $r2 := @parameter2: java.util.function.Supplier;
+
+        $r3 = new jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123;
+
+        specialinvoke $r3.<jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123: void <init>(java.lang.String,java.lang.String,java.util.function.Supplier)>($r0, $r1, $r2);
+
+        return $r3;
+    }
+
+    public void <init>(java.lang.String, java.lang.String, java.util.function.Supplier)
+    {
+        jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123 $r0;
+        java.lang.String $r1, $r2;
+        java.util.function.Supplier $r3;
+
+        $r0 := @this: jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: java.lang.String;
+
+        $r3 := @parameter2: java.util.function.Supplier;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123: java.lang.String cap0> = $r1;
+
+        $r0.<jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123: java.lang.String cap1> = $r2;
+
+        $r0.<jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123: java.util.function.Supplier cap2> = $r3;
+
+        return;
+    }
+
+    public java.lang.Object get()
+    {
+        jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123 $r0;
+        java.lang.String $r1, $r2, $r4;
+        java.util.function.Supplier $r3;
+
+        $r0 := @this: jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123;
+
+        $r1 = $r0.<jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123: java.lang.String cap0>;
+
+        $r2 = $r0.<jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123: java.lang.String cap1>;
+
+        $r3 = $r0.<jdk.internal.logger.AbstractLoggerWrapper$lambda_logp_1__123: java.util.function.Supplier cap2>;
+
+        $r4 = staticinvoke <jdk.internal.logger.AbstractLoggerWrapper: java.lang.String lambda$logp$1(java.lang.String,java.lang.String,java.util.function.Supplier)>($r1, $r2, $r3);
+
+        return $r4;
+    }
+}

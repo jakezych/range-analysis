@@ -1,0 +1,15 @@
+public interface  jdk.internal.access.JavaNioAccess extends java.lang.Object
+{
+
+    public abstract jdk.internal.access.JavaNioAccess$BufferPool getDirectBufferPool();
+
+    public abstract java.nio.ByteBuffer newDirectByteBuffer(long, int, java.lang.Object, jdk.internal.access.foreign.MemorySegmentProxy);
+
+    public abstract java.nio.ByteBuffer newHeapByteBuffer(byte[], int, int, jdk.internal.access.foreign.MemorySegmentProxy);
+
+    public abstract java.lang.Object getBufferBase(java.nio.ByteBuffer);
+
+    public abstract long getBufferAddress(java.nio.ByteBuffer);
+
+    public abstract void checkSegment(java.nio.Buffer);
+}

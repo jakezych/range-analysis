@@ -1,0 +1,68 @@
+final class jdk.internal.ref.CleanerImpl$InnocuousThreadFactory extends java.lang.Object implements java.util.concurrent.ThreadFactory
+{
+    static final java.util.concurrent.ThreadFactory factory;
+    final java.util.concurrent.atomic.AtomicInteger cleanerThreadNumber;
+
+    void <init>()
+    {
+        jdk.internal.ref.CleanerImpl$InnocuousThreadFactory r0;
+        java.util.concurrent.atomic.AtomicInteger $r1;
+
+        r0 := @this: jdk.internal.ref.CleanerImpl$InnocuousThreadFactory;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.concurrent.atomic.AtomicInteger;
+
+        specialinvoke $r1.<java.util.concurrent.atomic.AtomicInteger: void <init>()>();
+
+        r0.<jdk.internal.ref.CleanerImpl$InnocuousThreadFactory: java.util.concurrent.atomic.AtomicInteger cleanerThreadNumber> = $r1;
+
+        return;
+    }
+
+    static java.util.concurrent.ThreadFactory factory()
+    {
+        java.util.concurrent.ThreadFactory $r0;
+
+        $r0 = <jdk.internal.ref.CleanerImpl$InnocuousThreadFactory: java.util.concurrent.ThreadFactory factory>;
+
+        return $r0;
+    }
+
+    public java.lang.Thread newThread(java.lang.Runnable)
+    {
+        jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1 $r0;
+        jdk.internal.ref.CleanerImpl$InnocuousThreadFactory r1;
+        java.lang.Runnable r2;
+        java.lang.Object $r3;
+        java.lang.Thread $r4;
+
+        r1 := @this: jdk.internal.ref.CleanerImpl$InnocuousThreadFactory;
+
+        r2 := @parameter0: java.lang.Runnable;
+
+        $r0 = new jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1;
+
+        specialinvoke $r0.<jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1: void <init>(jdk.internal.ref.CleanerImpl$InnocuousThreadFactory,java.lang.Runnable)>(r1, r2);
+
+        $r3 = staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedAction)>($r0);
+
+        $r4 = (java.lang.Thread) $r3;
+
+        return $r4;
+    }
+
+    static void <clinit>()
+    {
+        jdk.internal.ref.CleanerImpl$InnocuousThreadFactory $r0;
+
+        $r0 = new jdk.internal.ref.CleanerImpl$InnocuousThreadFactory;
+
+        specialinvoke $r0.<jdk.internal.ref.CleanerImpl$InnocuousThreadFactory: void <init>()>();
+
+        <jdk.internal.ref.CleanerImpl$InnocuousThreadFactory: java.util.concurrent.ThreadFactory factory> = $r0;
+
+        return;
+    }
+}

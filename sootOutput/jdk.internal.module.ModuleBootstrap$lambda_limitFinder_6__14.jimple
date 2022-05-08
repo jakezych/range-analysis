@@ -1,0 +1,54 @@
+public final class jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14 extends java.lang.Object implements java.util.function.Consumer
+{
+    java.util.Map cap0;
+
+    public static java.util.function.Consumer bootstrap$(java.util.Map)
+    {
+        java.util.Map $r0;
+        jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14 $r1;
+
+        $r0 := @parameter0: java.util.Map;
+
+        $r1 = new jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14;
+
+        specialinvoke $r1.<jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14: void <init>(java.util.Map)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(java.util.Map)
+    {
+        jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14 $r0;
+        java.util.Map $r1;
+
+        $r0 := @this: jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14;
+
+        $r1 := @parameter0: java.util.Map;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14: java.util.Map cap0> = $r1;
+
+        return;
+    }
+
+    public void accept(java.lang.Object)
+    {
+        jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14 $r0;
+        java.lang.Object $r1;
+        java.lang.module.ModuleReference $r2;
+        java.util.Map $r3;
+
+        $r0 := @this: jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (java.lang.module.ModuleReference) $r1;
+
+        $r3 = $r0.<jdk.internal.module.ModuleBootstrap$lambda_limitFinder_6__14: java.util.Map cap0>;
+
+        staticinvoke <jdk.internal.module.ModuleBootstrap: void lambda$limitFinder$6(java.util.Map,java.lang.module.ModuleReference)>($r3, $r2);
+
+        return;
+    }
+}

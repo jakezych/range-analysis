@@ -1,0 +1,78 @@
+class jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1 extends java.lang.Object implements java.security.PrivilegedAction
+{
+    final java.lang.Runnable val$r;
+    final jdk.internal.ref.CleanerImpl$InnocuousThreadFactory this$0;
+
+    void <init>(jdk.internal.ref.CleanerImpl$InnocuousThreadFactory, java.lang.Runnable)
+    {
+        jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1 r0;
+        jdk.internal.ref.CleanerImpl$InnocuousThreadFactory r1;
+        java.lang.Runnable r2;
+
+        r0 := @this: jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1;
+
+        r1 := @parameter0: jdk.internal.ref.CleanerImpl$InnocuousThreadFactory;
+
+        r2 := @parameter1: java.lang.Runnable;
+
+        r0.<jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1: jdk.internal.ref.CleanerImpl$InnocuousThreadFactory this$0> = r1;
+
+        r0.<jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1: java.lang.Runnable val$r> = r2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Thread run()
+    {
+        jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1 r0;
+        java.lang.Runnable $r1;
+        java.lang.Thread r2;
+        java.lang.StringBuilder $r3, $r4, $r7;
+        jdk.internal.ref.CleanerImpl$InnocuousThreadFactory $r5;
+        java.util.concurrent.atomic.AtomicInteger $r6;
+        int $i0;
+        java.lang.String $r8;
+
+        r0 := @this: jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1;
+
+        $r1 = r0.<jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1: java.lang.Runnable val$r>;
+
+        r2 = staticinvoke <jdk.internal.misc.InnocuousThread: java.lang.Thread newThread(java.lang.Runnable)>($r1);
+
+        virtualinvoke r2.<java.lang.Thread: void setPriority(int)>(8);
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Cleaner-");
+
+        $r5 = r0.<jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1: jdk.internal.ref.CleanerImpl$InnocuousThreadFactory this$0>;
+
+        $r6 = $r5.<jdk.internal.ref.CleanerImpl$InnocuousThreadFactory: java.util.concurrent.atomic.AtomicInteger cleanerThreadNumber>;
+
+        $i0 = virtualinvoke $r6.<java.util.concurrent.atomic.AtomicInteger: int getAndIncrement()>();
+
+        $r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r2.<java.lang.Thread: void setName(java.lang.String)>($r8);
+
+        return r2;
+    }
+
+    public volatile java.lang.Object run()
+    {
+        jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1 r0;
+        java.lang.Thread $r1;
+
+        r0 := @this: jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1;
+
+        $r1 = virtualinvoke r0.<jdk.internal.ref.CleanerImpl$InnocuousThreadFactory$1: java.lang.Thread run()>();
+
+        return $r1;
+    }
+}
