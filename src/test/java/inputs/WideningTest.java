@@ -40,7 +40,7 @@ public class WideningTest {
             y = y - 1;
         }
 
-        int ignore = array[x - 1]; // OKAY x - 1 = [0, 9]
+        int ignore = array[x - 1]; // OKAY x - 1 = [9, 9]
         ignore = array[y]; // WARNING y = [-inf, 1]
     }
 
