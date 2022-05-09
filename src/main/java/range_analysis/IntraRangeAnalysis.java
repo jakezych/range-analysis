@@ -155,7 +155,6 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                     }
                 }
             }
-            System.out.println("minWiden val: " + val);
             return val;
         }
     }
@@ -172,7 +171,6 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                     }
                 }
             }
-            System.out.println("maxWiden val: " + val);
             return val;
         }
     }
@@ -186,7 +184,6 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      * @return
      */
     private void widen(Sigma prev, Sigma current, Sigma out) {
-        System.out.println("widen: prev: " + prev.map.toString() + " current: " + current.map.toString());
         for (Map.Entry<Local, Range> entry1 : prev.map.entrySet()) {
             Local l = entry1.getKey();
             Range prevRange = entry1.getValue();
@@ -296,13 +293,6 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
      */
     @Override
     protected void flowThrough(Sigma inValue, Unit unit, Sigma outValue) {
-        System.out.print("unit: " + unit.toString());
-        if (ctx != null) {
-            System.out.println(" context: " + ctx.toString());
-        } else {
-            System.out.println();
-        }
-        System.out.println("inValue:" + inValue);
         inValue.copy(outValue);
         if (unit instanceof JAssignStmt) {
             JAssignStmt assignStmt = (JAssignStmt) unit;
@@ -311,19 +301,16 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 if (ctx != null) {
                     InterRangeAnalysis.results.get(ctx).output = outValue;
                 }
-                System.out.println("outValue at end of flowThrough:" + outValue.map.toString());
                 return;
             }
             Local lhs = (Local) assignStmt.getLeftOp();
             Value rhs = assignStmt.getRightOp();
             // processes an assign statement containing a function call as long as interprocedural analysis is being run
             if (assignStmt.containsInvokeExpr() && ctx != null) {
-                System.out.println(assignStmt + "being invoked");
                 // get the method being invoked
                 SootMethod method = assignStmt.getInvokeExpr().getMethod();
                 Context calleeCtx = Context.getCtx(method, ctx, unit.getJavaSourceStartLineNumber());
                 List<Value> localValues = assignStmt.getInvokeExpr().getArgs();
-                System.out.println("calling resultsFor with inValue: " + inValue);
                 // map the return value to the lhs side by getting its lattice value
                 for (Map.Entry<Local, Range> entry1 : resultsFor(calleeCtx, inValue, localValues).map.entrySet()) {
                     if (entry1.getKey().getName().equals("return")) {
@@ -343,11 +330,8 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 if (!(assignStmt.getLeftOp() instanceof Local)) {
                     return;
                 }
-                System.out.println("evaluating expression in assign case: " + unit.toString() + " with inValue: " + inValue);
                 Range value = evaluateExpression(inValue, lhs, rhs, outValue);
-                System.out.println("inserting [" + lhs + "] = " + value);
                 outValue.map.put(lhs, value);
-                System.out.println("outValue: " + outValue + " after evaluating assign");
             }
         } else if (unit instanceof JIfStmt) {
             Stmt conditional = (Stmt) unit;
@@ -355,11 +339,8 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             // loop guard found
             if (loopHeads.contains(conditional)) {
                 Value condition = ifStmt.getCondition();
-                System.out.println(condition);
-                System.out.println("inValue:" + inValue.map.toString());
                 Integer lineNumber = unit.getJavaSourceStartLineNumber();
                 if (previousSigma.containsKey(lineNumber)) {
-                    System.out.println("calling widen");
                     widen(previousSigma.get(lineNumber), inValue, outValue);
                 } else {
                     Sigma entry = new Sigma();
@@ -394,13 +375,9 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
                 // no constant found
                 return;
             }
-            System.out.println("l: " + l + " rhs: " + rhs);
-            System.out.println(guard.getSymbol());
             if (guard.getSymbol().trim().equals("==")) {
                 // if n is within range, assign it
                 if (lRange.getLow() <= intExpr.value && intExpr.value <= lRange.getHigh()) {
-                    System.out.println("Assigning " + l + " to " + rhs);
-                    System.out.println("evaluating expression in loop: " + unit.toString());
                     Range value = evaluateExpression(inValue, l, rhs, outValue);
                     outValue.map.put(l, value);
                 }
@@ -409,9 +386,7 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             JReturnStmt returnStmt = (JReturnStmt) unit;
             Local result = Jimple.v().newLocal("return", returnStmt.getOp().getType());
             Value expression = returnStmt.getOp();
-            System.out.println("evaluating expression in return statement: " + unit.toString());
             Range value = evaluateExpression(inValue, result, expression, outValue);
-            System.out.println("return value: " + value);
             // perform a merge over the return values for the result being returned
             if (outValue.map.containsKey(result)) {
                 Range previousValue = outValue.map.get(result);
@@ -423,7 +398,6 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         if (ctx != null) {
             InterRangeAnalysis.results.get(ctx).output = outValue;
         }
-        System.out.println("outValue at end of flowThrough:" + outValue.map.toString());
     }
 
     /**
@@ -439,7 +413,6 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
         Set<Context> analyzing = InterRangeAnalysis.analyzing;
         if (results.containsKey(ctx)) {
             if (InterRangeAnalysis.isLessPreciseThan(sigma_i, results.get(ctx).input)) {
-                System.out.println("returning output: " + results.get(ctx).output.toString() + "for ctx: " + ctx.toString());
                 return results.get(ctx).output;
             }
             else {
@@ -469,9 +442,6 @@ public class IntraRangeAnalysis extends ForwardFlowAnalysis<Unit, Sigma> {
             }
 
             Sigma newOutput = new Sigma(newInput.map.keySet(), new Range(Integer.MAX_VALUE, Integer.MIN_VALUE));
-            System.out.println("ctx: " + ctx);
-            System.out.println("newInput: " + newInput);
-            System.out.println("newOutput: " + newOutput);
             Summary summary = new Summary(newInput, newOutput);
             results.put(ctx, summary);
         }
